@@ -1,7 +1,12 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { Stack } from 'expo-router';
+import { enableFreeze, enableScreens } from 'react-native-screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+enableScreens(true);
+enableFreeze(true);
+
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import {
