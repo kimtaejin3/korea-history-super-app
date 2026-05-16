@@ -12,6 +12,7 @@ import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { SectionLabel } from '../../components/SectionLabel';
+import { Mascot } from '../../components/Mascot';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
@@ -91,20 +92,32 @@ export default function HomeScreen() {
         </Pressable>
       </View>
 
-      {/* 큰 인사말 */}
-      <View style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 18 }}>
-        <Text
-          style={{
-            fontFamily: FONTS.serif,
-            fontSize: 26,
-            color: TOKENS.ink,
-            letterSpacing: -0.5,
-            lineHeight: 32,
-          }}
-        >
-          오늘, 가까운 곳에서{'\n'}
-          <Text style={{ color: TOKENS.red }}>역사 한 조각</Text>을 만나보세요
-        </Text>
+      {/* 큰 인사말 + 마스코트 */}
+      <View
+        style={{
+          paddingHorizontal: 20,
+          paddingTop: 4,
+          paddingBottom: 18,
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 12,
+        }}
+      >
+        <Mascot size={88} source={require('../../assets/animations/mascot.riv')} />
+        <View style={{ flex: 1 }}>
+          <Text
+            style={{
+              fontFamily: FONTS.serif,
+              fontSize: 22,
+              color: TOKENS.ink,
+              letterSpacing: -0.5,
+              lineHeight: 28,
+            }}
+          >
+            오늘, 가까운 곳에서{'\n'}
+            <Text style={{ color: TOKENS.red }}>역사 한 조각</Text>을 만나보세요
+          </Text>
+        </View>
       </View>
 
       {/* HERO */}
