@@ -32,7 +32,6 @@ export default function ProfileScreen() {
     <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
       <PageHeader
         title="나의 답사기"
-        hanja="踏査記"
         action={
           <Pressable
             style={{
@@ -119,19 +118,6 @@ export default function ProfileScreen() {
               overflow: 'hidden',
             }}
           >
-            <Text
-              style={{
-                position: 'absolute',
-                top: -16,
-                right: -10,
-                fontFamily: FONTS.serifBlack,
-                fontSize: 130,
-                lineHeight: 130,
-                color: `${current.color}60`,
-              }}
-            >
-              {current.hanja[0]}
-            </Text>
             <View>
               <Text
                 style={{
@@ -151,17 +137,7 @@ export default function ProfileScreen() {
                   marginTop: 2,
                 }}
               >
-                {current.name}{' '}
-                <Text
-                  style={{
-                    fontFamily: FONTS.serifRegular,
-                    fontSize: 13,
-                    color: 'rgba(255,255,255,0.5)',
-                    letterSpacing: 2,
-                  }}
-                >
-                  {current.hanja}
-                </Text>
+                {current.name}
               </Text>
               {next && (
                 <>

@@ -11,20 +11,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import {
-  NotoSerifKR_400Regular,
-  NotoSerifKR_700Bold,
-  NotoSerifKR_900Black,
-} from '@expo-google-fonts/noto-serif-kr';
-import {
-  NotoSansKR_500Medium,
-  NotoSansKR_700Bold,
-} from '@expo-google-fonts/noto-sans-kr';
-import {
   JetBrainsMono_400Regular,
   JetBrainsMono_700Bold,
 } from '@expo-google-fonts/jetbrains-mono';
 import { View } from 'react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SearchTransitionProvider } from '../context/SearchTransition';
+import { SearchTransitionOverlay } from '../components/SearchTransitionOverlay';
 import '../global.css';
 
 enableScreens(true);
@@ -42,11 +35,11 @@ const queryClient = new QueryClient({
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    NotoSerifKR_400Regular,
-    NotoSerifKR_700Bold,
-    NotoSerifKR_900Black,
-    NotoSansKR_500Medium,
-    NotoSansKR_700Bold,
+    'Pretendard-Regular': require('../assets/fonts/Pretendard-Regular.otf'),
+    'Pretendard-Medium': require('../assets/fonts/Pretendard-Medium.otf'),
+    'Pretendard-SemiBold': require('../assets/fonts/Pretendard-SemiBold.otf'),
+    'Pretendard-Bold': require('../assets/fonts/Pretendard-Bold.otf'),
+    'Pretendard-ExtraBold': require('../assets/fonts/Pretendard-ExtraBold.otf'),
     JetBrainsMono_400Regular,
     JetBrainsMono_700Bold,
   });
@@ -58,10 +51,13 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
-        <StatusBar style="dark" />
-        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FBFBF9' } }}>
-          <Stack.Screen name="(tabs)" />
-        </Stack>
+        <SearchTransitionProvider>
+          <StatusBar style="dark" />
+          <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FBFBF9' } }}>
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+          <SearchTransitionOverlay />
+        </SearchTransitionProvider>
       </SafeAreaProvider>
     </QueryClientProvider>
   );

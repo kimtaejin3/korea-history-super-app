@@ -43,7 +43,6 @@ export default function StampbookScreen() {
     <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
       <PageHeader
         title="스탬프북"
-        hanja="印譜帖"
         subtitle={`${STAMPED.length}개의 발자국 · 모은 도장 ${STAMPED.length}/${PLACES.length}`}
         action={
           <Pressable

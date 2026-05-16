@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -14,11 +14,13 @@ import Svg, {
   Text as SvgText,
 } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
+import { useSearchTransition } from '../../context/SearchTransition';
 
 const CITIES = [
   { x: 38, y: 23, t: '서울' },
@@ -42,6 +44,18 @@ export default function MapScreen() {
 
   const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
+  const { state: searchTransition } = useSearchTransition();
+
+  // transition 활성 중에는 바를 아예 렌더 안 함 → 끝나고 100ms 뒤에 fade-in
+  const [showBar, setShowBar] = useState(!searchTransition.active);
+  useEffect(() => {
+    if (searchTransition.active) {
+      setShowBar(false);
+    } else {
+      const t = setTimeout(() => setShowBar(true), 100);
+      return () => clearTimeout(t);
+    }
+  }, [searchTransition.active]);
 
   if (!placesQuery.data || !stampedQuery.data) {
     return <View style={{ flex: 1, backgroundColor: '#E8E1D2' }} />;
@@ -127,30 +141,33 @@ export default function MapScreen() {
           style={{ position: 'absolute', top: 0, left: 0, right: 0, height: insets.top + 120 }}
           pointerEvents="none"
         />
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 8,
-            backgroundColor: TOKENS.paper,
-            borderRadius: 999,
-            paddingHorizontal: 16,
-            paddingVertical: 10,
-            shadowColor: '#000',
-            shadowOpacity: 0.08,
-            shadowOffset: { width: 0, height: 2 },
-            shadowRadius: 12,
-            elevation: 3,
-          }}
-        >
-          <Svg width="14" height="14" viewBox="0 0 22 22" fill="none">
-            <Circle cx="10" cy="10" r="6" stroke={TOKENS.mute} strokeWidth="1.8" />
-            <Path d="M15 15l4 4" stroke={TOKENS.mute} strokeWidth="1.8" strokeLinecap="round" />
-          </Svg>
-          <Text style={{ fontFamily: FONTS.sans, fontSize: 13, color: TOKENS.mute, flex: 1 }}>
-            장소 · 테마 · 시대 검색
-          </Text>
-        </View>
+        {showBar && (
+          <Animated.View
+            entering={FadeIn.duration(220)}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+              backgroundColor: TOKENS.paper,
+              borderRadius: 999,
+              paddingHorizontal: 16,
+              paddingVertical: 10,
+              shadowColor: '#000',
+              shadowOpacity: 0.08,
+              shadowOffset: { width: 0, height: 2 },
+              shadowRadius: 12,
+              elevation: 3,
+            }}
+          >
+            <Svg width="14" height="14" viewBox="0 0 22 22" fill="none">
+              <Circle cx="10" cy="10" r="6" stroke={TOKENS.mute} strokeWidth="1.8" />
+              <Path d="M15 15l4 4" stroke={TOKENS.mute} strokeWidth="1.8" strokeLinecap="round" />
+            </Svg>
+            <Text style={{ fontFamily: FONTS.sans, fontSize: 13, color: TOKENS.mute, flex: 1 }}>
+              장소 · 테마 · 시대 검색
+            </Text>
+          </Animated.View>
+        )}
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}

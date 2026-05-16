@@ -1,119 +1,89 @@
-# Mascot (삽살개) + Rive 셋업
+# Mascot (삽살개) + Lottie 셋업
 
-전통 삽살개를 마스코트로 Rive 애니메이션 통합.
+전통 삽살개를 마스코트로 Lottie 애니메이션 통합. 컨셉은 "역사덕후 여행하는 삽살개".
 
 ## 현재 상태
 
-- `expo-dev-client` + `rive-react-native` 설치 완료
-- `rive-react-native`는 config plugin 없는 일반 네이티브 모듈 — `app.json` plugins에 등록 X. `npx expo prebuild` 시 autolinking으로 자동 인식됨
-- `components/Mascot.tsx` — 진입점. `rive` prop 있으면 Rive 사용, 없으면 SVG 폴백
-- `components/MascotRive.tsx` — Rive 전용 (Expo Go에서는 import 자체를 막기 위해 분리)
-- `assets/animations/` — `.riv` 파일 둘 자리
-- **Expo Go에서는 더 이상 안 돌아감** → dev client 빌드 필요
+- `lottie-react-native` 설치 완료
+- `expo-dev-client` 설치 완료 (Lottie는 Expo Go에서 안 돌아감)
+- `components/Mascot.tsx` — 진입점. `source` prop 있으면 Lottie 사용, 없으면 SVG 폴백
+- `components/MascotLottie.tsx` — Lottie 전용 (Expo Go에서는 import 자체를 막기 위해 분리)
+- `assets/animations/` — `.json` 파일 둘 자리
+- 지금은 .json 파일이 없어서 SVG 폴백 작동 중
 
 ## 사용법
 
 ```tsx
 import { Mascot } from '../components/Mascot';
 
-// SVG 폴백 (Rive 파일 없을 때 — 지금 상태)
+// SVG 폴백 (지금 상태)
 <Mascot size={140} />
 
-// Rive 파일 들어온 뒤
+// Lottie 파일 들어온 뒤
 <Mascot
   size={140}
-  rive="salsalgae"          // assets/animations/salsalgae.riv
-  stateMachine="State Machine 1"
-  artboard="Salsalgae"
+  source={require('../assets/animations/mascot.json')}
+  loop
+  speed={1}
 />
 ```
 
-## Dev Client 빌드 (첫 1회만)
+## Dev Client 빌드 (한 번만)
 
-이제 Expo Go로는 못 띄움. 둘 중 하나 선택:
-
-### A. Mac + Xcode (가장 빠름)
+Lottie도 네이티브 모듈이라 Expo Go 아닌 dev client가 필요해요. 이미 빌드한 적 있으면 패키지가 바뀌었으니 한 번 재빌드:
 
 ```bash
-# 네이티브 폴더 생성 (ios/, android/)
 npx expo prebuild --clean
-
-# iOS 시뮬레이터에 빌드 + 실행
 npx expo run:ios
-
-# 또는 안드로이드
+# 또는
 npx expo run:android
 ```
 
-첫 빌드는 10~20분. 그 다음부터는 `npx expo start --dev-client`로 일반 개발.
-
-### B. EAS Build (Mac 없거나 클라우드 선호)
-
+그 다음부터는:
 ```bash
-# Expo 계정 로그인 (한 번만)
-npx eas login
-
-# 프로젝트 초기화 (한 번만)
-npx eas init
-
-# development 빌드
-npx eas build --profile development --platform ios
-# 또는 안드로이드
-npx eas build --profile development --platform android
+npx expo start --dev-client
 ```
 
-EAS가 클라우드에서 .ipa/.apk 빌드해서 링크 제공. 폰에 설치 후 `npx expo start --dev-client`로 개발.
+## Lottie 파일 만들기 / 받기
 
-### `eas.json` 설정 (B 옵션 시)
+### 직접 디자인하는 경우 (이 프로젝트의 길)
 
-```json
-{
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    }
-  }
-}
-```
+캐릭터 컨셉: **한국 전통 삽살개, 역사덕후 여행자**
+- 풍성한 눈썹, 둥글둥글한 얼굴, 베이지+짙은 갈색
+- 소품: 작은 갓 또는 머리띠, 등에 봇짐, 도장/두루마리
+- 톤: 우리 앱 스타일(모던 미니멀 + 약간의 전통)에 맞춰 플랫 벡터
 
-## Rive 디자인 워크플로우
+### 도구
 
-캐릭터 디자인 자신 없으셔도 다음 경로들이 있어요:
+| 도구 | 장점 | 단점 | 가격 |
+|---|---|---|---|
+| **Lottielab** (lottielab.com) | 웹 기반, 노코드, Figma import | 복잡한 본 리그 한계 | 무료/유료 |
+| **Jitter** (jitter.video) | 웹, 깔끔한 UX | 캐릭터 본 리깅 약함 | 무료/유료 |
+| **After Effects + Bodymovin** | 정통, 풀 컨트롤 | 학습곡선, AE 라이센스 | $20.99/월 |
+| **LottieFiles Creator** | 무료 웹 에디터 | 기능 제한적 | 무료 |
 
-### 1. Rive Community 무료 캐릭터 활용
-- https://rive.app/community/ → "dog" 검색
-- 무료로 다운로드 → 색깔/크기/디테일만 수정해서 사용
-- 가장 빠른 길
+### 추천 워크플로우
 
-### 2. AI 레퍼런스 + Rive에서 재구성
-- Midjourney / ChatGPT / Stable Diffusion에 "cute Korean Sapsali dog cartoon mascot, traditional but modern, vector flat style" 같은 프롬프트로 레퍼런스 생성
-- Rive 또는 Figma에서 그 이미지를 참고로 path/shape 다시 그리기
+1. **컨셉 스케치** — 종이/Figma에서 캐릭터 정적 디자인
+2. **벡터 정리** — Figma 또는 Illustrator에서 SVG 완성
+3. **Lottielab 또는 Jitter로 import** — 웹 에디터에 SVG 올리고 모션 추가
+4. **idle 애니메이션 먼저** — 꼬리 흔들기, 눈 깜빡임, 살짝 위아래 호흡
+5. **.json 또는 .lottie export**
+6. `assets/animations/mascot.json`으로 저장
 
-### 3. 디자이너 외주
-- Fiverr / 크몽: 2~10만 원에 마스코트 + 기본 애니메이션 의뢰 가능
-- 요구사항: "Rive로 export, state machine 포함, idle/happy/sad 상태"
+## Lottie 파일 추가 후 할 일
 
-### 4. 단순화 (현재 SVG 폴백)
-- 정말 간단한 캐릭터는 SVG로 충분
-- 지금 `components/Mascot.tsx`의 SVG 폴백이 그 예시
-- 눈 깜빡임, 꼬리 흔들기 정도면 Reanimated로 추가 가능
-
-## Rive 파일 추가 후 할 일
-
-1. `.riv` 파일을 `assets/animations/salsalgae.riv`로 저장 (이름은 자유)
-2. Rive 에디터에서 state machine 이름 확인
-3. 화면에서:
+1. `.json` 파일을 `assets/animations/mascot.json`으로 저장 (이름은 자유)
+2. 홈 화면(또는 원하는 곳)에서:
    ```tsx
-   <Mascot rive="salsalgae" stateMachine="State Machine 1" />
+   <Mascot size={88} source={require('../assets/animations/mascot.json')} />
    ```
-4. iOS는 Xcode 프로젝트에 .riv 파일이 자동 인식되지만, 안 되면 Xcode에서 "Add Files to..."로 추가
+3. Metro에서 `r` 눌러 리로드
+4. 캐시 문제 있으면 `npx expo start --dev-client --clear`
 
 ## 권장 적용 위치
 
-지금 우리 앱에서는:
-
-1. **홈 화면 인사말 옆** (가장 자연스러움)
+1. **홈 화면 인사말 옆** (이미 자리 잡혀 있음 — SVG 폴백 중)
 2. **로딩 상태** (지금 흰 화면인 자리)
 3. **체크인 → 스탬프 획득 후** (보상 애니메이션)
 4. **테마 100% 완성 시** (굿즈 카드)
@@ -123,5 +93,5 @@ EAS가 클라우드에서 .ipa/.apk 빌드해서 링크 제공. 폰에 설치 �
 ## 관련 파일
 
 - `components/Mascot.tsx` — 진입 컴포넌트 + SVG 폴백
-- `components/MascotRive.tsx` — Rive 래퍼
-- `assets/animations/` — .riv 파일 자리
+- `components/MascotLottie.tsx` — Lottie 래퍼
+- `assets/animations/` — .json 파일 자리

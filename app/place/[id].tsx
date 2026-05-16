@@ -95,17 +95,6 @@ export default function PlaceDetailScreen() {
           >
             {p.name}
           </Text>
-          <Text
-            style={{
-              fontFamily: FONTS.serifRegular,
-              fontSize: 13,
-              color: TOKENS.mute,
-              marginTop: 4,
-              letterSpacing: 2.5,
-            }}
-          >
-            {p.nameHanja}
-          </Text>
           <View
             style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 10 }}
           >

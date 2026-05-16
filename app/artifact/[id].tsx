@@ -94,17 +94,6 @@ export default function ArtifactDetailScreen() {
           </Text>
           <Text
             style={{
-              fontFamily: FONTS.serifRegular,
-              fontSize: 13,
-              color: TOKENS.mute,
-              marginTop: 4,
-              letterSpacing: 2.5,
-            }}
-          >
-            {a.nameHanja}
-          </Text>
-          <Text
-            style={{
               fontFamily: FONTS.sans,
               fontSize: 13,
               color: TOKENS.inkSoft,

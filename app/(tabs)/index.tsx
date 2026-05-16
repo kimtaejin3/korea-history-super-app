@@ -1,6 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { View, Text, ScrollView, Pressable } from 'react-native';
+import { useRef } from 'react';
+import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Path, Circle } from 'react-native-svg';
@@ -13,10 +14,32 @@ import { Stamp } from '../../components/Stamp';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { SectionLabel } from '../../components/SectionLabel';
 import { Mascot } from '../../components/Mascot';
+import { useSearchTransition } from '../../context/SearchTransition';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { width: screenWidth } = useWindowDimensions();
+  const searchBtnRef = useRef<View>(null);
+  const { start: startSearchTransition } = useSearchTransition();
+
+  const onPressSearch = () => {
+    const node = searchBtnRef.current;
+    if (!node) return;
+    node.measureInWindow((x, y, width, height) => {
+      const target = {
+        x: 16,
+        y: insets.top + 12,
+        width: screenWidth - 32,
+        height: 44,
+      };
+      startSearchTransition({ x, y, width, height }, target);
+      // 애니메이션 중간에 탭 전환
+      setTimeout(() => {
+        router.push('/(tabs)/map' as never);
+      }, 180);
+    });
+  };
 
   const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
@@ -50,19 +73,18 @@ export default function HomeScreen() {
   const hero = nearby[0];
 
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: TOKENS.paper }}
-      contentContainerStyle={{ paddingTop: insets.top + 8, paddingBottom: 120 }}
-      showsVerticalScrollIndicator={false}
-    >
-      {/* 헤더 */}
+    <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+      {/* 고정 헤더 */}
       <View
         style={{
+          paddingTop: insets.top + 8,
           paddingHorizontal: 20,
           paddingBottom: 8,
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
+          backgroundColor: TOKENS.paper,
+          zIndex: 10,
         }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
@@ -75,7 +97,9 @@ export default function HomeScreen() {
           </Text>
         </View>
         <Pressable
+          ref={searchBtnRef}
           accessibilityLabel="search"
+          onPress={onPressSearch}
           style={{
             width: 36,
             height: 36,
@@ -92,6 +116,11 @@ export default function HomeScreen() {
         </Pressable>
       </View>
 
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 120 }}
+        showsVerticalScrollIndicator={false}
+      >
       {/* 큰 인사말 + 마스코트 */}
       <View
         style={{
@@ -103,7 +132,7 @@ export default function HomeScreen() {
           gap: 12,
         }}
       >
-        <Mascot size={88} source={require('../../assets/animations/mascot.riv')} />
+        <Mascot size={88} />
         <View style={{ flex: 1 }}>
           <Text
             style={{
@@ -368,19 +397,6 @@ export default function HomeScreen() {
               end={{ x: 1, y: 1 }}
               style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}
             >
-              <Text
-                style={{
-                  position: 'absolute',
-                  top: 10,
-                  right: 12,
-                  fontFamily: FONTS.serifBlack,
-                  fontSize: 88,
-                  color: 'rgba(255,255,255,0.10)',
-                  lineHeight: 88,
-                }}
-              >
-                {t.glyph}
-              </Text>
               <View>
                 <Text
                   style={{
@@ -550,12 +566,14 @@ export default function HomeScreen() {
               <Text
                 style={{
                   fontFamily: FONTS.serifBlack,
-                  fontSize: 100,
-                  color: 'rgba(255,255,255,0.95)',
-                  lineHeight: 100,
+                  fontSize: 28,
+                  color: TOKENS.paper,
+                  letterSpacing: -0.5,
+                  paddingHorizontal: 12,
+                  textAlign: 'center',
                 }}
               >
-                {f.glyph}
+                {f.name}
               </Text>
               <Text
                 style={{
@@ -573,27 +591,12 @@ export default function HomeScreen() {
               </Text>
             </LinearGradient>
             <View style={{ paddingTop: 8 }}>
-              <Text style={{ fontFamily: FONTS.serif, fontSize: 14, color: TOKENS.ink }}>
-                {f.name}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.serifRegular,
-                  fontSize: 10,
-                  color: TOKENS.mute,
-                  marginTop: 2,
-                  letterSpacing: 2,
-                }}
-              >
-                {f.nameHanja}
-              </Text>
               <Text
                 numberOfLines={1}
                 style={{
                   fontFamily: FONTS.sans,
-                  fontSize: 11,
+                  fontSize: 12,
                   color: TOKENS.inkSoft,
-                  marginTop: 4,
                 }}
               >
                 {f.title}
@@ -678,6 +681,7 @@ export default function HomeScreen() {
           </Pressable>
         </View>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }

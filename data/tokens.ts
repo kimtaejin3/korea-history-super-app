@@ -14,12 +14,16 @@ export const TOKENS = {
   navy: '#1F3A52',
 } as const;
 
+/**
+ * 폰트 토큰. 전부 Pretendard 단독. 과거 serif/sans 구분은 weight로만 표현.
+ * - "serif" 계열 키는 기존 화면들 호환 위해 유지하되 모두 Pretendard로 매핑.
+ */
 export const FONTS = {
-  serif: 'NotoSerifKR_700Bold',
-  serifRegular: 'NotoSerifKR_400Regular',
-  serifBlack: 'NotoSerifKR_900Black',
-  sans: 'NotoSansKR_500Medium',
-  sansBold: 'NotoSansKR_700Bold',
+  serif: 'Pretendard-Bold',
+  serifRegular: 'Pretendard-Regular',
+  serifBlack: 'Pretendard-ExtraBold',
+  sans: 'Pretendard-Medium',
+  sansBold: 'Pretendard-SemiBold',
   mono: 'JetBrainsMono_400Regular',
   monoBold: 'JetBrainsMono_700Bold',
 } as const;

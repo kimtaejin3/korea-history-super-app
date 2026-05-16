@@ -41,19 +41,6 @@ export default function RankScreen() {
           >
             <Text
               style={{
-                position: 'absolute',
-                top: -30,
-                right: -30,
-                fontFamily: FONTS.serifBlack,
-                fontSize: 280,
-                lineHeight: 280,
-                color: `${current.color}40`,
-              }}
-            >
-              {current.hanja[0]}
-            </Text>
-            <Text
-              style={{
                 fontFamily: FONTS.monoBold,
                 fontSize: 11,
                 letterSpacing: 2,
@@ -72,17 +59,6 @@ export default function RankScreen() {
               }}
             >
               {current.name}
-            </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.serifRegular,
-                fontSize: 13,
-                color: 'rgba(255,255,255,0.55)',
-                marginTop: 2,
-                letterSpacing: 3,
-              }}
-            >
-              {current.hanja}
             </Text>
             <Text
               style={{
@@ -245,12 +221,12 @@ export default function RankScreen() {
                 >
                   <Text
                     style={{
-                      fontFamily: FONTS.serifBlack,
-                      fontSize: 13,
+                      fontFamily: FONTS.sansBold,
+                      fontSize: 12,
                       color: isPast || isCurrent ? TOKENS.paper : TOKENS.mute,
                     }}
                   >
-                    {lv.hanja[0]}
+                    {lv.level}
                   </Text>
                 </View>
                 <View style={{ flex: 1, opacity: dim }}>
@@ -280,21 +256,9 @@ export default function RankScreen() {
                       </View>
                     )}
                   </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 8, marginTop: 2 }}>
-                    <Text style={{ fontFamily: FONTS.serif, fontSize: 17, color: TOKENS.ink }}>
-                      {lv.name}
-                    </Text>
-                    <Text
-                      style={{
-                        fontFamily: FONTS.serifRegular,
-                        fontSize: 12,
-                        color: TOKENS.mute,
-                        letterSpacing: 2,
-                      }}
-                    >
-                      {lv.hanja}
-                    </Text>
-                  </View>
+                  <Text style={{ fontFamily: FONTS.serif, fontSize: 17, color: TOKENS.ink, marginTop: 2 }}>
+                    {lv.name}
+                  </Text>
                   <Text
                     style={{
                       fontFamily: FONTS.sans,

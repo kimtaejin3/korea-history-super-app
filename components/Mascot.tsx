@@ -4,32 +4,23 @@ import { TOKENS } from '../data/tokens';
 
 type Props = {
   size?: number;
-  /** require()로 받은 .riv 파일 모듈. 없으면 SVG 폴백. */
+  /** require()로 받은 .json 파일 모듈. 없으면 SVG 폴백. */
   source?: number;
-  /** Rive 상태머신 이름 */
-  stateMachine?: string;
-  /** Rive artboard 이름 */
-  artboard?: string;
+  loop?: boolean;
+  speed?: number;
 };
 
-export function Mascot({ size = 120, source, stateMachine, artboard }: Props) {
+export function Mascot({ size = 120, source, loop = true, speed = 1 }: Props) {
   if (source) {
-    // Rive 파일이 지정됐을 때만 동적 require — Expo Go에서는 이 코드 자체에 닿지 않게.
-    const RiveAnimation = require('./MascotRive').MascotRive;
-    return (
-      <RiveAnimation
-        size={size}
-        source={source}
-        stateMachineName={stateMachine}
-        artboardName={artboard}
-      />
-    );
+    // Lottie 파일이 지정됐을 때만 동적 require — Expo Go에서는 이 코드 자체에 닿지 않게.
+    const LottieAnimation = require('./MascotLottie').MascotLottie;
+    return <LottieAnimation size={size} source={source} loop={loop} speed={speed} />;
   }
   return <SvgFallback size={size} />;
 }
 
 /**
- * 임시 SVG 삽살개 — Rive 파일 들어오기 전까지 사용.
+ * 임시 SVG 삽살개 — Lottie 파일 들어오기 전까지 사용.
  */
 function SvgFallback({ size }: { size: number }) {
   return (

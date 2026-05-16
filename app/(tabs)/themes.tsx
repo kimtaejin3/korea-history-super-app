@@ -30,7 +30,6 @@ export default function ThemesScreen() {
     <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
       <PageHeader
         title="테마 답사"
-        hanja="主題 踏査"
         subtitle="장소를 잇는 이야기, 한 갈래씩 모아 걷기"
       />
       <ScrollView

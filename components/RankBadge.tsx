@@ -30,23 +30,13 @@ export function RankBadge({ level, size = 'sm' }: Props) {
     >
       <Text
         style={{
-          fontFamily: FONTS.serifBlack,
-          fontSize: dims.glyph,
-          color: TOKENS.paper,
-          lineHeight: dims.glyph + 2,
-        }}
-      >
-        {level.hanja[0]}
-      </Text>
-      <Text
-        style={{
           fontFamily: FONTS.sansBold,
           fontSize: dims.fs,
           color: TOKENS.paper,
           letterSpacing: 0.3,
         }}
       >
-        Lv{level.level} {level.name}
+        Lv{level.level} · {level.name}
       </Text>
     </View>
   );

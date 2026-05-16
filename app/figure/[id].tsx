@@ -55,19 +55,6 @@ export default function FigureDetailScreen() {
           end={{ x: 1, y: 1 }}
           style={{ height: 320, position: 'relative', overflow: 'hidden' }}
         >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 20,
-              right: -40,
-              fontFamily: FONTS.serifBlack,
-              fontSize: 380,
-              lineHeight: 380,
-              color: 'rgba(255,255,255,0.08)',
-            }}
-          >
-            {f.glyph}
-          </Text>
           <BackHeader overlay />
           <View
             style={{
@@ -81,13 +68,13 @@ export default function FigureDetailScreen() {
           >
             <Text
               style={{
-                fontFamily: FONTS.serifRegular,
+                fontFamily: FONTS.sansBold,
                 fontSize: 12,
                 color: 'rgba(255,255,255,0.7)',
                 letterSpacing: 3,
               }}
             >
-              {f.titleHanja} · {f.title.toUpperCase()}
+              {f.title.toUpperCase()}
             </Text>
             <Text
               style={{
@@ -100,17 +87,6 @@ export default function FigureDetailScreen() {
               }}
             >
               {f.name}
-            </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.serifRegular,
-                fontSize: 14,
-                color: 'rgba(255,255,255,0.7)',
-                marginTop: 4,
-                letterSpacing: 3,
-              }}
-            >
-              {f.nameHanja}
             </Text>
             <View
               style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 14 }}

@@ -11,6 +11,7 @@ import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
+import { LottieAsset } from '../../components/LottieAsset';
 
 type Step = 'locating' | 'confirmed' | 'quiz' | 'result' | 'stamp';
 
@@ -587,32 +588,12 @@ export default function CheckinScreen() {
           >
             {p.name}{'\n'}방문 인증 완료
           </Text>
-          <View
-            style={{
-              width: 220,
-              height: 220,
-              borderRadius: 8,
-              backgroundColor: TOKENS.paperWarm,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              alignItems: 'center',
-              justifyContent: 'center',
-              shadowColor: '#000',
-              shadowOpacity: 0.08,
-              shadowOffset: { width: 0, height: 8 },
-              shadowRadius: 32,
-              elevation: 8,
-            }}
-          >
-            <Animated.View
-              style={{
-                transform: [{ scale: stampScale }],
-                opacity: stampOpacity,
-              }}
-            >
-              <Stamp glyph={p.nameHanja[0]} size={140} rotate={-8} color={p.accent} />
-            </Animated.View>
-          </View>
+          <LottieAsset
+            source={require('../../assets/animations/stamp.lottie')}
+            size={260}
+            loop={false}
+            endFrame={40}
+          />
           <View style={{ marginTop: 28, alignItems: 'center' }}>
             <Text
               style={{

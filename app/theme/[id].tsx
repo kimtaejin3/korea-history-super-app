@@ -54,19 +54,6 @@ export default function ThemeDetailScreen() {
           end={{ x: 1, y: 1 }}
           style={{ height: 320, position: 'relative', overflow: 'hidden' }}
         >
-          <Text
-            style={{
-              position: 'absolute',
-              top: 40,
-              right: -30,
-              fontFamily: FONTS.serifBlack,
-              fontSize: 340,
-              lineHeight: 340,
-              color: 'rgba(255,255,255,0.08)',
-            }}
-          >
-            {t.glyph}
-          </Text>
           <BackHeader overlay />
           <View
             style={{
