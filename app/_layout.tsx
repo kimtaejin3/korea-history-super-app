@@ -1,12 +1,13 @@
 // noinspection JSUnusedGlobalSymbols
 
+import 'react-native-url-polyfill/auto';
+import { installMocks } from '../mocks/install';
+
+installMocks();
+
 import { Stack } from 'expo-router';
 import { enableFreeze, enableScreens } from 'react-native-screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
-enableScreens(true);
-enableFreeze(true);
-
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import {
@@ -23,7 +24,21 @@ import {
   JetBrainsMono_700Bold,
 } from '@expo-google-fonts/jetbrains-mono';
 import { View } from 'react-native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '../global.css';
+
+enableScreens(true);
+enableFreeze(true);
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60_000,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -41,11 +56,13 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider>
-      <StatusBar style="dark" />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FBFBF9' } }}>
-        <Stack.Screen name="(tabs)" />
-      </Stack>
-    </SafeAreaProvider>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaProvider>
+        <StatusBar style="dark" />
+        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FBFBF9' } }}>
+          <Stack.Screen name="(tabs)" />
+        </Stack>
+      </SafeAreaProvider>
+    </QueryClientProvider>
   );
 }

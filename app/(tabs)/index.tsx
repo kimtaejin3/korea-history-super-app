@@ -5,12 +5,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Path, Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { PLACES, STAMPED } from '../../data/places';
-import { THEMES } from '../../data/themes';
-import { ARTIFACTS } from '../../data/artifacts';
-import { FIGURES } from '../../data/figures';
-import { TODAY_IN_HISTORY } from '../../data/today';
+import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
@@ -19,6 +16,33 @@ import { SectionLabel } from '../../components/SectionLabel';
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+
+  const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
+  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
+  const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
+  const artifactsQuery = useQuery({ queryKey: queryKeys.artifacts, queryFn: api.artifacts });
+  const figuresQuery = useQuery({ queryKey: queryKeys.figures, queryFn: api.figures });
+  const todayQuery = useQuery({ queryKey: queryKeys.today, queryFn: api.today });
+
+  const loading =
+    placesQuery.isLoading ||
+    stampedQuery.isLoading ||
+    themesQuery.isLoading ||
+    artifactsQuery.isLoading ||
+    figuresQuery.isLoading ||
+    todayQuery.isLoading;
+
+  if (loading || !placesQuery.data || !stampedQuery.data || !themesQuery.data || !artifactsQuery.data || !figuresQuery.data || !todayQuery.data) {
+    return <View style={{ flex: 1, backgroundColor: TOKENS.paper }} />;
+  }
+
+  const PLACES = placesQuery.data;
+  const STAMPED = stampedQuery.data;
+  const THEMES = themesQuery.data;
+  const ARTIFACTS = artifactsQuery.data;
+  const FIGURES = figuresQuery.data;
+  const TODAY_IN_HISTORY = todayQuery.data;
+
   const myStamps = STAMPED.length;
   const nearby = [...PLACES].filter((p) => p.distance < 20).sort((a, b) => a.distance - b.distance);
   const activeThemes = THEMES.filter((t) => t.visited > 0 && t.visited < t.totalPlaces).slice(0, 3);

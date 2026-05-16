@@ -3,10 +3,9 @@
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { FIGURES } from '../../data/figures';
-import { PLACES } from '../../data/places';
-import { ARTIFACTS } from '../../data/artifacts';
+import { api, queryKeys } from '../../lib/api';
 import { BackHeader } from '../../components/BackHeader';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { Tag } from '../../components/Tag';
@@ -15,14 +14,27 @@ import { SectionLabel } from '../../components/SectionLabel';
 export default function FigureDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const f = FIGURES.find((x) => x.id === id);
-  if (!f) {
+  const figureQuery = useQuery({ queryKey: queryKeys.figure(id), queryFn: () => api.figure(id), enabled: !!id });
+  const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
+  const artifactsQuery = useQuery({ queryKey: queryKeys.artifacts, queryFn: api.artifacts });
+
+  if (figureQuery.isError || (figureQuery.isFetched && !figureQuery.data)) {
     return (
       <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
         <BackHeader title="인물을 찾을 수 없어요" />
       </View>
     );
   }
+  if (!figureQuery.data || !placesQuery.data || !artifactsQuery.data) {
+    return (
+      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+        <BackHeader />
+      </View>
+    );
+  }
+  const f = figureQuery.data;
+  const PLACES = placesQuery.data;
+  const ARTIFACTS = artifactsQuery.data;
   const linkedPlaces = f.placeIds
     .map((pid) => PLACES.find((p) => p.id === pid))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));

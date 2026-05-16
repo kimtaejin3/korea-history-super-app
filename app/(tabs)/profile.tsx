@@ -3,9 +3,9 @@
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { useRouter } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { STAMPED } from '../../data/places';
-import { USER, getRankInfo, ACHIEVEMENTS, RANKING } from '../../data/user';
+import { api, queryKeys } from '../../lib/api';
 import { PageHeader } from '../../components/PageHeader';
 import { Stamp } from '../../components/Stamp';
 import { RankBadge } from '../../components/RankBadge';
@@ -14,7 +14,19 @@ import { SectionLabel } from '../../components/SectionLabel';
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const { current, next, progress, xpToNext } = getRankInfo(USER.xp);
+  const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
+  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
+  const achievementsQuery = useQuery({ queryKey: queryKeys.achievements, queryFn: api.achievements });
+  const rankingQuery = useQuery({ queryKey: queryKeys.ranking, queryFn: api.ranking });
+
+  if (!meQuery.data || !stampedQuery.data || !achievementsQuery.data || !rankingQuery.data) {
+    return <View style={{ flex: 1, backgroundColor: TOKENS.paper }} />;
+  }
+  const USER = meQuery.data;
+  const STAMPED = stampedQuery.data;
+  const ACHIEVEMENTS = achievementsQuery.data;
+  const RANKING = rankingQuery.data;
+  const { current, next, progress, xpToNext } = USER.rank;
 
   return (
     <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>

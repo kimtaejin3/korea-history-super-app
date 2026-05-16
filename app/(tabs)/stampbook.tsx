@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { View, Text, ScrollView, Pressable, ViewStyle } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { useRouter } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { PLACES, STAMPED } from '../../data/places';
-import { THEMES } from '../../data/themes';
+import { api, queryKeys } from '../../lib/api';
 import { PageHeader } from '../../components/PageHeader';
 import { Stamp } from '../../components/Stamp';
 import { StampSlot } from '../../components/StampSlot';
@@ -16,6 +16,17 @@ const VIEWS = ['테마별', '시대별', '지역별'];
 export default function StampbookScreen() {
   const router = useRouter();
   const [view, setView] = useState('테마별');
+
+  const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
+  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
+  const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
+
+  if (!placesQuery.data || !stampedQuery.data || !themesQuery.data) {
+    return <View style={{ flex: 1, backgroundColor: TOKENS.paper }} />;
+  }
+  const PLACES = placesQuery.data;
+  const STAMPED = stampedQuery.data;
+  const THEMES = themesQuery.data;
 
   const byTheme = THEMES.map((t) => {
     const places = t.placeIds

@@ -4,12 +4,10 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import Svg, { Path, Circle, Rect } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { PLACES, STAMPED } from '../../data/places';
-import { THEMES } from '../../data/themes';
-import { ARTIFACTS } from '../../data/artifacts';
-import { FIGURES } from '../../data/figures';
-import { LEVELS, USER, getRankInfo } from '../../data/user';
+import { api, queryKeys } from '../../lib/api';
+import { LEVELS } from '../../data/user';
 import { BackHeader } from '../../components/BackHeader';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { Tag } from '../../components/Tag';
@@ -20,20 +18,39 @@ import { GatedButton } from '../../components/GatedButton';
 export default function PlaceDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const p = PLACES.find((x) => x.id === id);
-  if (!p) {
+
+  const placeQuery = useQuery({ queryKey: queryKeys.place(id), queryFn: () => api.place(id), enabled: !!id });
+  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
+  const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
+  const artifactsQuery = useQuery({ queryKey: queryKeys.artifacts, queryFn: api.artifacts });
+  const figuresQuery = useQuery({ queryKey: queryKeys.figures, queryFn: api.figures });
+  const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
+
+  if (placeQuery.isError || (placeQuery.isFetched && !placeQuery.data)) {
     return (
       <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
         <BackHeader title="장소를 찾을 수 없어요" />
       </View>
     );
   }
+  if (!placeQuery.data || !stampedQuery.data || !themesQuery.data || !artifactsQuery.data || !figuresQuery.data || !meQuery.data) {
+    return (
+      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+        <BackHeader />
+      </View>
+    );
+  }
+  const p = placeQuery.data;
+  const STAMPED = stampedQuery.data;
+  const THEMES = themesQuery.data;
+  const ARTIFACTS = artifactsQuery.data;
+  const FIGURES = figuresQuery.data;
   const stamped = STAMPED.includes(p.id);
   const inThemes = THEMES.filter((t) => t.placeIds.includes(p.id));
   const placeArtifacts = ARTIFACTS.filter((a) => a.placeId === p.id);
   const placeFigures = FIGURES.filter((f) => f.placeIds.includes(p.id));
   const within = p.distance < 5;
-  const { current: myRank } = getRankInfo(USER.xp);
+  const myRank = meQuery.data.rank.current;
 
   return (
     <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>

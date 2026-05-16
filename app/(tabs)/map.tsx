@@ -14,8 +14,9 @@ import Svg, {
   Text as SvgText,
 } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { PLACES, STAMPED } from '../../data/places';
+import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 
@@ -39,6 +40,14 @@ export default function MapScreen() {
   const { width, height } = useWindowDimensions();
   const [filter, setFilter] = useState('전체');
 
+  const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
+  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
+
+  if (!placesQuery.data || !stampedQuery.data) {
+    return <View style={{ flex: 1, backgroundColor: '#E8E1D2' }} />;
+  }
+  const PLACES = placesQuery.data;
+  const STAMPED = stampedQuery.data;
   const visible = PLACES.filter((p) => filter === '전체' || p.era === filter);
   const nearby = [...visible].sort((a, b) => a.distance - b.distance).slice(0, 5);
 

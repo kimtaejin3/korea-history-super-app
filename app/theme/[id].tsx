@@ -4,9 +4,9 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { THEMES } from '../../data/themes';
-import { PLACES, STAMPED } from '../../data/places';
+import { api, queryKeys } from '../../lib/api';
 import { BackHeader } from '../../components/BackHeader';
 import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
@@ -15,14 +15,27 @@ import { SectionLabel } from '../../components/SectionLabel';
 export default function ThemeDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const t = THEMES.find((x) => x.id === id);
-  if (!t) {
+  const themeQuery = useQuery({ queryKey: queryKeys.theme(id), queryFn: () => api.theme(id), enabled: !!id });
+  const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
+  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
+
+  if (themeQuery.isError || (themeQuery.isFetched && !themeQuery.data)) {
     return (
       <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
         <BackHeader title="테마를 찾을 수 없어요" />
       </View>
     );
   }
+  if (!themeQuery.data || !placesQuery.data || !stampedQuery.data) {
+    return (
+      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+        <BackHeader />
+      </View>
+    );
+  }
+  const t = themeQuery.data;
+  const PLACES = placesQuery.data;
+  const STAMPED = stampedQuery.data;
   const places = t.placeIds
     .map((pid) => PLACES.find((p) => p.id === pid))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));

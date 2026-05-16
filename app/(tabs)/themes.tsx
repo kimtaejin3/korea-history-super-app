@@ -5,9 +5,10 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Path, Rect } from 'react-native-svg';
 import { useRouter } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { THEMES } from '../../data/themes';
-import { LEVELS, USER, getRankInfo } from '../../data/user';
+import { api, queryKeys } from '../../lib/api';
+import { LEVELS } from '../../data/user';
 import { PageHeader } from '../../components/PageHeader';
 import { GatedButton } from '../../components/GatedButton';
 
@@ -16,7 +17,14 @@ const TABS = ['전체', '진행중', '추천', '완성'];
 export default function ThemesScreen() {
   const router = useRouter();
   const [tab, setTab] = useState('전체');
-  const { current: myRank } = getRankInfo(USER.xp);
+  const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
+  const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
+
+  if (!themesQuery.data || !meQuery.data) {
+    return <View style={{ flex: 1, backgroundColor: TOKENS.paper }} />;
+  }
+  const THEMES = themesQuery.data;
+  const myRank = meQuery.data.rank.current;
 
   return (
     <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>

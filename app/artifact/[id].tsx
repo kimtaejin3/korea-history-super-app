@@ -4,9 +4,9 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../../data/tokens';
-import { ARTIFACTS } from '../../data/artifacts';
-import { PLACES } from '../../data/places';
+import { api, queryKeys } from '../../lib/api';
 import { BackHeader } from '../../components/BackHeader';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { Tag } from '../../components/Tag';
@@ -15,15 +15,25 @@ import { SectionLabel } from '../../components/SectionLabel';
 export default function ArtifactDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const a = ARTIFACTS.find((x) => x.id === id);
-  if (!a) {
+  const artifactQuery = useQuery({ queryKey: queryKeys.artifact(id), queryFn: () => api.artifact(id), enabled: !!id });
+  const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
+
+  if (artifactQuery.isError || (artifactQuery.isFetched && !artifactQuery.data)) {
     return (
       <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
         <BackHeader title="유물을 찾을 수 없어요" />
       </View>
     );
   }
-  const place = PLACES.find((p) => p.id === a.placeId);
+  if (!artifactQuery.data || !placesQuery.data) {
+    return (
+      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+        <BackHeader />
+      </View>
+    );
+  }
+  const a = artifactQuery.data;
+  const place = placesQuery.data.find((p) => p.id === a.placeId);
 
   return (
     <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>

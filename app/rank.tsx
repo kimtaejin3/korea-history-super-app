@@ -1,13 +1,26 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { View, Text, ScrollView } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
 import { FONTS, TOKENS } from '../data/tokens';
-import { USER, getRankInfo, LEVELS } from '../data/user';
+import { api, queryKeys } from '../lib/api';
 import { BackHeader } from '../components/BackHeader';
 import { SectionLabel } from '../components/SectionLabel';
 
 export default function RankScreen() {
-  const { current, next, progress, xpToNext } = getRankInfo(USER.xp);
+  const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
+  const levelsQuery = useQuery({ queryKey: queryKeys.levels, queryFn: api.levels });
+
+  if (!meQuery.data || !levelsQuery.data) {
+    return (
+      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+        <BackHeader title="등급 · RANK" />
+      </View>
+    );
+  }
+  const USER = meQuery.data;
+  const LEVELS = levelsQuery.data;
+  const { current, next, progress, xpToNext } = USER.rank;
 
   return (
     <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
