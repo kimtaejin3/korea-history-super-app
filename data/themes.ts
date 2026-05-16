@@ -70,4 +70,18 @@ export const THEMES: Theme[] = [
     rewardGoods: '화성 능행도 한정 포스터',
     badge: '능행의 길',
   },
+  {
+    id: 'seowon',
+    title: '서원의 길',
+    subtitle: '선비와 학문',
+    desc: '조선 사림이 학문을 닦던 서원들. 소수·도산·병산부터 옥산까지, 유네스코 한국의 서원 9곳을 잇는 답사 코스.',
+    cover: ['#7A6450', '#3D2D1F'],
+    color: '#7A6450',
+    glyph: '院',
+    placeIds: ['dosan-seowon', 'sosu-seowon'],
+    totalPlaces: 9,
+    visited: 0,
+    rewardGoods: '한지 서표 + 먹 미니어처',
+    badge: '서원 답사가',
+  },
 ];
