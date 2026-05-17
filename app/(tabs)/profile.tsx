@@ -4,7 +4,7 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { FONTS, TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { PageHeader } from '../../components/PageHeader';
 import { Stamp } from '../../components/Stamp';
@@ -20,7 +20,7 @@ export default function ProfileScreen() {
   const rankingQuery = useQuery({ queryKey: queryKeys.ranking, queryFn: api.ranking });
 
   if (!meQuery.data || !stampedQuery.data || !achievementsQuery.data || !rankingQuery.data) {
-    return <View style={{ flex: 1, backgroundColor: TOKENS.paper }} />;
+    return <View className="flex-1 bg-paper" />;
   }
   const USER = meQuery.data;
   const STAMPED = stampedQuery.data;
@@ -29,20 +29,11 @@ export default function ProfileScreen() {
   const { current, next, progress, xpToNext } = USER.rank;
 
   return (
-    <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+    <View className="flex-1 bg-paper">
       <PageHeader
         title="나의 답사기"
         action={
-          <Pressable
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: 18,
-              backgroundColor: 'rgba(26,22,20,0.05)',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
+          <Pressable className="w-9 h-9 rounded-full bg-[rgba(26,22,20,0.05)] items-center justify-center">
             <Svg width="16" height="16" viewBox="0 0 22 22" fill="none">
               <Circle cx="11" cy="11" r="3" stroke={TOKENS.ink} strokeWidth="1.7" />
               <Path
@@ -56,51 +47,22 @@ export default function ProfileScreen() {
         }
       />
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 120 }}
-      >
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
         {/* 프로필 카드 */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 22 }}>
-          <View
-            style={{
-              backgroundColor: TOKENS.paper,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              padding: 20,
-              borderRadius: 4,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 16,
-            }}
-          >
-            <View
-              style={{
-                width: 64,
-                height: 64,
-                borderRadius: 32,
-                backgroundColor: TOKENS.paperWarm,
-                borderWidth: 0.5,
-                borderColor: TOKENS.line,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Text style={{ fontFamily: FONTS.serif, fontSize: 26, color: TOKENS.ink }}>나</Text>
-              <View style={{ position: 'absolute', bottom: -2, right: -2 }}>
+        <View className="px-5 pb-6">
+          <View className="bg-paper border border-line p-5 rounded flex-row items-center gap-4">
+            <View className="w-16 h-16 rounded-full bg-paperWarm border border-line items-center justify-center">
+              <Text className="font-serif text-2xl text-ink">나</Text>
+              <View className="absolute -bottom-0.5 -right-0.5">
                 <Stamp glyph="初" size={24} rotate={-12} />
               </View>
             </View>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontFamily: FONTS.serif, fontSize: 18, color: TOKENS.ink }}>
-                {USER.nickname}
-              </Text>
-              <Text
-                style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.mute, marginTop: 2 }}
-              >
+            <View className="flex-1">
+              <Text className="font-serif text-lg text-ink">{USER.nickname}</Text>
+              <Text className="font-sans text-[11px] text-mute mt-0.5">
                 {USER.joinedAt} 시작 · 답사 {USER.daysActive}일째
               </Text>
-              <View style={{ marginTop: 8, flexDirection: 'row' }}>
+              <View className="mt-2 flex-row">
                 <RankBadge level={current} size="md" />
               </View>
             </View>
@@ -108,94 +70,35 @@ export default function ProfileScreen() {
         </View>
 
         {/* 등급 카드 */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 24 }}>
+        <View className="px-5 pb-6">
           <Pressable
             onPress={() => router.push('/rank' as never)}
-            style={{
-              backgroundColor: TOKENS.ink,
-              borderRadius: 4,
-              padding: 18,
-              overflow: 'hidden',
-            }}
+            className="bg-ink rounded p-[18px] overflow-hidden"
           >
             <View>
-              <Text
-                style={{
-                  fontFamily: FONTS.monoBold,
-                  fontSize: 10,
-                  color: 'rgba(255,255,255,0.5)',
-                  letterSpacing: 2,
-                }}
-              >
+              <Text className="font-mono-bold text-[10px] text-white/50 tracking-[2px]">
                 MY RANK · LV {current.level}
               </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.serif,
-                  fontSize: 24,
-                  color: TOKENS.paper,
-                  marginTop: 2,
-                }}
-              >
-                {current.name}
-              </Text>
+              <Text className="font-serif text-2xl text-paper mt-0.5">{current.name}</Text>
               {next && (
                 <>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'baseline',
-                      marginTop: 14,
-                    }}
-                  >
-                    <Text
-                      style={{ fontFamily: FONTS.monoBold, fontSize: 11, color: TOKENS.paper }}
-                    >
+                  <View className="flex-row justify-between items-baseline mt-3.5">
+                    <Text className="font-mono-bold text-[11px] text-paper">
                       {USER.xp} / {next.minXp} XP
                     </Text>
-                    <Text
-                      style={{ fontFamily: FONTS.sans, fontSize: 10, color: 'rgba(255,255,255,0.6)' }}
-                    >
+                    <Text className="font-sans text-[10px] text-white/60">
                       → {next.name}까지 {xpToNext}
                     </Text>
                   </View>
-                  <View
-                    style={{
-                      height: 3,
-                      backgroundColor: 'rgba(255,255,255,0.15)',
-                      borderRadius: 4,
-                      marginTop: 6,
-                      overflow: 'hidden',
-                    }}
-                  >
+                  <View className="h-[3px] bg-white/15 rounded mt-1.5 overflow-hidden">
                     <View
-                      style={{
-                        width: `${progress * 100}%`,
-                        height: '100%',
-                        backgroundColor: next.color,
-                      }}
+                      style={{ width: `${progress * 100}%`, height: '100%', backgroundColor: next.color }}
                     />
                   </View>
                 </>
               )}
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 4,
-                  marginTop: 12,
-                }}
-              >
-                <Text
-                  style={{
-                    fontFamily: FONTS.sansBold,
-                    fontSize: 11,
-                    color: 'rgba(255,255,255,0.7)',
-                  }}
-                >
-                  전체 등급 보기
-                </Text>
+              <View className="flex-row items-center gap-1 mt-3">
+                <Text className="font-sans-bold text-[11px] text-white/70">전체 등급 보기</Text>
                 <Svg width="10" height="10" viewBox="0 0 22 22" fill="none">
                   <Path
                     d="M5 11h12M12 6l5 5-5 5"
@@ -211,86 +114,32 @@ export default function ProfileScreen() {
         </View>
 
         {/* 통계 */}
-        <View
-          style={{
-            paddingHorizontal: 20,
-            paddingBottom: 24,
-            flexDirection: 'row',
-            gap: 8,
-          }}
-        >
+        <View className="px-5 pb-6 flex-row gap-2">
           {[
             { v: STAMPED.length, l: '스탬프', s: 'STAMPS' },
             { v: 2, l: '완성 테마', s: 'THEMES' },
             { v: 7, l: '퀴즈 정답', s: 'QUIZ' },
           ].map((s) => (
-            <View
-              key={s.l}
-              style={{
-                flex: 1,
-                backgroundColor: TOKENS.paper,
-                borderWidth: 0.5,
-                borderColor: TOKENS.line,
-                borderRadius: 4,
-                padding: 14,
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: FONTS.serifBlack,
-                  fontSize: 28,
-                  color: TOKENS.ink,
-                  letterSpacing: -1,
-                  lineHeight: 28,
-                }}
-              >
+            <View key={s.l} className="flex-1 bg-paper border border-line rounded p-3.5">
+              <Text className="font-serif-black text-[28px] text-ink leading-7 tracking-tight">
                 {s.v}
               </Text>
-              <Text
-                style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.inkSoft, marginTop: 6 }}
-              >
-                {s.l}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.mono,
-                  fontSize: 9,
-                  color: TOKENS.mute,
-                  marginTop: 1,
-                  letterSpacing: 1,
-                }}
-              >
-                {s.s}
-              </Text>
+              <Text className="font-sans text-[11px] text-inkSoft mt-1.5">{s.l}</Text>
+              <Text className="font-mono text-[9px] text-mute mt-px tracking-wider">{s.s}</Text>
             </View>
           ))}
         </View>
 
         {/* 업적 */}
         <SectionLabel>업적 · ACHIEVEMENTS</SectionLabel>
-        <View
-          style={{
-            paddingHorizontal: 20,
-            paddingBottom: 22,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 8,
-          }}
-        >
+        <View className="px-5 pb-5 flex-row flex-wrap gap-2">
           {ACHIEVEMENTS.map((a) => (
             <View
               key={a.id}
-              style={{
-                width: '31%',
-                backgroundColor: TOKENS.paper,
-                borderWidth: 0.5,
-                borderColor: TOKENS.line,
-                borderRadius: 4,
-                padding: 12,
-                opacity: a.done ? 1 : 0.55,
-              }}
+              className="bg-paper border border-line rounded p-3"
+              style={{ width: '31%', opacity: a.done ? 1 : 0.55 }}
             >
-              <View style={{ alignItems: 'center', marginBottom: 8 }}>
+              <View className="items-center mb-2">
                 <Stamp
                   glyph={a.title[0]}
                   size={38}
@@ -299,31 +148,14 @@ export default function ProfileScreen() {
                   color={a.done ? TOKENS.red : TOKENS.mute}
                 />
               </View>
-              <Text
-                style={{
-                  fontFamily: FONTS.serif,
-                  fontSize: 11,
-                  color: TOKENS.ink,
-                  textAlign: 'center',
-                  lineHeight: 13,
-                }}
-              >
+              <Text className="font-serif text-[11px] text-ink text-center leading-[13px]">
                 {a.title}
               </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.sans,
-                  fontSize: 9,
-                  color: TOKENS.mute,
-                  textAlign: 'center',
-                  marginTop: 3,
-                  lineHeight: 12,
-                }}
-              >
+              <Text className="font-sans text-[9px] text-mute text-center mt-1 leading-3">
                 {a.desc}
               </Text>
               {!a.done && a.progress !== undefined && a.max !== undefined && (
-                <View style={{ marginTop: 6 }}>
+                <View className="mt-1.5">
                   <ProgressBar value={a.progress} max={a.max} color={TOKENS.mute} height={2} />
                 </View>
               )}
@@ -333,85 +165,37 @@ export default function ProfileScreen() {
 
         {/* 랭킹 */}
         <SectionLabel
-          action={
-            <Text style={{ fontFamily: FONTS.sansBold, fontSize: 11, color: TOKENS.red }}>
-              이번 주
-            </Text>
-          }
+          action={<Text className="font-sans-bold text-[11px] text-red">이번 주</Text>}
         >
           전국 랭킹 · LEADERBOARD
         </SectionLabel>
-        <View style={{ paddingHorizontal: 20 }}>
-          <View
-            style={{
-              backgroundColor: TOKENS.paper,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              borderRadius: 4,
-              overflow: 'hidden',
-            }}
-          >
+        <View className="px-5">
+          <View className="bg-paper border border-line rounded overflow-hidden">
             {RANKING.map((r, i) => (
               <View
                 key={r.rank}
+                className={`flex-row items-center gap-3 py-3 px-3.5 ${r.me ? 'bg-paperWarm' : ''}`}
                 style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 12,
-                  paddingVertical: 12,
-                  paddingHorizontal: 14,
                   borderBottomWidth: i < RANKING.length - 1 ? 0.5 : 0,
                   borderBottomColor: TOKENS.lineSoft,
-                  backgroundColor: r.me ? TOKENS.paperWarm : 'transparent',
                 }}
               >
                 <Text
-                  style={{
-                    width: 22,
-                    fontFamily: FONTS.serif,
-                    fontSize: 16,
-                    color: r.rank <= 3 ? TOKENS.red : TOKENS.inkSoft,
-                    textAlign: 'center',
-                  }}
+                  className={`w-[22px] font-serif text-base text-center ${r.rank <= 3 ? 'text-red' : 'text-inkSoft'}`}
                 >
                   {r.rank}
                 </Text>
-                <View
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: 16,
-                    backgroundColor: TOKENS.paperWarm,
-                    borderWidth: 0.5,
-                    borderColor: TOKENS.line,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ fontFamily: FONTS.serif, fontSize: 13, color: TOKENS.ink }}>
-                    {r.name[0]}
-                  </Text>
+                <View className="w-8 h-8 rounded-full bg-paperWarm border border-line items-center justify-center">
+                  <Text className="font-serif text-[13px] text-ink">{r.name[0]}</Text>
                 </View>
-                <View style={{ flex: 1 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                    <Text
-                      style={{ fontFamily: FONTS.sansBold, fontSize: 13, color: TOKENS.ink }}
-                    >
-                      {r.name}
-                    </Text>
-                    {r.me && (
-                      <Text style={{ color: TOKENS.red, fontSize: 10 }}>● 나</Text>
-                    )}
+                <View className="flex-1">
+                  <View className="flex-row items-center gap-1.5">
+                    <Text className="font-sans-bold text-[13px] text-ink">{r.name}</Text>
+                    {r.me && <Text className="text-red text-[10px]">● 나</Text>}
                   </View>
-                  <Text
-                    style={{ fontFamily: FONTS.sans, fontSize: 10, color: TOKENS.mute, marginTop: 1 }}
-                  >
-                    {r.badge}
-                  </Text>
+                  <Text className="font-sans text-[10px] text-mute mt-px">{r.badge}</Text>
                 </View>
-                <Text style={{ fontFamily: FONTS.monoBold, fontSize: 13, color: TOKENS.ink }}>
-                  {r.stamps}
-                </Text>
+                <Text className="font-mono-bold text-[13px] text-ink">{r.stamps}</Text>
               </View>
             ))}
           </View>
