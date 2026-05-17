@@ -27,50 +27,28 @@ export default function CheckinScreen() {
   const pulse1 = useRef(new Animated.Value(0)).current;
   const pulse2 = useRef(new Animated.Value(0)).current;
   const pulse3 = useRef(new Animated.Value(0)).current;
-  const stampScale = useRef(new Animated.Value(2.5)).current;
-  const stampOpacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    if (step === 'locating') {
-      const animatePulse = (v: Animated.Value, delay: number) =>
-        Animated.loop(
-          Animated.sequence([
-            Animated.delay(delay),
-            Animated.timing(v, {
-              toValue: 1,
-              duration: 2000,
-              easing: Easing.out(Easing.ease),
-              useNativeDriver: true,
-            }),
-            Animated.timing(v, { toValue: 0, duration: 0, useNativeDriver: true }),
-          ])
-        ).start();
-      animatePulse(pulse1, 0);
-      animatePulse(pulse2, 600);
-      animatePulse(pulse3, 1200);
-      const t = setTimeout(() => setStep('confirmed'), 2200);
-      return () => clearTimeout(t);
-    }
-    if (step === 'stamp') {
-      stampScale.setValue(2.5);
-      stampOpacity.setValue(0);
-      Animated.parallel([
-        Animated.spring(stampScale, {
-          toValue: 1,
-          friction: 4,
-          tension: 60,
-          delay: 300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(stampOpacity, {
-          toValue: 1,
-          duration: 400,
-          delay: 300,
-          useNativeDriver: true,
-        }),
-      ]).start();
-    }
-  }, [step, pulse1, pulse2, pulse3, stampScale, stampOpacity]);
+    if (step !== 'locating') return;
+    const animatePulse = (v: Animated.Value, delay: number) =>
+      Animated.loop(
+        Animated.sequence([
+          Animated.delay(delay),
+          Animated.timing(v, {
+            toValue: 1,
+            duration: 2000,
+            easing: Easing.out(Easing.ease),
+            useNativeDriver: true,
+          }),
+          Animated.timing(v, { toValue: 0, duration: 0, useNativeDriver: true }),
+        ])
+      ).start();
+    animatePulse(pulse1, 0);
+    animatePulse(pulse2, 600);
+    animatePulse(pulse3, 1200);
+    const t = setTimeout(() => setStep('confirmed'), 2200);
+    return () => clearTimeout(t);
+  }, [step, pulse1, pulse2, pulse3]);
 
   if (!p) {
     return (
