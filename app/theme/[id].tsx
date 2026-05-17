@@ -5,7 +5,7 @@ import Svg, { Path } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { FONTS, TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { BackHeader } from '../../components/BackHeader';
 import { Tag } from '../../components/Tag';
@@ -21,14 +21,14 @@ export default function ThemeDetailScreen() {
 
   if (themeQuery.isError || (themeQuery.isFetched && !themeQuery.data)) {
     return (
-      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+      <View className="flex-1 bg-paper">
         <BackHeader title="테마를 찾을 수 없어요" />
       </View>
     );
   }
   if (!themeQuery.data || !placesQuery.data || !stampedQuery.data) {
     return (
-      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+      <View className="flex-1 bg-paper">
         <BackHeader />
       </View>
     );
@@ -42,11 +42,8 @@ export default function ThemeDetailScreen() {
   const pct = (t.visited / t.totalPlaces) * 100;
 
   return (
-    <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 80 }}
-      >
+    <View className="flex-1 bg-paper">
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
         {/* 커버 */}
         <LinearGradient
           colors={t.cover}
@@ -55,101 +52,41 @@ export default function ThemeDetailScreen() {
           style={{ height: 320, position: 'relative', overflow: 'hidden' }}
         >
           <BackHeader overlay />
-          <View
-            style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              bottom: 0,
-              paddingHorizontal: 20,
-              paddingBottom: 24,
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: FONTS.serifRegular,
-                fontSize: 11,
-                color: 'rgba(255,255,255,0.8)',
-                letterSpacing: 3,
-              }}
-            >
+          <View className="absolute left-0 right-0 bottom-0 px-5 pb-6">
+            <Text className="font-serif-regular text-[11px] text-white/80 tracking-[3px]">
               {t.subtitle.toUpperCase()}
             </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.serif,
-                fontSize: 34,
-                color: TOKENS.paper,
-                marginTop: 4,
-                lineHeight: 38,
-                letterSpacing: -0.5,
-              }}
-            >
+            <Text className="font-serif text-[34px] text-paper mt-1 leading-[38px] tracking-[-0.5px]">
               {t.title}
             </Text>
-            <View
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 14 }}
-            >
-              <Text style={{ fontFamily: FONTS.monoBold, fontSize: 13, color: TOKENS.paper }}>
+            <View className="flex-row items-center gap-2.5 mt-3.5">
+              <Text className="font-mono-bold text-[13px] text-paper">
                 {t.visited} / {t.totalPlaces}
               </Text>
-              <View
-                style={{
-                  flex: 1,
-                  height: 2,
-                  backgroundColor: 'rgba(255,255,255,0.25)',
-                  borderRadius: 2,
-                  overflow: 'hidden',
-                }}
-              >
-                <View
-                  style={{ width: `${pct}%`, height: '100%', backgroundColor: TOKENS.paper }}
-                />
+              <View className="flex-1 h-0.5 bg-white/25 rounded-sm overflow-hidden">
+                <View className="h-full bg-paper" style={{ width: `${pct}%` }} />
               </View>
-              <Text style={{ fontFamily: FONTS.monoBold, fontSize: 13, color: TOKENS.paper }}>
-                {Math.round(pct)}%
-              </Text>
+              <Text className="font-mono-bold text-[13px] text-paper">{Math.round(pct)}%</Text>
             </View>
           </View>
         </LinearGradient>
 
         {/* 설명 */}
-        <View style={{ padding: 20, paddingBottom: 24 }}>
-          <Text
-            style={{
-              fontFamily: FONTS.serifRegular,
-              fontSize: 15,
-              color: TOKENS.inkSoft,
-              lineHeight: 26,
-            }}
-          >
+        <View className="p-5 pb-6">
+          <Text className="font-serif-regular text-[15px] text-inkSoft leading-[26px]">
             {t.desc}
           </Text>
         </View>
 
         {/* 보상 카드 */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 24 }}>
+        <View className="px-5 pb-6">
           <View
-            style={{
-              backgroundColor: TOKENS.paperWarm,
-              borderWidth: 0.5,
-              borderColor: `${t.color}40`,
-              padding: 16,
-              borderRadius: 4,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 14,
-            }}
+            className="bg-paperWarm p-4 rounded flex-row items-center gap-3.5"
+            style={{ borderWidth: 0.5, borderColor: `${t.color}40` }}
           >
             <LinearGradient
               colors={t.cover}
-              style={{
-                width: 56,
-                height: 56,
-                borderRadius: 4,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+              style={{ width: 56, height: 56, borderRadius: 4, alignItems: 'center', justifyContent: 'center' }}
             >
               <Svg width="22" height="22" viewBox="0 0 22 22" fill="none">
                 <Path
@@ -167,36 +104,16 @@ export default function ThemeDetailScreen() {
                 />
               </Svg>
             </LinearGradient>
-            <View style={{ flex: 1 }}>
+            <View className="flex-1">
               <Text
-                style={{
-                  fontFamily: FONTS.sansBold,
-                  fontSize: 10,
-                  color: t.color,
-                  letterSpacing: 1.5,
-                }}
+                className="font-sans-bold text-[10px] tracking-[1.5px]"
+                style={{ color: t.color }}
               >
                 완성 시 보상
               </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.serif,
-                  fontSize: 15,
-                  color: TOKENS.ink,
-                  marginTop: 3,
-                }}
-              >
-                {t.rewardGoods}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.sans,
-                  fontSize: 11,
-                  color: TOKENS.mute,
-                  marginTop: 2,
-                }}
-              >
-                + "{t.badge}" 칭호 획득
+              <Text className="font-serif text-[15px] text-ink mt-0.5">{t.rewardGoods}</Text>
+              <Text className="font-sans text-[11px] text-mute mt-0.5">
+                + &quot;{t.badge}&quot; 칭호 획득
               </Text>
             </View>
           </View>
@@ -204,89 +121,56 @@ export default function ThemeDetailScreen() {
 
         {/* 장소 타임라인 */}
         <SectionLabel
-          action={
-            <Text style={{ fontFamily: FONTS.sansBold, fontSize: 11, color: TOKENS.mute }}>
-              코스 순서대로
-            </Text>
-          }
+          action={<Text className="font-sans-bold text-[11px] text-mute">코스 순서대로</Text>}
         >
           {`이 테마의 장소들 · ${t.totalPlaces}곳`}
         </SectionLabel>
 
-        <View style={{ paddingHorizontal: 20, position: 'relative' }}>
+        <View className="px-5 relative">
           <View
-            style={{
-              position: 'absolute',
-              left: 20 + 15,
-              top: 26,
-              bottom: 26,
-              width: 1,
-              backgroundColor: TOKENS.line,
-            }}
+            className="absolute w-px bg-line"
+            style={{ left: 20 + 15, top: 26, bottom: 26 }}
           />
           {places.map((p, i) => (
             <Pressable
               key={p.id}
               onPress={() => router.push(`/place/${p.id}` as never)}
-              style={{
-                flexDirection: 'row',
-                gap: 16,
-                alignItems: 'flex-start',
-                paddingVertical: 14,
-              }}
+              className="flex-row gap-4 items-start py-3.5"
             >
               <View
+                className="w-8 h-8 rounded-full items-center justify-center"
                 style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 16,
                   backgroundColor: STAMPED.includes(p.id) ? t.color : TOKENS.paper,
                   borderWidth: 1.5,
                   borderColor: t.color,
-                  alignItems: 'center',
-                  justifyContent: 'center',
                 }}
               >
                 <Text
-                  style={{
-                    fontFamily: FONTS.monoBold,
-                    fontSize: 12,
-                    color: STAMPED.includes(p.id) ? TOKENS.paper : t.color,
-                  }}
+                  className="font-mono-bold text-xs"
+                  style={{ color: STAMPED.includes(p.id) ? TOKENS.paper : t.color }}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </Text>
               </View>
-              <View style={{ flex: 1, paddingTop: 4 }}>
-                <View
-                  style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 3 }}
-                >
+              <View className="flex-1 pt-1">
+                <View className="flex-row items-center gap-1.5 mb-0.5">
                   <Tag color={p.accent}>{p.region}</Tag>
                   {STAMPED.includes(p.id) && (
                     <Text
-                      style={{ fontFamily: FONTS.sansBold, fontSize: 10, color: t.color }}
+                      className="font-sans-bold text-[10px]"
+                      style={{ color: t.color }}
                     >
                       ● 방문 완료
                     </Text>
                   )}
                 </View>
-                <Text style={{ fontFamily: FONTS.serif, fontSize: 16, color: TOKENS.ink }}>
-                  {p.name}
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: FONTS.sans,
-                    fontSize: 12,
-                    color: TOKENS.mute,
-                    marginTop: 3,
-                    lineHeight: 18,
-                  }}
-                >
+                <Text className="font-serif text-base text-ink">{p.name}</Text>
+                <Text className="font-sans text-xs text-mute mt-0.5 leading-[18px]">
                   {p.summary}
                 </Text>
               </View>
               {STAMPED.includes(p.id) && (
-                <View style={{ paddingTop: 4 }}>
+                <View className="pt-1">
                   <Stamp glyph={p.nameHanja[0]} size={36} rotate={-8} color={p.accent} />
                 </View>
               )}
@@ -297,38 +181,15 @@ export default function ThemeDetailScreen() {
           {Array.from({ length: t.totalPlaces - places.length }).map((_, i) => {
             const idx = places.length + i;
             return (
-              <View
-                key={`x${i}`}
-                style={{
-                  flexDirection: 'row',
-                  gap: 16,
-                  alignItems: 'flex-start',
-                  paddingVertical: 14,
-                  opacity: 0.5,
-                }}
-              >
-                <View
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: 16,
-                    backgroundColor: TOKENS.paper,
-                    borderWidth: 1.5,
-                    borderColor: TOKENS.line,
-                    borderStyle: 'dashed',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ fontFamily: FONTS.mono, fontSize: 12, color: TOKENS.mute }}>
+              <View key={`x${i}`} className="flex-row gap-4 items-start py-3.5 opacity-50">
+                <View className="w-8 h-8 rounded-full bg-paper border-[1.5px] border-line border-dashed items-center justify-center">
+                  <Text className="font-mono text-xs text-mute">
                     {String(idx + 1).padStart(2, '0')}
                   </Text>
                 </View>
-                <View style={{ flex: 1, paddingTop: 6 }}>
-                  <Text style={{ fontFamily: FONTS.serifRegular, fontSize: 14, color: TOKENS.mute }}>
-                    미답사 장소
-                  </Text>
-                  <Text style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.mute, marginTop: 2 }}>
+                <View className="flex-1 pt-1.5">
+                  <Text className="font-serif-regular text-sm text-mute">미답사 장소</Text>
+                  <Text className="font-sans text-[11px] text-mute mt-0.5">
                     방문하면 공개됩니다
                   </Text>
                 </View>

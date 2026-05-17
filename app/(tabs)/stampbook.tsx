@@ -5,7 +5,7 @@ import { View, Text, ScrollView, Pressable, ViewStyle } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { FONTS, TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { PageHeader } from '../../components/PageHeader';
 import { Stamp } from '../../components/Stamp';
@@ -22,7 +22,7 @@ export default function StampbookScreen() {
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
 
   if (!placesQuery.data || !stampedQuery.data || !themesQuery.data) {
-    return <View style={{ flex: 1, backgroundColor: TOKENS.paper }} />;
+    return <View className="flex-1 bg-paper" />;
   }
   const PLACES = placesQuery.data;
   const STAMPED = stampedQuery.data;
@@ -40,21 +40,12 @@ export default function StampbookScreen() {
   const dashLength = (progressPct / 100) * circumference;
 
   return (
-    <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+    <View className="flex-1 bg-paper">
       <PageHeader
         title="스탬프북"
         subtitle={`${STAMPED.length}개의 발자국 · 모은 도장 ${STAMPED.length}/${PLACES.length}`}
         action={
-          <Pressable
-            style={{
-              width: 36,
-              height: 36,
-              borderRadius: 18,
-              backgroundColor: 'rgba(26,22,20,0.05)',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
+          <Pressable className="w-9 h-9 rounded-full bg-[rgba(26,22,20,0.05)] items-center justify-center">
             <Svg width="16" height="16" viewBox="0 0 22 22" fill="none">
               <Path
                 d="M11 3v12M11 3l-4 4M11 3l4 4M5 13v5h12v-5"
@@ -68,25 +59,11 @@ export default function StampbookScreen() {
         }
       />
 
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 120 }}
-      >
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
         {/* 도감 진척도 */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 18 }}>
-          <View
-            style={{
-              backgroundColor: TOKENS.paperWarm,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              padding: 18,
-              borderRadius: 4,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 14,
-            }}
-          >
-            <View style={{ width: 64, height: 64 }}>
+        <View className="px-5 pb-4">
+          <View className="bg-paperWarm border border-line p-4 rounded flex-row items-center gap-3.5">
+            <View className="w-16 h-16">
               <Svg width="64" height="64" viewBox="0 0 64 64">
                 <Circle cx="32" cy="32" r="28" fill="none" stroke={TOKENS.line} strokeWidth="3" />
                 <Circle
@@ -102,35 +79,13 @@ export default function StampbookScreen() {
                   origin="32, 32"
                 />
               </Svg>
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Text style={{ fontFamily: FONTS.serif, fontSize: 16, color: TOKENS.ink }}>
-                  {Math.round(progressPct)}%
-                </Text>
+              <View className="absolute inset-0 items-center justify-center">
+                <Text className="font-serif text-base text-ink">{Math.round(progressPct)}%</Text>
               </View>
             </View>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontFamily: FONTS.serif, fontSize: 16, color: TOKENS.ink }}>
-                도감 진척도
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.sans,
-                  fontSize: 12,
-                  color: TOKENS.mute,
-                  marginTop: 4,
-                  lineHeight: 19,
-                }}
-              >
+            <View className="flex-1">
+              <Text className="font-serif text-base text-ink">도감 진척도</Text>
+              <Text className="font-sans text-xs text-mute mt-1 leading-5">
                 전국 {PLACES.length}곳 중 {STAMPED.length}곳 완료. 다음 목표까지{' '}
                 {PLACES.length - STAMPED.length}곳
               </Text>
@@ -139,26 +94,17 @@ export default function StampbookScreen() {
         </View>
 
         {/* 탭 */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 14, flexDirection: 'row', gap: 4 }}>
+        <View className="px-5 pb-3.5 flex-row gap-1">
           {VIEWS.map((v) => {
             const on = view === v;
             return (
               <Pressable
                 key={v}
                 onPress={() => setView(v)}
-                style={{
-                  paddingHorizontal: 12,
-                  paddingVertical: 6,
-                  borderRadius: 999,
-                  backgroundColor: on ? TOKENS.ink : 'transparent',
-                }}
+                className={`px-3 py-1.5 rounded-full ${on ? 'bg-ink' : 'bg-transparent'}`}
               >
                 <Text
-                  style={{
-                    fontFamily: FONTS.sansBold,
-                    fontSize: 12,
-                    color: on ? TOKENS.paper : TOKENS.inkSoft,
-                  }}
+                  className={`font-sans-bold text-xs ${on ? 'text-paper' : 'text-inkSoft'}`}
                 >
                   {v}
                 </Text>
@@ -168,36 +114,23 @@ export default function StampbookScreen() {
         </View>
 
         {/* 테마별 도감 */}
-        <View style={{ paddingHorizontal: 20, gap: 20 }}>
+        <View className="px-5 gap-5">
           {byTheme.map(({ theme, places, total }) => (
             <View key={theme.id}>
               <Pressable
                 onPress={() => router.push(`/theme/${theme.id}` as never)}
-                style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 10 }}
+                className="flex-row items-center gap-2.5 mb-2.5"
               >
                 <View
-                  style={{ width: 4, height: 18, backgroundColor: theme.color, borderRadius: 2 }}
+                  className="w-1 h-[18px] rounded-sm"
+                  style={{ backgroundColor: theme.color }}
                 />
-                <Text style={{ fontFamily: FONTS.serif, fontSize: 16, color: TOKENS.ink, flex: 1 }}>
-                  {theme.title}
-                </Text>
-                <Text style={{ fontFamily: FONTS.mono, fontSize: 10, color: TOKENS.mute }}>
+                <Text className="font-serif text-base text-ink flex-1">{theme.title}</Text>
+                <Text className="font-mono text-[10px] text-mute">
                   {places.filter((p) => STAMPED.includes(p.id)).length}/{total}
                 </Text>
               </Pressable>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  flexWrap: 'wrap',
-                  gap: 8,
-                  padding: 12,
-                  paddingVertical: 14,
-                  backgroundColor: TOKENS.paper,
-                  borderWidth: 0.5,
-                  borderColor: TOKENS.line,
-                  borderRadius: 4,
-                }}
-              >
+              <View className="flex-row flex-wrap gap-2 p-3 py-3.5 bg-paper border border-line rounded">
                 {Array.from({ length: total }).map((_, i) => {
                   const p = places[i];
                   const cellStyle: ViewStyle = { width: '18%', alignItems: 'center', gap: 4 };
@@ -216,12 +149,7 @@ export default function StampbookScreen() {
                         />
                         <Text
                           numberOfLines={1}
-                          style={{
-                            fontFamily: FONTS.sans,
-                            fontSize: 9,
-                            color: TOKENS.inkSoft,
-                            maxWidth: 56,
-                          }}
+                          className="font-sans text-[9px] text-inkSoft max-w-[56px]"
                         >
                           {p.name}
                         </Text>
@@ -238,7 +166,7 @@ export default function StampbookScreen() {
                         <Stamp glyph={p.nameHanja[0]} size={48} rotate={0} dim color={p.accent} />
                         <Text
                           numberOfLines={1}
-                          style={{ fontFamily: FONTS.sans, fontSize: 9, color: TOKENS.mute, maxWidth: 56 }}
+                          className="font-sans text-[9px] text-mute max-w-[56px]"
                         >
                           {p.name}
                         </Text>
@@ -248,7 +176,7 @@ export default function StampbookScreen() {
                   return (
                     <View key={i} style={cellStyle}>
                       <StampSlot size={48} />
-                      <View style={{ height: 11 }} />
+                      <View className="h-3" />
                     </View>
                   );
                 })}

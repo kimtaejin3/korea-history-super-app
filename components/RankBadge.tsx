@@ -1,5 +1,4 @@
 import { View, Text } from 'react-native';
-import { FONTS, TOKENS } from '../data/tokens';
 import { Level } from '../data/user';
 
 type Props = {
@@ -10,31 +9,23 @@ type Props = {
 export function RankBadge({ level, size = 'sm' }: Props) {
   const dims =
     size === 'lg'
-      ? { padV: 6, padH: 12, fs: 13, glyph: 16 }
+      ? { padV: 6, padH: 12, fs: 13 }
       : size === 'md'
-        ? { padV: 4, padH: 10, fs: 11, glyph: 14 }
-        : { padV: 3, padH: 8, fs: 10, glyph: 12 };
+        ? { padV: 4, padH: 10, fs: 11 }
+        : { padV: 3, padH: 8, fs: 10 };
 
   return (
     <View
+      className="flex-row items-center gap-1.5 rounded-full self-start"
       style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 6,
         paddingVertical: dims.padV,
         paddingHorizontal: dims.padH,
         backgroundColor: level.color,
-        borderRadius: 99,
-        alignSelf: 'flex-start',
       }}
     >
       <Text
-        style={{
-          fontFamily: FONTS.sansBold,
-          fontSize: dims.fs,
-          color: TOKENS.paper,
-          letterSpacing: 0.3,
-        }}
+        className="font-sans-bold text-paper tracking-[0.3px]"
+        style={{ fontSize: dims.fs }}
       >
         Lv{level.level} · {level.name}
       </Text>

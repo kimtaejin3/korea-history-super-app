@@ -1,7 +1,6 @@
 import { View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ReactNode } from 'react';
-import { FONTS, TOKENS } from '../data/tokens';
 
 type Props = {
   title: string;
@@ -15,48 +14,23 @@ export function PageHeader({ title, hanja, subtitle, action, dense = false }: Pr
   const insets = useSafeAreaInsets();
   return (
     <View
-      style={{
-        paddingTop: insets.top + (dense ? 12 : 16),
-        paddingHorizontal: 20,
-        paddingBottom: dense ? 12 : 16,
-      }}
+      className={`px-5 ${dense ? 'pb-3' : 'pb-4'}`}
+      style={{ paddingTop: insets.top + (dense ? 12 : 16) }}
     >
-      <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
-        <View style={{ flex: 1 }}>
+      <View className="flex-row items-start justify-between gap-3">
+        <View className="flex-1">
           <Text
-            style={{
-              fontFamily: FONTS.serif,
-              fontSize: dense ? 22 : 28,
-              color: TOKENS.ink,
-              letterSpacing: -0.5,
-              lineHeight: dense ? 26 : 32,
-            }}
+            className={`font-serif text-ink ${dense ? 'text-[22px] leading-[26px]' : 'text-[28px] leading-8'} tracking-[-0.5px]`}
           >
             {title}
           </Text>
           {hanja && (
-            <Text
-              style={{
-                fontFamily: FONTS.serifRegular,
-                fontSize: 12,
-                color: TOKENS.mute,
-                marginTop: 2,
-                letterSpacing: 2,
-              }}
-            >
+            <Text className="font-serif-regular text-xs text-mute mt-0.5 tracking-[2px]">
               {hanja}
             </Text>
           )}
           {subtitle && (
-            <Text
-              style={{
-                fontFamily: FONTS.sans,
-                fontSize: 13,
-                color: TOKENS.mute,
-                marginTop: 6,
-                letterSpacing: -0.2,
-              }}
-            >
+            <Text className="font-sans text-[13px] text-mute mt-1.5 tracking-[-0.2px]">
               {subtitle}
             </Text>
           )}

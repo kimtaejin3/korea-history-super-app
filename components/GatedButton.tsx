@@ -1,7 +1,7 @@
 import { Pressable, Text } from 'react-native';
 import Svg, { Path, Rect } from 'react-native-svg';
 import { ReactNode } from 'react';
-import { FONTS, TOKENS } from '../data/tokens';
+import { TOKENS } from '../data/tokens';
 import { Level } from '../data/user';
 
 type Props = {
@@ -18,17 +18,7 @@ export function GatedButton({ label, requiredLevel, currentLevel, onPress, onLoc
   return (
     <Pressable
       onPress={locked ? onLocked : onPress}
-      style={{
-        width: '100%',
-        padding: 14,
-        backgroundColor: locked ? TOKENS.paperWarm : TOKENS.ink,
-        borderWidth: locked ? 0.5 : 0,
-        borderColor: TOKENS.line,
-        borderRadius: 4,
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 10,
-      }}
+      className={`w-full p-3.5 rounded flex-row items-center gap-2.5 ${locked ? 'bg-paperWarm border border-line' : 'bg-ink'}`}
     >
       {locked ? (
         <Svg width="14" height="14" viewBox="0 0 22 22" fill="none">
@@ -43,26 +33,16 @@ export function GatedButton({ label, requiredLevel, currentLevel, onPress, onLoc
         )
       )}
       <Text
-        style={{
-          flex: 1,
-          fontFamily: FONTS.sansBold,
-          fontSize: 13,
-          color: locked ? TOKENS.mute : TOKENS.paper,
-          letterSpacing: 0.2,
-        }}
+        className={`flex-1 font-sans-bold text-[13px] tracking-[0.2px] ${locked ? 'text-mute' : 'text-paper'}`}
       >
         {label}
       </Text>
       {locked && (
         <Text
-          style={{
-            fontFamily: FONTS.serif,
-            fontSize: 10,
-            color: requiredLevel.color,
-            letterSpacing: 0.5,
-          }}
+          className="font-sans-bold text-[10px] tracking-[0.5px]"
+          style={{ color: requiredLevel.color }}
         >
-          {requiredLevel.hanja} 이상
+          Lv{requiredLevel.level} 이상
         </Text>
       )}
     </Pressable>

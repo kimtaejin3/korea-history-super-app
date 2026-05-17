@@ -7,7 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Svg, { Path, Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { FONTS, TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
@@ -34,7 +34,6 @@ export default function HomeScreen() {
         height: 44,
       };
       startSearchTransition({ x, y, width, height }, target);
-      // 애니메이션 중간에 탭 전환
       setTimeout(() => {
         router.push('/(tabs)/map' as never);
       }, 180);
@@ -56,8 +55,16 @@ export default function HomeScreen() {
     figuresQuery.isLoading ||
     todayQuery.isLoading;
 
-  if (loading || !placesQuery.data || !stampedQuery.data || !themesQuery.data || !artifactsQuery.data || !figuresQuery.data || !todayQuery.data) {
-    return <View style={{ flex: 1, backgroundColor: TOKENS.paper }} />;
+  if (
+    loading ||
+    !placesQuery.data ||
+    !stampedQuery.data ||
+    !themesQuery.data ||
+    !artifactsQuery.data ||
+    !figuresQuery.data ||
+    !todayQuery.data
+  ) {
+    return <View className="flex-1 bg-paper" />;
   }
 
   const PLACES = placesQuery.data;
@@ -73,41 +80,28 @@ export default function HomeScreen() {
   const hero = nearby[0];
 
   return (
-    <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+    <View className="flex-1 bg-paper">
       {/* 고정 헤더 */}
       <View
-        style={{
-          paddingTop: insets.top + 8,
-          paddingHorizontal: 20,
-          paddingBottom: 8,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          backgroundColor: TOKENS.paper,
-          zIndex: 10,
-        }}
+        className="px-5 pb-2 flex-row justify-between items-center bg-paper z-10"
+        style={{ paddingTop: insets.top + 8 }}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+        <View className="flex-row items-center gap-1.5">
           <Svg width="14" height="14" viewBox="0 0 22 22" fill="none">
-            <Path d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z" stroke={TOKENS.red} strokeWidth="1.8" />
+            <Path
+              d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
+              stroke={TOKENS.red}
+              strokeWidth="1.8"
+            />
             <Circle cx="11" cy="8" r="2" fill={TOKENS.red} />
           </Svg>
-          <Text style={{ fontFamily: FONTS.sansBold, fontSize: 13, color: TOKENS.ink }}>
-            충남 아산시 배방읍
-          </Text>
+          <Text className="font-sans-bold text-[13px] text-ink">충남 아산시 배방읍</Text>
         </View>
         <Pressable
           ref={searchBtnRef}
           accessibilityLabel="search"
           onPress={onPressSearch}
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            backgroundColor: 'rgba(26,22,20,0.05)',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          className="w-9 h-9 rounded-full bg-[rgba(26,22,20,0.05)] items-center justify-center"
         >
           <Svg width="16" height="16" viewBox="0 0 22 22" fill="none">
             <Circle cx="10" cy="10" r="6" stroke={TOKENS.ink} strokeWidth="1.7" />
@@ -117,570 +111,308 @@ export default function HomeScreen() {
       </View>
 
       <ScrollView
-        style={{ flex: 1 }}
+        className="flex-1"
         contentContainerStyle={{ paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       >
-      {/* 큰 인사말 + 마스코트 */}
-      <View
-        style={{
-          paddingHorizontal: 20,
-          paddingTop: 4,
-          paddingBottom: 18,
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 12,
-        }}
-      >
-        <Mascot size={88} />
-        <View style={{ flex: 1 }}>
-          <Text
-            style={{
-              fontFamily: FONTS.serif,
-              fontSize: 22,
-              color: TOKENS.ink,
-              letterSpacing: -0.5,
-              lineHeight: 28,
-            }}
-          >
-            오늘, 가까운 곳에서{'\n'}
-            <Text style={{ color: TOKENS.red }}>역사 한 조각</Text>을 만나보세요
-          </Text>
-        </View>
-      </View>
-
-      {/* HERO */}
-      {hero && (
-        <View style={{ paddingHorizontal: 20, paddingBottom: 24 }}>
-          <Pressable
-            onPress={() => router.push(`/place/${hero.id}` as never)}
-            style={{
-              backgroundColor: TOKENS.paper,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              borderRadius: 4,
-              overflow: 'hidden',
-            }}
-          >
-            <PhotoPlaceholder label={`${hero.id}__hero.jpg`} height={170} />
-            <View style={{ padding: 16 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-                <Tag color={hero.accent} filled>
-                  {hero.tag}
-                </Tag>
-                <Tag color={TOKENS.mute}>{hero.era}</Tag>
-                <View style={{ flex: 1 }} />
-                <Text style={{ fontFamily: FONTS.monoBold, fontSize: 11, color: TOKENS.red }}>
-                  {hero.distance}km
-                </Text>
-              </View>
-              <Text
-                style={{
-                  fontFamily: FONTS.serif,
-                  fontSize: 20,
-                  color: TOKENS.ink,
-                  letterSpacing: -0.3,
-                  lineHeight: 24,
-                }}
-              >
-                {hero.name}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.serifRegular,
-                  fontSize: 11,
-                  color: TOKENS.mute,
-                  marginTop: 2,
-                  letterSpacing: 1.5,
-                }}
-              >
-                {hero.nameHanja} · {hero.region}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.sans,
-                  fontSize: 13,
-                  color: TOKENS.inkSoft,
-                  marginTop: 10,
-                  lineHeight: 20,
-                }}
-              >
-                {hero.summary}
-              </Text>
-            </View>
-          </Pressable>
-        </View>
-      )}
-
-      {/* 오늘의 역사 */}
-      <SectionLabel
-        action={
-          <Text style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.mute }}>
-            5월 15일 · MAY 15
-          </Text>
-        }
-      >
-        오늘의 역사 · TODAY IN HISTORY
-      </SectionLabel>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
-        style={{ marginBottom: 24 }}
-      >
-        {TODAY_IN_HISTORY.map((item) => (
-          <Pressable
-            key={item.title}
-            onPress={() => item.placeId && router.push(`/place/${item.placeId}` as never)}
-            style={{
-              width: 260,
-              backgroundColor: TOKENS.paper,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              borderRadius: 4,
-              overflow: 'hidden',
-              flexDirection: 'row',
-            }}
-          >
-            <View
-              style={{
-                width: 76,
-                backgroundColor: item.accent,
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingHorizontal: 6,
-                paddingVertical: 10,
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: FONTS.serifBlack,
-                  fontSize: 40,
-                  color: TOKENS.paper,
-                  lineHeight: 40,
-                }}
-              >
-                {item.glyph}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.monoBold,
-                  fontSize: 10,
-                  letterSpacing: 0.5,
-                  marginTop: 8,
-                  color: 'rgba(255,255,255,0.85)',
-                }}
-              >
-                {item.year ? String(item.year) : '연례'}
-              </Text>
-            </View>
-            <View style={{ padding: 12, flex: 1 }}>
-              <Text
-                style={{
-                  fontFamily: FONTS.sansBold,
-                  fontSize: 10,
-                  color: TOKENS.mute,
-                  letterSpacing: 1.5,
-                }}
-              >
-                {item.date}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.serif,
-                  fontSize: 15,
-                  color: TOKENS.ink,
-                  marginTop: 3,
-                  lineHeight: 18,
-                }}
-              >
-                {item.title}
-              </Text>
-              <Text
-                numberOfLines={3}
-                style={{
-                  fontFamily: FONTS.sans,
-                  fontSize: 11,
-                  color: TOKENS.inkSoft,
-                  marginTop: 6,
-                  lineHeight: 16,
-                }}
-              >
-                {item.summary}
-              </Text>
-            </View>
-          </Pressable>
-        ))}
-      </ScrollView>
-
-      {/* 내 주변 */}
-      <SectionLabel
-        action={
-          <Pressable onPress={() => router.push('/(tabs)/map' as never)}>
-            <Text style={{ fontFamily: FONTS.sansBold, fontSize: 11, color: TOKENS.red }}>
-              지도에서 보기 →
+        {/* 큰 인사말 + 마스코트 */}
+        <View className="px-5 pt-1 pb-4 flex-row items-center gap-3">
+          <Mascot size={88} />
+          <View className="flex-1">
+            <Text className="font-serif text-[22px] text-ink tracking-[-0.5px] leading-7">
+              오늘, 가까운 곳에서{'\n'}
+              <Text className="text-red">역사 한 조각</Text>을 만나보세요
             </Text>
-          </Pressable>
-        }
-      >
-        내 주변 · NEARBY
-      </SectionLabel>
-      <View style={{ paddingHorizontal: 20, paddingBottom: 24, gap: 10 }}>
-        {nearby.slice(1, 4).map((p) => (
-          <Pressable
-            key={p.id}
-            onPress={() => router.push(`/place/${p.id}` as never)}
-            style={{
-              flexDirection: 'row',
-              gap: 12,
-              padding: 12,
-              backgroundColor: TOKENS.paper,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              borderRadius: 4,
-              alignItems: 'center',
-            }}
-          >
-            <PhotoPlaceholder label={p.id} height={64} width={64} />
-            <View style={{ flex: 1 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 3 }}>
-                <Tag color={p.accent}>{p.era}</Tag>
-                <Text style={{ fontFamily: FONTS.mono, fontSize: 10, color: TOKENS.mute }}>
-                  {p.distance}km
-                </Text>
-              </View>
-              <Text style={{ fontFamily: FONTS.serif, fontSize: 15, color: TOKENS.ink }}>
-                {p.name}
-              </Text>
-              <Text
-                numberOfLines={1}
-                style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.mute, marginTop: 2 }}
-              >
-                {p.summary}
-              </Text>
-            </View>
-            {STAMPED.includes(p.id) && <Stamp glyph={p.nameHanja[0]} size={36} rotate={-8} color={p.accent} />}
-          </Pressable>
-        ))}
-      </View>
-
-      {/* 진행 중인 테마 */}
-      <SectionLabel
-        action={
-          <Pressable onPress={() => router.push('/(tabs)/themes' as never)}>
-            <Text style={{ fontFamily: FONTS.sansBold, fontSize: 11, color: TOKENS.red }}>전체 →</Text>
-          </Pressable>
-        }
-      >
-        진행 중인 테마 · IN PROGRESS
-      </SectionLabel>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}
-        style={{ marginBottom: 24 }}
-      >
-        {activeThemes.map((t) => (
-          <Pressable
-            key={t.id}
-            onPress={() => router.push(`/theme/${t.id}` as never)}
-            style={{
-              width: 220,
-              height: 220,
-              borderRadius: 4,
-              overflow: 'hidden',
-            }}
-          >
-            <LinearGradient
-              colors={t.cover}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}
-            >
-              <View>
-                <Text
-                  style={{
-                    fontFamily: FONTS.serifRegular,
-                    fontSize: 10,
-                    color: 'rgba(255,255,255,0.7)',
-                    letterSpacing: 2,
-                  }}
-                >
-                  {t.subtitle}
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: FONTS.serif,
-                    fontSize: 22,
-                    color: TOKENS.paper,
-                    marginTop: 4,
-                    lineHeight: 26,
-                  }}
-                >
-                  {t.title}
-                </Text>
-              </View>
-              <View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginBottom: 6,
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontFamily: FONTS.sansBold,
-                      fontSize: 11,
-                      color: 'rgba(255,255,255,0.85)',
-                    }}
-                  >
-                    {t.visited} / {t.totalPlaces}곳
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: FONTS.mono,
-                      fontSize: 11,
-                      color: 'rgba(255,255,255,0.7)',
-                    }}
-                  >
-                    {Math.round((t.visited / t.totalPlaces) * 100)}%
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    height: 2,
-                    backgroundColor: 'rgba(255,255,255,0.2)',
-                    borderRadius: 2,
-                    overflow: 'hidden',
-                  }}
-                >
-                  <View
-                    style={{
-                      width: `${(t.visited / t.totalPlaces) * 100}%`,
-                      height: '100%',
-                      backgroundColor: TOKENS.paper,
-                    }}
-                  />
-                </View>
-              </View>
-            </LinearGradient>
-          </Pressable>
-        ))}
-      </ScrollView>
-
-      {/* 국보·유물 */}
-      <SectionLabel
-        action={
-          <Text style={{ fontFamily: FONTS.sansBold, fontSize: 11, color: TOKENS.red }}>전체 →</Text>
-        }
-      >
-        국보·유물 · TREASURES
-      </SectionLabel>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
-        style={{ marginBottom: 24 }}
-      >
-        {ARTIFACTS.slice(0, 5).map((a) => (
-          <Pressable
-            key={a.id}
-            onPress={() => router.push(`/artifact/${a.id}` as never)}
-            style={{
-              width: 160,
-              backgroundColor: TOKENS.paper,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              borderRadius: 4,
-              overflow: 'hidden',
-            }}
-          >
-            <PhotoPlaceholder label={a.id} height={160} />
-            <View style={{ padding: 12 }}>
-              <Text
-                style={{
-                  fontFamily: FONTS.sansBold,
-                  fontSize: 9,
-                  color: a.accent,
-                  letterSpacing: 1,
-                }}
-              >
-                {a.designation}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.serif,
-                  fontSize: 14,
-                  color: TOKENS.ink,
-                  marginTop: 3,
-                  lineHeight: 17,
-                }}
-              >
-                {a.name}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.serifRegular,
-                  fontSize: 10,
-                  color: TOKENS.mute,
-                  marginTop: 2,
-                  letterSpacing: 1.5,
-                }}
-              >
-                {a.nameHanja}
-              </Text>
-            </View>
-          </Pressable>
-        ))}
-      </ScrollView>
-
-      {/* 인물 */}
-      <SectionLabel
-        action={
-          <Text style={{ fontFamily: FONTS.sansBold, fontSize: 11, color: TOKENS.red }}>전체 →</Text>
-        }
-      >
-        역사 속 인물 · FIGURES
-      </SectionLabel>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
-        style={{ marginBottom: 28 }}
-      >
-        {FIGURES.map((f) => (
-          <Pressable key={f.id} onPress={() => router.push(`/figure/${f.id}` as never)} style={{ width: 140 }}>
-            <LinearGradient
-              colors={[f.accent, '#1A1614']}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{
-                height: 160,
-                borderRadius: 4,
-                alignItems: 'center',
-                justifyContent: 'center',
-                overflow: 'hidden',
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: FONTS.serifBlack,
-                  fontSize: 28,
-                  color: TOKENS.paper,
-                  letterSpacing: -0.5,
-                  paddingHorizontal: 12,
-                  textAlign: 'center',
-                }}
-              >
-                {f.name}
-              </Text>
-              <Text
-                style={{
-                  position: 'absolute',
-                  bottom: 8,
-                  left: 10,
-                  right: 10,
-                  fontFamily: FONTS.mono,
-                  fontSize: 9,
-                  color: 'rgba(255,255,255,0.7)',
-                  letterSpacing: 0.5,
-                }}
-              >
-                {f.years}
-              </Text>
-            </LinearGradient>
-            <View style={{ paddingTop: 8 }}>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontFamily: FONTS.sans,
-                  fontSize: 12,
-                  color: TOKENS.inkSoft,
-                }}
-              >
-                {f.title}
-              </Text>
-            </View>
-          </Pressable>
-        ))}
-      </ScrollView>
-
-      {/* 내 발자취 */}
-      <SectionLabel>나의 발자취 · MY JOURNEY</SectionLabel>
-      <View style={{ paddingHorizontal: 20 }}>
-        <View
-          style={{
-            backgroundColor: TOKENS.paper,
-            borderWidth: 0.5,
-            borderColor: TOKENS.line,
-            borderRadius: 4,
-            padding: 18,
-          }}
-        >
-          <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 16 }}>
-            <View>
-              <Text
-                style={{
-                  fontFamily: FONTS.serifBlack,
-                  fontSize: 44,
-                  color: TOKENS.ink,
-                  lineHeight: 44,
-                  letterSpacing: -2,
-                }}
-              >
-                {myStamps}
-              </Text>
-              <Text
-                style={{
-                  fontFamily: FONTS.sans,
-                  fontSize: 11,
-                  color: TOKENS.mute,
-                  marginTop: 4,
-                  letterSpacing: 1,
-                }}
-              >
-                획득한 스탬프
-              </Text>
-            </View>
-            <View style={{ flex: 1, flexDirection: 'row', gap: 4, paddingBottom: 4 }}>
-              {STAMPED.slice(0, 6).map((id, i) => {
-                const p = PLACES.find((x) => x.id === id);
-                return (
-                  <Stamp
-                    key={id}
-                    glyph={p?.nameHanja?.[0] || '印'}
-                    size={32}
-                    rotate={-8 + i * 3}
-                    color={p?.accent || TOKENS.red}
-                  />
-                );
-              })}
-            </View>
           </View>
-          <Pressable
-            onPress={() => router.push('/(tabs)/stampbook' as never)}
-            style={{
-              marginTop: 14,
-              padding: 11,
-              backgroundColor: TOKENS.ink,
-              borderRadius: 4,
-              alignItems: 'center',
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: FONTS.sansBold,
-                fontSize: 13,
-                color: TOKENS.paper,
-                letterSpacing: 0.2,
-              }}
-            >
-              스탬프북 펼치기
-            </Text>
-          </Pressable>
         </View>
-      </View>
+
+        {/* HERO */}
+        {hero && (
+          <View className="px-5 pb-6">
+            <Pressable
+              onPress={() => router.push(`/place/${hero.id}` as never)}
+              className="bg-paper border border-line rounded overflow-hidden"
+            >
+              <PhotoPlaceholder label={`${hero.id}__hero.jpg`} height={170} />
+              <View className="p-4">
+                <View className="flex-row items-center gap-1.5 mb-1.5">
+                  <Tag color={hero.accent} filled>
+                    {hero.tag}
+                  </Tag>
+                  <Tag color={TOKENS.mute}>{hero.era}</Tag>
+                  <View className="flex-1" />
+                  <Text className="font-mono-bold text-[11px] text-red">{hero.distance}km</Text>
+                </View>
+                <Text className="font-serif text-xl text-ink tracking-[-0.3px] leading-6">
+                  {hero.name}
+                </Text>
+                <Text className="font-serif-regular text-[11px] text-mute mt-0.5 tracking-[1.5px]">
+                  {hero.region}
+                </Text>
+                <Text className="font-sans text-[13px] text-inkSoft mt-2.5 leading-5">
+                  {hero.summary}
+                </Text>
+              </View>
+            </Pressable>
+          </View>
+        )}
+
+        {/* 오늘의 역사 */}
+        <SectionLabel
+          action={<Text className="font-sans text-[11px] text-mute">5월 15일 · MAY 15</Text>}
+        >
+          오늘의 역사 · TODAY IN HISTORY
+        </SectionLabel>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
+          style={{ marginBottom: 24 }}
+        >
+          {TODAY_IN_HISTORY.map((item) => (
+            <Pressable
+              key={item.title}
+              onPress={() => item.placeId && router.push(`/place/${item.placeId}` as never)}
+              className="w-[260px] bg-paper border border-line rounded overflow-hidden flex-row"
+            >
+              <View
+                className="w-[76px] items-center justify-center px-1.5 py-2.5"
+                style={{ backgroundColor: item.accent }}
+              >
+                <Text className="font-serif-black text-[40px] text-paper leading-10">
+                  {item.glyph}
+                </Text>
+                <Text className="font-mono-bold text-[10px] tracking-[0.5px] mt-2 text-white/85">
+                  {item.year ? String(item.year) : '연례'}
+                </Text>
+              </View>
+              <View className="p-3 flex-1">
+                <Text className="font-sans-bold text-[10px] text-mute tracking-[1.5px]">
+                  {item.date}
+                </Text>
+                <Text className="font-serif text-[15px] text-ink mt-1 leading-[18px]">
+                  {item.title}
+                </Text>
+                <Text numberOfLines={3} className="font-sans text-[11px] text-inkSoft mt-1.5 leading-4">
+                  {item.summary}
+                </Text>
+              </View>
+            </Pressable>
+          ))}
+        </ScrollView>
+
+        {/* 내 주변 */}
+        <SectionLabel
+          action={
+            <Pressable onPress={() => router.push('/(tabs)/map' as never)}>
+              <Text className="font-sans-bold text-[11px] text-red">지도에서 보기 →</Text>
+            </Pressable>
+          }
+        >
+          내 주변 · NEARBY
+        </SectionLabel>
+        <View className="px-5 pb-6 gap-2.5">
+          {nearby.slice(1, 4).map((p) => (
+            <Pressable
+              key={p.id}
+              onPress={() => router.push(`/place/${p.id}` as never)}
+              className="flex-row gap-3 p-3 bg-paper border border-line rounded items-center"
+            >
+              <PhotoPlaceholder label={p.id} height={64} width={64} />
+              <View className="flex-1">
+                <View className="flex-row items-center gap-1.5 mb-0.5">
+                  <Tag color={p.accent}>{p.era}</Tag>
+                  <Text className="font-mono text-[10px] text-mute">{p.distance}km</Text>
+                </View>
+                <Text className="font-serif text-[15px] text-ink">{p.name}</Text>
+                <Text numberOfLines={1} className="font-sans text-[11px] text-mute mt-0.5">
+                  {p.summary}
+                </Text>
+              </View>
+              {STAMPED.includes(p.id) && (
+                <Stamp glyph={p.nameHanja[0]} size={36} rotate={-8} color={p.accent} />
+              )}
+            </Pressable>
+          ))}
+        </View>
+
+        {/* 진행 중인 테마 */}
+        <SectionLabel
+          action={
+            <Pressable onPress={() => router.push('/(tabs)/themes' as never)}>
+              <Text className="font-sans-bold text-[11px] text-red">전체 →</Text>
+            </Pressable>
+          }
+        >
+          진행 중인 테마 · IN PROGRESS
+        </SectionLabel>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}
+          style={{ marginBottom: 24 }}
+        >
+          {activeThemes.map((t) => (
+            <Pressable
+              key={t.id}
+              onPress={() => router.push(`/theme/${t.id}` as never)}
+              className="w-[220px] h-[220px] rounded overflow-hidden"
+            >
+              <LinearGradient
+                colors={t.cover}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}
+              >
+                <View>
+                  <Text className="font-serif-regular text-[10px] text-white/70 tracking-[2px]">
+                    {t.subtitle}
+                  </Text>
+                  <Text className="font-serif text-[22px] text-paper mt-1 leading-[26px]">
+                    {t.title}
+                  </Text>
+                </View>
+                <View>
+                  <View className="flex-row justify-between mb-1.5">
+                    <Text className="font-sans-bold text-[11px] text-white/85">
+                      {t.visited} / {t.totalPlaces}곳
+                    </Text>
+                    <Text className="font-mono text-[11px] text-white/70">
+                      {Math.round((t.visited / t.totalPlaces) * 100)}%
+                    </Text>
+                  </View>
+                  <View className="h-0.5 bg-white/20 rounded-sm overflow-hidden">
+                    <View
+                      className="h-full bg-paper"
+                      style={{ width: `${(t.visited / t.totalPlaces) * 100}%` }}
+                    />
+                  </View>
+                </View>
+              </LinearGradient>
+            </Pressable>
+          ))}
+        </ScrollView>
+
+        {/* 국보·유물 */}
+        <SectionLabel
+          action={<Text className="font-sans-bold text-[11px] text-red">전체 →</Text>}
+        >
+          국보·유물 · TREASURES
+        </SectionLabel>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
+          style={{ marginBottom: 24 }}
+        >
+          {ARTIFACTS.slice(0, 5).map((a) => (
+            <Pressable
+              key={a.id}
+              onPress={() => router.push(`/artifact/${a.id}` as never)}
+              className="w-[160px] bg-paper border border-line rounded overflow-hidden"
+            >
+              <PhotoPlaceholder label={a.id} height={160} />
+              <View className="p-3">
+                <Text
+                  className="font-sans-bold text-[9px] tracking-wider"
+                  style={{ color: a.accent }}
+                >
+                  {a.designation}
+                </Text>
+                <Text className="font-serif text-sm text-ink mt-0.5 leading-[17px]">
+                  {a.name}
+                </Text>
+              </View>
+            </Pressable>
+          ))}
+        </ScrollView>
+
+        {/* 인물 */}
+        <SectionLabel
+          action={<Text className="font-sans-bold text-[11px] text-red">전체 →</Text>}
+        >
+          역사 속 인물 · FIGURES
+        </SectionLabel>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
+          style={{ marginBottom: 28 }}
+        >
+          {FIGURES.map((f) => (
+            <Pressable
+              key={f.id}
+              onPress={() => router.push(`/figure/${f.id}` as never)}
+              className="w-[140px]"
+            >
+              <LinearGradient
+                colors={[f.accent, '#1A1614']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{
+                  height: 160,
+                  borderRadius: 4,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  overflow: 'hidden',
+                }}
+              >
+                <Text className="font-serif-black text-[28px] text-paper tracking-[-0.5px] px-3 text-center">
+                  {f.name}
+                </Text>
+                <Text
+                  className="absolute bottom-2 left-2.5 right-2.5 font-mono text-[9px] text-white/70 tracking-[0.5px]"
+                >
+                  {f.years}
+                </Text>
+              </LinearGradient>
+              <View className="pt-2">
+                <Text numberOfLines={1} className="font-sans text-xs text-inkSoft">
+                  {f.title}
+                </Text>
+              </View>
+            </Pressable>
+          ))}
+        </ScrollView>
+
+        {/* 내 발자취 */}
+        <SectionLabel>나의 발자취 · MY JOURNEY</SectionLabel>
+        <View className="px-5">
+          <View className="bg-paper border border-line rounded p-[18px]">
+            <View className="flex-row items-end gap-4">
+              <View>
+                <Text className="font-serif-black text-[44px] text-ink leading-[44px] tracking-[-2px]">
+                  {myStamps}
+                </Text>
+                <Text className="font-sans text-[11px] text-mute mt-1 tracking-wide">
+                  획득한 스탬프
+                </Text>
+              </View>
+              <View className="flex-1 flex-row gap-1 pb-1">
+                {STAMPED.slice(0, 6).map((id, i) => {
+                  const p = PLACES.find((x) => x.id === id);
+                  return (
+                    <Stamp
+                      key={id}
+                      glyph={p?.nameHanja?.[0] || '印'}
+                      size={32}
+                      rotate={-8 + i * 3}
+                      color={p?.accent || TOKENS.red}
+                    />
+                  );
+                })}
+              </View>
+            </View>
+            <Pressable
+              onPress={() => router.push('/(tabs)/stampbook' as never)}
+              className="mt-3.5 p-2.5 bg-ink rounded items-center"
+            >
+              <Text className="font-sans-bold text-[13px] text-paper tracking-[0.2px]">
+                스탬프북 펼치기
+              </Text>
+            </Pressable>
+          </View>
+        </View>
       </ScrollView>
     </View>
   );

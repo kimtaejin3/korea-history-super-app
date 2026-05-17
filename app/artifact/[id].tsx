@@ -5,7 +5,7 @@ import Svg, { Path } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { FONTS, TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { BackHeader } from '../../components/BackHeader';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
@@ -20,14 +20,14 @@ export default function ArtifactDetailScreen() {
 
   if (artifactQuery.isError || (artifactQuery.isFetched && !artifactQuery.data)) {
     return (
-      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+      <View className="flex-1 bg-paper">
         <BackHeader title="유물을 찾을 수 없어요" />
       </View>
     );
   }
   if (!artifactQuery.data || !placesQuery.data) {
     return (
-      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+      <View className="flex-1 bg-paper">
         <BackHeader />
       </View>
     );
@@ -36,12 +36,9 @@ export default function ArtifactDetailScreen() {
   const place = placesQuery.data.find((p) => p.id === a.placeId);
 
   return (
-    <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 80 }}
-      >
-        <View style={{ position: 'relative' }}>
+    <View className="flex-1 bg-paper">
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
+        <View className="relative">
           <PhotoPlaceholder label={`${a.id}__artifact.jpg`} height={340} />
           <LinearGradient
             colors={['rgba(0,0,0,0.35)', 'transparent', 'rgba(251,251,249,0.95)']}
@@ -50,23 +47,10 @@ export default function ArtifactDetailScreen() {
             pointerEvents="none"
           />
           <BackHeader overlay />
-          <View
-            style={{
-              position: 'absolute',
-              top: 110,
-              left: 20,
-              paddingHorizontal: 10,
-              paddingVertical: 4,
-              backgroundColor: 'rgba(251,251,249,0.92)',
-            }}
-          >
+          <View className="absolute top-[110px] left-5 px-2.5 py-1 bg-[rgba(251,251,249,0.92)]">
             <Text
-              style={{
-                fontFamily: FONTS.sansBold,
-                fontSize: 10,
-                color: a.accent,
-                letterSpacing: 1.5,
-              }}
+              className="font-sans-bold text-[10px] tracking-[1.5px]"
+              style={{ color: a.accent }}
             >
               {a.designation}
             </Text>
@@ -74,107 +58,49 @@ export default function ArtifactDetailScreen() {
         </View>
 
         {/* 제목 */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 18, marginTop: -20 }}>
-          <View style={{ flexDirection: 'row', gap: 6, marginBottom: 8 }}>
+        <View className="px-5 pb-4 -mt-5">
+          <View className="flex-row gap-1.5 mb-2">
             <Tag color={a.accent} filled>
               {a.category}
             </Tag>
             <Tag color={TOKENS.inkSoft}>{a.period}</Tag>
           </View>
-          <Text
-            style={{
-              fontFamily: FONTS.serif,
-              fontSize: 30,
-              color: TOKENS.ink,
-              letterSpacing: -0.5,
-              lineHeight: 35,
-            }}
-          >
+          <Text className="font-serif text-[30px] text-ink tracking-[-0.5px] leading-[35px]">
             {a.name}
           </Text>
-          <Text
-            style={{
-              fontFamily: FONTS.sans,
-              fontSize: 13,
-              color: TOKENS.inkSoft,
-              marginTop: 12,
-              lineHeight: 21,
-            }}
-          >
+          <Text className="font-sans text-[13px] text-inkSoft mt-3 leading-[21px]">
             {a.summary}
           </Text>
         </View>
 
         {/* 팩트 그리드 (2열) */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 24 }}>
-          <View
-            style={{
-              backgroundColor: TOKENS.paper,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              borderRadius: 4,
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-            }}
-          >
+        <View className="px-5 pb-6">
+          <View className="bg-paper border border-line rounded flex-row flex-wrap">
             {a.facts.map((f, i) => (
               <View
                 key={i}
+                className="p-4"
                 style={{
                   width: '50%',
-                  padding: 16,
                   borderRightWidth: i % 2 === 0 ? 0.5 : 0,
                   borderRightColor: TOKENS.lineSoft,
                   borderBottomWidth: i < a.facts.length - 2 ? 0.5 : 0,
                   borderBottomColor: TOKENS.lineSoft,
                 }}
               >
-                <Text
-                  style={{
-                    fontFamily: FONTS.mono,
-                    fontSize: 9,
-                    color: TOKENS.mute,
-                    letterSpacing: 1,
-                  }}
-                >
+                <Text className="font-mono text-[9px] text-mute tracking-wider">
                   {f.label.toUpperCase()}
                 </Text>
-                <Text
-                  style={{
-                    fontFamily: FONTS.serif,
-                    fontSize: 14,
-                    color: TOKENS.ink,
-                    marginTop: 4,
-                  }}
-                >
-                  {f.value}
-                </Text>
+                <Text className="font-serif text-sm text-ink mt-1">{f.value}</Text>
               </View>
             ))}
           </View>
         </View>
 
         {/* 본문 */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 24 }}>
-          <Text
-            style={{
-              fontFamily: FONTS.serif,
-              fontSize: 16,
-              color: TOKENS.ink,
-              marginBottom: 8,
-            }}
-          >
-            이 유물의 이야기
-          </Text>
-          <Text
-            style={{
-              fontFamily: FONTS.serifRegular,
-              fontSize: 14,
-              color: TOKENS.inkSoft,
-              lineHeight: 26,
-              letterSpacing: -0.2,
-            }}
-          >
+        <View className="px-5 pb-6">
+          <Text className="font-serif text-base text-ink mb-2">이 유물의 이야기</Text>
+          <Text className="font-serif-regular text-sm text-inkSoft leading-[26px] tracking-[-0.2px]">
             {a.story}
           </Text>
         </View>
@@ -196,44 +122,20 @@ export default function ArtifactDetailScreen() {
         {place && (
           <>
             <SectionLabel>소재 장소 · LOCATION</SectionLabel>
-            <View style={{ paddingHorizontal: 20, paddingBottom: 24 }}>
+            <View className="px-5 pb-6">
               <Pressable
                 onPress={() => router.push(`/place/${place.id}` as never)}
-                style={{
-                  backgroundColor: TOKENS.paper,
-                  borderWidth: 0.5,
-                  borderColor: TOKENS.line,
-                  borderRadius: 4,
-                  flexDirection: 'row',
-                  overflow: 'hidden',
-                  alignItems: 'center',
-                }}
+                className="bg-paper border border-line rounded flex-row overflow-hidden items-center"
               >
                 <PhotoPlaceholder label={place.id} height={92} width={92} />
-                <View style={{ flex: 1, padding: 14 }}>
+                <View className="flex-1 p-3.5">
                   <Tag color={place.accent}>{place.era}</Tag>
-                  <Text
-                    style={{
-                      fontFamily: FONTS.serif,
-                      fontSize: 15,
-                      color: TOKENS.ink,
-                      marginTop: 4,
-                    }}
-                  >
-                    {place.name}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: FONTS.sans,
-                      fontSize: 11,
-                      color: TOKENS.mute,
-                      marginTop: 2,
-                    }}
-                  >
+                  <Text className="font-serif text-[15px] text-ink mt-1">{place.name}</Text>
+                  <Text className="font-sans text-[11px] text-mute mt-0.5">
                     {place.region} · {place.distance}km
                   </Text>
                 </View>
-                <View style={{ paddingRight: 14 }}>
+                <View className="pr-3.5">
                   <Svg width="8" height="14" viewBox="0 0 8 14">
                     <Path
                       d="M1 1l6 6-6 6"

@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { FONTS, TOKENS } from '../data/tokens';
+import { TOKENS } from '../data/tokens';
 
 type Props = {
   children: string;
@@ -10,23 +10,16 @@ type Props = {
 export function Tag({ children, color = TOKENS.ink, filled = false }: Props) {
   return (
     <View
+      className="py-[3px] px-[7px] rounded-sm self-start"
       style={{
-        paddingVertical: 3,
-        paddingHorizontal: 7,
         borderWidth: filled ? 0 : 0.8,
         borderColor: color + '55',
         backgroundColor: filled ? color : 'transparent',
-        borderRadius: 2,
-        alignSelf: 'flex-start',
       }}
     >
       <Text
-        style={{
-          fontFamily: FONTS.sans,
-          fontSize: 11,
-          color: filled ? TOKENS.paper : color,
-          letterSpacing: 0.2,
-        }}
+        className="font-sans text-[11px] tracking-[0.2px]"
+        style={{ color: filled ? TOKENS.paper : color }}
       >
         {children}
       </Text>

@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import Svg, { Rect, Defs, RadialGradient, Stop } from 'react-native-svg';
-import { FONTS, TOKENS } from '../data/tokens';
+import { TOKENS } from '../data/tokens';
 
 type Props = {
   glyph?: string;
@@ -19,12 +19,11 @@ export function Stamp({
 }: Props) {
   return (
     <View
+      className="items-center justify-center"
       style={{
         width: size,
         height: size,
         transform: [{ rotate: `${rotate}deg` }],
-        alignItems: 'center',
-        justifyContent: 'center',
         opacity: dim ? 0.18 : 1,
       }}
     >
@@ -45,12 +44,8 @@ export function Stamp({
         <Rect x="2" y="2" width="52" height="52" rx="4" fill="url(#ink)" />
       </Svg>
       <Text
-        style={{
-          fontFamily: FONTS.serifBlack,
-          fontSize: size * 0.46,
-          color: '#FAF7F0',
-          lineHeight: size * 0.5,
-        }}
+        className="font-serif-black text-[#FAF7F0]"
+        style={{ fontSize: size * 0.46, lineHeight: size * 0.5 }}
       >
         {glyph}
       </Text>

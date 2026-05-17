@@ -2,7 +2,7 @@ import { View, Text, Pressable } from 'react-native';
 import Svg, { Path, Circle } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { FONTS, TOKENS } from '../data/tokens';
+import { TOKENS } from '../data/tokens';
 
 const TABS = [
   { name: 'index', label: '홈', icon: 'home' as const },
@@ -57,18 +57,10 @@ export function TabBar({ state, navigation }: BottomTabBarProps) {
 
   return (
     <View
-      style={{
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        paddingBottom: Math.max(insets.bottom, 12),
-        backgroundColor: 'rgba(251,251,249,0.92)',
-        borderTopWidth: 0.5,
-        borderTopColor: TOKENS.line,
-      }}
+      className="absolute left-0 right-0 bottom-0 bg-[rgba(251,251,249,0.92)] border-t-[0.5px] border-line"
+      style={{ paddingBottom: Math.max(insets.bottom, 12) }}
     >
-      <View style={{ flexDirection: 'row', height: 56 }}>
+      <View className="flex-row h-14">
         {TABS.map((tab) => {
           const routeIndex = state.routes.findIndex((r) => r.name === tab.name);
           if (routeIndex === -1) return null;
@@ -77,21 +69,11 @@ export function TabBar({ state, navigation }: BottomTabBarProps) {
             <Pressable
               key={tab.name}
               onPress={() => navigation.navigate(tab.name as never)}
-              style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 3,
-              }}
+              className="flex-1 items-center justify-center gap-[3px]"
             >
               <TabIcon kind={tab.icon} active={isActive} />
               <Text
-                style={{
-                  fontFamily: isActive ? FONTS.sansBold : FONTS.sans,
-                  fontSize: 10,
-                  color: isActive ? TOKENS.ink : TOKENS.mute,
-                  letterSpacing: 0.2,
-                }}
+                className={`text-[10px] tracking-[0.2px] ${isActive ? 'font-sans-bold text-ink' : 'font-sans text-mute'}`}
               >
                 {tab.label}
               </Text>

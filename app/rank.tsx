@@ -2,7 +2,7 @@
 
 import { View, Text, ScrollView } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
-import { FONTS, TOKENS } from '../data/tokens';
+import { TOKENS } from '../data/tokens';
 import { api, queryKeys } from '../lib/api';
 import { BackHeader } from '../components/BackHeader';
 import { SectionLabel } from '../components/SectionLabel';
@@ -13,7 +13,7 @@ export default function RankScreen() {
 
   if (!meQuery.data || !levelsQuery.data) {
     return (
-      <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+      <View className="flex-1 bg-paper">
         <BackHeader title="등급 · RANK" />
       </View>
     );
@@ -23,88 +23,35 @@ export default function RankScreen() {
   const { current, next, progress, xpToNext } = USER.rank;
 
   return (
-    <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+    <View className="flex-1 bg-paper">
       <BackHeader title="등급 · RANK" />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 80 }}
-      >
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
         {/* 현재 등급 카드 */}
-        <View style={{ paddingHorizontal: 20, paddingBottom: 28 }}>
-          <View
-            style={{
-              backgroundColor: TOKENS.ink,
-              borderRadius: 6,
-              padding: 24,
-              overflow: 'hidden',
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: FONTS.monoBold,
-                fontSize: 11,
-                letterSpacing: 2,
-                color: 'rgba(255,255,255,0.5)',
-              }}
-            >
+        <View className="px-5 pb-7">
+          <View className="bg-ink rounded-md p-6 overflow-hidden">
+            <Text className="font-mono-bold text-[11px] tracking-[2px] text-white/50">
               CURRENT RANK · LV {current.level}
             </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.serif,
-                fontSize: 38,
-                color: TOKENS.paper,
-                marginTop: 4,
-                letterSpacing: -0.8,
-              }}
-            >
+            <Text className="font-serif text-[38px] text-paper mt-1 tracking-[-0.8px]">
               {current.name}
             </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.sans,
-                fontSize: 12,
-                color: 'rgba(255,255,255,0.7)',
-                marginTop: 14,
-                lineHeight: 18,
-                maxWidth: 240,
-              }}
-            >
+            <Text className="font-sans text-xs text-white/70 mt-3.5 leading-[18px] max-w-[240px]">
               {current.desc}
             </Text>
             {next && (
-              <View style={{ marginTop: 22 }}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'baseline',
-                    marginBottom: 8,
-                  }}
-                >
-                  <Text style={{ fontFamily: FONTS.monoBold, fontSize: 12, color: TOKENS.paper }}>
+              <View className="mt-5">
+                <View className="flex-row justify-between items-baseline mb-2">
+                  <Text className="font-mono-bold text-xs text-paper">
                     {USER.xp} / {next.minXp} XP
                   </Text>
-                  <Text
-                    style={{ fontFamily: FONTS.sans, fontSize: 11, color: 'rgba(255,255,255,0.55)' }}
-                  >
+                  <Text className="font-sans text-[11px] text-white/55">
                     다음: {next.name}까지 {xpToNext} XP
                   </Text>
                 </View>
-                <View
-                  style={{
-                    height: 4,
-                    backgroundColor: 'rgba(255,255,255,0.15)',
-                    borderRadius: 4,
-                    overflow: 'hidden',
-                  }}
-                >
+                <View className="h-1 bg-white/15 rounded overflow-hidden">
                   <View
-                    style={{
-                      width: `${progress * 100}%`,
-                      height: '100%',
-                      backgroundColor: next.color,
-                    }}
+                    className="h-full"
+                    style={{ width: `${progress * 100}%`, backgroundColor: next.color }}
                   />
                 </View>
               </View>
@@ -114,81 +61,29 @@ export default function RankScreen() {
 
         {/* XP 적립 방법 */}
         <SectionLabel>XP 적립</SectionLabel>
-        <View
-          style={{
-            paddingHorizontal: 20,
-            paddingBottom: 24,
-            flexDirection: 'row',
-            gap: 8,
-          }}
-        >
+        <View className="px-5 pb-6 flex-row gap-2">
           {[
             { label: '스탬프', xp: '+10', sub: `${USER.stamps}개 · ${USER.stamps * 10}` },
-            {
-              label: '퀴즈 정답',
-              xp: '+5',
-              sub: `${USER.quizCorrect}개 · ${USER.quizCorrect * 5}`,
-            },
-            {
-              label: '테마 완성',
-              xp: '+50',
-              sub: `${USER.themesCompleted}개 · ${USER.themesCompleted * 50}`,
-            },
+            { label: '퀴즈 정답', xp: '+5', sub: `${USER.quizCorrect}개 · ${USER.quizCorrect * 5}` },
+            { label: '테마 완성', xp: '+50', sub: `${USER.themesCompleted}개 · ${USER.themesCompleted * 50}` },
           ].map((s) => (
-            <View
-              key={s.label}
-              style={{
-                flex: 1,
-                padding: 14,
-                backgroundColor: TOKENS.paper,
-                borderWidth: 0.5,
-                borderColor: TOKENS.line,
-                borderRadius: 4,
-              }}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-                <Text
-                  style={{
-                    fontFamily: FONTS.serif,
-                    fontSize: 20,
-                    color: TOKENS.ink,
-                    lineHeight: 20,
-                  }}
-                >
-                  {s.xp}
-                </Text>
-                <Text
-                  style={{ fontSize: 11, color: TOKENS.mute, marginLeft: 2, fontFamily: FONTS.sans }}
-                >
-                  XP
-                </Text>
+            <View key={s.label} className="flex-1 p-3.5 bg-paper border border-line rounded">
+              <View className="flex-row items-baseline">
+                <Text className="font-serif text-xl text-ink leading-5">{s.xp}</Text>
+                <Text className="text-[11px] text-mute ml-0.5 font-sans">XP</Text>
               </View>
-              <Text
-                style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.inkSoft, marginTop: 8 }}
-              >
-                {s.label}
-              </Text>
-              <Text
-                style={{ fontFamily: FONTS.mono, fontSize: 9, color: TOKENS.mute, marginTop: 1 }}
-              >
-                {s.sub}
-              </Text>
+              <Text className="font-sans text-[11px] text-inkSoft mt-2">{s.label}</Text>
+              <Text className="font-mono text-[9px] text-mute mt-px">{s.sub}</Text>
             </View>
           ))}
         </View>
 
         {/* 전체 등급표 */}
         <SectionLabel>모든 등급 · 7단계</SectionLabel>
-        <View style={{ paddingHorizontal: 20, position: 'relative' }}>
+        <View className="px-5 relative">
           <View
-            style={{
-              position: 'absolute',
-              left: 20 + 15,
-              top: 26,
-              bottom: 26,
-              width: 1,
-              backgroundColor: TOKENS.line,
-            }}
+            className="absolute w-px bg-line"
+            style={{ left: 20 + 15, top: 26, bottom: 26 }}
           />
           {LEVELS.map((lv) => {
             const isCurrent = lv.level === current.level;
@@ -196,107 +91,48 @@ export default function RankScreen() {
             const isLocked = lv.level > current.level;
             const dim = isLocked ? 0.55 : 1;
             return (
-              <View
-                key={lv.level}
-                style={{
-                  flexDirection: 'row',
-                  gap: 16,
-                  alignItems: 'flex-start',
-                  paddingVertical: 12,
-                }}
-              >
+              <View key={lv.level} className="flex-row gap-4 items-start py-3">
                 <View
+                  className="w-8 h-8 rounded-full items-center justify-center"
                   style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: 16,
                     backgroundColor: isPast || isCurrent ? lv.color : TOKENS.paper,
                     borderWidth: isCurrent ? 2 : isPast ? 0 : 1.5,
                     borderColor: isCurrent ? TOKENS.ink : TOKENS.line,
                     borderStyle: isLocked && !isCurrent ? 'dashed' : 'solid',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                     opacity: dim,
                   }}
                 >
                   <Text
-                    style={{
-                      fontFamily: FONTS.sansBold,
-                      fontSize: 12,
-                      color: isPast || isCurrent ? TOKENS.paper : TOKENS.mute,
-                    }}
+                    className={`font-sans-bold text-xs ${isPast || isCurrent ? 'text-paper' : 'text-mute'}`}
                   >
                     {lv.level}
                   </Text>
                 </View>
-                <View style={{ flex: 1, opacity: dim }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                    <Text style={{ fontFamily: FONTS.monoBold, fontSize: 10, color: TOKENS.mute }}>
-                      LV {lv.level}
-                    </Text>
+                <View className="flex-1" style={{ opacity: dim }}>
+                  <View className="flex-row items-center gap-1.5">
+                    <Text className="font-mono-bold text-[10px] text-mute">LV {lv.level}</Text>
                     {isCurrent && (
-                      <View
-                        style={{
-                          paddingHorizontal: 6,
-                          paddingVertical: 1,
-                          borderRadius: 2,
-                          backgroundColor: TOKENS.ink,
-                        }}
-                      >
-                        <Text
-                          style={{
-                            fontFamily: FONTS.sansBold,
-                            fontSize: 9,
-                            color: TOKENS.paper,
-                            letterSpacing: 0.5,
-                          }}
-                        >
+                      <View className="px-1.5 py-px rounded-sm bg-ink">
+                        <Text className="font-sans-bold text-[9px] text-paper tracking-[0.5px]">
                           나의 등급
                         </Text>
                       </View>
                     )}
                   </View>
-                  <Text style={{ fontFamily: FONTS.serif, fontSize: 17, color: TOKENS.ink, marginTop: 2 }}>
-                    {lv.name}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: FONTS.sans,
-                      fontSize: 12,
-                      color: TOKENS.inkSoft,
-                      marginTop: 4,
-                      lineHeight: 18,
-                    }}
-                  >
+                  <Text className="font-serif text-[17px] text-ink mt-0.5">{lv.name}</Text>
+                  <Text className="font-sans text-xs text-inkSoft mt-1 leading-[18px]">
                     {lv.desc}
                   </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      flexWrap: 'wrap',
-                      alignItems: 'center',
-                      gap: 6,
-                      marginTop: 8,
-                    }}
-                  >
-                    <Text style={{ fontFamily: FONTS.monoBold, fontSize: 10, color: lv.color }}>
+                  <View className="flex-row flex-wrap items-center gap-1.5 mt-2">
+                    <Text
+                      className="font-mono-bold text-[10px]"
+                      style={{ color: lv.color }}
+                    >
                       {lv.minXp}+ XP
                     </Text>
                     {lv.perks.map((perk) => (
-                      <View
-                        key={perk}
-                        style={{
-                          paddingHorizontal: 7,
-                          paddingVertical: 2,
-                          backgroundColor: TOKENS.paperWarm,
-                          borderRadius: 2,
-                        }}
-                      >
-                        <Text
-                          style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.inkSoft }}
-                        >
-                          {perk}
-                        </Text>
+                      <View key={perk} className="px-1.5 py-0.5 bg-paperWarm rounded-sm">
+                        <Text className="font-sans text-[11px] text-inkSoft">{perk}</Text>
                       </View>
                     ))}
                   </View>

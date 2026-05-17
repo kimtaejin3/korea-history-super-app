@@ -6,10 +6,9 @@ import Svg, { Path, Circle } from 'react-native-svg';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useQuery } from '@tanstack/react-query';
-import { FONTS, TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
-import { Stamp } from '../../components/Stamp';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { LottieAsset } from '../../components/LottieAsset';
 
@@ -25,11 +24,9 @@ export default function CheckinScreen() {
   const [selected, setSelected] = useState<number | null>(null);
   const [correct, setCorrect] = useState<boolean | null>(null);
 
-  // 펄스 애니메이션
   const pulse1 = useRef(new Animated.Value(0)).current;
   const pulse2 = useRef(new Animated.Value(0)).current;
   const pulse3 = useRef(new Animated.Value(0)).current;
-  // 스탬프 드롭 애니메이션
   const stampScale = useRef(new Animated.Value(2.5)).current;
   const stampOpacity = useRef(new Animated.Value(0)).current;
 
@@ -77,7 +74,7 @@ export default function CheckinScreen() {
 
   if (!p) {
     return (
-      <View style={{ flex: 1, backgroundColor: TOKENS.paper, paddingTop: insets.top + 40, padding: 20 }}>
+      <View className="flex-1 bg-paper p-5" style={{ paddingTop: insets.top + 40 }}>
         <Text>장소를 찾을 수 없어요</Text>
       </View>
     );
@@ -92,91 +89,40 @@ export default function CheckinScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: TOKENS.paper }}>
+    <View className="flex-1 bg-paper">
       {/* 헤더 */}
       <View
-        style={{
-          paddingTop: insets.top + 8,
-          paddingHorizontal: 16,
-          paddingBottom: 12,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
+        className="px-4 pb-3 flex-row items-center justify-between"
+        style={{ paddingTop: insets.top + 8 }}
       >
         <Pressable
           onPress={() => router.back()}
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: 18,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          className="w-9 h-9 rounded-full items-center justify-center"
         >
           <Svg width="20" height="20" viewBox="0 0 22 22" fill="none">
-            <Path
-              d="M5 5l12 12M17 5L5 17"
-              stroke={TOKENS.ink}
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            />
+            <Path d="M5 5l12 12M17 5L5 17" stroke={TOKENS.ink} strokeWidth="1.8" strokeLinecap="round" />
           </Svg>
         </Pressable>
-        <Text style={{ fontFamily: FONTS.sans, fontSize: 12, color: TOKENS.mute, letterSpacing: 1 }}>
-          {stepLabels[step]}
-        </Text>
-        <View style={{ width: 36 }} />
+        <Text className="font-sans text-xs text-mute tracking-wide">{stepLabels[step]}</Text>
+        <View className="w-9" />
       </View>
 
       {/* STEP: GPS */}
       {step === 'locating' && (
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 24,
-          }}
-        >
-          <View
-            style={{
-              width: 180,
-              height: 180,
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: 36,
-            }}
-          >
+        <View className="flex-1 items-center justify-center p-6">
+          <View className="w-[180px] h-[180px] items-center justify-center mb-9">
             {[pulse1, pulse2, pulse3].map((v, i) => (
               <Animated.View
                 key={i}
+                className="absolute w-[180px] h-[180px] rounded-full border"
                 style={{
-                  position: 'absolute',
-                  width: 180,
-                  height: 180,
-                  borderRadius: 90,
-                  borderWidth: 1,
                   borderColor: TOKENS.red,
-                  transform: [
-                    {
-                      scale: v.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1.2] }),
-                    },
-                  ],
+                  transform: [{ scale: v.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1.2] }) }],
                   opacity: v.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }),
                 }}
               />
             ))}
-            <View
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 20,
-                backgroundColor: TOKENS.red,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
+            <View className="w-10 h-10 rounded-full bg-red items-center justify-center">
               <Svg width="20" height="20" viewBox="0 0 22 22" fill="none">
                 <Path
                   d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
@@ -187,10 +133,8 @@ export default function CheckinScreen() {
               </Svg>
             </View>
           </View>
-          <Text style={{ fontFamily: FONTS.serif, fontSize: 20, color: TOKENS.ink }}>
-            위치를 확인하고 있어요
-          </Text>
-          <Text style={{ fontFamily: FONTS.sans, fontSize: 13, color: TOKENS.mute, marginTop: 8 }}>
+          <Text className="font-serif text-xl text-ink">위치를 확인하고 있어요</Text>
+          <Text className="font-sans text-[13px] text-mute mt-2">
             {p.name} 반경 50m 이내인지 확인 중
           </Text>
         </View>
@@ -198,18 +142,8 @@ export default function CheckinScreen() {
 
       {/* STEP: 확인 완료 */}
       {step === 'confirmed' && (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-          <View
-            style={{
-              width: 76,
-              height: 76,
-              borderRadius: 38,
-              backgroundColor: TOKENS.green,
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: 24,
-            }}
-          >
+        <View className="flex-1 items-center justify-center p-6">
+          <View className="w-[76px] h-[76px] rounded-full bg-green items-center justify-center mb-6">
             <Svg width="32" height="32" viewBox="0 0 32 32" fill="none">
               <Path
                 d="M7 16l6 6 12-12"
@@ -220,81 +154,31 @@ export default function CheckinScreen() {
               />
             </Svg>
           </View>
-          <Text
-            style={{
-              fontFamily: FONTS.serif,
-              fontSize: 22,
-              color: TOKENS.ink,
-              textAlign: 'center',
-              lineHeight: 28,
-            }}
-          >
+          <Text className="font-serif text-[22px] text-ink text-center leading-7">
             {p.name}에{'\n'}도착하셨네요
           </Text>
-          <Text
-            style={{
-              fontFamily: FONTS.sans,
-              fontSize: 13,
-              color: TOKENS.mute,
-              marginTop: 10,
-              textAlign: 'center',
-            }}
-          >
+          <Text className="font-sans text-[13px] text-mute mt-2.5 text-center">
             현장 퀴즈를 풀고 스탬프를 받으세요
           </Text>
-          <View
-            style={{
-              marginTop: 36,
-              padding: 16,
-              backgroundColor: TOKENS.paperWarm,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              borderRadius: 4,
-              width: '100%',
-              maxWidth: 320,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 12,
-            }}
-          >
+          <View className="mt-9 p-4 bg-paperWarm border border-line rounded w-full max-w-[320px] flex-row items-center gap-3">
             <PhotoPlaceholder label={p.id} height={56} width={56} />
-            <View style={{ flex: 1 }}>
+            <View className="flex-1">
               <Tag color={p.accent} filled>
                 {p.tag}
               </Tag>
-              <Text
-                style={{
-                  fontFamily: FONTS.serif,
-                  fontSize: 14,
-                  color: TOKENS.ink,
-                  marginTop: 4,
-                }}
-              >
-                {p.name}
-              </Text>
-              <Text style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.mute }}>
-                {p.region}
-              </Text>
+              <Text className="font-serif text-sm text-ink mt-1">{p.name}</Text>
+              <Text className="font-sans text-[11px] text-mute">{p.region}</Text>
             </View>
           </View>
-          <View style={{ position: 'absolute', left: 20, right: 20, bottom: insets.bottom + 20 }}>
+          <View
+            className="absolute left-5 right-5"
+            style={{ bottom: insets.bottom + 20 }}
+          >
             <Pressable
               onPress={() => (p.quiz ? setStep('quiz') : setStep('stamp'))}
-              style={{
-                padding: 16,
-                backgroundColor: TOKENS.ink,
-                borderRadius: 4,
-                alignItems: 'center',
-              }}
+              className="p-4 bg-ink rounded items-center"
             >
-              <Text
-                style={{
-                  fontFamily: FONTS.sansBold,
-                  fontSize: 14,
-                  color: TOKENS.paper,
-                  letterSpacing: 0.3,
-                }}
-              >
+              <Text className="font-sans-bold text-sm text-paper tracking-[0.3px]">
                 {p.quiz ? '현장 퀴즈 풀기 →' : '스탬프 받기'}
               </Text>
             </Pressable>
@@ -304,90 +188,44 @@ export default function CheckinScreen() {
 
       {/* STEP: 퀴즈 */}
       {step === 'quiz' && p.quiz && (
-        <View style={{ flex: 1, padding: 24, paddingBottom: insets.bottom + 20 }}>
-          <View style={{ marginBottom: 14 }}>
+        <View className="flex-1 p-6" style={{ paddingBottom: insets.bottom + 20 }}>
+          <View className="mb-3.5">
             <Text
-              style={{
-                position: 'absolute',
-                top: -50,
-                right: -10,
-                fontFamily: FONTS.serifBlack,
-                fontSize: 130,
-                lineHeight: 130,
-                color: `${p.accent}12`,
-              }}
+              className="absolute font-serif-black"
+              style={{ top: -50, right: -10, fontSize: 130, lineHeight: 130, color: `${p.accent}12` }}
             >
               問
             </Text>
             <Text
-              style={{
-                fontFamily: FONTS.sansBold,
-                fontSize: 11,
-                color: p.accent,
-                letterSpacing: 2,
-                marginBottom: 14,
-              }}
+              className="font-sans-bold text-[11px] tracking-[2px] mb-3.5"
+              style={{ color: p.accent }}
             >
               QUESTION 01
             </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.serif,
-                fontSize: 22,
-                color: TOKENS.ink,
-                lineHeight: 30,
-                letterSpacing: -0.3,
-              }}
-            >
+            <Text className="font-serif text-[22px] text-ink leading-[30px] tracking-[-0.3px]">
               {p.quiz.q}
             </Text>
           </View>
-          <View style={{ gap: 10, marginTop: 20, flex: 1 }}>
+          <View className="gap-2.5 mt-5 flex-1">
             {p.quiz.options.map((opt, i) => {
               const isSel = selected === i;
               return (
                 <Pressable
                   key={i}
                   onPress={() => setSelected(i)}
-                  style={{
-                    padding: 16,
-                    backgroundColor: isSel ? TOKENS.ink : TOKENS.paper,
-                    borderWidth: isSel ? 0 : 0.5,
-                    borderColor: TOKENS.line,
-                    borderRadius: 4,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 12,
-                  }}
+                  className={`p-4 rounded flex-row items-center gap-3 ${isSel ? 'bg-ink' : 'bg-paper border border-line'}`}
                 >
                   <View
-                    style={{
-                      width: 22,
-                      height: 22,
-                      borderRadius: 11,
-                      borderWidth: 1.5,
-                      borderColor: isSel ? TOKENS.paper : TOKENS.line,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
+                    className={`w-[22px] h-[22px] rounded-full border-[1.5px] items-center justify-center ${isSel ? 'border-paper' : 'border-line'}`}
                   >
                     <Text
-                      style={{
-                        fontFamily: FONTS.monoBold,
-                        fontSize: 11,
-                        color: isSel ? TOKENS.paper : TOKENS.mute,
-                      }}
+                      className={`font-mono-bold text-[11px] ${isSel ? 'text-paper' : 'text-mute'}`}
                     >
                       {['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ'][i]}
                     </Text>
                   </View>
                   <Text
-                    style={{
-                      flex: 1,
-                      fontFamily: FONTS.serifRegular,
-                      fontSize: 15,
-                      color: isSel ? TOKENS.paper : TOKENS.ink,
-                    }}
+                    className={`flex-1 font-serif-regular text-[15px] ${isSel ? 'text-paper' : 'text-ink'}`}
                   >
                     {opt}
                   </Text>
@@ -395,16 +233,7 @@ export default function CheckinScreen() {
               );
             })}
           </View>
-          <View
-            style={{
-              padding: 12,
-              marginTop: 16,
-              backgroundColor: TOKENS.paperWarm,
-              borderRadius: 4,
-              flexDirection: 'row',
-              gap: 8,
-            }}
-          >
+          <View className="p-3 mt-4 bg-paperWarm rounded flex-row gap-2">
             <Svg width="14" height="14" viewBox="0 0 22 22" fill="none" style={{ marginTop: 2 }}>
               <Circle cx="11" cy="11" r="8" stroke={TOKENS.mute} strokeWidth="1.5" />
               <Path
@@ -414,15 +243,7 @@ export default function CheckinScreen() {
                 strokeLinecap="round"
               />
             </Svg>
-            <Text
-              style={{
-                flex: 1,
-                fontFamily: FONTS.sans,
-                fontSize: 11,
-                color: TOKENS.inkSoft,
-                lineHeight: 17,
-              }}
-            >
+            <Text className="flex-1 font-sans text-[11px] text-inkSoft leading-[17px]">
               {p.quiz.hint}
             </Text>
           </View>
@@ -432,21 +253,10 @@ export default function CheckinScreen() {
               setCorrect(selected === p.quiz!.answer);
               setStep('result');
             }}
-            style={{
-              marginTop: 16,
-              padding: 16,
-              backgroundColor: selected === null ? TOKENS.paperWarm : TOKENS.ink,
-              borderRadius: 4,
-              alignItems: 'center',
-            }}
+            className={`mt-4 p-4 rounded items-center ${selected === null ? 'bg-paperWarm' : 'bg-ink'}`}
           >
             <Text
-              style={{
-                fontFamily: FONTS.sansBold,
-                fontSize: 14,
-                color: selected === null ? TOKENS.mute : TOKENS.paper,
-                letterSpacing: 0.3,
-              }}
+              className={`font-sans-bold text-sm tracking-[0.3px] ${selected === null ? 'text-mute' : 'text-paper'}`}
             >
               제출하기
             </Text>
@@ -456,105 +266,39 @@ export default function CheckinScreen() {
 
       {/* STEP: 결과 */}
       {step === 'result' && p.quiz && (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+        <View className="flex-1 items-center justify-center p-6">
           <Text
-            style={{
-              fontFamily: FONTS.serifBlack,
-              fontSize: 60,
-              color: correct ? TOKENS.green : TOKENS.red,
-              lineHeight: 60,
-              letterSpacing: -3,
-            }}
+            className="font-serif-black leading-[60px] tracking-[-3px]"
+            style={{ fontSize: 60, color: correct ? TOKENS.green : TOKENS.red }}
           >
             {correct ? '正' : '誤'}
           </Text>
-          <Text
-            style={{
-              fontFamily: FONTS.serif,
-              fontSize: 22,
-              color: TOKENS.ink,
-              marginTop: 20,
-            }}
-          >
+          <Text className="font-serif text-[22px] text-ink mt-5">
             {correct ? '정답이에요!' : '아쉬워요'}
           </Text>
-          <Text
-            style={{
-              fontFamily: FONTS.sans,
-              fontSize: 13,
-              color: TOKENS.mute,
-              marginTop: 8,
-              textAlign: 'center',
-              maxWidth: 280,
-              lineHeight: 21,
-            }}
-          >
+          <Text className="font-sans text-[13px] text-mute mt-2 text-center max-w-[280px] leading-[21px]">
             {correct
               ? '현장에서 직접 익힌 역사 한 조각. 스탬프 + 보너스 도장을 받으세요.'
               : '괜찮아요. 방문 스탬프는 그대로 받으실 수 있어요.'}
           </Text>
-          <View
-            style={{
-              marginTop: 28,
-              padding: 18,
-              backgroundColor: TOKENS.paperWarm,
-              borderWidth: 0.5,
-              borderColor: TOKENS.line,
-              borderRadius: 4,
-              maxWidth: 320,
-              width: '100%',
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: FONTS.sansBold,
-                fontSize: 10,
-                color: TOKENS.mute,
-                letterSpacing: 2,
-              }}
-            >
-              정답
-            </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.serif,
-                fontSize: 15,
-                color: TOKENS.ink,
-                marginTop: 4,
-              }}
-            >
+          <View className="mt-7 p-[18px] bg-paperWarm border border-line rounded max-w-[320px] w-full">
+            <Text className="font-sans-bold text-[10px] text-mute tracking-[2px]">정답</Text>
+            <Text className="font-serif text-[15px] text-ink mt-1">
               {p.quiz.options[p.quiz.answer]}
             </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.sans,
-                fontSize: 12,
-                color: TOKENS.inkSoft,
-                marginTop: 8,
-                lineHeight: 18,
-              }}
-            >
+            <Text className="font-sans text-xs text-inkSoft mt-2 leading-[18px]">
               {p.quiz.hint}
             </Text>
           </View>
-          <View style={{ position: 'absolute', left: 20, right: 20, bottom: insets.bottom + 20 }}>
+          <View
+            className="absolute left-5 right-5"
+            style={{ bottom: insets.bottom + 20 }}
+          >
             <Pressable
               onPress={() => setStep('stamp')}
-              style={{
-                padding: 16,
-                backgroundColor: TOKENS.ink,
-                borderRadius: 4,
-                alignItems: 'center',
-              }}
+              className="p-4 bg-ink rounded items-center"
             >
-              <Text
-                style={{
-                  fontFamily: FONTS.sansBold,
-                  fontSize: 14,
-                  color: TOKENS.paper,
-                  letterSpacing: 0.3,
-                }}
-              >
+              <Text className="font-sans-bold text-sm text-paper tracking-[0.3px]">
                 스탬프 받기 →
               </Text>
             </Pressable>
@@ -564,28 +308,11 @@ export default function CheckinScreen() {
 
       {/* STEP: 스탬프 */}
       {step === 'stamp' && (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
-          <Text
-            style={{
-              fontFamily: FONTS.sansBold,
-              fontSize: 11,
-              color: TOKENS.red,
-              letterSpacing: 3,
-              marginBottom: 8,
-            }}
-          >
+        <View className="flex-1 items-center justify-center p-6">
+          <Text className="font-sans-bold text-[11px] text-red tracking-[3px] mb-2">
             STAMP ACQUIRED
           </Text>
-          <Text
-            style={{
-              fontFamily: FONTS.serif,
-              fontSize: 24,
-              color: TOKENS.ink,
-              marginBottom: 40,
-              textAlign: 'center',
-              lineHeight: 30,
-            }}
-          >
+          <Text className="font-serif text-2xl text-ink mb-10 text-center leading-[30px]">
             {p.name}{'\n'}방문 인증 완료
           </Text>
           <LottieAsset
@@ -594,66 +321,28 @@ export default function CheckinScreen() {
             loop={false}
             endFrame={40}
           />
-          <View style={{ marginTop: 28, alignItems: 'center' }}>
-            <Text
-              style={{
-                fontFamily: FONTS.serif,
-                fontSize: 15,
-                color: TOKENS.ink,
-                marginBottom: 4,
-              }}
-            >
-              {p.nameHanja}
-            </Text>
-            <Text
-              style={{
-                fontFamily: FONTS.sans,
-                fontSize: 12,
-                color: TOKENS.mute,
-                textAlign: 'center',
-              }}
-            >
+          <View className="mt-7 items-center">
+            <Text className="font-serif text-[15px] text-ink mb-1">{p.nameHanja}</Text>
+            <Text className="font-sans text-xs text-mute text-center">
               2026.05.15 · 14:23 · {p.region}
             </Text>
           </View>
           <View
-            style={{
-              position: 'absolute',
-              left: 20,
-              right: 20,
-              bottom: insets.bottom + 20,
-              flexDirection: 'row',
-              gap: 8,
-            }}
+            className="absolute left-5 right-5 flex-row gap-2"
+            style={{ bottom: insets.bottom + 20 }}
           >
             <Pressable
               onPress={() => router.back()}
-              style={{
-                flex: 1,
-                padding: 14,
-                borderWidth: 0.5,
-                borderColor: TOKENS.line,
-                borderRadius: 4,
-                alignItems: 'center',
-              }}
+              className="flex-1 p-3.5 border border-line rounded items-center"
             >
-              <Text style={{ fontFamily: FONTS.sansBold, fontSize: 13, color: TOKENS.ink }}>
-                장소 페이지로
-              </Text>
+              <Text className="font-sans-bold text-[13px] text-ink">장소 페이지로</Text>
             </Pressable>
             <Pressable
               onPress={() => router.replace('/(tabs)/stampbook' as never)}
-              style={{
-                flex: 1.4,
-                padding: 14,
-                backgroundColor: TOKENS.ink,
-                borderRadius: 4,
-                alignItems: 'center',
-              }}
+              className="p-3.5 bg-ink rounded items-center"
+              style={{ flex: 1.4 }}
             >
-              <Text style={{ fontFamily: FONTS.sansBold, fontSize: 13, color: TOKENS.paper }}>
-                스탬프북 보기 →
-              </Text>
+              <Text className="font-sans-bold text-[13px] text-paper">스탬프북 보기 →</Text>
             </Pressable>
           </View>
         </View>

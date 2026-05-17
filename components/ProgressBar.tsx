@@ -12,15 +12,13 @@ export function ProgressBar({ value, max, color = TOKENS.ink, height = 3 }: Prop
   const pct = Math.min(100, (value / max) * 100);
   return (
     <View
-      style={{
-        width: '100%',
-        height,
-        backgroundColor: 'rgba(26,22,20,0.08)',
-        borderRadius: height,
-        overflow: 'hidden',
-      }}
+      className="w-full bg-[rgba(26,22,20,0.08)] overflow-hidden"
+      style={{ height, borderRadius: height }}
     >
-      <View style={{ width: `${pct}%`, height: '100%', backgroundColor: color }} />
+      <View
+        className="h-full"
+        style={{ width: `${pct}%`, backgroundColor: color }}
+      />
     </View>
   );
 }

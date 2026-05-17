@@ -46,7 +46,6 @@ export default function MapScreen() {
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
   const { state: searchTransition } = useSearchTransition();
 
-  // transition 활성 중에는 바를 아예 렌더 안 함 → 끝나고 100ms 뒤에 fade-in
   const [showBar, setShowBar] = useState(!searchTransition.active);
   useEffect(() => {
     if (searchTransition.active) {
@@ -58,7 +57,7 @@ export default function MapScreen() {
   }, [searchTransition.active]);
 
   if (!placesQuery.data || !stampedQuery.data) {
-    return <View style={{ flex: 1, backgroundColor: '#E8E1D2' }} />;
+    return <View className="flex-1 bg-[#E8E1D2]" />;
   }
   const PLACES = placesQuery.data;
   const STAMPED = stampedQuery.data;
@@ -66,7 +65,7 @@ export default function MapScreen() {
   const nearby = [...visible].sort((a, b) => a.distance - b.distance).slice(0, 5);
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#E8E1D2' }}>
+    <View className="flex-1 bg-[#E8E1D2]">
       {/* 지도 */}
       <Svg
         width={width}
@@ -124,18 +123,11 @@ export default function MapScreen() {
           );
         })}
         <Circle cx="36" cy="32" r="3" fill={TOKENS.red} fillOpacity={0.15} />
-        <Circle
-          cx="36"
-          cy="32"
-          r="1.4"
-          fill={TOKENS.red}
-          stroke={TOKENS.paper}
-          strokeWidth="0.4"
-        />
+        <Circle cx="36" cy="32" r="1.4" fill={TOKENS.red} stroke={TOKENS.paper} strokeWidth="0.4" />
       </Svg>
 
       {/* 상단 검색 + 필터 */}
-      <View style={{ paddingTop: insets.top + 12, paddingHorizontal: 16, paddingBottom: 12 }}>
+      <View className="px-4 pb-3" style={{ paddingTop: insets.top + 12 }}>
         <LinearGradient
           colors={['rgba(232,225,210,0.95)', 'rgba(232,225,210,0)']}
           style={{ position: 'absolute', top: 0, left: 0, right: 0, height: insets.top + 120 }}
@@ -144,14 +136,8 @@ export default function MapScreen() {
         {showBar && (
           <Animated.View
             entering={FadeIn.duration(220)}
+            className="flex-row items-center gap-2 bg-paper rounded-full px-4 py-2.5"
             style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 8,
-              backgroundColor: TOKENS.paper,
-              borderRadius: 999,
-              paddingHorizontal: 16,
-              paddingVertical: 10,
               shadowColor: '#000',
               shadowOpacity: 0.08,
               shadowOffset: { width: 0, height: 2 },
@@ -163,9 +149,7 @@ export default function MapScreen() {
               <Circle cx="10" cy="10" r="6" stroke={TOKENS.mute} strokeWidth="1.8" />
               <Path d="M15 15l4 4" stroke={TOKENS.mute} strokeWidth="1.8" strokeLinecap="round" />
             </Svg>
-            <Text style={{ fontFamily: FONTS.sans, fontSize: 13, color: TOKENS.mute, flex: 1 }}>
-              장소 · 테마 · 시대 검색
-            </Text>
+            <Text className="flex-1 font-sans text-[13px] text-mute">장소 · 테마 · 시대 검색</Text>
           </Animated.View>
         )}
         <ScrollView
@@ -179,11 +163,8 @@ export default function MapScreen() {
               <Pressable
                 key={f}
                 onPress={() => setFilter(f)}
+                className={`px-3 py-1.5 rounded-full ${on ? 'bg-ink' : 'bg-paper'}`}
                 style={{
-                  paddingHorizontal: 12,
-                  paddingVertical: 6,
-                  borderRadius: 999,
-                  backgroundColor: on ? TOKENS.ink : TOKENS.paper,
                   shadowColor: '#000',
                   shadowOpacity: 0.06,
                   shadowOffset: { width: 0, height: 1 },
@@ -191,13 +172,7 @@ export default function MapScreen() {
                   elevation: 2,
                 }}
               >
-                <Text
-                  style={{
-                    fontFamily: FONTS.sansBold,
-                    fontSize: 12,
-                    color: on ? TOKENS.paper : TOKENS.inkSoft,
-                  }}
-                >
+                <Text className={`font-sans-bold text-xs ${on ? 'text-paper' : 'text-inkSoft'}`}>
                   {f}
                 </Text>
               </Pressable>
@@ -208,16 +183,9 @@ export default function MapScreen() {
 
       {/* 하단 시트 */}
       <View
+        className="absolute left-0 right-0 bg-paper rounded-t-[20px] pt-2.5 pb-3"
         style={{
-          position: 'absolute',
           bottom: 84,
-          left: 0,
-          right: 0,
-          backgroundColor: TOKENS.paper,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          paddingTop: 10,
-          paddingBottom: 12,
           shadowColor: '#000',
           shadowOpacity: 0.08,
           shadowOffset: { width: 0, height: -4 },
@@ -225,24 +193,12 @@ export default function MapScreen() {
           elevation: 8,
         }}
       >
-        <View style={{ alignItems: 'center', marginBottom: 8 }}>
-          <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: TOKENS.line }} />
+        <View className="items-center mb-2">
+          <View className="w-9 h-1 rounded-sm bg-line" />
         </View>
-        <View
-          style={{
-            paddingHorizontal: 20,
-            paddingBottom: 8,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'baseline',
-          }}
-        >
-          <Text style={{ fontFamily: FONTS.serif, fontSize: 15, color: TOKENS.ink }}>
-            내 주변 {visible.length}곳
-          </Text>
-          <Text style={{ fontFamily: FONTS.sans, fontSize: 11, color: TOKENS.mute }}>
-            가까운 순
-          </Text>
+        <View className="px-5 pb-2 flex-row justify-between items-baseline">
+          <Text className="font-serif text-[15px] text-ink">내 주변 {visible.length}곳</Text>
+          <Text className="font-sans text-[11px] text-mute">가까운 순</Text>
         </View>
         <ScrollView
           horizontal
@@ -255,28 +211,18 @@ export default function MapScreen() {
               <Pressable
                 key={p.id}
                 onPress={() => router.push(`/place/${p.id}` as never)}
-                style={{
-                  width: 200,
-                  borderWidth: 0.5,
-                  borderColor: TOKENS.line,
-                  borderRadius: 4,
-                  overflow: 'hidden',
-                }}
+                className="w-[200px] border border-line rounded overflow-hidden"
               >
                 <PhotoPlaceholder label={p.id} height={90} />
-                <View style={{ padding: 12 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                <View className="p-3">
+                  <View className="flex-row items-center gap-1.5 mb-1">
                     <Tag color={p.accent}>{p.era}</Tag>
                     {stamped && (
-                      <Text style={{ fontFamily: FONTS.sansBold, fontSize: 10, color: TOKENS.red }}>
-                        ● 획득
-                      </Text>
+                      <Text className="font-sans-bold text-[10px] text-red">● 획득</Text>
                     )}
                   </View>
-                  <Text style={{ fontFamily: FONTS.serif, fontSize: 14, color: TOKENS.ink }}>
-                    {p.name}
-                  </Text>
-                  <Text style={{ fontFamily: FONTS.mono, fontSize: 10, color: TOKENS.mute, marginTop: 2 }}>
+                  <Text className="font-serif text-sm text-ink">{p.name}</Text>
+                  <Text className="font-mono text-[10px] text-mute mt-0.5">
                     {p.distance}km · {p.region}
                   </Text>
                 </View>
