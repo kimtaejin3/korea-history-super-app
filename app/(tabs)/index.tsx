@@ -15,6 +15,7 @@ import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { SectionLabel } from '../../components/SectionLabel';
 import { Mascot } from '../../components/Mascot';
 import { useSearchTransition } from '../../context/SearchTransition';
+import { getSearchBarRect } from '../../lib/searchBarLayout';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
@@ -27,12 +28,7 @@ export default function HomeScreen() {
     const node = searchBtnRef.current;
     if (!node) return;
     node.measureInWindow((x, y, width, height) => {
-      const target = {
-        x: 16,
-        y: insets.top + 12,
-        width: screenWidth - 32,
-        height: 44,
-      };
+      const target = getSearchBarRect(insets.top, screenWidth);
       startSearchTransition({ x, y, width, height }, target);
       setTimeout(() => {
         router.push('/(tabs)/map' as never);

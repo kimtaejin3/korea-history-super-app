@@ -11,6 +11,12 @@ import Svg, { Circle, Path } from 'react-native-svg';
 import { Text } from 'react-native';
 import { useSearchTransition } from '../context/SearchTransition';
 import { FONTS, TOKENS } from '../data/tokens';
+import {
+  HOME_SEARCH_BTN_SIZE,
+  SEARCH_BAR_ICON_SIZE,
+  SEARCH_BAR_INNER_PX,
+  SEARCH_BAR_TEXT_LEFT,
+} from '../lib/searchBarLayout';
 
 const DURATION = 400;
 
@@ -44,9 +50,8 @@ export function SearchTransitionOverlay() {
       radius.value = withTiming(state.target.height / 2, { duration: DURATION });
       progress.value = withTiming(1, { duration: DURATION }, (finished) => {
         if (finished) {
-          opacity.value = withTiming(0, { duration: 120 }, () => {
-            runOnJS(end)();
-          });
+          // morph 완료와 동시에 종료. 페이드아웃 없음. 같은 위치의 real bar로 자연스럽게 인계.
+          runOnJS(end)();
         }
       });
     }
@@ -71,18 +76,18 @@ export function SearchTransitionOverlay() {
     overflow: 'hidden',
   }));
 
-  // 아이콘 위치: 작을 때(36px) 중앙, 클 때 왼쪽 16px
+  // 아이콘 위치: 작을 때(홈 버튼 크기) 중앙, 클 때 바 내부 좌측 패딩 위치
   const iconStyle = useAnimatedStyle(() => {
     const iconLeft = interpolate(
       width.value,
-      [36, 200],
-      [(36 - 14) / 2, 16],
+      [HOME_SEARCH_BTN_SIZE, HOME_SEARCH_BTN_SIZE * 5],
+      [(HOME_SEARCH_BTN_SIZE - SEARCH_BAR_ICON_SIZE) / 2, SEARCH_BAR_INNER_PX],
       Extrapolate.CLAMP
     );
     return {
       position: 'absolute',
       left: iconLeft,
-      top: (height.value - 14) / 2,
+      top: (height.value - SEARCH_BAR_ICON_SIZE) / 2,
     };
   });
 
@@ -91,7 +96,7 @@ export function SearchTransitionOverlay() {
     const op = interpolate(progress.value, [0.5, 1], [0, 1], Extrapolate.CLAMP);
     return {
       position: 'absolute',
-      left: 40,
+      left: SEARCH_BAR_TEXT_LEFT,
       top: 0,
       bottom: 0,
       justifyContent: 'center',
@@ -104,7 +109,12 @@ export function SearchTransitionOverlay() {
   return (
     <Animated.View style={containerStyle} pointerEvents="none">
       <Animated.View style={iconStyle}>
-        <Svg width="14" height="14" viewBox="0 0 22 22" fill="none">
+        <Svg
+          width={SEARCH_BAR_ICON_SIZE}
+          height={SEARCH_BAR_ICON_SIZE}
+          viewBox="0 0 22 22"
+          fill="none"
+        >
           <Circle cx="10" cy="10" r="6" stroke={TOKENS.mute} strokeWidth="1.8" />
           <Path d="M15 15l4 4" stroke={TOKENS.mute} strokeWidth="1.8" strokeLinecap="round" />
         </Svg>
