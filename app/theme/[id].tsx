@@ -1,7 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { View, Text, ScrollView, Pressable } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
@@ -11,6 +10,7 @@ import { BackHeader } from '../../components/BackHeader';
 import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { SectionLabel } from '../../components/SectionLabel';
+import { RewardIcon } from '../../components/icons';
 
 export default function ThemeDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -88,21 +88,7 @@ export default function ThemeDetailScreen() {
               colors={t.cover}
               style={{ width: 56, height: 56, borderRadius: 4, alignItems: 'center', justifyContent: 'center' }}
             >
-              <Svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <Path
-                  d="M4 10l7-7 7 7v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z"
-                  stroke={TOKENS.paper}
-                  strokeWidth="1.8"
-                  strokeLinejoin="round"
-                />
-                <Path
-                  d="M8 14l2 2 4-4"
-                  stroke={TOKENS.paper}
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </Svg>
+              <RewardIcon />
             </LinearGradient>
             <View className="flex-1">
               <Text

@@ -1,7 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { View, Text, ScrollView, Pressable } from 'react-native';
-import Svg, { Circle, Path } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { TOKENS } from '../../data/tokens';
@@ -11,6 +10,7 @@ import { Stamp } from '../../components/Stamp';
 import { RankBadge } from '../../components/RankBadge';
 import { ProgressBar } from '../../components/ProgressBar';
 import { SectionLabel } from '../../components/SectionLabel';
+import { ArrowRightIcon, SettingsIcon } from '../../components/icons';
 
 export default function ProfileScreen() {
   const router = useRouter();
@@ -34,15 +34,7 @@ export default function ProfileScreen() {
         title="나의 답사기"
         action={
           <Pressable className="w-9 h-9 rounded-full bg-[rgba(26,22,20,0.05)] items-center justify-center">
-            <Svg width="16" height="16" viewBox="0 0 22 22" fill="none">
-              <Circle cx="11" cy="11" r="3" stroke={TOKENS.ink} strokeWidth="1.7" />
-              <Path
-                d="M11 2v3M11 17v3M2 11h3M17 11h3M4.5 4.5l2 2M15.5 15.5l2 2M4.5 17.5l2-2M15.5 6.5l2-2"
-                stroke={TOKENS.ink}
-                strokeWidth="1.7"
-                strokeLinecap="round"
-              />
-            </Svg>
+            <SettingsIcon />
           </Pressable>
         }
       />
@@ -99,15 +91,7 @@ export default function ProfileScreen() {
               )}
               <View className="flex-row items-center gap-1 mt-3">
                 <Text className="font-sans-bold text-[11px] text-white/70">전체 등급 보기</Text>
-                <Svg width="10" height="10" viewBox="0 0 22 22" fill="none">
-                  <Path
-                    d="M5 11h12M12 6l5 5-5 5"
-                    stroke="rgba(255,255,255,0.7)"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </Svg>
+                <ArrowRightIcon />
               </View>
             </View>
           </Pressable>

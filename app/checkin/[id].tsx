@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Animated, Easing } from 'react-native';
-import Svg, { Path, Circle } from 'react-native-svg';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useQuery } from '@tanstack/react-query';
@@ -11,6 +10,7 @@ import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { LottieAsset } from '../../components/LottieAsset';
+import { CheckIcon, CloseIcon, InfoIcon, PinIconFilled } from '../../components/icons';
 
 type Step = 'locating' | 'confirmed' | 'quiz' | 'result' | 'stamp';
 
@@ -77,9 +77,7 @@ export default function CheckinScreen() {
           onPress={() => router.back()}
           className="w-9 h-9 rounded-full items-center justify-center"
         >
-          <Svg width="20" height="20" viewBox="0 0 22 22" fill="none">
-            <Path d="M5 5l12 12M17 5L5 17" stroke={TOKENS.ink} strokeWidth="1.8" strokeLinecap="round" />
-          </Svg>
+          <CloseIcon />
         </Pressable>
         <Text className="font-sans text-xs text-mute tracking-wide">{stepLabels[step]}</Text>
         <View className="w-9" />
@@ -101,14 +99,7 @@ export default function CheckinScreen() {
               />
             ))}
             <View className="w-10 h-10 rounded-full bg-red items-center justify-center">
-              <Svg width="20" height="20" viewBox="0 0 22 22" fill="none">
-                <Path
-                  d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
-                  stroke={TOKENS.paper}
-                  strokeWidth="1.8"
-                />
-                <Circle cx="11" cy="8" r="2" fill={TOKENS.paper} />
-              </Svg>
+              <PinIconFilled />
             </View>
           </View>
           <Text className="font-serif text-xl text-ink">위치를 확인하고 있어요</Text>
@@ -122,15 +113,7 @@ export default function CheckinScreen() {
       {step === 'confirmed' && (
         <View className="flex-1 items-center justify-center p-6">
           <View className="w-[76px] h-[76px] rounded-full bg-green items-center justify-center mb-6">
-            <Svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <Path
-                d="M7 16l6 6 12-12"
-                stroke={TOKENS.paper}
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </Svg>
+            <CheckIcon />
           </View>
           <Text className="font-serif text-[22px] text-ink text-center leading-7">
             {p.name}에{'\n'}도착하셨네요
@@ -212,15 +195,9 @@ export default function CheckinScreen() {
             })}
           </View>
           <View className="p-3 mt-4 bg-paperWarm rounded flex-row gap-2">
-            <Svg width="14" height="14" viewBox="0 0 22 22" fill="none" style={{ marginTop: 2 }}>
-              <Circle cx="11" cy="11" r="8" stroke={TOKENS.mute} strokeWidth="1.5" />
-              <Path
-                d="M11 7v5M11 15v0.5"
-                stroke={TOKENS.mute}
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </Svg>
+            <View style={{ marginTop: 2 }}>
+              <InfoIcon />
+            </View>
             <Text className="flex-1 font-sans text-[11px] text-inkSoft leading-[17px]">
               {p.quiz.hint}
             </Text>

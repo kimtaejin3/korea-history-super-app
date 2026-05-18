@@ -1,7 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { View, Text, ScrollView, Pressable } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
@@ -11,6 +10,7 @@ import { BackHeader } from '../../components/BackHeader';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { Tag } from '../../components/Tag';
 import { SectionLabel } from '../../components/SectionLabel';
+import { ChevronRightIcon } from '../../components/icons';
 
 export default function ArtifactDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -136,15 +136,7 @@ export default function ArtifactDetailScreen() {
                   </Text>
                 </View>
                 <View className="pr-3.5">
-                  <Svg width="8" height="14" viewBox="0 0 8 14">
-                    <Path
-                      d="M1 1l6 6-6 6"
-                      stroke={TOKENS.mute}
-                      strokeWidth="1.5"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                  </Svg>
+                  <ChevronRightIcon />
                 </View>
               </Pressable>
             </View>

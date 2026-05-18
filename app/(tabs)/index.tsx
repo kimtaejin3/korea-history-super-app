@@ -4,7 +4,6 @@ import { useRef } from 'react';
 import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import Svg, { Path, Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { TOKENS } from '../../data/tokens';
@@ -13,7 +12,7 @@ import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { SectionLabel } from '../../components/SectionLabel';
-import { Mascot } from '../../components/Mascot';
+import { PinIcon, SearchIcon } from '../../components/icons';
 import { useSearchTransition } from '../../context/SearchTransition';
 import { getSearchBarRect } from '../../lib/searchBarLayout';
 
@@ -83,14 +82,7 @@ export default function HomeScreen() {
         style={{ paddingTop: insets.top + 8 }}
       >
         <View className="flex-row items-center gap-1.5">
-          <Svg width="14" height="14" viewBox="0 0 22 22" fill="none">
-            <Path
-              d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
-              stroke={TOKENS.red}
-              strokeWidth="1.8"
-            />
-            <Circle cx="11" cy="8" r="2" fill={TOKENS.red} />
-          </Svg>
+          <PinIcon />
           <Text className="font-sans-bold text-[13px] text-ink">충남 아산시 배방읍</Text>
         </View>
         <Pressable
@@ -99,10 +91,7 @@ export default function HomeScreen() {
           onPress={onPressSearch}
           className="w-9 h-9 rounded-full bg-[rgba(26,22,20,0.05)] items-center justify-center"
         >
-          <Svg width="16" height="16" viewBox="0 0 22 22" fill="none">
-            <Circle cx="10" cy="10" r="6" stroke={TOKENS.ink} strokeWidth="1.7" />
-            <Path d="M15 15l4 4" stroke={TOKENS.ink} strokeWidth="1.7" strokeLinecap="round" />
-          </Svg>
+          <SearchIcon />
         </Pressable>
       </View>
 
@@ -111,15 +100,12 @@ export default function HomeScreen() {
         contentContainerStyle={{ paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       >
-        {/* 큰 인사말 + 마스코트 */}
-        <View className="px-5 pt-1 pb-4 flex-row items-center gap-3">
-          <Mascot size={88} />
-          <View className="flex-1">
-            <Text className="font-serif text-[22px] text-ink tracking-[-0.5px] leading-7">
-              오늘, 가까운 곳에서{'\n'}
-              <Text className="text-red">역사 한 조각</Text>을 만나보세요
-            </Text>
-          </View>
+        {/* 큰 인사말 */}
+        <View className="px-5 pt-1 pb-4">
+          <Text className="font-serif text-[26px] text-ink tracking-[-0.5px] leading-8">
+            오늘, 가까운 곳에서{'\n'}
+            <Text className="text-red">역사 한 조각</Text>을 만나보세요
+          </Text>
         </View>
 
         {/* HERO */}

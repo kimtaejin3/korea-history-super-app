@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import Svg, { Path, Circle } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useQuery } from '@tanstack/react-query';
 import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
+import { SearchIcon } from '../../components/icons';
 import { useSearchTransition } from '../../context/SearchTransition';
 import {
   SEARCH_BAR_HEIGHT,
@@ -72,15 +72,7 @@ export default function MapScreen() {
                 elevation: 3,
               }}
             >
-              <Svg
-                width={SEARCH_BAR_ICON_SIZE}
-                height={SEARCH_BAR_ICON_SIZE}
-                viewBox="0 0 22 22"
-                fill="none"
-              >
-                <Circle cx="10" cy="10" r="6" stroke={TOKENS.mute} strokeWidth="1.8" />
-                <Path d="M15 15l4 4" stroke={TOKENS.mute} strokeWidth="1.8" strokeLinecap="round" />
-              </Svg>
+              <SearchIcon size={SEARCH_BAR_ICON_SIZE} color={TOKENS.mute} strokeWidth={1.8} />
               <Text className="flex-1 font-sans text-[13px] text-mute">장소 · 테마 · 시대 검색</Text>
             </View>
           )}

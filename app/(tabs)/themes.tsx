@@ -3,14 +3,13 @@
 import { useState } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Svg, { Path, Rect } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { LEVELS } from '../../data/user';
 import { PageHeader } from '../../components/PageHeader';
 import { GatedButton } from '../../components/GatedButton';
+import { StampBoxIcon } from '../../components/icons';
 
 const TABS = ['전체', '진행중', '추천', '완성'];
 
@@ -96,10 +95,7 @@ export default function ThemesScreen() {
               <View className="p-4">
                 <Text className="font-sans text-xs text-inkSoft leading-5">{t.desc}</Text>
                 <View className="flex-row items-center gap-1.5 mt-2.5">
-                  <Svg width="12" height="12" viewBox="0 0 22 22" fill="none">
-                    <Rect x="4" y="6" width="14" height="13" rx="1" stroke={TOKENS.red} strokeWidth="1.6" />
-                    <Path d="M8 6V4h6v2" stroke={TOKENS.red} strokeWidth="1.6" />
-                  </Svg>
+                  <StampBoxIcon />
                   <Text className="font-sans-bold text-[11px] text-red">
                     완성 보상 · {t.rewardGoods}
                   </Text>

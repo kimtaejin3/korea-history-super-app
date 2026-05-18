@@ -1,9 +1,9 @@
 import { View, Text, Pressable } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { ReactNode } from 'react';
 import { TOKENS } from '../data/tokens';
+import { BackIcon } from './icons';
 
 type Props = {
   title?: string;
@@ -14,7 +14,6 @@ type Props = {
 export function BackHeader({ title, overlay = false, trailing }: Props) {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const stroke = overlay ? TOKENS.paper : TOKENS.ink;
 
   return (
     <View
@@ -25,15 +24,7 @@ export function BackHeader({ title, overlay = false, trailing }: Props) {
         onPress={() => router.back()}
         className={`w-9 h-9 rounded-full items-center justify-center ${overlay ? 'bg-white/[0.18]' : 'bg-[rgba(26,22,20,0.05)]'}`}
       >
-        <Svg width="16" height="16" viewBox="0 0 22 22" fill="none">
-          <Path
-            d="M14 4l-7 7 7 7"
-            stroke={stroke}
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </Svg>
+        <BackIcon color={overlay ? TOKENS.paper : TOKENS.ink} />
       </Pressable>
       {title ? (
         <Text

@@ -7,7 +7,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import Svg, { Circle, Path } from 'react-native-svg';
 import { Text } from 'react-native';
 import { useSearchTransition } from '../context/SearchTransition';
 import { FONTS, TOKENS } from '../data/tokens';
@@ -17,6 +16,7 @@ import {
   SEARCH_BAR_INNER_PX,
   SEARCH_BAR_TEXT_LEFT,
 } from '../lib/searchBarLayout';
+import { SearchIcon } from './icons';
 
 const DURATION = 400;
 
@@ -109,15 +109,7 @@ export function SearchTransitionOverlay() {
   return (
     <Animated.View style={containerStyle} pointerEvents="none">
       <Animated.View style={iconStyle}>
-        <Svg
-          width={SEARCH_BAR_ICON_SIZE}
-          height={SEARCH_BAR_ICON_SIZE}
-          viewBox="0 0 22 22"
-          fill="none"
-        >
-          <Circle cx="10" cy="10" r="6" stroke={TOKENS.mute} strokeWidth="1.8" />
-          <Path d="M15 15l4 4" stroke={TOKENS.mute} strokeWidth="1.8" strokeLinecap="round" />
-        </Svg>
+        <SearchIcon size={SEARCH_BAR_ICON_SIZE} color={TOKENS.mute} strokeWidth={1.8} />
       </Animated.View>
       <Animated.View style={placeholderStyle}>
         <Text style={{ fontFamily: FONTS.sans, fontSize: 13, color: TOKENS.mute }}>

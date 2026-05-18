@@ -1,7 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { View, Text, ScrollView, Pressable } from 'react-native';
-import Svg, { Path, Circle, Rect } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
@@ -14,6 +13,7 @@ import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { SectionLabel } from '../../components/SectionLabel';
 import { GatedButton } from '../../components/GatedButton';
+import { CameraIcon, ChevronRightIcon, PinIconFilled, PinIconOutline } from '../../components/icons';
 
 export default function PlaceDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -85,13 +85,7 @@ export default function PlaceDetailScreen() {
             {p.name}
           </Text>
           <View className="flex-row items-center gap-2 mt-2.5">
-            <Svg width="13" height="13" viewBox="0 0 22 22" fill="none">
-              <Path
-                d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
-                stroke={TOKENS.mute}
-                strokeWidth="1.6"
-              />
-            </Svg>
+            <PinIconOutline />
             <Text className="font-sans text-[13px] text-inkSoft">{p.region}</Text>
             <Text className="text-line">·</Text>
             <Text className="font-mono-bold text-[13px] text-red">{p.distance}km</Text>
@@ -121,14 +115,7 @@ export default function PlaceDetailScreen() {
               disabled={!within}
               className={`p-4 rounded flex-row items-center justify-center gap-2 ${within ? 'bg-ink' : 'bg-paperWarm border border-line'}`}
             >
-              <Svg width="16" height="16" viewBox="0 0 22 22" fill="none">
-                <Path
-                  d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
-                  stroke={within ? TOKENS.paper : TOKENS.mute}
-                  strokeWidth="1.7"
-                />
-                <Circle cx="11" cy="8" r="2" fill={within ? TOKENS.paper : TOKENS.mute} />
-              </Svg>
+              <PinIconFilled size={16} color={within ? TOKENS.paper : TOKENS.mute} strokeWidth={1.7} />
               <Text
                 className={`font-sans-bold text-sm tracking-[0.3px] ${within ? 'text-paper' : 'text-mute'}`}
               >
@@ -183,15 +170,7 @@ export default function PlaceDetailScreen() {
                       {a.summary}
                     </Text>
                   </View>
-                  <Svg width="8" height="14" viewBox="0 0 8 14">
-                    <Path
-                      d="M1 1l6 6-6 6"
-                      stroke={TOKENS.mute}
-                      strokeWidth="1.5"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                  </Svg>
+                  <ChevronRightIcon />
                 </Pressable>
               ))}
             </View>
@@ -279,13 +258,7 @@ export default function PlaceDetailScreen() {
             currentLevel={myRank}
             onPress={() => {}}
             onLocked={() => {}}
-            icon={
-              <Svg width="14" height="14" viewBox="0 0 22 22" fill="none">
-                <Rect x="3" y="6" width="16" height="12" rx="1.5" stroke={TOKENS.paper} strokeWidth="1.7" />
-                <Circle cx="11" cy="12" r="3" stroke={TOKENS.paper} strokeWidth="1.7" />
-                <Path d="M8 6l1.5-2h3L14 6" stroke={TOKENS.paper} strokeWidth="1.7" />
-              </Svg>
-            }
+            icon={<CameraIcon />}
           />
           <GatedButton
             label="현장 퀴즈 제안하기"
@@ -328,15 +301,7 @@ export default function PlaceDetailScreen() {
                       {t.visited}/{t.totalPlaces}곳 방문
                     </Text>
                   </View>
-                  <Svg width="8" height="14" viewBox="0 0 8 14">
-                    <Path
-                      d="M1 1l6 6-6 6"
-                      stroke={TOKENS.mute}
-                      strokeWidth="1.5"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                  </Svg>
+                  <ChevronRightIcon />
                 </Pressable>
               ))}
             </View>

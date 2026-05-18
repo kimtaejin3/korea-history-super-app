@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { View, Text, ScrollView, Pressable, ViewStyle } from 'react-native';
-import Svg, { Circle, Path } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { TOKENS } from '../../data/tokens';
@@ -10,6 +10,7 @@ import { api, queryKeys } from '../../lib/api';
 import { PageHeader } from '../../components/PageHeader';
 import { Stamp } from '../../components/Stamp';
 import { StampSlot } from '../../components/StampSlot';
+import { ShareIcon } from '../../components/icons';
 
 const VIEWS = ['테마별', '시대별', '지역별'];
 
@@ -46,15 +47,7 @@ export default function StampbookScreen() {
         subtitle={`${STAMPED.length}개의 발자국 · 모은 도장 ${STAMPED.length}/${PLACES.length}`}
         action={
           <Pressable className="w-9 h-9 rounded-full bg-[rgba(26,22,20,0.05)] items-center justify-center">
-            <Svg width="16" height="16" viewBox="0 0 22 22" fill="none">
-              <Path
-                d="M11 3v12M11 3l-4 4M11 3l4 4M5 13v5h12v-5"
-                stroke={TOKENS.ink}
-                strokeWidth="1.7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </Svg>
+            <ShareIcon />
           </Pressable>
         }
       />
