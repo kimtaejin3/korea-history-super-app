@@ -115,7 +115,12 @@ export default function HomeScreen() {
               onPress={() => router.push(`/place/${hero.id}` as never)}
               className="bg-paper border border-line rounded-xl overflow-hidden"
             >
-              <PhotoPlaceholder label={`${hero.id}__hero.jpg`} height={170} />
+              <PhotoPlaceholder
+                label={`${hero.id}__hero.jpg`}
+                height={170}
+                tone={hero.accent}
+                glyph={hero.name[0]}
+              />
               <View className="p-4">
                 <View className="flex-row items-center gap-1.5 mb-1.5">
                   <Tag color={hero.accent} filled>
@@ -200,7 +205,7 @@ export default function HomeScreen() {
               onPress={() => router.push(`/place/${p.id}` as never)}
               className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
             >
-              <PhotoPlaceholder label={p.id} height={64} width={64} />
+              <PhotoPlaceholder label={p.id} height={64} width={64} tone={p.accent} glyph={p.name[0]} />
               <View className="flex-1">
                 <View className="flex-row items-center gap-1.5 mb-0.5">
                   <Tag color={p.accent}>{p.era}</Tag>
@@ -240,11 +245,8 @@ export default function HomeScreen() {
               onPress={() => router.push(`/theme/${t.id}` as never)}
               className="w-[220px] h-[220px] rounded-xl overflow-hidden"
             >
-              <LinearGradient
-                colors={t.cover}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={{ flex: 1, padding: 16, justifyContent: 'space-between' }}
+              <View
+                style={{ flex: 1, padding: 16, justifyContent: 'space-between', backgroundColor: t.cover }}
               >
                 <View>
                   <Text className="font-serif-regular text-[10px] text-white/70 tracking-[2px]">
@@ -270,7 +272,7 @@ export default function HomeScreen() {
                     />
                   </View>
                 </View>
-              </LinearGradient>
+              </View>
             </Pressable>
           ))}
         </ScrollView>
@@ -293,7 +295,7 @@ export default function HomeScreen() {
               onPress={() => router.push(`/artifact/${a.id}` as never)}
               className="w-[160px] bg-paper border border-line rounded-xl overflow-hidden"
             >
-              <PhotoPlaceholder label={a.id} height={160} />
+              <PhotoPlaceholder label={a.id} height={160} tone={a.accent} glyph={a.name[0]} />
               <View className="p-3">
                 <Text
                   className="font-sans-bold text-[9px] tracking-wider"

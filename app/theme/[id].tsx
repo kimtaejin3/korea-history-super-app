@@ -1,7 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { View, Text, ScrollView, Pressable } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { TOKENS } from '../../data/tokens';
@@ -45,11 +44,8 @@ export default function ThemeDetailScreen() {
     <View className="flex-1 bg-paper">
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
         {/* 커버 */}
-        <LinearGradient
-          colors={t.cover}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          style={{ height: 320, position: 'relative', overflow: 'hidden' }}
+        <View
+          style={{ height: 320, position: 'relative', overflow: 'hidden', backgroundColor: t.cover }}
         >
           <BackHeader overlay />
           <View className="absolute left-0 right-0 bottom-0 px-5 pb-6">
@@ -69,7 +65,7 @@ export default function ThemeDetailScreen() {
               <Text className="font-mono-bold text-[13px] text-paper">{Math.round(pct)}%</Text>
             </View>
           </View>
-        </LinearGradient>
+        </View>
 
         {/* 설명 */}
         <View className="p-5 pb-6">
@@ -84,12 +80,18 @@ export default function ThemeDetailScreen() {
             className="bg-paperWarm p-4 rounded-xl flex-row items-center gap-3.5"
             style={{ borderWidth: 0.5, borderColor: `${t.color}40` }}
           >
-            <LinearGradient
-              colors={t.cover}
-              style={{ width: 56, height: 56, borderRadius: 4, alignItems: 'center', justifyContent: 'center' }}
+            <View
+              style={{
+                width: 56,
+                height: 56,
+                borderRadius: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: t.cover,
+              }}
             >
               <RewardIcon />
-            </LinearGradient>
+            </View>
             <View className="flex-1">
               <Text
                 className="font-sans-bold text-[10px] tracking-[1.5px]"

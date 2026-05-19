@@ -57,7 +57,12 @@ export default function PlaceDetailScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
         {/* 히어로 */}
         <View className="relative">
-          <PhotoPlaceholder label={`${p.id}__hero.jpg`} height={300} />
+          <PhotoPlaceholder
+            label={`${p.id}__hero.jpg`}
+            height={300}
+            tone={p.accent}
+            glyph={p.name[0]}
+          />
           <LinearGradient
             colors={['rgba(0,0,0,0.35)', 'transparent', 'rgba(250,247,240,0.95)']}
             locations={[0, 0.5, 1]}
@@ -142,7 +147,14 @@ export default function PlaceDetailScreen() {
           style={{ marginBottom: 24 }}
         >
           {[1, 2, 3, 4].map((i) => (
-            <PhotoPlaceholder key={i} label={`${p.id}_${i}.jpg`} height={140} width={180} />
+            <PhotoPlaceholder
+              key={i}
+              label={`${p.id}_${i}.jpg`}
+              height={140}
+              width={180}
+              tone={p.accent}
+              glyph={p.name[0]}
+            />
           ))}
         </ScrollView>
 
@@ -157,7 +169,7 @@ export default function PlaceDetailScreen() {
                   onPress={() => router.push(`/artifact/${a.id}` as never)}
                   className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
                 >
-                  <PhotoPlaceholder label={a.id} height={64} width={64} />
+                  <PhotoPlaceholder label={a.id} height={64} width={64} tone={a.accent} glyph={a.name[0]} />
                   <View className="flex-1">
                     <Text
                       className="font-sans-bold text-[10px] tracking-wider"
@@ -287,14 +299,20 @@ export default function PlaceDetailScreen() {
                   onPress={() => router.push(`/theme/${t.id}` as never)}
                   className="flex-row items-center gap-3 p-3.5 bg-paper border border-line rounded-xl"
                 >
-                  <LinearGradient
-                    colors={t.cover}
-                    style={{ width: 44, height: 44, borderRadius: 4, alignItems: 'center', justifyContent: 'center' }}
+                  <View
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 12,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: t.cover,
+                    }}
                   >
                     <Text className="font-serif-black text-[22px] text-white/50 leading-[22px]">
                       {t.glyph}
                     </Text>
-                  </LinearGradient>
+                  </View>
                   <View className="flex-1">
                     <Text className="font-serif text-sm text-ink">{t.title}</Text>
                     <Text className="font-sans text-[11px] text-mute mt-0.5">

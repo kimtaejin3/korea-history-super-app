@@ -122,7 +122,7 @@ export default function CheckinScreen() {
             현장 퀴즈를 풀고 스탬프를 받으세요
           </Text>
           <View className="mt-9 p-4 bg-paperWarm border border-line rounded-xl w-full max-w-[320px] flex-row items-center gap-3">
-            <PhotoPlaceholder label={p.id} height={56} width={56} />
+            <PhotoPlaceholder label={p.id} height={56} width={56} tone={p.accent} glyph={p.name[0]} />
             <View className="flex-1">
               <Tag color={p.accent} filled>
                 {p.tag}

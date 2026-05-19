@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { api, queryKeys } from '../../lib/api';
@@ -68,11 +67,8 @@ export default function ThemesScreen() {
               onPress={() => router.push(`/theme/${t.id}` as never)}
               className="rounded-xl overflow-hidden border border-line bg-paper"
             >
-              <LinearGradient
-                colors={t.cover}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={{ height: 130, padding: 18, justifyContent: 'space-between' }}
+              <View
+                style={{ height: 130, padding: 18, justifyContent: 'space-between', backgroundColor: t.cover }}
               >
                 <View>
                   <Text className="font-serif-regular text-[11px] text-white/75 tracking-[3px]">
@@ -91,7 +87,7 @@ export default function ThemesScreen() {
                     />
                   </View>
                 </View>
-              </LinearGradient>
+              </View>
               <View className="p-4">
                 <Text className="font-sans text-xs text-inkSoft leading-5">{t.desc}</Text>
                 <View className="flex-row items-center gap-1.5 mt-2.5">

@@ -138,7 +138,7 @@ export default function MapScreen() {
                 onPress={() => router.push(`/place/${p.id}` as never)}
                 className="w-[200px] border border-line rounded-xl overflow-hidden"
               >
-                <PhotoPlaceholder label={p.id} height={90} />
+                <PhotoPlaceholder label={p.id} height={90} tone={p.accent} glyph={p.name[0]} />
                 <View className="p-3">
                   <View className="flex-row items-center gap-1.5 mb-1">
                     <Tag color={p.accent}>{p.era}</Tag>
