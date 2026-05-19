@@ -55,7 +55,7 @@ export default function StampbookScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
         {/* 도감 진척도 */}
         <View className="px-5 pb-4">
-          <View className="bg-paperWarm border border-line p-4 rounded flex-row items-center gap-3.5">
+          <View className="bg-paperWarm border border-line p-4 rounded-xl flex-row items-center gap-3.5">
             <View className="w-16 h-16">
               <Svg width="64" height="64" viewBox="0 0 64 64">
                 <Circle cx="32" cy="32" r="28" fill="none" stroke={TOKENS.line} strokeWidth="3" />
@@ -123,7 +123,7 @@ export default function StampbookScreen() {
                   {places.filter((p) => STAMPED.includes(p.id)).length}/{total}
                 </Text>
               </Pressable>
-              <View className="flex-row flex-wrap gap-2 p-3 py-3.5 bg-paper border border-line rounded">
+              <View className="flex-row flex-wrap gap-2 p-3 py-3.5 bg-paper border border-line rounded-xl">
                 {Array.from({ length: total }).map((_, i) => {
                   const p = places[i];
                   const cellStyle: ViewStyle = { width: '18%', alignItems: 'center', gap: 4 };

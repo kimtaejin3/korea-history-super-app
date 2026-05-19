@@ -17,7 +17,7 @@ export function GatedButton({ label, requiredLevel, currentLevel, onPress, onLoc
   return (
     <Pressable
       onPress={locked ? onLocked : onPress}
-      className={`w-full p-3.5 rounded flex-row items-center gap-2.5 ${locked ? 'bg-paperWarm border border-line' : 'bg-ink'}`}
+      className={`w-full p-3.5 rounded-xl flex-row items-center gap-2.5 ${locked ? 'bg-paperWarm border border-line' : 'bg-ink'}`}
     >
       {locked ? <LockIcon /> : icon || <PlusIcon />}
       <Text

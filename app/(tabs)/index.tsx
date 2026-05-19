@@ -113,7 +113,7 @@ export default function HomeScreen() {
           <View className="px-5 pb-6">
             <Pressable
               onPress={() => router.push(`/place/${hero.id}` as never)}
-              className="bg-paper border border-line rounded overflow-hidden"
+              className="bg-paper border border-line rounded-xl overflow-hidden"
             >
               <PhotoPlaceholder label={`${hero.id}__hero.jpg`} height={170} />
               <View className="p-4">
@@ -155,7 +155,7 @@ export default function HomeScreen() {
             <Pressable
               key={item.title}
               onPress={() => item.placeId && router.push(`/place/${item.placeId}` as never)}
-              className="w-[260px] bg-paper border border-line rounded overflow-hidden flex-row"
+              className="w-[260px] bg-paper border border-line rounded-xl overflow-hidden flex-row"
             >
               <View
                 className="w-[76px] items-center justify-center px-1.5 py-2.5"
@@ -198,7 +198,7 @@ export default function HomeScreen() {
             <Pressable
               key={p.id}
               onPress={() => router.push(`/place/${p.id}` as never)}
-              className="flex-row gap-3 p-3 bg-paper border border-line rounded items-center"
+              className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
             >
               <PhotoPlaceholder label={p.id} height={64} width={64} />
               <View className="flex-1">
@@ -238,7 +238,7 @@ export default function HomeScreen() {
             <Pressable
               key={t.id}
               onPress={() => router.push(`/theme/${t.id}` as never)}
-              className="w-[220px] h-[220px] rounded overflow-hidden"
+              className="w-[220px] h-[220px] rounded-xl overflow-hidden"
             >
               <LinearGradient
                 colors={t.cover}
@@ -291,7 +291,7 @@ export default function HomeScreen() {
             <Pressable
               key={a.id}
               onPress={() => router.push(`/artifact/${a.id}` as never)}
-              className="w-[160px] bg-paper border border-line rounded overflow-hidden"
+              className="w-[160px] bg-paper border border-line rounded-xl overflow-hidden"
             >
               <PhotoPlaceholder label={a.id} height={160} />
               <View className="p-3">
@@ -333,7 +333,7 @@ export default function HomeScreen() {
                 end={{ x: 1, y: 1 }}
                 style={{
                   height: 160,
-                  borderRadius: 4,
+                  borderRadius: 12,
                   alignItems: 'center',
                   justifyContent: 'center',
                   overflow: 'hidden',
@@ -360,7 +360,7 @@ export default function HomeScreen() {
         {/* 내 발자취 */}
         <SectionLabel>나의 발자취 · MY JOURNEY</SectionLabel>
         <View className="px-5">
-          <View className="bg-paper border border-line rounded p-[18px]">
+          <View className="bg-paper border border-line rounded-xl p-[18px]">
             <View className="flex-row items-end gap-4">
               <View>
                 <Text className="font-serif-black text-[44px] text-ink leading-[44px] tracking-[-2px]">
@@ -387,7 +387,7 @@ export default function HomeScreen() {
             </View>
             <Pressable
               onPress={() => router.push('/(tabs)/stampbook' as never)}
-              className="mt-3.5 p-2.5 bg-ink rounded items-center"
+              className="mt-3.5 p-3 bg-ink rounded-lg items-center"
             >
               <Text className="font-sans-bold text-[13px] text-paper tracking-[0.2px]">
                 스탬프북 펼치기

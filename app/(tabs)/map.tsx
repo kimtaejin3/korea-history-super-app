@@ -136,7 +136,7 @@ export default function MapScreen() {
               <Pressable
                 key={p.id}
                 onPress={() => router.push(`/place/${p.id}` as never)}
-                className="w-[200px] border border-line rounded overflow-hidden"
+                className="w-[200px] border border-line rounded-xl overflow-hidden"
               >
                 <PhotoPlaceholder label={p.id} height={90} />
                 <View className="p-3">

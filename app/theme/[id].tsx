@@ -81,7 +81,7 @@ export default function ThemeDetailScreen() {
         {/* 보상 카드 */}
         <View className="px-5 pb-6">
           <View
-            className="bg-paperWarm p-4 rounded flex-row items-center gap-3.5"
+            className="bg-paperWarm p-4 rounded-xl flex-row items-center gap-3.5"
             style={{ borderWidth: 0.5, borderColor: `${t.color}40` }}
           >
             <LinearGradient

@@ -120,7 +120,7 @@ export default function FigureDetailScreen() {
                 <Pressable
                   key={p.id}
                   onPress={() => router.push(`/place/${p.id}` as never)}
-                  className="w-[220px] border border-line rounded overflow-hidden bg-paper"
+                  className="w-[220px] border border-line rounded-xl overflow-hidden bg-paper"
                 >
                   <PhotoPlaceholder label={p.id} height={110} />
                   <View className="p-3.5">
@@ -145,7 +145,7 @@ export default function FigureDetailScreen() {
                 <Pressable
                   key={a.id}
                   onPress={() => router.push(`/artifact/${a.id}` as never)}
-                  className="flex-row gap-3 p-3 bg-paper border border-line rounded items-center"
+                  className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
                 >
                   <PhotoPlaceholder label={a.id} height={64} width={64} />
                   <View className="flex-1">

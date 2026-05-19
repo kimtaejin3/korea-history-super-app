@@ -121,7 +121,7 @@ export default function CheckinScreen() {
           <Text className="font-sans text-[13px] text-mute mt-2.5 text-center">
             현장 퀴즈를 풀고 스탬프를 받으세요
           </Text>
-          <View className="mt-9 p-4 bg-paperWarm border border-line rounded w-full max-w-[320px] flex-row items-center gap-3">
+          <View className="mt-9 p-4 bg-paperWarm border border-line rounded-xl w-full max-w-[320px] flex-row items-center gap-3">
             <PhotoPlaceholder label={p.id} height={56} width={56} />
             <View className="flex-1">
               <Tag color={p.accent} filled>
@@ -137,7 +137,7 @@ export default function CheckinScreen() {
           >
             <Pressable
               onPress={() => (p.quiz ? setStep('quiz') : setStep('stamp'))}
-              className="p-4 bg-ink rounded items-center"
+              className="p-4 bg-ink rounded-xl items-center"
             >
               <Text className="font-sans-bold text-sm text-paper tracking-[0.3px]">
                 {p.quiz ? '현장 퀴즈 풀기 →' : '스탬프 받기'}
@@ -174,7 +174,7 @@ export default function CheckinScreen() {
                 <Pressable
                   key={i}
                   onPress={() => setSelected(i)}
-                  className={`p-4 rounded flex-row items-center gap-3 ${isSel ? 'bg-ink' : 'bg-paper border border-line'}`}
+                  className={`p-4 rounded-xl flex-row items-center gap-3 ${isSel ? 'bg-ink' : 'bg-paper border border-line'}`}
                 >
                   <View
                     className={`w-[22px] h-[22px] rounded-full border-[1.5px] items-center justify-center ${isSel ? 'border-paper' : 'border-line'}`}
@@ -194,7 +194,7 @@ export default function CheckinScreen() {
               );
             })}
           </View>
-          <View className="p-3 mt-4 bg-paperWarm rounded flex-row gap-2">
+          <View className="p-3 mt-4 bg-paperWarm rounded-xl flex-row gap-2">
             <View style={{ marginTop: 2 }}>
               <InfoIcon />
             </View>
@@ -208,7 +208,7 @@ export default function CheckinScreen() {
               setCorrect(selected === p.quiz!.answer);
               setStep('result');
             }}
-            className={`mt-4 p-4 rounded items-center ${selected === null ? 'bg-paperWarm' : 'bg-ink'}`}
+            className={`mt-4 p-4 rounded-xl items-center ${selected === null ? 'bg-paperWarm' : 'bg-ink'}`}
           >
             <Text
               className={`font-sans-bold text-sm tracking-[0.3px] ${selected === null ? 'text-mute' : 'text-paper'}`}
@@ -236,7 +236,7 @@ export default function CheckinScreen() {
               ? '현장에서 직접 익힌 역사 한 조각. 스탬프 + 보너스 도장을 받으세요.'
               : '괜찮아요. 방문 스탬프는 그대로 받으실 수 있어요.'}
           </Text>
-          <View className="mt-7 p-[18px] bg-paperWarm border border-line rounded max-w-[320px] w-full">
+          <View className="mt-7 p-[18px] bg-paperWarm border border-line rounded-xl max-w-[320px] w-full">
             <Text className="font-sans-bold text-[10px] text-mute tracking-[2px]">정답</Text>
             <Text className="font-serif text-[15px] text-ink mt-1">
               {p.quiz.options[p.quiz.answer]}
@@ -251,7 +251,7 @@ export default function CheckinScreen() {
           >
             <Pressable
               onPress={() => setStep('stamp')}
-              className="p-4 bg-ink rounded items-center"
+              className="p-4 bg-ink rounded-xl items-center"
             >
               <Text className="font-sans-bold text-sm text-paper tracking-[0.3px]">
                 스탬프 받기 →
@@ -288,13 +288,13 @@ export default function CheckinScreen() {
           >
             <Pressable
               onPress={() => router.back()}
-              className="flex-1 p-3.5 border border-line rounded items-center"
+              className="flex-1 p-3.5 border border-line rounded-xl items-center"
             >
               <Text className="font-sans-bold text-[13px] text-ink">장소 페이지로</Text>
             </Pressable>
             <Pressable
               onPress={() => router.replace('/(tabs)/stampbook' as never)}
-              className="p-3.5 bg-ink rounded items-center"
+              className="p-3.5 bg-ink rounded-xl items-center"
               style={{ flex: 1.4 }}
             >
               <Text className="font-sans-bold text-[13px] text-paper">스탬프북 보기 →</Text>

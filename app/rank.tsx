@@ -28,7 +28,7 @@ export default function RankScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
         {/* 현재 등급 카드 */}
         <View className="px-5 pb-7">
-          <View className="bg-ink rounded-md p-6 overflow-hidden">
+          <View className="bg-ink rounded-xl p-6 overflow-hidden">
             <Text className="font-mono-bold text-[11px] tracking-[2px] text-white/50">
               CURRENT RANK · LV {current.level}
             </Text>
@@ -48,7 +48,7 @@ export default function RankScreen() {
                     다음: {next.name}까지 {xpToNext} XP
                   </Text>
                 </View>
-                <View className="h-1 bg-white/15 rounded overflow-hidden">
+                <View className="h-1 bg-white/15 rounded-xl overflow-hidden">
                   <View
                     className="h-full"
                     style={{ width: `${progress * 100}%`, backgroundColor: next.color }}
@@ -67,7 +67,7 @@ export default function RankScreen() {
             { label: '퀴즈 정답', xp: '+5', sub: `${USER.quizCorrect}개 · ${USER.quizCorrect * 5}` },
             { label: '테마 완성', xp: '+50', sub: `${USER.themesCompleted}개 · ${USER.themesCompleted * 50}` },
           ].map((s) => (
-            <View key={s.label} className="flex-1 p-3.5 bg-paper border border-line rounded">
+            <View key={s.label} className="flex-1 p-3.5 bg-paper border border-line rounded-xl">
               <View className="flex-row items-baseline">
                 <Text className="font-serif text-xl text-ink leading-5">{s.xp}</Text>
                 <Text className="text-[11px] text-mute ml-0.5 font-sans">XP</Text>

@@ -66,7 +66,7 @@ export default function ThemesScreen() {
             <Pressable
               key={t.id}
               onPress={() => router.push(`/theme/${t.id}` as never)}
-              className="rounded overflow-hidden border border-line bg-paper"
+              className="rounded-xl overflow-hidden border border-line bg-paper"
             >
               <LinearGradient
                 colors={t.cover}

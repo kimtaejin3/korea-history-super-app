@@ -96,7 +96,7 @@ export default function PlaceDetailScreen() {
         <View className="px-5 pb-6">
           {stamped ? (
             <View
-              className="bg-paperWarm p-3.5 rounded flex-row items-center gap-3"
+              className="bg-paperWarm p-3.5 rounded-xl flex-row items-center gap-3"
               style={{ borderWidth: 0.5, borderColor: `${p.accent}40` }}
             >
               <Stamp glyph={p.nameHanja[0]} size={38} rotate={-8} color={p.accent} />
@@ -113,7 +113,7 @@ export default function PlaceDetailScreen() {
             <Pressable
               onPress={() => within && router.push(`/checkin/${p.id}` as never)}
               disabled={!within}
-              className={`p-4 rounded flex-row items-center justify-center gap-2 ${within ? 'bg-ink' : 'bg-paperWarm border border-line'}`}
+              className={`p-4 rounded-xl flex-row items-center justify-center gap-2 ${within ? 'bg-ink' : 'bg-paperWarm border border-line'}`}
             >
               <PinIconFilled size={16} color={within ? TOKENS.paper : TOKENS.mute} strokeWidth={1.7} />
               <Text
@@ -155,7 +155,7 @@ export default function PlaceDetailScreen() {
                 <Pressable
                   key={a.id}
                   onPress={() => router.push(`/artifact/${a.id}` as never)}
-                  className="flex-row gap-3 p-3 bg-paper border border-line rounded items-center"
+                  className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
                 >
                   <PhotoPlaceholder label={a.id} height={64} width={64} />
                   <View className="flex-1">
@@ -191,7 +191,7 @@ export default function PlaceDetailScreen() {
                 <Pressable
                   key={f.id}
                   onPress={() => router.push(`/figure/${f.id}` as never)}
-                  className="w-[200px] bg-paper border border-line rounded flex-row overflow-hidden"
+                  className="w-[200px] bg-paper border border-line rounded-xl flex-row overflow-hidden"
                 >
                   <LinearGradient
                     colors={[f.accent, '#1A1614']}
@@ -221,7 +221,7 @@ export default function PlaceDetailScreen() {
           <>
             <SectionLabel>현장 퀴즈 · QUIZ</SectionLabel>
             <View className="px-5 pb-6">
-              <View className="bg-paper border border-line p-4 rounded overflow-hidden">
+              <View className="bg-paper border border-line p-4 rounded-xl overflow-hidden">
                 <Text
                   className="absolute font-serif-black"
                   style={{ top: -10, right: -10, fontSize: 90, lineHeight: 90, color: `${p.accent}10` }}
@@ -285,7 +285,7 @@ export default function PlaceDetailScreen() {
                 <Pressable
                   key={t.id}
                   onPress={() => router.push(`/theme/${t.id}` as never)}
-                  className="flex-row items-center gap-3 p-3.5 bg-paper border border-line rounded"
+                  className="flex-row items-center gap-3 p-3.5 bg-paper border border-line rounded-xl"
                 >
                   <LinearGradient
                     colors={t.cover}
@@ -310,7 +310,7 @@ export default function PlaceDetailScreen() {
 
         {/* 방문자 통계 */}
         <View className="px-5">
-          <View className="p-3.5 bg-paper border border-line rounded flex-row items-center gap-4">
+          <View className="p-3.5 bg-paper border border-line rounded-xl flex-row items-center gap-4">
             <View>
               <Text className="font-mono-bold text-lg text-ink">
                 {p.visits.toLocaleString()}

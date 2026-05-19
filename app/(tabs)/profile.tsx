@@ -42,7 +42,7 @@ export default function ProfileScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
         {/* 프로필 카드 */}
         <View className="px-5 pb-6">
-          <View className="bg-paper border border-line p-5 rounded flex-row items-center gap-4">
+          <View className="bg-paper border border-line p-5 rounded-xl flex-row items-center gap-4">
             <View className="w-16 h-16 rounded-full bg-paperWarm border border-line items-center justify-center">
               <Text className="font-serif text-2xl text-ink">나</Text>
               <View className="absolute -bottom-0.5 -right-0.5">
@@ -65,7 +65,7 @@ export default function ProfileScreen() {
         <View className="px-5 pb-6">
           <Pressable
             onPress={() => router.push('/rank' as never)}
-            className="bg-ink rounded p-[18px] overflow-hidden"
+            className="bg-ink rounded-xl p-[18px] overflow-hidden"
           >
             <View>
               <Text className="font-mono-bold text-[10px] text-white/50 tracking-[2px]">
@@ -82,7 +82,7 @@ export default function ProfileScreen() {
                       → {next.name}까지 {xpToNext}
                     </Text>
                   </View>
-                  <View className="h-[3px] bg-white/15 rounded mt-1.5 overflow-hidden">
+                  <View className="h-[3px] bg-white/15 rounded-xl mt-1.5 overflow-hidden">
                     <View
                       style={{ width: `${progress * 100}%`, height: '100%', backgroundColor: next.color }}
                     />
@@ -104,7 +104,7 @@ export default function ProfileScreen() {
             { v: 2, l: '완성 테마', s: 'THEMES' },
             { v: 7, l: '퀴즈 정답', s: 'QUIZ' },
           ].map((s) => (
-            <View key={s.l} className="flex-1 bg-paper border border-line rounded p-3.5">
+            <View key={s.l} className="flex-1 bg-paper border border-line rounded-xl p-3.5">
               <Text className="font-serif-black text-[28px] text-ink leading-7 tracking-tight">
                 {s.v}
               </Text>
@@ -120,7 +120,7 @@ export default function ProfileScreen() {
           {ACHIEVEMENTS.map((a) => (
             <View
               key={a.id}
-              className="bg-paper border border-line rounded p-3"
+              className="bg-paper border border-line rounded-xl p-3"
               style={{ width: '31%', opacity: a.done ? 1 : 0.55 }}
             >
               <View className="items-center mb-2">
@@ -154,7 +154,7 @@ export default function ProfileScreen() {
           전국 랭킹 · LEADERBOARD
         </SectionLabel>
         <View className="px-5">
-          <View className="bg-paper border border-line rounded overflow-hidden">
+          <View className="bg-paper border border-line rounded-xl overflow-hidden">
             {RANKING.map((r, i) => (
               <View
                 key={r.rank}

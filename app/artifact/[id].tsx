@@ -75,7 +75,7 @@ export default function ArtifactDetailScreen() {
 
         {/* 팩트 그리드 (2열) */}
         <View className="px-5 pb-6">
-          <View className="bg-paper border border-line rounded flex-row flex-wrap">
+          <View className="bg-paper border border-line rounded-xl flex-row flex-wrap">
             {a.facts.map((f, i) => (
               <View
                 key={i}
@@ -125,7 +125,7 @@ export default function ArtifactDetailScreen() {
             <View className="px-5 pb-6">
               <Pressable
                 onPress={() => router.push(`/place/${place.id}` as never)}
-                className="bg-paper border border-line rounded flex-row overflow-hidden items-center"
+                className="bg-paper border border-line rounded-xl flex-row overflow-hidden items-center"
               >
                 <PhotoPlaceholder label={place.id} height={92} width={92} />
                 <View className="flex-1 p-3.5">
