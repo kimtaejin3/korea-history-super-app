@@ -1,20 +1,26 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { useRef } from 'react';
-import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import { useQuery } from '@tanstack/react-query';
-import { TOKENS } from '../../data/tokens';
-import { api, queryKeys } from '../../lib/api';
-import { Tag } from '../../components/Tag';
-import { Stamp } from '../../components/Stamp';
-import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
-import { SectionLabel } from '../../components/SectionLabel';
-import { PinIcon, SearchIcon } from '../../components/icons';
-import { useSearchTransition } from '../../context/SearchTransition';
-import { getSearchBarRect } from '../../lib/searchBarLayout';
+import { useRef } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  useWindowDimensions,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
+import { useQuery } from "@tanstack/react-query";
+import { TOKENS } from "../../data/tokens";
+import { api, queryKeys } from "../../lib/api";
+import { Tag } from "../../components/Tag";
+import { Stamp } from "../../components/Stamp";
+import { PhotoPlaceholder } from "../../components/PhotoPlaceholder";
+import { SectionLabel } from "../../components/SectionLabel";
+import { PinIcon, SearchIcon } from "../../components/icons";
+import { useSearchTransition } from "../../context/SearchTransition";
+import { getSearchBarRect } from "../../lib/searchBarLayout";
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
@@ -30,17 +36,35 @@ export default function HomeScreen() {
       const target = getSearchBarRect(insets.top, screenWidth);
       startSearchTransition({ x, y, width, height }, target);
       setTimeout(() => {
-        router.push('/(tabs)/map' as never);
-      }, 180);
+        router.push("/(tabs)/map" as never);
+      }, 200);
     });
   };
 
-  const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
-  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
-  const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
-  const artifactsQuery = useQuery({ queryKey: queryKeys.artifacts, queryFn: api.artifacts });
-  const figuresQuery = useQuery({ queryKey: queryKeys.figures, queryFn: api.figures });
-  const todayQuery = useQuery({ queryKey: queryKeys.today, queryFn: api.today });
+  const placesQuery = useQuery({
+    queryKey: queryKeys.places,
+    queryFn: api.places,
+  });
+  const stampedQuery = useQuery({
+    queryKey: queryKeys.stamped,
+    queryFn: api.stamped,
+  });
+  const themesQuery = useQuery({
+    queryKey: queryKeys.themes,
+    queryFn: api.themes,
+  });
+  const artifactsQuery = useQuery({
+    queryKey: queryKeys.artifacts,
+    queryFn: api.artifacts,
+  });
+  const figuresQuery = useQuery({
+    queryKey: queryKeys.figures,
+    queryFn: api.figures,
+  });
+  const todayQuery = useQuery({
+    queryKey: queryKeys.today,
+    queryFn: api.today,
+  });
 
   const loading =
     placesQuery.isLoading ||
@@ -70,8 +94,12 @@ export default function HomeScreen() {
   const TODAY_IN_HISTORY = todayQuery.data;
 
   const myStamps = STAMPED.length;
-  const nearby = [...PLACES].filter((p) => p.distance < 20).sort((a, b) => a.distance - b.distance);
-  const activeThemes = THEMES.filter((t) => t.visited > 0 && t.visited < t.totalPlaces).slice(0, 3);
+  const nearby = [...PLACES]
+    .filter((p) => p.distance < 20)
+    .sort((a, b) => a.distance - b.distance);
+  const activeThemes = THEMES.filter(
+    (t) => t.visited > 0 && t.visited < t.totalPlaces,
+  ).slice(0, 3);
   const hero = nearby[0];
 
   return (
@@ -83,7 +111,9 @@ export default function HomeScreen() {
       >
         <View className="flex-row items-center gap-1.5">
           <PinIcon />
-          <Text className="font-sans-bold text-[13px] text-ink">충남 아산시 배방읍</Text>
+          <Text className="font-sans-bold text-[13px] text-ink">
+            충남 아산시 배방읍
+          </Text>
         </View>
         <Pressable
           ref={searchBtnRef}
@@ -103,7 +133,7 @@ export default function HomeScreen() {
         {/* 큰 인사말 */}
         <View className="px-5 pt-1 pb-4">
           <Text className="font-serif text-[26px] text-ink tracking-[-0.5px] leading-8">
-            오늘, 가까운 곳에서{'\n'}
+            오늘, 가까운 곳에서{"\n"}
             <Text className="text-red">역사 한 조각</Text>을 만나보세요
           </Text>
         </View>
@@ -115,12 +145,7 @@ export default function HomeScreen() {
               onPress={() => router.push(`/place/${hero.id}` as never)}
               className="bg-paper border border-line rounded-xl overflow-hidden"
             >
-              <PhotoPlaceholder
-                label={`${hero.id}__hero.jpg`}
-                height={170}
-                tone={hero.accent}
-                glyph={hero.name[0]}
-              />
+              <PhotoPlaceholder height={170} />
               <View className="p-4">
                 <View className="flex-row items-center gap-1.5 mb-1.5">
                   <Tag color={hero.accent} filled>
@@ -128,7 +153,9 @@ export default function HomeScreen() {
                   </Tag>
                   <Tag color={TOKENS.mute}>{hero.era}</Tag>
                   <View className="flex-1" />
-                  <Text className="font-mono-bold text-[11px] text-red">{hero.distance}km</Text>
+                  <Text className="font-mono-bold text-[11px] text-red">
+                    {hero.distance}km
+                  </Text>
                 </View>
                 <Text className="font-serif text-xl text-ink tracking-[-0.3px] leading-6">
                   {hero.name}
@@ -146,7 +173,11 @@ export default function HomeScreen() {
 
         {/* 오늘의 역사 */}
         <SectionLabel
-          action={<Text className="font-sans text-[11px] text-mute">5월 15일 · MAY 15</Text>}
+          action={
+            <Text className="font-sans text-[11px] text-mute">
+              5월 15일 · MAY 15
+            </Text>
+          }
         >
           오늘의 역사 · TODAY IN HISTORY
         </SectionLabel>
@@ -159,7 +190,9 @@ export default function HomeScreen() {
           {TODAY_IN_HISTORY.map((item) => (
             <Pressable
               key={item.title}
-              onPress={() => item.placeId && router.push(`/place/${item.placeId}` as never)}
+              onPress={() =>
+                item.placeId && router.push(`/place/${item.placeId}` as never)
+              }
               className="w-[260px] bg-paper border border-line rounded-xl overflow-hidden flex-row"
             >
               <View
@@ -170,7 +203,7 @@ export default function HomeScreen() {
                   {item.glyph}
                 </Text>
                 <Text className="font-mono-bold text-[10px] tracking-[0.5px] mt-2 text-white/85">
-                  {item.year ? String(item.year) : '연례'}
+                  {item.year ? String(item.year) : "연례"}
                 </Text>
               </View>
               <View className="p-3 flex-1">
@@ -180,7 +213,10 @@ export default function HomeScreen() {
                 <Text className="font-serif text-[15px] text-ink mt-1 leading-[18px]">
                   {item.title}
                 </Text>
-                <Text numberOfLines={3} className="font-sans text-[11px] text-inkSoft mt-1.5 leading-4">
+                <Text
+                  numberOfLines={3}
+                  className="font-sans text-[11px] text-inkSoft mt-1.5 leading-4"
+                >
                   {item.summary}
                 </Text>
               </View>
@@ -191,8 +227,10 @@ export default function HomeScreen() {
         {/* 내 주변 */}
         <SectionLabel
           action={
-            <Pressable onPress={() => router.push('/(tabs)/map' as never)}>
-              <Text className="font-sans-bold text-[11px] text-red">지도에서 보기 →</Text>
+            <Pressable onPress={() => router.push("/(tabs)/map" as never)}>
+              <Text className="font-sans-bold text-[11px] text-red">
+                지도에서 보기 →
+              </Text>
             </Pressable>
           }
         >
@@ -205,19 +243,31 @@ export default function HomeScreen() {
               onPress={() => router.push(`/place/${p.id}` as never)}
               className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
             >
-              <PhotoPlaceholder label={p.id} height={64} width={64} tone={p.accent} glyph={p.name[0]} />
+              <PhotoPlaceholder height={64} width={64} />
               <View className="flex-1">
                 <View className="flex-row items-center gap-1.5 mb-0.5">
                   <Tag color={p.accent}>{p.era}</Tag>
-                  <Text className="font-mono text-[10px] text-mute">{p.distance}km</Text>
+                  <Text className="font-mono text-[10px] text-mute">
+                    {p.distance}km
+                  </Text>
                 </View>
-                <Text className="font-serif text-[15px] text-ink">{p.name}</Text>
-                <Text numberOfLines={1} className="font-sans text-[11px] text-mute mt-0.5">
+                <Text className="font-serif text-[15px] text-ink">
+                  {p.name}
+                </Text>
+                <Text
+                  numberOfLines={1}
+                  className="font-sans text-[11px] text-mute mt-0.5"
+                >
                   {p.summary}
                 </Text>
               </View>
               {STAMPED.includes(p.id) && (
-                <Stamp glyph={p.nameHanja[0]} size={36} rotate={-8} color={p.accent} />
+                <Stamp
+                  glyph={p.nameHanja[0]}
+                  size={36}
+                  rotate={-8}
+                  color={p.accent}
+                />
               )}
             </Pressable>
           ))}
@@ -226,8 +276,10 @@ export default function HomeScreen() {
         {/* 진행 중인 테마 */}
         <SectionLabel
           action={
-            <Pressable onPress={() => router.push('/(tabs)/themes' as never)}>
-              <Text className="font-sans-bold text-[11px] text-red">전체 →</Text>
+            <Pressable onPress={() => router.push("/(tabs)/themes" as never)}>
+              <Text className="font-sans-bold text-[11px] text-red">
+                전체 →
+              </Text>
             </Pressable>
           }
         >
@@ -246,7 +298,12 @@ export default function HomeScreen() {
               className="w-[220px] h-[220px] rounded-xl overflow-hidden"
             >
               <View
-                style={{ flex: 1, padding: 16, justifyContent: 'space-between', backgroundColor: t.cover }}
+                style={{
+                  flex: 1,
+                  padding: 16,
+                  justifyContent: "space-between",
+                  backgroundColor: t.cover,
+                }}
               >
                 <View>
                   <Text className="font-serif-regular text-[10px] text-white/70 tracking-[2px]">
@@ -279,7 +336,9 @@ export default function HomeScreen() {
 
         {/* 국보·유물 */}
         <SectionLabel
-          action={<Text className="font-sans-bold text-[11px] text-red">전체 →</Text>}
+          action={
+            <Text className="font-sans-bold text-[11px] text-red">전체 →</Text>
+          }
         >
           국보·유물 · TREASURES
         </SectionLabel>
@@ -295,7 +354,7 @@ export default function HomeScreen() {
               onPress={() => router.push(`/artifact/${a.id}` as never)}
               className="w-[160px] bg-paper border border-line rounded-xl overflow-hidden"
             >
-              <PhotoPlaceholder label={a.id} height={160} tone={a.accent} glyph={a.name[0]} />
+              <PhotoPlaceholder height={160} />
               <View className="p-3">
                 <Text
                   className="font-sans-bold text-[9px] tracking-wider"
@@ -313,7 +372,9 @@ export default function HomeScreen() {
 
         {/* 인물 */}
         <SectionLabel
-          action={<Text className="font-sans-bold text-[11px] text-red">전체 →</Text>}
+          action={
+            <Text className="font-sans-bold text-[11px] text-red">전체 →</Text>
+          }
         >
           역사 속 인물 · FIGURES
         </SectionLabel>
@@ -330,28 +391,29 @@ export default function HomeScreen() {
               className="w-[140px]"
             >
               <LinearGradient
-                colors={[f.accent, '#1A1614']}
+                colors={[f.accent, "#1A1614"]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={{
                   height: 160,
                   borderRadius: 12,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
                 }}
               >
                 <Text className="font-serif-black text-[28px] text-paper tracking-[-0.5px] px-3 text-center">
                   {f.name}
                 </Text>
-                <Text
-                  className="absolute bottom-2 left-2.5 right-2.5 font-mono text-[9px] text-white/70 tracking-[0.5px]"
-                >
+                <Text className="absolute bottom-2 left-2.5 right-2.5 font-mono text-[9px] text-white/70 tracking-[0.5px]">
                   {f.years}
                 </Text>
               </LinearGradient>
               <View className="pt-2">
-                <Text numberOfLines={1} className="font-sans text-xs text-inkSoft">
+                <Text
+                  numberOfLines={1}
+                  className="font-sans text-xs text-inkSoft"
+                >
                   {f.title}
                 </Text>
               </View>
@@ -378,7 +440,7 @@ export default function HomeScreen() {
                   return (
                     <Stamp
                       key={id}
-                      glyph={p?.nameHanja?.[0] || '印'}
+                      glyph={p?.nameHanja?.[0] || "印"}
                       size={32}
                       rotate={-8 + i * 3}
                       color={p?.accent || TOKENS.red}
@@ -388,7 +450,7 @@ export default function HomeScreen() {
               </View>
             </View>
             <Pressable
-              onPress={() => router.push('/(tabs)/stampbook' as never)}
+              onPress={() => router.push("/(tabs)/stampbook" as never)}
               className="mt-3.5 p-3 bg-ink rounded-lg items-center"
             >
               <Text className="font-sans-bold text-[13px] text-paper tracking-[0.2px]">

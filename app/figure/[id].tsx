@@ -122,7 +122,7 @@ export default function FigureDetailScreen() {
                   onPress={() => router.push(`/place/${p.id}` as never)}
                   className="w-[220px] border border-line rounded-xl overflow-hidden bg-paper"
                 >
-                  <PhotoPlaceholder label={p.id} height={110} tone={p.accent} glyph={p.name[0]} />
+                  <PhotoPlaceholder height={110} />
                   <View className="p-3.5">
                     <Tag color={p.accent}>{p.region}</Tag>
                     <Text className="font-serif text-[15px] text-ink mt-1.5">{p.name}</Text>
@@ -147,7 +147,7 @@ export default function FigureDetailScreen() {
                   onPress={() => router.push(`/artifact/${a.id}` as never)}
                   className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
                 >
-                  <PhotoPlaceholder label={a.id} height={64} width={64} tone={a.accent} glyph={a.name[0]} />
+                  <PhotoPlaceholder height={64} width={64} />
                   <View className="flex-1">
                     <Text
                       className="font-sans-bold text-[10px] tracking-wider"

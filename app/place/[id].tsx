@@ -57,12 +57,7 @@ export default function PlaceDetailScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
         {/* 히어로 */}
         <View className="relative">
-          <PhotoPlaceholder
-            label={`${p.id}__hero.jpg`}
-            height={300}
-            tone={p.accent}
-            glyph={p.name[0]}
-          />
+          <PhotoPlaceholder height={300} />
           <LinearGradient
             colors={['rgba(0,0,0,0.35)', 'transparent', 'rgba(250,247,240,0.95)']}
             locations={[0, 0.5, 1]}
@@ -147,14 +142,7 @@ export default function PlaceDetailScreen() {
           style={{ marginBottom: 24 }}
         >
           {[1, 2, 3, 4].map((i) => (
-            <PhotoPlaceholder
-              key={i}
-              label={`${p.id}_${i}.jpg`}
-              height={140}
-              width={180}
-              tone={p.accent}
-              glyph={p.name[0]}
-            />
+            <PhotoPlaceholder key={i} height={140} width={180} />
           ))}
         </ScrollView>
 
@@ -169,7 +157,7 @@ export default function PlaceDetailScreen() {
                   onPress={() => router.push(`/artifact/${a.id}` as never)}
                   className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
                 >
-                  <PhotoPlaceholder label={a.id} height={64} width={64} tone={a.accent} glyph={a.name[0]} />
+                  <PhotoPlaceholder height={64} width={64} />
                   <View className="flex-1">
                     <Text
                       className="font-sans-bold text-[10px] tracking-wider"

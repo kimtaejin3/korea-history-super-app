@@ -39,12 +39,7 @@ export default function ArtifactDetailScreen() {
     <View className="flex-1 bg-paper">
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
         <View className="relative">
-          <PhotoPlaceholder
-            label={`${a.id}__artifact.jpg`}
-            height={340}
-            tone={a.accent}
-            glyph={a.name[0]}
-          />
+          <PhotoPlaceholder height={340} />
           <LinearGradient
             colors={['rgba(0,0,0,0.35)', 'transparent', 'rgba(251,251,249,0.95)']}
             locations={[0, 0.5, 1]}
@@ -119,14 +114,7 @@ export default function ArtifactDetailScreen() {
           style={{ marginBottom: 24 }}
         >
           {[1, 2, 3].map((i) => (
-            <PhotoPlaceholder
-              key={i}
-              label={`${a.id}_${i}.jpg`}
-              height={140}
-              width={200}
-              tone={a.accent}
-              glyph={a.name[0]}
-            />
+            <PhotoPlaceholder key={i} height={140} width={200} />
           ))}
         </ScrollView>
 
@@ -139,7 +127,7 @@ export default function ArtifactDetailScreen() {
                 onPress={() => router.push(`/place/${place.id}` as never)}
                 className="bg-paper border border-line rounded-xl flex-row overflow-hidden items-center"
               >
-                <PhotoPlaceholder label={place.id} height={92} width={92} tone={place.accent} glyph={place.name[0]} />
+                <PhotoPlaceholder height={92} width={92} />
                 <View className="flex-1 p-3.5">
                   <Tag color={place.accent}>{place.era}</Tag>
                   <Text className="font-serif text-[15px] text-ink mt-1">{place.name}</Text>

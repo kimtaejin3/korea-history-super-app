@@ -1,9 +1,16 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import { TabBar } from '../../components/TabBar';
+import { useAuth } from '../../context/Auth';
 
 export default function TabsLayout() {
+  const { loggedIn } = useAuth();
+
+  if (!loggedIn) {
+    return <Redirect href="/login" />;
+  }
+
   return (
     <Tabs
       screenOptions={{ headerShown: false }}

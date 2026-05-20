@@ -1,11 +1,12 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useQuery } from '@tanstack/react-query';
+import BottomSheet, { BottomSheetScrollView, BottomSheetView } from '@gorhom/bottom-sheet';
 import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
@@ -34,13 +35,16 @@ export default function MapScreen() {
 
   const showBar = !searchTransition.active;
 
+  const sheetRef = useRef<BottomSheet>(null);
+  const snapPoints = useMemo(() => ['25%', '55%', '90%'], []);
+
   if (!placesQuery.data || !stampedQuery.data) {
     return <View className="flex-1 bg-[#E8E1D2]" />;
   }
   const PLACES = placesQuery.data;
   const STAMPED = stampedQuery.data;
   const visible = PLACES.filter((p) => filter === '전체' || p.era === filter);
-  const nearby = [...visible].sort((a, b) => a.distance - b.distance).slice(0, 5);
+  const nearby = [...visible].sort((a, b) => a.distance - b.distance);
 
   return (
     <View className="flex-1 bg-[#E8E1D2]">
@@ -106,11 +110,20 @@ export default function MapScreen() {
         </ScrollView>
       </View>
 
-      {/* 하단 시트 */}
-      <View
-        className="absolute left-0 right-0 bg-paper rounded-t-[20px] pt-2.5 pb-3"
+      {/* 바텀 시트 — 드래그 가능 */}
+      <BottomSheet
+        ref={sheetRef}
+        index={0}
+        snapPoints={snapPoints}
+        bottomInset={84}
+        enablePanDownToClose={false}
+        handleIndicatorStyle={{ backgroundColor: TOKENS.line, width: 40, height: 4 }}
+        backgroundStyle={{
+          backgroundColor: TOKENS.paper,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        }}
         style={{
-          bottom: 84,
           shadowColor: '#000',
           shadowOpacity: 0.08,
           shadowOffset: { width: 0, height: -4 },
@@ -118,17 +131,18 @@ export default function MapScreen() {
           elevation: 8,
         }}
       >
-        <View className="items-center mb-2">
-          <View className="w-9 h-1 rounded-sm bg-line" />
-        </View>
-        <View className="px-5 pb-2 flex-row justify-between items-baseline">
-          <Text className="font-serif text-[15px] text-ink">내 주변 {visible.length}곳</Text>
+        <BottomSheetView className="px-5 pt-2 pb-3 flex-row justify-between items-center">
+          <Text className="font-serif text-[16px] text-ink">내 주변 {visible.length}곳</Text>
           <Text className="font-sans text-[11px] text-mute">가까운 순</Text>
-        </View>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 20, gap: 10, paddingVertical: 4 }}
+        </BottomSheetView>
+
+        <BottomSheetScrollView
+          contentContainerStyle={{
+            paddingHorizontal: 20,
+            paddingTop: 8,
+            paddingBottom: insets.bottom + 24,
+            gap: 10,
+          }}
         >
           {nearby.map((p) => {
             const stamped = STAMPED.includes(p.id);
@@ -136,26 +150,26 @@ export default function MapScreen() {
               <Pressable
                 key={p.id}
                 onPress={() => router.push(`/place/${p.id}` as never)}
-                className="w-[200px] border border-line rounded-xl overflow-hidden"
+                className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
               >
-                <PhotoPlaceholder label={p.id} height={90} tone={p.accent} glyph={p.name[0]} />
-                <View className="p-3">
-                  <View className="flex-row items-center gap-1.5 mb-1">
+                <PhotoPlaceholder height={64} width={64} />
+                <View className="flex-1">
+                  <View className="flex-row items-center gap-1.5 mb-0.5">
                     <Tag color={p.accent}>{p.era}</Tag>
                     {stamped && (
                       <Text className="font-sans-bold text-[10px] text-red">● 획득</Text>
                     )}
                   </View>
-                  <Text className="font-serif text-sm text-ink">{p.name}</Text>
-                  <Text className="font-mono text-[10px] text-mute mt-0.5">
+                  <Text className="font-serif text-[15px] text-ink">{p.name}</Text>
+                  <Text numberOfLines={1} className="font-mono text-[10px] text-mute mt-0.5">
                     {p.distance}km · {p.region}
                   </Text>
                 </View>
               </Pressable>
             );
           })}
-        </ScrollView>
-      </View>
+        </BottomSheetScrollView>
+      </BottomSheet>
     </View>
   );
 }
