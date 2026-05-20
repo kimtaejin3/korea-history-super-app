@@ -11,6 +11,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+import { haptic } from "../../lib/haptics";
 import { useQuery } from "@tanstack/react-query";
 import { TOKENS } from "../../data/tokens";
 import { api, queryKeys } from "../../lib/api";
@@ -30,6 +31,7 @@ export default function HomeScreen() {
   const { start: startSearchTransition } = useSearchTransition();
 
   const onPressSearch = () => {
+    haptic.tap();
     const node = searchBtnRef.current;
     if (!node) return;
     node.measureInWindow((x, y, width, height) => {
