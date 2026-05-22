@@ -8,7 +8,10 @@ import {
   Pressable,
   ActivityIndicator,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
@@ -173,6 +176,7 @@ export default function MapScreen() {
         ref={sheetRef}
         index={0}
         snapPoints={snapPoints}
+        topInset={insets.top + 8}
         bottomInset={84}
         enablePanDownToClose={false}
         handleIndicatorStyle={{
@@ -193,14 +197,14 @@ export default function MapScreen() {
           elevation: 8,
         }}
       >
-        <BottomSheetView className="px-5 pt-2 pb-3 flex-row justify-between items-center mb-4">
+        <View className="px-5 pt-2 pb-3 flex-row justify-between items-center">
           <Text className="font-serif text-[16px] text-ink">
             {nearbyQuery.isLoading
               ? "불러오는 중…"
               : `내 주변 ${nearby.length}${total > nearby.length ? `/${total}` : ""}곳`}
           </Text>
           <Text className="font-sans text-[11px] text-mute">가까운 순</Text>
-        </BottomSheetView>
+        </View>
 
         <BottomSheetFlatList
           data={nearby}
