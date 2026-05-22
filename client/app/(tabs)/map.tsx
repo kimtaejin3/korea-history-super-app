@@ -1,0 +1,276 @@
+// noinspection JSUnusedGlobalSymbols
+
+import { useCallback, useMemo, useRef, useState } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  ActivityIndicator,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import BottomSheet, {
+  BottomSheetFlatList,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
+import { TOKENS } from "../../data/tokens";
+import { api, queryKeys, type NearbyResponse } from "../../lib/api";
+import type { Place } from "../../data/places";
+import { Tag } from "../../components/Tag";
+import { PhotoPlaceholder } from "../../components/PhotoPlaceholder";
+import { SearchIcon } from "../../components/icons";
+import { useSearchTransition } from "../../context/SearchTransition";
+import {
+  SEARCH_BAR_HEIGHT,
+  SEARCH_BAR_ICON_GAP,
+  SEARCH_BAR_ICON_SIZE,
+  SEARCH_BAR_INNER_PX,
+  SEARCH_BAR_PADDING_TOP,
+  SEARCH_BAR_PADDING_X,
+} from "../../lib/searchBarLayout";
+import { formatDistance } from "../../lib/geo";
+import { useUserLocation } from "../../lib/useUserLocation";
+
+const FILTERS = ["전체", "조선", "백제", "통일신라", "근현대"];
+const PAGE_LIMIT = 30;
+
+export default function MapScreen() {
+  const insets = useSafeAreaInsets();
+  const router = useRouter();
+  const [filter, setFilter] = useState("전체");
+
+  const { coords: userCoords } = useUserLocation();
+
+  // 무한 페이지네이션 — 한 페이지 30개, 스크롤 끝 도달 시 다음 페이지 fetch
+  const nearbyQuery = useInfiniteQuery({
+    queryKey: queryKeys.nearby(userCoords.lat, userCoords.lon, {
+      radius: 200,
+      limit: PAGE_LIMIT,
+      era: filter,
+    }),
+    queryFn: ({ pageParam }) =>
+      api.nearby({
+        lat: userCoords.lat,
+        lon: userCoords.lon,
+        radius: 200,
+        limit: PAGE_LIMIT,
+        page: pageParam,
+        era: filter,
+      }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage: NearbyResponse) =>
+      lastPage.hasMore ? lastPage.page + 1 : undefined,
+  });
+
+  const stampedQuery = useQuery({
+    queryKey: queryKeys.stamped,
+    queryFn: api.stamped,
+  });
+
+  const { state: searchTransition } = useSearchTransition();
+  const showBar = !searchTransition.active;
+
+  const sheetRef = useRef<BottomSheet>(null);
+  const snapPoints = useMemo(() => ["25%", "55%", "90%"], []);
+
+  // 모든 페이지 flatten — useMemo로 페이지 추가 시에만 재계산
+  const nearby: Place[] = useMemo(() => {
+    if (!nearbyQuery.data) return [];
+    return nearbyQuery.data.pages.flatMap((p) => p.items);
+  }, [nearbyQuery.data]);
+  const total = nearbyQuery.data?.pages[0]?.total ?? 0;
+  const STAMPED: string[] = stampedQuery.data ?? [];
+
+  const onEndReached = useCallback(() => {
+    if (nearbyQuery.hasNextPage && !nearbyQuery.isFetchingNextPage) {
+      nearbyQuery.fetchNextPage();
+    }
+  }, [nearbyQuery]);
+
+  return (
+    <View className="flex-1 bg-[#E8E1D2]">
+      {/* 상단 검색 + 필터 — 데이터 상태와 무관하게 항상 표시 */}
+      <View
+        className="pb-3"
+        style={{
+          paddingTop: insets.top + SEARCH_BAR_PADDING_TOP,
+          paddingHorizontal: SEARCH_BAR_PADDING_X,
+        }}
+      >
+        <LinearGradient
+          colors={["rgba(232,225,210,0.95)", "rgba(232,225,210,0)"]}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: insets.top + 120,
+          }}
+          pointerEvents="none"
+        />
+        <View style={{ height: SEARCH_BAR_HEIGHT }}>
+          {showBar && (
+            <View
+              className="absolute left-0 right-0 top-0 flex-row items-center bg-paper rounded-full"
+              style={{
+                height: SEARCH_BAR_HEIGHT,
+                paddingHorizontal: SEARCH_BAR_INNER_PX,
+                gap: SEARCH_BAR_ICON_GAP,
+                shadowColor: "#000",
+                shadowOpacity: 0.08,
+                shadowOffset: { width: 0, height: 2 },
+                shadowRadius: 12,
+                elevation: 3,
+              }}
+            >
+              <SearchIcon
+                size={SEARCH_BAR_ICON_SIZE}
+                color={TOKENS.mute}
+                strokeWidth={1.8}
+              />
+              <Text className="flex-1 font-sans text-[13px] text-mute">
+                장소 · 테마 · 시대 검색
+              </Text>
+            </View>
+          )}
+        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ gap: 6, marginTop: 10 }}
+        >
+          {FILTERS.map((f) => {
+            const on = filter === f;
+            return (
+              <Pressable
+                key={f}
+                onPress={() => setFilter(f)}
+                className={`px-3 py-1.5 rounded-full ${on ? "bg-ink" : "bg-paper"}`}
+                style={{
+                  shadowColor: "#000",
+                  shadowOpacity: 0.06,
+                  shadowOffset: { width: 0, height: 1 },
+                  shadowRadius: 4,
+                  elevation: 2,
+                }}
+              >
+                <Text
+                  className={`font-sans-bold text-xs ${on ? "text-paper" : "text-inkSoft"}`}
+                >
+                  {f}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+      </View>
+
+      {/* 바텀 시트 — 데이터 없어도 항상 렌더, 안에서 로딩 표시 */}
+      <BottomSheet
+        ref={sheetRef}
+        index={0}
+        snapPoints={snapPoints}
+        bottomInset={84}
+        enablePanDownToClose={false}
+        handleIndicatorStyle={{
+          backgroundColor: TOKENS.line,
+          width: 40,
+          height: 4,
+        }}
+        backgroundStyle={{
+          backgroundColor: TOKENS.paper,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        }}
+        style={{
+          shadowColor: "#000",
+          shadowOpacity: 0.08,
+          shadowOffset: { width: 0, height: -4 },
+          shadowRadius: 20,
+          elevation: 8,
+        }}
+      >
+        <BottomSheetView className="px-5 pt-2 pb-3 flex-row justify-between items-center mb-4">
+          <Text className="font-serif text-[16px] text-ink">
+            {nearbyQuery.isLoading
+              ? "불러오는 중…"
+              : `내 주변 ${nearby.length}${total > nearby.length ? `/${total}` : ""}곳`}
+          </Text>
+          <Text className="font-sans text-[11px] text-mute">가까운 순</Text>
+        </BottomSheetView>
+
+        <BottomSheetFlatList
+          data={nearby}
+          keyExtractor={(p) => p.id}
+          contentContainerStyle={{
+            paddingHorizontal: 20,
+            paddingTop: 8,
+            paddingBottom: insets.bottom + 24,
+          }}
+          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          onEndReached={onEndReached}
+          onEndReachedThreshold={0.5}
+          renderItem={({ item: p }) => {
+            const stamped = STAMPED.includes(p.id);
+            return (
+              <Pressable
+                onPress={() => router.push(`/place/${p.id}` as never)}
+                className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
+              >
+                <PhotoPlaceholder height={64} width={64} />
+                <View className="flex-1">
+                  <View className="flex-row items-center gap-1.5 mb-0.5">
+                    <Tag color={p.accent}>{p.era}</Tag>
+                    {stamped && (
+                      <Text className="font-sans-bold text-[10px] text-red">
+                        ● 획득
+                      </Text>
+                    )}
+                  </View>
+                  <Text className="font-serif text-[15px] text-ink">
+                    {p.name}
+                  </Text>
+                  <Text
+                    numberOfLines={1}
+                    className="font-mono text-[10px] text-mute mt-0.5"
+                  >
+                    {formatDistance(p.distance)} · {p.region}
+                  </Text>
+                </View>
+              </Pressable>
+            );
+          }}
+          ListEmptyComponent={
+            nearbyQuery.isLoading ? (
+              <View className="py-12 items-center">
+                <ActivityIndicator size="small" color={TOKENS.mute} />
+              </View>
+            ) : nearbyQuery.isError ? (
+              <View className="py-12 items-center">
+                <Text className="font-sans text-[12px] text-mute">
+                  데이터를 가져오지 못했어요
+                </Text>
+              </View>
+            ) : (
+              <View className="py-12 items-center">
+                <Text className="font-sans text-[12px] text-mute">
+                  결과가 없어요
+                </Text>
+              </View>
+            )
+          }
+          ListFooterComponent={
+            nearbyQuery.isFetchingNextPage ? (
+              <View className="py-4 items-center">
+                <ActivityIndicator size="small" color={TOKENS.mute} />
+              </View>
+            ) : null
+          }
+        />
+      </BottomSheet>
+    </View>
+  );
+}

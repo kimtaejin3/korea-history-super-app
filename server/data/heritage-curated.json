@@ -1,0 +1,350 @@
+[
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "관아",
+    "name": "팽성읍 객사",
+    "nameHanja": "彭城邑 客舍",
+    "era": "조선시대",
+    "region": "경기도",
+    "designationType": "유형문화재",
+    "designationNo": 137,
+    "summary": "팽성읍 객사(彭城邑 客舍)는 조선시대 팽성현의 객사이다.",
+    "story": "팽성읍 객사(彭城邑 客舍)는 조선시대 팽성현의 객사이다. 1989년 6월 1일 경기도 유형문화재 제137호로 지정되었다.",
+    "coords": {
+      "lat": 36.96444444,
+      "lon": 127.06305556
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%8C%BD%EC%84%B1%EC%9D%8D_%EA%B0%9D%EC%82%AC"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "세제개혁",
+    "name": "대동법 시행 기념비",
+    "nameHanja": "大同法施行記念碑",
+    "era": "조선시대",
+    "region": null,
+    "designationType": null,
+    "designationNo": null,
+    "summary": "대동법시행기념비(大同法施行記念碑)는 조선 후기에 대동법의 시행을 알리기 위해 세운 석비이다..",
+    "story": "대동법시행기념비(大同法施行記念碑)는 조선 후기에 대동법의 시행을 알리기 위해 세운 석비이다.",
+    "coords": null,
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "향교",
+    "name": "강릉향교",
+    "nameHanja": "江陵鄕校",
+    "era": null,
+    "region": "강원특별자치도",
+    "designationType": "유형문화재",
+    "designationNo": 99,
+    "summary": "강릉향교(江陵鄕校)는 대한민국 강원특별자치도 강릉시에 있는 향교이다.",
+    "story": "강릉향교(江陵鄕校)는 대한민국 강원특별자치도 강릉시에 있는 향교이다. 1985년 1월 17일 강원특별자치도의 유형문화재 제99호로 지정되었다.",
+    "coords": {
+      "lat": 37.7634,
+      "lon": 128.89456944
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%ED%96%A5%EA%B5%90"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 31,
+    "theme": "향교",
+    "name": "안성향교",
+    "nameHanja": "安城鄕校",
+    "era": "조선시대",
+    "region": "경기도",
+    "designationType": "문화재자료",
+    "designationNo": 27,
+    "summary": "안성향교(安城鄕校)는 대한민국 경기도 안성시 조선시대의 향교이다.",
+    "story": "안성향교(安城鄕校)는 대한민국 경기도 안성시 조선시대의 향교이다. 1983년 9월 19일 경기도의 문화재자료 제27호로 지정되었다.",
+    "coords": {
+      "lat": 37.01393333,
+      "lon": 127.27588889
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1%ED%96%A5%EA%B5%90"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "향교",
+    "name": "양주향교",
+    "nameHanja": "楊州鄕校",
+    "era": null,
+    "region": "경기도",
+    "designationType": "문화재자료",
+    "designationNo": 2,
+    "summary": "양주향교(楊州鄕校)는 대한민국 경기도 양주시에 있는 향교다.",
+    "story": "양주향교(楊州鄕校)는 대한민국 경기도 양주시에 있는 향교다. 1983년 9월 19일 경기도의 문화재자료 제2호로 지정되었다.",
+    "coords": null,
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%96%91%EC%A3%BC%ED%96%A5%EA%B5%90"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "향교",
+    "name": "청주향교",
+    "nameHanja": "淸州鄕校",
+    "era": null,
+    "region": "충청북도",
+    "designationType": "유형문화재",
+    "designationNo": 39,
+    "summary": "청주향교(淸州鄕校)는 충청북도 청주시 상당구에 있는 향교이다.",
+    "story": "청주향교(淸州鄕校)는 충청북도 청주시 상당구에 있는 향교이다. 1977년 12월 6일 충청북도의 유형문화재 제39호로 지정되었다.",
+    "coords": {
+      "lat": 36.63716111,
+      "lon": 127.48908056
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%A3%BC%ED%96%A5%EA%B5%90"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "향교",
+    "name": "영동향교",
+    "nameHanja": "永同鄕校",
+    "era": "조선시대",
+    "region": "충청북도",
+    "designationType": "유형문화재",
+    "designationNo": 99,
+    "summary": "영동향교(永同鄕校)는 대한민국 충청북도 영동군 영동읍 부용리에 있는 조선시대의 향교이다.",
+    "story": "영동향교(永同鄕校)는 대한민국 충청북도 영동군 영동읍 부용리에 있는 조선시대의 향교이다. 1980년 1월 4일 충청북도의 유형문화재 제99호로 지정되었다.",
+    "coords": {
+      "lat": 36.17611111,
+      "lon": 127.76888889
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%8F%99%ED%96%A5%EA%B5%90"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "향교",
+    "name": "경주향교",
+    "nameHanja": "慶州鄕校",
+    "era": null,
+    "region": "경상북도",
+    "designationType": "유형문화재",
+    "designationNo": 191,
+    "summary": "경주향교(慶州鄕校)은 대한민국 경상북도 경주시에 있는 향교이다.",
+    "story": "경주향교(慶州鄕校)은 대한민국 경상북도 경주시에 있는 향교이다. 1985년 10월 15일 경상북도의 유형문화재 제191호로 지정되었다.",
+    "coords": {
+      "lat": 35.83111111,
+      "lon": 129.21722222
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%A3%BC%ED%96%A5%EA%B5%90"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 13,
+    "theme": "향교",
+    "name": "전주향교",
+    "nameHanja": "全州鄕校",
+    "era": null,
+    "region": "전북특별자치도",
+    "designationType": null,
+    "designationNo": null,
+    "summary": "전주향교(全州鄕校)는 대한민국 전북특별자치도 전주시에 있는 조선 시대의 향교이다.",
+    "story": "전주향교(全州鄕校)는 대한민국 전북특별자치도 전주시에 있는 조선 시대의 향교이다. 전주한옥마을 안에 위치해 있으며, 행정구역상의 주소는 전북특별자치도 전주시 완산구 향교길 139(교동1가 26-3)이다. 1992년 12월 24일 사적 제379호로 지정되었다.",
+    "coords": {
+      "lat": 35.81277778,
+      "lon": 127.15694444
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%ED%96%A5%EA%B5%90"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "향교",
+    "name": "남원향교 대성전",
+    "nameHanja": "南原鄕校 大成殿",
+    "era": null,
+    "region": "전북특별자치도",
+    "designationType": "유형문화재",
+    "designationNo": 8,
+    "summary": "남원향교 대성전(南原鄕校 大成殿)은 대한민국 전북특별자치도 남원시, 남원향교에 있는 건축물이다.",
+    "story": "남원향교 대성전(南原鄕校 大成殿)은 대한민국 전북특별자치도 남원시, 남원향교에 있는 건축물이다. 1971년 12월 2일 전북특별자치도의 유형문화재 제8호로 지정되었다.",
+    "coords": {
+      "lat": 35.42194444,
+      "lon": 127.38305556
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%9B%90%ED%96%A5%EA%B5%90_%EB%8C%80%EC%84%B1%EC%A0%84"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 13,
+    "theme": "향교",
+    "name": "나주목 관아와 향교",
+    "nameHanja": "羅州牧 官衙와 鄕校",
+    "era": "조선시대",
+    "region": "전라남도",
+    "designationType": "유형문화재",
+    "designationNo": 128,
+    "summary": "나주목 관아와 향교(羅州牧 官衙와 鄕校)는 대한민국 전라남도 나주시 금계동에 있는 조선시대에 세워진 지방행정 및 교육기관 건물이다.",
+    "story": "나주목 관아와 향교(羅州牧 官衙와 鄕校)는 대한민국 전라남도 나주시 금계동에 있는 조선시대에 세워진 지방행정 및 교육기관 건물이다. 1985년 2월 25일 전라남도의 유형문화재 제128호 나주향교로 지정되었다가, 2007년 7월 31일 대한민국의 사적 제483호 나주목 관아와 향교로 승격, 지정되었다.",
+    "coords": {
+      "lat": 35.03277778,
+      "lon": 126.71305556
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%82%98%EC%A3%BC%EB%AA%A9_%EA%B4%80%EC%95%84%EC%99%80_%ED%96%A5%EA%B5%90"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 11,
+    "theme": "객사",
+    "name": "강릉대도호부 관아",
+    "nameHanja": "江陵大都護府 官衙",
+    "era": "고려시대",
+    "region": "강원특별자치도",
+    "designationType": null,
+    "designationNo": null,
+    "summary": "강릉대도호부 관아(江陵大都護府 官衙)는 대한민국 강원특별자치도 강릉시에 있는 고려시대부터 조선시대에 걸쳐 중앙의 관리들이 강릉에 내려오면 머물던 건물터이다.",
+    "story": "강릉대도호부 관아(江陵大都護府 官衙)는 대한민국 강원특별자치도 강릉시에 있는 고려시대부터 조선시대에 걸쳐 중앙의 관리들이 강릉에 내려오면 머물던 건물터이다. 1994년 7월 11일 대한민국의 사적 제388호로 지정되었다.",
+    "coords": {
+      "lat": 37.75333333,
+      "lon": 128.89222222
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%EB%8C%80%EB%8F%84%ED%98%B8%EB%B6%80_%EA%B4%80%EC%95%84"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 12,
+    "theme": "객사",
+    "name": "안성객사",
+    "nameHanja": "安城客舍",
+    "era": "조선시대",
+    "region": "경기도",
+    "designationType": "유형문화재",
+    "designationNo": 154,
+    "summary": "안성객사(安城客舍)는 대한민국 경기도 안성시 낙원동에 있는 조선시대의 객사이다.",
+    "story": "안성객사(安城客舍)는 대한민국 경기도 안성시 낙원동에 있는 조선시대의 객사이다. 1995년 8월 7일 경기도의 유형문화재 제154호로 지정되었다.",
+    "coords": {
+      "lat": 37.005,
+      "lon": 127.275
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1%EA%B0%9D%EC%82%AC"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "동헌",
+    "name": "김제동헌",
+    "nameHanja": "金堤東軒",
+    "era": "조선시대",
+    "region": "전라북도",
+    "designationType": "유형문화재",
+    "designationNo": 60,
+    "summary": "김제동헌(金堤東軒)은 대한민국 전북특별자치도 김제시에 있는 조선시대의 고을의 공무를 수행하던 관아건물이다.",
+    "story": "김제동헌(金堤東軒)은 대한민국 전북특별자치도 김제시에 있는 조선시대의 고을의 공무를 수행하던 관아건물이다. 1974년 9월 27일 전라북도의 유형문화재 제60호로 지정되었다.",
+    "coords": {
+      "lat": 35.80074722,
+      "lon": 126.88201111
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B9%80%EC%A0%9C%EB%8F%99%ED%97%8C"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 21,
+    "theme": "동헌",
+    "name": "청주 청녕각",
+    "nameHanja": "淸州 淸寧閣",
+    "era": "조선시대",
+    "region": "충청북도",
+    "designationType": "유형문화재",
+    "designationNo": 109,
+    "summary": "청주 청녕각(淸州 淸寧閣)은 충청북도 청주시 상당구, 상당구청 내에 있는 조선시대의 청주목 관청 건축물이다.",
+    "story": "청주 청녕각(淸州 淸寧閣)은 충청북도 청주시 상당구, 상당구청 내에 있는 조선시대의 청주목 관청 건축물이다. 1982년 12월 17일 충청북도의 유형문화재 제109호로 지정되었다.",
+    "coords": {
+      "lat": 36.63444444,
+      "lon": 127.48805556
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%A3%BC_%EC%B2%AD%EB%85%95%EA%B0%81"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 12,
+    "theme": "비석",
+    "name": "북관대첩비",
+    "nameHanja": "北關大捷碑",
+    "era": null,
+    "region": null,
+    "designationType": null,
+    "designationNo": null,
+    "summary": "북관대첩비(北關大捷碑)는 함경북도 북평사 직을 맡고 있던 정문부 장군이 임진왜란 중 의병을 모아 왜군을 격퇴한 공을 기려 조선 숙종 때 북평사 최창대가 함경북도 길주군 임명면 에 세운 전공 기념 비석이다.",
+    "story": "북관대첩비(北關大捷碑)는 함경북도 북평사 직을 맡고 있던 정문부 장군이 임진왜란 중 의병을 모아 왜군을 격퇴한 공을 기려 조선 숙종 때 북평사 최창대가 함경북도 길주군 임명면 에 세운 전공 기념 비석이다. 높이 187cm, 너비 66cm.",
+    "coords": {
+      "lat": 40.758944,
+      "lon": 129.267944
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%B6%81%EA%B4%80%EB%8C%80%EC%B2%A9%EB%B9%84"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 23,
+    "theme": "비석",
+    "name": "척화비",
+    "nameHanja": "斥和碑",
+    "era": null,
+    "region": null,
+    "designationType": null,
+    "designationNo": null,
+    "summary": "척화비(斥和碑)는 조선 고종 때 흥선대원군이 통상 수교 거부 의지를 널리 알리기 위하여 종로 네거리를 위시한 전국 교통 요충지 200여 개소에 세운 비석(碑石)이다.",
+    "story": "척화비(斥和碑)는 조선 고종 때 흥선대원군이 통상 수교 거부 의지를 널리 알리기 위하여 종로 네거리를 위시한 전국 교통 요충지 200여 개소에 세운 비석(碑石)이다. 1871년(고종 8)에 화강석으로, 높이 4자 5치, 너비 1자 5치, 두께 8치 5푼이 되게 만들어 세웠다.",
+    "coords": null,
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%99%ED%99%94%EB%B9%84"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 79,
+    "theme": "근대건축",
+    "name": "인천우체국",
+    "nameHanja": "仁川郵遞局",
+    "era": null,
+    "region": "인천광역시",
+    "designationType": null,
+    "designationNo": null,
+    "summary": "인천우체국(仁川郵遞局)은 인천 중구·동구·연수구·옹진군(백령대청도 제외) 지역의 우편, 택배, EMS, 국제우편, 우체국예금보험 업무를 수행하는 경인지방우정청 소속 우체국이다.",
+    "story": "인천우체국(仁川郵遞局)은 인천 중구·동구·연수구·옹진군(백령대청도 제외) 지역의 우편, 택배, EMS, 국제우편, 우체국예금보험 업무를 수행하는 경인지방우정청 소속 우체국이다. 인천광역시 연수구 함박뫼로 226(연수동)에 있다.",
+    "coords": {
+      "lat": 37.4193186,
+      "lon": 126.6909604
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%9D%B8%EC%B2%9C%EC%9A%B0%EC%B2%B4%EA%B5%AD"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 13,
+    "theme": "근대건축",
+    "name": "서울역",
+    "nameHanja": "서울驛, 영어: Seoul Station",
+    "era": null,
+    "region": "서울특별시",
+    "designationType": null,
+    "designationNo": null,
+    "summary": "서울역(서울驛, 영어: Seoul Station)은 대한민국 서울특별시 용산구와 중구에 걸쳐있는 철도역이다.",
+    "story": "서울역(서울驛, 영어: Seoul Station)은 대한민국 서울특별시 용산구와 중구에 걸쳐있는 철도역이다. 경부선과 경의선의 기점이며 경부고속철도와 경부선 계통의 열차가 출발하는 중추역 기능을 하고있다. 동광장방면으로 수도권전철 1호선, 수도권전철 4호선, 수도권 전철 경의·중앙선, 수도권광역급행철도에이노선이, 서광장지하로는 인천국제공항철도가 통과하고있다. 수도권 전철 1호선은 이 역부터 청량리역까지 지하 구간이고 서울 지하철 1호선 구간이고 서울교통공사 구간이다. 수도권 전철 1호선은 이 역부터 금천구청역, 천안역을 지나서 신창역까지 지상 구간이고 한국철도공사 구간이다. 수도권 전철 1호선은 이 역부터 금천구청역, 천안역까지 경부선 구간이다. 경부선은 이 역부터 부산역까지 모두 지상 구간이다. 수도권 전철 경의·중앙선은 이 역부터 문산역을 지나서 임진강역을 지나서 도라산역까지 경의선 구간이고 지상 구간이다. 인천국제공항철도는 이 역부터 디지털미디어시티역까지 지하 구간이다. 수도권 광역급행철도 A노선은 이 역부터 운정중앙역까지 지하 구간이고 수도권 광역급행철도 A노선 구간이고 지티엑스에이운영 구간이고 좌측 통행이다. 수도권 전철 1호선은 심야에 1편성이 주박한다. 수도권 전철 4호선은 심야에 1편성이 주박한다. 수도권 전철 경의·중앙선은 심야에 1편성이 주박한다. 인천국제공항철도 직통열차는 심야에 1편성이 주박하고 일반열차는 심야에 2편성이 주박한다. 수도권 전철 경의·중앙선은 이 역부터 수색역까지 서울특별시 구간이다. 인천국제공항철도는 이 역부터 김포공항역까지 서울특별시 구간이다. 수도권 광역급행철도 A노선은 이 역부터 연신내역까지 서울특별시 구간이다. 경부선은 이 역부터 영등포역까지 서울특별시 구간이다. 수도권 광역급행철도 A노선은 홍제천 하저터널로 연신내역과 연결된다. 수도권 전철 1호선은 이 역부터 남영역까지 섬식 승강장이다. 수도권 전철 4호선은 이 역부터 명동역까지 섬식 승강장이다. 수도권 전철 경의·중앙선은 이 역에만 단선 승강장이다. 인천국제공항철도는 이 역에만 혼합식 승강장이다. 수도권 광역급행철도 A노선은 이 역부터 운정중앙역까지 상대식 승강장이다. 경부선은 이 역부터 이원역까지 쌍섬식 승강장이다. 경부선은 이 역부터 부산역까지 모두 경부선 구간이고 모두 한국철도공사 구간이고 모두 좌측 통행이다. 수도권 전철 경의·중앙선은 이 역부터 문산역을 지나서 임진강역, 도라산역까지 모두 한국철도공사 구간이다. 인천국제공항철도는 이 역부터 인천공항2터미널역까지 모두 인천국제공항철도 구간이고 모두 공항철도 구간이고 모두 좌측 통행이다. 경의선 KTX는 이 역부터 행신역까지 모두 지상 구간이다. 경의선 KTX는 이 역부터 행신역까지 경의선 구간이고 모두 한국철도공사 구간이고 모두 좌측 통행이다. 경의선 KTX는 이 역에만 서울특별시 구간이다. 수도권 전철 경의·중앙선은 이 역부터 문산역까지 좌측 통행이다.",
+    "coords": {
+      "lat": 37.55472222,
+      "lon": 126.97083333
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%97%AD"
+  },
+  {
+    "source": "curated",
+    "ccbaKdcd": 13,
+    "theme": "항일",
+    "name": "효창공원",
+    "nameHanja": "孝昌公園",
+    "era": null,
+    "region": "서울특별시",
+    "designationType": null,
+    "designationNo": null,
+    "summary": "효창공원(孝昌公園)은 대한민국 서울특별시 용산구에 있는 공원이다.",
+    "story": "효창공원(孝昌公園)은 대한민국 서울특별시 용산구에 있는 공원이다. 원래 정조의 첫째 아들 문효세자와 몇달 후 죽은 그의 어머니 의빈 성씨의 무덤으로 효창원(孝昌園)이었으나, 두 무덤은 서삼릉으로 강제 이장을 당하고, 이름도 효창공원이 되었다.",
+    "coords": null,
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%9A%A8%EC%B0%BD%EA%B3%B5%EC%9B%90"
+  }
+]
