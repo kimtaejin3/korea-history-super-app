@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -46,8 +46,19 @@ export default function MapScreen() {
   const [filter, setFilter] = useState("전체");
 
   const { coords: userCoords } = useUserLocation();
+  const { state: searchTransition } = useSearchTransition();
+  const showBar = !searchTransition.active;
 
-  // 무한 페이지네이션 — 한 페이지 30개, 스크롤 끝 도달 시 다음 페이지 fetch
+  // 검색바 morph 진입 시: morph 끝난 뒤 fetch 시작.
+  // 탭 직접 진입 시: morph가 active 아니므로 즉시 ready.
+  const [fetchReady, setFetchReady] = useState(!searchTransition.active);
+  useEffect(() => {
+    if (!searchTransition.active && !fetchReady) {
+      setFetchReady(true);
+    }
+  }, [searchTransition.active, fetchReady]);
+
+  // 무한 페이지네이션 — 한 페이지 PAGE_LIMIT개, 스크롤 끝 도달 시 다음 페이지 fetch
   const nearbyQuery = useInfiniteQuery({
     queryKey: queryKeys.nearby(userCoords.lat, userCoords.lon, {
       radius: 200,
@@ -66,15 +77,14 @@ export default function MapScreen() {
     initialPageParam: 1,
     getNextPageParam: (lastPage: NearbyResponse) =>
       lastPage.hasMore ? lastPage.page + 1 : undefined,
+    enabled: fetchReady,
   });
 
   const stampedQuery = useQuery({
     queryKey: queryKeys.stamped,
     queryFn: api.stamped,
+    enabled: fetchReady,
   });
-
-  const { state: searchTransition } = useSearchTransition();
-  const showBar = !searchTransition.active;
 
   const sheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ["25%", "55%", "90%"], []);
