@@ -38,7 +38,7 @@ import { formatDistance } from "../../lib/geo";
 import { useUserLocation } from "../../lib/useUserLocation";
 
 const FILTERS = ["전체", "조선", "백제", "통일신라", "근현대"];
-const PAGE_LIMIT = 30;
+const PAGE_LIMIT = 10;
 
 export default function MapScreen() {
   const insets = useSafeAreaInsets();
@@ -122,11 +122,6 @@ export default function MapScreen() {
                 height: SEARCH_BAR_HEIGHT,
                 paddingHorizontal: SEARCH_BAR_INNER_PX,
                 gap: SEARCH_BAR_ICON_GAP,
-                shadowColor: "#000",
-                shadowOpacity: 0.08,
-                shadowOffset: { width: 0, height: 2 },
-                shadowRadius: 12,
-                elevation: 3,
               }}
             >
               <SearchIcon
