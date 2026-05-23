@@ -15,7 +15,15 @@
       "lat": 37.7634,
       "lon": 128.89456944
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%ED%96%A5%EA%B5%90"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%ED%96%A5%EA%B5%90",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Daeseongjeon_Shrine_at_Confucian_School_in_Gangneung%2C_Korea_01.jpg/330px-Daeseongjeon_Shrine_at_Confucian_School_in_Gangneung%2C_Korea_01.jpg",
+      "width": 2532,
+      "height": 1428,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%ED%96%A5%EA%B5%90",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -33,7 +41,15 @@
       "lat": 37.01393333,
       "lon": 127.27588889
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1%ED%96%A5%EA%B5%90"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1%ED%96%A5%EA%B5%90",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Anseong_Hyanggyo.jpg/330px-Anseong_Hyanggyo.jpg",
+      "width": 4128,
+      "height": 2322,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1%ED%96%A5%EA%B5%90",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -48,7 +64,15 @@
     "summary": "양주향교(楊州鄕校)는 대한민국 경기도 양주시에 있는 향교다.",
     "story": "양주향교(楊州鄕校)는 대한민국 경기도 양주시에 있는 향교다. 1983년 9월 19일 경기도의 문화재자료 제2호로 지정되었다.",
     "coords": null,
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%96%91%EC%A3%BC%ED%96%A5%EA%B5%90"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%96%91%EC%A3%BC%ED%96%A5%EA%B5%90",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/%EC%96%91%EC%A3%BC%ED%96%A5%EA%B5%90.jpg/330px-%EC%96%91%EC%A3%BC%ED%96%A5%EA%B5%90.jpg",
+      "width": 781,
+      "height": 531,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%96%91%EC%A3%BC%ED%96%A5%EA%B5%90",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -66,7 +90,15 @@
       "lat": 36.63716111,
       "lon": 127.48908056
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%A3%BC%ED%96%A5%EA%B5%90"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%A3%BC%ED%96%A5%EA%B5%90",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Cheongjuhyanggyo.jpg/330px-Cheongjuhyanggyo.jpg",
+      "width": 4128,
+      "height": 2322,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%A3%BC%ED%96%A5%EA%B5%90",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -84,7 +116,15 @@
       "lat": 36.17611111,
       "lon": 127.76888889
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%8F%99%ED%96%A5%EA%B5%90"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%8F%99%ED%96%A5%EA%B5%90",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/%EC%98%81%EB%8F%99%ED%96%A5%EA%B5%90_%EB%AA%85%EB%A5%9C%EB%8B%B9.jpg/330px-%EC%98%81%EB%8F%99%ED%96%A5%EA%B5%90_%EB%AA%85%EB%A5%9C%EB%8B%B9.jpg",
+      "width": 1139,
+      "height": 718,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%8F%99%ED%96%A5%EA%B5%90",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -102,7 +142,15 @@
       "lat": 35.83111111,
       "lon": 129.21722222
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%A3%BC%ED%96%A5%EA%B5%90"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%A3%BC%ED%96%A5%EA%B5%90",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Daeseongjeon_in_Gyeongjuhyanggyo.jpg/330px-Daeseongjeon_in_Gyeongjuhyanggyo.jpg",
+      "width": 3200,
+      "height": 1920,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%A3%BC%ED%96%A5%EA%B5%90",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -120,7 +168,15 @@
       "lat": 35.81277778,
       "lon": 127.15694444
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%ED%96%A5%EA%B5%90"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%ED%96%A5%EA%B5%90",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Daeseongjeon_of_Jeonju_Hyanggyo.jpg/330px-Daeseongjeon_of_Jeonju_Hyanggyo.jpg",
+      "width": 1024,
+      "height": 768,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%ED%96%A5%EA%B5%90",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -138,7 +194,15 @@
       "lat": 35.42194444,
       "lon": 127.38305556
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%9B%90%ED%96%A5%EA%B5%90_%EB%8C%80%EC%84%B1%EC%A0%84"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%9B%90%ED%96%A5%EA%B5%90_%EB%8C%80%EC%84%B1%EC%A0%84",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/%EB%82%A8%EC%9B%90%ED%96%A5%EA%B5%90%EB%8C%80%EC%84%B1%EC%A0%84.jpg/330px-%EB%82%A8%EC%9B%90%ED%96%A5%EA%B5%90%EB%8C%80%EC%84%B1%EC%A0%84.jpg",
+      "width": 750,
+      "height": 629,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%9B%90%ED%96%A5%EA%B5%90_%EB%8C%80%EC%84%B1%EC%A0%84",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -156,7 +220,15 @@
       "lat": 35.03277778,
       "lon": 126.71305556
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%82%98%EC%A3%BC%EB%AA%A9_%EA%B4%80%EC%95%84%EC%99%80_%ED%96%A5%EA%B5%90"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%82%98%EC%A3%BC%EB%AA%A9_%EA%B4%80%EC%95%84%EC%99%80_%ED%96%A5%EA%B5%90",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Najumok_03.JPG/330px-Najumok_03.JPG",
+      "width": 1280,
+      "height": 960,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%82%98%EC%A3%BC%EB%AA%A9_%EA%B4%80%EC%95%84%EC%99%80_%ED%96%A5%EA%B5%90",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",
@@ -174,7 +246,15 @@
       "lat": 37.75333333,
       "lon": 128.89222222
     },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%EB%8C%80%EB%8F%84%ED%98%B8%EB%B6%80_%EA%B4%80%EC%95%84"
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%EB%8C%80%EB%8F%84%ED%98%B8%EB%B6%80_%EA%B4%80%EC%95%84",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/20190913_194956_%EB%8C%80%EB%8F%84%ED%98%B8%EB%B6%80_%EA%B4%80%EC%95%84.jpg/330px-20190913_194956_%EB%8C%80%EB%8F%84%ED%98%B8%EB%B6%80_%EA%B4%80%EC%95%84.jpg",
+      "width": 4032,
+      "height": 3024,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%A6%89%EB%8C%80%EB%8F%84%ED%98%B8%EB%B6%80_%EA%B4%80%EC%95%84",
+      "license": "cc-by-sa"
+    }
   },
   {
     "source": "curated",

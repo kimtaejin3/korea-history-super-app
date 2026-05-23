@@ -5,17 +5,23 @@ export type Quiz = {
   hint: string;
 };
 
+export type Photo = {
+  url: string;
+  width?: number;
+  height?: number;
+  credit: string;
+  sourceUrl?: string;
+  license: 'cc-by-sa' | 'public-domain' | 'kogl-1' | 'kogl-4' | 'unknown';
+};
+
 export type Place = {
   id: string;
   name: string;
   nameHanja: string;
   region: string;
   era: string;
-  /** 사용자 위치로부터 계산된 거리. 정확한 값은 lat/lon 있을 때 런타임 계산. 없으면 디폴트(mock) 값. */
   distance: number;
-  /** 스타일라이즈 한반도 좌표 (지도용, 0~100 비율) */
   coords: { x: number; y: number };
-  /** 실제 WGS84 좌표. 거리 계산 + 진짜 지도용. */
   lat?: number;
   lon?: number;
   accent: string;
@@ -26,6 +32,8 @@ export type Place = {
   visits: number;
   nearbyStamps: number;
   quiz: Quiz | null;
+  /** 썸네일/사진 (출처 표기 필수) */
+  photo?: Photo | null;
 };
 
 export const PLACES: Place[] = [
@@ -54,6 +62,7 @@ export const PLACES: Place[] = [
       answer: 0,
       hint: '임금을 상징하는 전패를 향해 절을 올리는 의식입니다.',
     },
+    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/%EC%A2%8C%EC%9D%B5%EC%82%AC%EB%82%B4%EB%B6%80.jpg/330px-%EC%A2%8C%EC%9D%B5%EC%82%AC%EB%82%B4%EB%B6%80.jpg", "width": 750, "height": 521, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%8C%BD%EC%84%B1%EC%9D%8D_%EA%B0%9D%EC%82%AC", "license": "cc-by-sa"},
   },
   {
     id: 'daedongbeop-bi',
@@ -80,6 +89,7 @@ export const PLACES: Place[] = [
       answer: 1,
       hint: '효종·현종 대 영의정을 지낸 인물입니다.',
     },
+    photo: {"url": "https://upload.wikimedia.org/wikipedia/ko/thumb/a/a8/%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84_%ED%83%81%EB%B3%B8.jpg/330px-%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84_%ED%83%81%EB%B3%B8.jpg", "width": 2848, "height": 4272, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84", "license": "cc-by-sa"},
   },
   {
     id: 'hyeonchungsa',
@@ -106,6 +116,7 @@ export const PLACES: Place[] = [
       answer: 1,
       hint: '임진왜란 7년의 기록입니다.',
     },
+    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/%ED%98%84%EC%B6%A9%EC%82%AC%28Hyeonchoong-sa%29_01.jpg/330px-%ED%98%84%EC%B6%A9%EC%82%AC%28Hyeonchoong-sa%29_01.jpg", "width": 2272, "height": 1704, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%98%84%EC%B6%A9%EC%82%AC", "license": "cc-by-sa"},
   },
   {
     id: 'oeam-village',
@@ -127,6 +138,7 @@ export const PLACES: Place[] = [
     visits: 256,
     nearbyStamps: 2,
     quiz: null,
+    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Oeam_Folk_Village_2010.JPG/330px-Oeam_Folk_Village_2010.JPG", "width": 3872, "height": 2592, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%99%B8%EC%95%94%EB%A7%88%EC%9D%84", "license": "cc-by-sa"},
   },
   {
     id: 'dokrip-hall',
@@ -167,6 +179,7 @@ export const PLACES: Place[] = [
     visits: 1024,
     nearbyStamps: 5,
     quiz: null,
+    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Bifyu_8.jpg/330px-Bifyu_8.jpg", "width": 1600, "height": 1200, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90_%ED%99%94%EC%84%B1", "license": "cc-by-sa"},
   },
   {
     id: 'sosu-seowon',
@@ -193,6 +206,7 @@ export const PLACES: Place[] = [
       answer: 2,
       hint: '풍기군수 주세붕이 안향의 사당을 모시고 세운 곳입니다.',
     },
+    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sosuseowon.jpg/330px-Sosuseowon.jpg", "width": 2592, "height": 1936, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%98%81%EC%A3%BC_%EC%86%8C%EC%88%98%EC%84%9C%EC%9B%90", "license": "cc-by-sa"},
   },
   {
     id: 'dosan-seowon',
@@ -219,6 +233,7 @@ export const PLACES: Place[] = [
       answer: 2,
       hint: '퇴계 선생으로 더 알려진 조선 성리학의 거두입니다.',
     },
+    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Korea-Andong-Dosan_Seowon_3025-06.JPG/330px-Korea-Andong-Dosan_Seowon_3025-06.JPG", "width": 1280, "height": 960, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EB%8F%99_%EB%8F%84%EC%82%B0%EC%84%9C%EC%9B%90", "license": "cc-by-sa"},
   },
 ];
 

@@ -9,6 +9,7 @@ import { api, queryKeys } from '../../lib/api';
 import { LEVELS } from '../../data/user';
 import { BackHeader } from '../../components/BackHeader';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
+import { PhotoCredit } from '../../components/PhotoCredit';
 import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { SectionLabel } from '../../components/SectionLabel';
@@ -58,7 +59,7 @@ export default function PlaceDetailScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
         {/* 히어로 */}
         <View className="relative">
-          <PhotoPlaceholder height={300} />
+          <PhotoPlaceholder height={300} photoUrl={p.photo?.url} />
           <LinearGradient
             colors={['rgba(0,0,0,0.35)', 'transparent', 'rgba(250,247,240,0.95)']}
             locations={[0, 0.5, 1]}
@@ -70,6 +71,12 @@ export default function PlaceDetailScreen() {
             <View className="absolute top-[100px] right-6 z-[2]">
               <Stamp glyph={p.nameHanja[0]} size={68} rotate={-12} color={p.accent} />
             </View>
+          )}
+          {p.photo && (
+            <PhotoCredit
+              photo={p.photo}
+              style={{ position: 'absolute', bottom: 8, right: 10, zIndex: 2 }}
+            />
           )}
         </View>
 

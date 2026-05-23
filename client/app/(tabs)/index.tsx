@@ -18,6 +18,7 @@ import { api, queryKeys } from "../../lib/api";
 import { Tag } from "../../components/Tag";
 import { Stamp } from "../../components/Stamp";
 import { PhotoPlaceholder } from "../../components/PhotoPlaceholder";
+import { PhotoCredit } from "../../components/PhotoCredit";
 import { SectionLabel } from "../../components/SectionLabel";
 import { PinIcon, SearchIcon } from "../../components/icons";
 import { useSearchTransition } from "../../context/SearchTransition";
@@ -166,7 +167,15 @@ export default function HomeScreen() {
               onPress={() => router.push(`/place/${hero.id}` as never)}
               className="bg-paper border border-line rounded-xl overflow-hidden"
             >
-              <PhotoPlaceholder height={170} />
+              <View>
+                <PhotoPlaceholder height={170} photoUrl={hero.photo?.url} />
+                {hero.photo && (
+                  <PhotoCredit
+                    photo={hero.photo}
+                    style={{ position: "absolute", bottom: 6, right: 8 }}
+                  />
+                )}
+              </View>
               <View className="p-4">
                 <View className="flex-row items-center gap-1.5 mb-1.5">
                   <Tag color={hero.accent} filled>
@@ -264,7 +273,7 @@ export default function HomeScreen() {
               onPress={() => router.push(`/place/${p.id}` as never)}
               className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
             >
-              <PhotoPlaceholder height={64} width={64} />
+              <PhotoPlaceholder height={64} width={64} photoUrl={p.photo?.url} />
               <View className="flex-1">
                 <View className="flex-row items-center gap-1.5 mb-0.5">
                   <Tag color={p.accent}>{p.era}</Tag>

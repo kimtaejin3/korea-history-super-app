@@ -61,7 +61,16 @@
     "designation": "제4호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 탑",
     "sn": "4",
-    "location": "경기도 여주시"
+    "location": "경기도 여주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/4th-National-Treasures-of-South_Korea.jpg/330px-4th-National-Treasures-of-South_Korea.jpg",
+      "width": 820,
+      "height": 570,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%97%AC%EC%A3%BC_%EA%B3%A0%EB%8B%AC%EC%82%AC%EC%A7%80_%EC%8A%B9%ED%83%91",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%97%AC%EC%A3%BC_%EA%B3%A0%EB%8B%AC%EC%82%AC%EC%A7%80_%EC%8A%B9%ED%83%91"
   },
   {
     "ccbaKdcd": 11,
@@ -109,7 +118,16 @@
     "designation": "제7호",
     "classification": "기록유산 / 서각류 / 금석각류 / 비",
     "sn": "7",
-    "location": "충청남도 천안시"
+    "location": "충청남도 천안시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Stele_of_BongseonHonggyeongsa_temple_in_Cheonan%2C_Korea.jpg/330px-Stele_of_BongseonHonggyeongsa_temple_in_Cheonan%2C_Korea.jpg",
+      "width": 1298,
+      "height": 2063,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%B2%9C%EC%95%88_%EB%B4%89%EC%84%A0%ED%99%8D%EA%B2%BD%EC%82%AC_%EA%B0%88%EA%B8%B0%EB%B9%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%9C%EC%95%88_%EB%B4%89%EC%84%A0%ED%99%8D%EA%B2%BD%EC%82%AC_%EA%B0%88%EA%B8%B0%EB%B9%84"
   },
   {
     "ccbaKdcd": 11,
@@ -125,7 +143,16 @@
     "designation": "제8호",
     "classification": "기록유산 / 서각류 / 금석각류 / 비",
     "sn": "8",
-    "location": "충청남도 보령시"
+    "location": "충청남도 보령시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Priest_Nanghye%27s_Memorial_Stele_in_Seongjusa_Temple01.jpg/330px-Priest_Nanghye%27s_Memorial_Stele_in_Seongjusa_Temple01.jpg",
+      "width": 1542,
+      "height": 1959,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%B3%B4%EB%A0%B9_%EC%84%B1%EC%A3%BC%EC%82%AC%EC%A7%80_%EB%82%AD%ED%98%9C%ED%99%94%EC%83%81%ED%83%91%EB%B9%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%B3%B4%EB%A0%B9_%EC%84%B1%EC%A3%BC%EC%82%AC%EC%A7%80_%EB%82%AD%ED%98%9C%ED%99%94%EC%83%81%ED%83%91%EB%B9%84"
   },
   {
     "ccbaKdcd": 11,
@@ -141,7 +168,16 @@
     "designation": "제9호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 탑",
     "sn": "9",
-    "location": "충청남도 부여군"
+    "location": "충청남도 부여군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/%EC%A0%95%EB%A6%BC%EC%82%AC%EC%A7%80_%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91_%EC%A0%95%EB%A9%B4.jpg/330px-%EC%A0%95%EB%A6%BC%EC%82%AC%EC%A7%80_%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91_%EC%A0%95%EB%A9%B4.jpg",
+      "width": 800,
+      "height": 1200,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EC%A0%95%EB%A6%BC%EC%82%AC%EC%A7%80_%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EC%A0%95%EB%A6%BC%EC%82%AC%EC%A7%80_%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91"
   },
   {
     "ccbaKdcd": 11,
@@ -653,7 +689,16 @@
     "designation": "제49호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 불전",
     "sn": "41",
-    "location": "충청남도 예산군"
+    "location": "충청남도 예산군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Sudeoksa_01.JPG/330px-Sudeoksa_01.JPG",
+      "width": 1600,
+      "height": 1200,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%98%88%EC%82%B0_%EC%88%98%EB%8D%95%EC%82%AC_%EB%8C%80%EC%9B%85%EC%A0%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%98%88%EC%82%B0_%EC%88%98%EB%8D%95%EC%82%AC_%EB%8C%80%EC%9B%85%EC%A0%84"
   },
   {
     "ccbaKdcd": 11,
@@ -1005,7 +1050,16 @@
     "designation": "제84호",
     "classification": "유물 / 불교조각 / 석조 / 불상",
     "sn": "63",
-    "location": "충청남도 서산시"
+    "location": "충청남도 서산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/%EC%A0%9C2%EA%B2%BD_%EB%A7%88%EC%95%A0%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%83%81.jpg/330px-%EC%A0%9C2%EA%B2%BD_%EB%A7%88%EC%95%A0%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%83%81.jpg",
+      "width": 1920,
+      "height": 1280,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%82%B0_%EC%9A%A9%ED%98%84%EB%A6%AC_%EB%A7%88%EC%95%A0%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%83%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%82%B0_%EC%9A%A9%ED%98%84%EB%A6%AC_%EB%A7%88%EC%95%A0%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%83%81"
   },
   {
     "ccbaKdcd": 11,
@@ -1757,7 +1811,16 @@
     "designation": "제154호",
     "classification": "유물 / 생활공예 / 금속공예 / 장신구",
     "sn": "110",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EC%A0%9C%EA%B4%80%EC%8B%9D.jpg/330px-%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EC%A0%9C%EA%B4%80%EC%8B%9D.jpg",
+      "width": 2714,
+      "height": 2192,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EC%A0%9C%EA%B4%80%EC%8B%9D",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EC%A0%9C%EA%B4%80%EC%8B%9D"
   },
   {
     "ccbaKdcd": 11,
@@ -1789,7 +1852,16 @@
     "designation": "제156호",
     "classification": "유물 / 생활공예 / 금속공예 / 장신구",
     "sn": "112",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EA%B7%80%EA%B1%B8%EC%9D%B4.jpg/330px-%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EA%B7%80%EA%B1%B8%EC%9D%B4.jpg",
+      "width": 1938,
+      "height": 1548,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EA%B7%80%EA%B1%B8%EC%9D%B4",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EA%B7%80%EA%B1%B8%EC%9D%B4"
   },
   {
     "ccbaKdcd": 11,
@@ -1821,7 +1893,16 @@
     "designation": "제158호",
     "classification": "유물 / 생활공예 / 금속공예 / 장신구",
     "sn": "114",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%B9%84_%EA%B8%88%EB%AA%A9%EA%B1%B8%EC%9D%B4.jpg/330px-%EB%AC%B4%EB%A0%B9%EC%99%95%EB%B9%84_%EA%B8%88%EB%AA%A9%EA%B1%B8%EC%9D%B4.jpg",
+      "width": 1950,
+      "height": 1557,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%B9%84_%EA%B8%88%EB%AA%A9%EA%B1%B8%EC%9D%B4",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%B9%84_%EA%B8%88%EB%AA%A9%EA%B1%B8%EC%9D%B4"
   },
   {
     "ccbaKdcd": 11,
@@ -1837,7 +1918,16 @@
     "designation": "제159호",
     "classification": "유물 / 생활공예 / 금속공예 / 장신구",
     "sn": "115",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EC%A0%9C_%EB%92%A4%EA%BD%82%EC%9D%B4.jpg/330px-%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EC%A0%9C_%EB%92%A4%EA%BD%82%EC%9D%B4.jpg",
+      "width": 884,
+      "height": 1358,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EC%A0%9C_%EB%92%A4%EA%BD%82%EC%9D%B4",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95_%EA%B8%88%EC%A0%9C_%EB%92%A4%EA%BD%82%EC%9D%B4"
   },
   {
     "ccbaKdcd": 11,
@@ -1853,7 +1943,16 @@
     "designation": "제160호",
     "classification": "유물 / 생활공예 / 금속공예 / 장신구",
     "sn": "116",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%B9%84_%EC%9D%80%ED%8C%94%EC%B0%8C.jpg/330px-%EB%AC%B4%EB%A0%B9%EC%99%95%EB%B9%84_%EC%9D%80%ED%8C%94%EC%B0%8C.jpg",
+      "width": 2037,
+      "height": 1272,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%B9%84_%EC%9D%80%ED%8C%94%EC%B0%8C",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%B9%84_%EC%9D%80%ED%8C%94%EC%B0%8C"
   },
   {
     "ccbaKdcd": 11,
@@ -1869,7 +1968,16 @@
     "designation": "제161호",
     "classification": "유물 / 생활공예 / 금속공예 / 장신구",
     "sn": "117",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%B6%9C%ED%86%A0_%EC%8B%A0%EC%88%98%EB%AC%B8_%EC%B2%AD%EB%8F%99%EA%B1%B0%EC%9A%B8.jpg/330px-%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%B6%9C%ED%86%A0_%EC%8B%A0%EC%88%98%EB%AC%B8_%EC%B2%AD%EB%8F%99%EA%B1%B0%EC%9A%B8.jpg",
+      "width": 2548,
+      "height": 2455,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%B2%AD%EB%8F%99%EA%B1%B0%EC%9A%B8_%EC%9D%BC%EA%B4%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%B2%AD%EB%8F%99%EA%B1%B0%EC%9A%B8_%EC%9D%BC%EA%B4%84"
   },
   {
     "ccbaKdcd": 11,
@@ -1885,7 +1993,16 @@
     "designation": "제162호",
     "classification": "유물 / 일반조각 / 능묘조각 / 석수",
     "sn": "118",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%84%9D%EC%88%98.jpg/330px-%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%84%9D%EC%88%98.jpg",
+      "width": 2142,
+      "height": 1681,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%84%9D%EC%88%98",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%84%9D%EC%88%98"
   },
   {
     "ccbaKdcd": 11,
@@ -1901,7 +2018,16 @@
     "designation": "제163호",
     "classification": "기록유산 / 서각류 / 금석각류 / 지석",
     "sn": "119",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%A7%80%EC%84%9D_02.jpg/330px-%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%A7%80%EC%84%9D_02.jpg",
+      "width": 1881,
+      "height": 1551,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%A7%80%EC%84%9D",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EB%A0%B9%EC%99%95%EB%A6%89_%EC%A7%80%EC%84%9D"
   },
   {
     "ccbaKdcd": 11,
@@ -5309,7 +5435,16 @@
     "designation": "제150호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 당간",
     "sn": "130",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/%EA%B3%B5%EC%A3%BC_%EB%B0%98%EC%A3%BD%EB%8F%99_%EB%8B%B9%EA%B0%84%EC%A7%80%EC%A3%BC.jpg/330px-%EA%B3%B5%EC%A3%BC_%EB%B0%98%EC%A3%BD%EB%8F%99_%EB%8B%B9%EA%B0%84%EC%A7%80%EC%A3%BC.jpg",
+      "width": 1094,
+      "height": 1600,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B3%B5%EC%A3%BC_%EB%B0%98%EC%A3%BD%EB%8F%99_%EB%8B%B9%EA%B0%84%EC%A7%80%EC%A3%BC",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B3%B5%EC%A3%BC_%EB%B0%98%EC%A3%BD%EB%8F%99_%EB%8B%B9%EA%B0%84%EC%A7%80%EC%A3%BC"
   },
   {
     "ccbaKdcd": 12,
@@ -5485,7 +5620,16 @@
     "designation": "제162호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 불전",
     "sn": "141",
-    "location": "충청남도 청양군"
+    "location": "충청남도 청양군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/%EC%B2%AD%EC%96%91_%EC%9E%A5%EA%B3%A1%EC%82%AC_%EC%83%81_%EB%8C%80%EC%9B%85%EC%A0%84_01.jpg/330px-%EC%B2%AD%EC%96%91_%EC%9E%A5%EA%B3%A1%EC%82%AC_%EC%83%81_%EB%8C%80%EC%9B%85%EC%A0%84_01.jpg",
+      "width": 1929,
+      "height": 1347,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%96%91_%EC%9E%A5%EA%B3%A1%EC%82%AC_%EC%83%81_%EB%8C%80%EC%9B%85%EC%A0%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%96%91_%EC%9E%A5%EA%B3%A1%EC%82%AC_%EC%83%81_%EB%8C%80%EC%9B%85%EC%A0%84"
   },
   {
     "ccbaKdcd": 12,
@@ -5709,7 +5853,16 @@
     "designation": "제180호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 당우",
     "sn": "155",
-    "location": "경기도 여주시"
+    "location": "경기도 여주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Josadang_of_Silleuksa-temple.JPG/330px-Josadang_of_Silleuksa-temple.JPG",
+      "width": 2592,
+      "height": 1936,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%97%AC%EC%A3%BC_%EC%8B%A0%EB%A5%B5%EC%82%AC_%EC%A1%B0%EC%82%AC%EB%8B%B9",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%97%AC%EC%A3%BC_%EC%8B%A0%EB%A5%B5%EC%82%AC_%EC%A1%B0%EC%82%AC%EB%8B%B9"
   },
   {
     "ccbaKdcd": 12,
@@ -5725,7 +5878,16 @@
     "designation": "제181호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 불전",
     "sn": "156",
-    "location": "충청남도 청양군"
+    "location": "충청남도 청양군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/%EC%B2%AD%EC%96%91_%EC%9E%A5%EA%B3%A1%EC%82%AC_%ED%95%98_%EB%8C%80%EC%9B%85%EC%A0%84_01.jpg/330px-%EC%B2%AD%EC%96%91_%EC%9E%A5%EA%B3%A1%EC%82%AC_%ED%95%98_%EB%8C%80%EC%9B%85%EC%A0%84_01.jpg",
+      "width": 1837,
+      "height": 1348,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%96%91_%EC%9E%A5%EA%B3%A1%EC%82%AC_%ED%95%98_%EB%8C%80%EC%9B%85%EC%A0%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%96%91_%EC%9E%A5%EA%B3%A1%EC%82%AC_%ED%95%98_%EB%8C%80%EC%9B%85%EC%A0%84"
   },
   {
     "ccbaKdcd": 12,
@@ -5773,7 +5935,16 @@
     "designation": "제184호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 탑",
     "sn": "159",
-    "location": "충청남도 부여군"
+    "location": "충청남도 부여군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/%EB%B6%80%EC%97%AC_%EC%9E%A5%ED%95%98%EB%A6%AC_%EC%82%BC%EC%B8%B5%EC%84%9D%ED%83%91.jpg/330px-%EB%B6%80%EC%97%AC_%EC%9E%A5%ED%95%98%EB%A6%AC_%EC%82%BC%EC%B8%B5%EC%84%9D%ED%83%91.jpg",
+      "width": 1200,
+      "height": 2504,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EC%9E%A5%ED%95%98%EB%A6%AC_%EC%82%BC%EC%B8%B5%EC%84%9D%ED%83%91",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EC%9E%A5%ED%95%98%EB%A6%AC_%EC%82%BC%EC%B8%B5%EC%84%9D%ED%83%91"
   },
   {
     "ccbaKdcd": 12,
@@ -5789,7 +5960,16 @@
     "designation": "제185호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 탑",
     "sn": "160",
-    "location": "충청남도 부여군"
+    "location": "충청남도 부여군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/%EB%AC%B4%EB%9F%89%EC%82%AC_%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91.jpg/330px-%EB%AC%B4%EB%9F%89%EC%82%AC_%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91.jpg",
+      "width": 1824,
+      "height": 2736,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EB%AC%B4%EB%9F%89%EC%82%AC_%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EB%AC%B4%EB%9F%89%EC%82%AC_%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91"
   },
   {
     "ccbaKdcd": 12,
@@ -5933,7 +6113,16 @@
     "designation": "제194호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 기타",
     "sn": "169",
-    "location": "충청남도 부여군"
+    "location": "충청남도 부여군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/%EB%B6%80%EC%97%AC_%EC%84%9D%EC%A1%B0.jpg/330px-%EB%B6%80%EC%97%AC_%EC%84%9D%EC%A1%B0.jpg",
+      "width": 945,
+      "height": 949,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EC%84%9D%EC%A1%B0",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EC%84%9D%EC%A1%B0"
   },
   {
     "ccbaKdcd": 12,
@@ -5949,7 +6138,16 @@
     "designation": "제196호",
     "classification": "유물 / 불교조각 / 금속조 / 불상",
     "sn": "170",
-    "location": "충청남도 부여군"
+    "location": "충청남도 부여군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/%E3%80%8C%EC%A0%95%EC%A7%80%EC%9B%90%E3%80%8D%EC%9D%B4_%EC%83%88%EA%B2%A8%EC%A7%84_%EC%84%9D%EA%B0%80%EB%B6%88%EC%82%BC%EC%A1%B4%EC%9E%85%EC%83%81.jpg/330px-%E3%80%8C%EC%A0%95%EC%A7%80%EC%9B%90%E3%80%8D%EC%9D%B4_%EC%83%88%EA%B2%A8%EC%A7%84_%EC%84%9D%EA%B0%80%EB%B6%88%EC%82%BC%EC%A1%B4%EC%9E%85%EC%83%81.jpg",
+      "width": 2250,
+      "height": 3000,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B8%88%EB%8F%99%EC%A0%95%EC%A7%80%EC%9B%90%EB%AA%85%EC%84%9D%EA%B0%80%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%9E%85%EC%83%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B8%88%EB%8F%99%EC%A0%95%EC%A7%80%EC%9B%90%EB%AA%85%EC%84%9D%EA%B0%80%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%9E%85%EC%83%81"
   },
   {
     "ccbaKdcd": 12,
@@ -5965,7 +6163,16 @@
     "designation": "제197호",
     "classification": "유물 / 불교조각 / 석조 / 불상",
     "sn": "171",
-    "location": "충청남도 청양군"
+    "location": "충청남도 청양군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/%EC%B2%AD%EC%96%91_%EC%9D%8D%EB%82%B4%EB%A6%AC_%EC%84%9D%EC%A1%B0%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%9E%85%EC%83%81.jpg/330px-%EC%B2%AD%EC%96%91_%EC%9D%8D%EB%82%B4%EB%A6%AC_%EC%84%9D%EC%A1%B0%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%9E%85%EC%83%81.jpg",
+      "width": 945,
+      "height": 963,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%96%91_%EC%9D%8D%EB%82%B4%EB%A6%AC_%EC%84%9D%EC%A1%B0%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%9E%85%EC%83%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%96%91_%EC%9D%8D%EB%82%B4%EB%A6%AC_%EC%84%9D%EC%A1%B0%EC%97%AC%EB%9E%98%EC%82%BC%EC%A1%B4%EC%9E%85%EC%83%81"
   },
   {
     "ccbaKdcd": 12,
@@ -6061,7 +6268,16 @@
     "designation": "제209호",
     "classification": "유적건조물 / 주거생활 / 주거건축 / 가옥",
     "sn": "177",
-    "location": "대전광역시 대덕구"
+    "location": "대전광역시 대덕구",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Dongchundang_01.JPG/330px-Dongchundang_01.JPG",
+      "width": 1600,
+      "height": 1200,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84_%ED%9A%8C%EB%8D%95_%EB%8F%99%EC%B6%98%EB%8B%B9",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84_%ED%9A%8C%EB%8D%95_%EB%8F%99%EC%B6%98%EB%8B%B9"
   },
   {
     "ccbaKdcd": 12,
@@ -12765,7 +12981,16 @@
     "designation": "제874호",
     "classification": "기록유산 / 문서류 / 국왕문서 / 교령류",
     "sn": "596",
-    "location": "경기도 성남시"
+    "location": "경기도 성남시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Replace_this_image_male-ko.svg/langko-330px-Replace_this_image_male-ko.svg.png",
+      "width": 150,
+      "height": 150,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%B6%A9%EC%9B%90_%ED%98%B8%EC%84%B1%EA%B3%B5%EC%8B%A0%EA%B5%90%EC%84%9C",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%B6%A9%EC%9B%90_%ED%98%B8%EC%84%B1%EA%B3%B5%EC%8B%A0%EA%B5%90%EC%84%9C"
   },
   {
     "ccbaKdcd": 12,
@@ -13085,7 +13310,16 @@
     "designation": "제930호",
     "classification": "유물 / 일반회화 / 기록화",
     "sn": "616",
-    "location": "경기도 용인시"
+    "location": "경기도 용인시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/%EC%9D%B4%EA%B2%BD%EC%84%9D_%EA%B6%A4%EC%9E%A5_%EB%B0%8F_%EC%82%AC%EA%B6%A4%EC%9E%A5_%EC%97%B0%ED%9A%8C%EB%8F%84_%ED%99%94%EC%B2%A9.jpg/330px-%EC%9D%B4%EA%B2%BD%EC%84%9D_%EA%B6%A4%EC%9E%A5_%EB%B0%8F_%EC%82%AC%EA%B6%A4%EC%9E%A5_%EC%97%B0%ED%9A%8C%EB%8F%84_%ED%99%94%EC%B2%A9.jpg",
+      "width": 750,
+      "height": 495,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EA%B2%BD%EC%84%9D_%EA%B6%A4%EC%9E%A5_%EB%B0%8F_%EC%82%AC%EA%B6%A4%EC%9E%A5_%EC%97%B0%ED%9A%8C%EB%8F%84_%ED%99%94%EC%B2%A9",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EA%B2%BD%EC%84%9D_%EA%B6%A4%EC%9E%A5_%EB%B0%8F_%EC%82%AC%EA%B6%A4%EC%9E%A5_%EC%97%B0%ED%9A%8C%EB%8F%84_%ED%99%94%EC%B2%A9"
   },
   {
     "ccbaKdcd": 12,
@@ -13421,7 +13655,16 @@
     "designation": "제979호",
     "classification": "유물 / 불교조각 / 석조 / 불상",
     "sn": "637",
-    "location": "충청남도 공주시"
+    "location": "충청남도 공주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Replace_this_image_male-ko.svg/langko-330px-Replace_this_image_male-ko.svg.png",
+      "width": 150,
+      "height": 150,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B3%B5%EC%A3%BC_%EC%84%9C%ED%98%88%EC%82%AC%EC%A7%80_%EC%84%9D%EC%A1%B0%EC%97%AC%EB%9E%98%EC%A2%8C%EC%83%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B3%B5%EC%A3%BC_%EC%84%9C%ED%98%88%EC%82%AC%EC%A7%80_%EC%84%9D%EC%A1%B0%EC%97%AC%EB%9E%98%EC%A2%8C%EC%83%81"
   },
   {
     "ccbaKdcd": 12,
@@ -13437,7 +13680,16 @@
     "designation": "제981호",
     "classification": "유물 / 불교조각 / 석조 / 불상",
     "sn": "638",
-    "location": "경기도 하남시"
+    "location": "경기도 하남시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/%ED%95%98%EB%82%A8_%EA%B5%90%EC%82%B0%EB%8F%99_%EB%A7%88%EC%95%A0%EC%95%BD%EC%82%AC%EC%97%AC%EB%9E%98%EC%A2%8C%EC%83%81_01.JPG/330px-%ED%95%98%EB%82%A8_%EA%B5%90%EC%82%B0%EB%8F%99_%EB%A7%88%EC%95%A0%EC%95%BD%EC%82%AC%EC%97%AC%EB%9E%98%EC%A2%8C%EC%83%81_01.JPG",
+      "width": 2848,
+      "height": 4272,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%95%98%EB%82%A8_%EA%B5%90%EC%82%B0%EB%8F%99_%EB%A7%88%EC%95%A0%EC%95%BD%EC%82%AC%EC%97%AC%EB%9E%98%EC%A2%8C%EC%83%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%95%98%EB%82%A8_%EA%B5%90%EC%82%B0%EB%8F%99_%EB%A7%88%EC%95%A0%EC%95%BD%EC%82%AC%EC%97%AC%EB%9E%98%EC%A2%8C%EC%83%81"
   },
   {
     "ccbaKdcd": 12,
@@ -13453,7 +13705,16 @@
     "designation": "제982호",
     "classification": "유물 / 불교조각 / 석조 / 불상",
     "sn": "639",
-    "location": "경기도 이천시"
+    "location": "경기도 이천시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/%ED%83%9C%ED%8F%89%ED%9D%A5%EA%B5%AD%EB%AA%85%EB%A7%88%EC%95%A0%EB%B3%B4%EC%82%B4%EC%A2%8C%EC%83%81-Relife-of-Bodhisattva-with-Inscription-That-Begins-with-Tiaep-Yonghugguk-2.jpg/330px-%ED%83%9C%ED%8F%89%ED%9D%A5%EA%B5%AD%EB%AA%85%EB%A7%88%EC%95%A0%EB%B3%B4%EC%82%B4%EC%A2%8C%EC%83%81-Relife-of-Bodhisattva-with-Inscription-That-Begins-with-Tiaep-Yonghugguk-2.jpg",
+      "width": 5472,
+      "height": 3072,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%B2%9C_%EC%9E%A5%EC%95%94%EB%A6%AC_%EB%A7%88%EC%95%A0%EB%B3%B4%EC%82%B4%EB%B0%98%EA%B0%80%EC%83%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%B2%9C_%EC%9E%A5%EC%95%94%EB%A6%AC_%EB%A7%88%EC%95%A0%EB%B3%B4%EC%82%B4%EB%B0%98%EA%B0%80%EC%83%81"
   },
   {
     "ccbaKdcd": 12,
@@ -13693,7 +13954,16 @@
     "designation": "제1052호",
     "classification": "기록유산 / 전적류 / 목판본 / 기복도감",
     "sn": "654",
-    "location": "경기도 용인시"
+    "location": "경기도 용인시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/%EC%B2%9C%ED%83%9C%EC%82%AC%EA%B5%90%EC%9D%982.jpg/330px-%EC%B2%9C%ED%83%9C%EC%82%AC%EA%B5%90%EC%9D%982.jpg",
+      "width": 1200,
+      "height": 948,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%B2%9C%ED%83%9C%EC%82%AC%EA%B5%90%EC%9D%98",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%9C%ED%83%9C%EC%82%AC%EA%B5%90%EC%9D%98"
   },
   {
     "ccbaKdcd": 12,
@@ -17965,7 +18235,16 @@
     "designation": "제1743호",
     "classification": "유적건조물 / 무덤 / 왕실무덤 / 조선시대",
     "sn": "921",
-    "location": "경기도 구리시"
+    "location": "경기도 구리시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EB%AA%A9%EB%A6%89_%EC%A0%95%EC%9E%90%EA%B0%81_%EC%A0%84%EA%B2%BD.jpg/330px-%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EB%AA%A9%EB%A6%89_%EC%A0%95%EC%9E%90%EA%B0%81_%EC%A0%84%EA%B2%BD.jpg",
+      "width": 4000,
+      "height": 2955,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EB%AA%A9%EB%A6%89_%EC%A0%95%EC%9E%90%EA%B0%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC%EB%A6%AC_%EB%8F%99%EA%B5%AC%EB%A6%89_%EB%AA%A9%EB%A6%89_%EC%A0%95%EC%9E%90%EA%B0%81"
   },
   {
     "ccbaKdcd": 12,
@@ -18013,7 +18292,16 @@
     "designation": "제1746호",
     "classification": "유적건조물 / 교육문화 / 교육기관 / 서원",
     "sn": "924",
-    "location": "충청남도 논산시"
+    "location": "충청남도 논산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/%EB%85%B8%EA%B0%95%EC%84%9C%EC%9B%90_%EA%B0%95%EB%8B%B9_%283%29.jpg/330px-%EB%85%B8%EA%B0%95%EC%84%9C%EC%9B%90_%EA%B0%95%EB%8B%B9_%283%29.jpg",
+      "width": 3776,
+      "height": 2520,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%85%BC%EC%82%B0_%EB%85%B8%EA%B0%95%EC%84%9C%EC%9B%90_%EA%B0%95%EB%8B%B9",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%85%BC%EC%82%B0_%EB%85%B8%EA%B0%95%EC%84%9C%EC%9B%90_%EA%B0%95%EB%8B%B9"
   },
   {
     "ccbaKdcd": 12,
@@ -18189,7 +18477,16 @@
     "designation": "제1808호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 탑",
     "sn": "935",
-    "location": "경기도 남양주시"
+    "location": "경기도 남양주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Octagonal_Five_storied_stone_pagoda_of_Sujongsa_Temple_01.jpg/330px-Octagonal_Five_storied_stone_pagoda_of_Sujongsa_Temple_01.jpg",
+      "width": 2592,
+      "height": 4608,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%96%91%EC%A3%BC_%EC%88%98%EC%A2%85%EC%82%AC_%ED%8C%94%EA%B0%81%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%96%91%EC%A3%BC_%EC%88%98%EC%A2%85%EC%82%AC_%ED%8C%94%EA%B0%81%EC%98%A4%EC%B8%B5%EC%84%9D%ED%83%91"
   },
   {
     "ccbaKdcd": 12,
@@ -18509,7 +18806,16 @@
     "designation": "제1942호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 사찰",
     "sn": "955",
-    "location": "경기도 화성시"
+    "location": "경기도 화성시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/%EC%9A%A9%EC%A3%BC%EC%82%AC%EB%8C%80%EC%9B%85%EB%B3%B4%EC%A0%84.jpg/330px-%EC%9A%A9%EC%A3%BC%EC%82%AC%EB%8C%80%EC%9B%85%EB%B3%B4%EC%A0%84.jpg",
+      "width": 4032,
+      "height": 3024,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%99%94%EC%84%B1_%EC%9A%A9%EC%A3%BC%EC%82%AC_%EB%8C%80%EC%9B%85%EB%B3%B4%EC%A0%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%99%94%EC%84%B1_%EC%9A%A9%EC%A3%BC%EC%82%AC_%EB%8C%80%EC%9B%85%EB%B3%B4%EC%A0%84"
   },
   {
     "ccbaKdcd": 12,
@@ -18541,7 +18847,16 @@
     "designation": "제1976호",
     "classification": "유적건조물 / 무덤 / 왕실무덤 / 조선시대",
     "sn": "957",
-    "location": "충청남도 서산시"
+    "location": "충청남도 서산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/%EB%AA%85%EC%A2%85%EB%8C%80%EC%99%95%ED%83%9C%EC%8B%A4%EB%B0%8F%EB%B9%841.jpg/330px-%EB%AA%85%EC%A2%85%EB%8C%80%EC%99%95%ED%83%9C%EC%8B%A4%EB%B0%8F%EB%B9%841.jpg",
+      "width": 2184,
+      "height": 1456,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%82%B0_%EB%AA%85%EC%A2%85%EB%8C%80%EC%99%95_%ED%83%9C%EC%8B%A4_%EB%B0%8F_%EB%B9%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%82%B0_%EB%AA%85%EC%A2%85%EB%8C%80%EC%99%95_%ED%83%9C%EC%8B%A4_%EB%B0%8F_%EB%B9%84"
   },
   {
     "ccbaKdcd": 12,
@@ -18589,7 +18904,16 @@
     "designation": "제2013호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 탑",
     "sn": "960",
-    "location": "경기도 남양주시"
+    "location": "경기도 남양주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Stupa_of_Sujongsa_Temple_01.jpg/330px-Stupa_of_Sujongsa_Temple_01.jpg",
+      "width": 2592,
+      "height": 4608,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%96%91%EC%A3%BC_%EC%88%98%EC%A2%85%EC%82%AC_%EC%82%AC%EB%A6%AC%ED%83%91",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%82%A8%EC%96%91%EC%A3%BC_%EC%88%98%EC%A2%85%EC%82%AC_%EC%82%AC%EB%A6%AC%ED%83%91"
   },
   {
     "ccbaKdcd": 12,
@@ -18605,7 +18929,16 @@
     "designation": "제2021호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 탑",
     "sn": "961",
-    "location": "충청남도 보령시"
+    "location": "충청남도 보령시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/East_Three-story_Stone_Pagoda_of_Seongjusa_Temple_Site.jpg/330px-East_Three-story_Stone_Pagoda_of_Seongjusa_Temple_Site.jpg",
+      "width": 2217,
+      "height": 2956,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%B3%B4%EB%A0%B9_%EC%84%B1%EC%A3%BC%EC%82%AC%EC%A7%80_%EB%8F%99_%EC%82%BC%EC%B8%B5%EC%84%9D%ED%83%91",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%B3%B4%EB%A0%B9_%EC%84%B1%EC%A3%BC%EC%82%AC%EC%A7%80_%EB%8F%99_%EC%82%BC%EC%B8%B5%EC%84%9D%ED%83%91"
   },
   {
     "ccbaKdcd": 12,
@@ -18653,7 +18986,16 @@
     "designation": "제2035호",
     "classification": "유적건조물 / 종교신앙 / 제사유적 / 제사터",
     "sn": "964",
-    "location": "경기도 수원시"
+    "location": "경기도 수원시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/%EC%88%98%EC%9B%90_%ED%99%94%EB%A0%B9%EC%A0%84_%EC%9A%B4%ED%95%9C%EA%B0%81.jpg/330px-%EC%88%98%EC%9B%90_%ED%99%94%EB%A0%B9%EC%A0%84_%EC%9A%B4%ED%95%9C%EA%B0%81.jpg",
+      "width": 1200,
+      "height": 801,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90_%ED%99%94%EB%A0%B9%EC%A0%84_%EC%9A%B4%ED%95%9C%EA%B0%81%C2%B7%EB%B3%B5%EB%8F%84%EA%B0%81%C2%B7%EC%9D%B4%EC%95%88%EC%B2%AD",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90_%ED%99%94%EB%A0%B9%EC%A0%84_%EC%9A%B4%ED%95%9C%EA%B0%81%C2%B7%EB%B3%B5%EB%8F%84%EA%B0%81%C2%B7%EC%9D%B4%EC%95%88%EC%B2%AD"
   },
   {
     "ccbaKdcd": 12,
@@ -18669,7 +19011,16 @@
     "designation": "제2036호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 불전",
     "sn": "965",
-    "location": "경기도 안성시"
+    "location": "경기도 안성시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/%EC%95%88%EC%84%B1_%EC%B9%A0%EC%9E%A5%EC%82%AC_%EB%8C%80%EC%9B%85%EC%A0%84.jpg/330px-%EC%95%88%EC%84%B1_%EC%B9%A0%EC%9E%A5%EC%82%AC_%EB%8C%80%EC%9B%85%EC%A0%84.jpg",
+      "width": 750,
+      "height": 515,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1_%EC%B9%A0%EC%9E%A5%EC%82%AC_%EB%8C%80%EC%9B%85%EC%A0%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1_%EC%B9%A0%EC%9E%A5%EC%82%AC_%EB%8C%80%EC%9B%85%EC%A0%84"
   },
   {
     "ccbaKdcd": 12,
@@ -21581,7 +21932,15 @@
     "designation": "제112호",
     "classification": "유적건조물 / 인물사건 / 인물기념 / 순절지",
     "sn": "78",
-    "location": "충청남도 아산시"
+    "location": "충청남도 아산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/230813_%EB%AC%B4%EC%9D%98%EA%B3%B5_%EC%9D%B4%EC%88%9C%EC%8B%A0_%EB%AC%98.jpg/330px-230813_%EB%AC%B4%EC%9D%98%EA%B3%B5_%EC%9D%B4%EC%88%9C%EC%8B%A0_%EB%AC%98.jpg",
+      "width": 4608,
+      "height": 2184,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%AC%B4%EC%9D%98%EA%B3%B5_%EC%9D%B4%EC%88%9C%EC%8B%A0_%EB%AC%98",
+      "license": "cc-by-sa"
+    }
   },
   {
     "ccbaKdcd": 13,
@@ -23229,7 +23588,16 @@
     "designation": "제223호",
     "classification": "유적건조물 / 주거생활 / 주거건축 / 건물지",
     "sn": "181",
-    "location": "경기도 연천군"
+    "location": "경기도 연천군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/%EC%88%AD%EC%9D%98%EC%A0%84.jpg/330px-%EC%88%AD%EC%9D%98%EC%A0%84.jpg",
+      "width": 4427,
+      "height": 1636,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%B2%9C_%EC%88%AD%EC%9D%98%EC%A0%84%EC%A7%80",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%B2%9C_%EC%88%AD%EC%9D%98%EC%A0%84%EC%A7%80"
   },
   {
     "ccbaKdcd": 13,
@@ -23325,7 +23693,16 @@
     "designation": "제229호",
     "classification": "유적건조물 / 인물사건 / 근대인물 / 광복운동",
     "sn": "187",
-    "location": "충청남도 예산군"
+    "location": "충청남도 예산군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/%EC%98%88%EC%82%B0-%EC%9C%A4%EB%B4%89%EA%B8%B8-%EC%9D%98%EC%82%AC-%EC%9C%A0%EC%A0%81-Historic-Site-Related-to-Yun-Bong-gil-Yesan-7.jpg/330px-%EC%98%88%EC%82%B0-%EC%9C%A4%EB%B4%89%EA%B8%B8-%EC%9D%98%EC%82%AC-%EC%9C%A0%EC%A0%81-Historic-Site-Related-to-Yun-Bong-gil-Yesan-7.jpg",
+      "width": 5472,
+      "height": 3072,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%98%88%EC%82%B0_%EC%9C%A4%EB%B4%89%EA%B8%B8_%EC%9D%98%EC%82%AC_%EC%9C%A0%EC%A0%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%98%88%EC%82%B0_%EC%9C%A4%EB%B4%89%EA%B8%B8_%EC%9D%98%EC%82%AC_%EC%9C%A0%EC%A0%81"
   },
   {
     "ccbaKdcd": 13,
@@ -23341,7 +23718,16 @@
     "designation": "제230호",
     "classification": "유적건조물 / 인물사건 / 근대인물 / 광복운동",
     "sn": "188",
-    "location": "충청남도 천안시"
+    "location": "충청남도 천안시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/%EC%9C%A0%EA%B4%80%EC%88%9C%EC%97%B4%EC%82%AC-%EC%9C%A0%EC%A0%81-The-Relics-of-Patriot-Yu-Gwansun-18.jpg/330px-%EC%9C%A0%EA%B4%80%EC%88%9C%EC%97%B4%EC%82%AC-%EC%9C%A0%EC%A0%81-The-Relics-of-Patriot-Yu-Gwansun-18.jpg",
+      "width": 5472,
+      "height": 3072,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%B2%9C%EC%95%88_%EC%9C%A0%EA%B4%80%EC%88%9C_%EC%97%B4%EC%82%AC_%EC%9C%A0%EC%A0%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%B2%9C%EC%95%88_%EC%9C%A0%EA%B4%80%EC%88%9C_%EC%97%B4%EC%82%AC_%EC%9C%A0%EC%A0%81"
   },
   {
     "ccbaKdcd": 13,
@@ -23357,7 +23743,16 @@
     "designation": "제231호",
     "classification": "유적건조물 / 정치국방 / 성 / 성지",
     "sn": "189",
-    "location": "충청남도 홍성군"
+    "location": "충청남도 홍성군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Korea_Hongjuseong_Fortres_02_%2814039503167%29.jpg/330px-Korea_Hongjuseong_Fortres_02_%2814039503167%29.jpg",
+      "width": 5036,
+      "height": 2455,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%99%8D%EC%84%B1_%ED%99%8D%EC%A3%BC%EC%9D%8D%EC%84%B1",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%99%8D%EC%84%B1_%ED%99%8D%EC%A3%BC%EC%9D%8D%EC%84%B1"
   },
   {
     "ccbaKdcd": 13,
@@ -23533,7 +23928,16 @@
     "designation": "제244호",
     "classification": "유적건조물 / 무덤 / 왕실무덤 / 고대",
     "sn": "200",
-    "location": "경기도 연천군"
+    "location": "경기도 연천군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Sillagyeongsunwangreung.jpg",
+      "width": 320,
+      "height": 240,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%88%9C%EC%99%95%EB%A6%89",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%88%9C%EC%99%95%EB%A6%89"
   },
   {
     "ccbaKdcd": 13,
@@ -23613,7 +24017,16 @@
     "designation": "제249호",
     "classification": "유적건조물 / 주거생활 / 주거지 / 주거지",
     "sn": "205",
-    "location": "충청남도 부여군"
+    "location": "충청남도 부여군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/%EB%B6%80%EC%97%AC_%EC%86%A1%EA%B5%AD%EB%A6%AC_%EC%9C%A0%EC%A0%81.jpg/330px-%EB%B6%80%EC%97%AC_%EC%86%A1%EA%B5%AD%EB%A6%AC_%EC%9C%A0%EC%A0%81.jpg",
+      "width": 750,
+      "height": 473,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EC%86%A1%EA%B5%AD%EB%A6%AC_%EC%9C%A0%EC%A0%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%97%AC_%EC%86%A1%EA%B5%AD%EB%A6%AC_%EC%9C%A0%EC%A0%81"
   },
   {
     "ccbaKdcd": 13,
@@ -23645,7 +24058,16 @@
     "designation": "제251호",
     "classification": "유적건조물 / 정치국방 / 성 / 성곽",
     "sn": "207",
-    "location": "경기도 여주시"
+    "location": "경기도 여주시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Pasaseong_Castle_at_Yeoju%2C_Korea_05.JPG/330px-Pasaseong_Castle_at_Yeoju%2C_Korea_05.JPG",
+      "width": 4272,
+      "height": 2848,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%97%AC%EC%A3%BC_%ED%8C%8C%EC%82%AC%EC%84%B1",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%97%AC%EC%A3%BC_%ED%8C%8C%EC%82%AC%EC%84%B1"
   },
   {
     "ccbaKdcd": 13,
@@ -23869,7 +24291,16 @@
     "designation": "제268호",
     "classification": "유적건조물 / 유물산포지유적산포지 / 육상유물산포지 / 선사유물",
     "sn": "221",
-    "location": "경기도 연천군"
+    "location": "경기도 연천군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/%EC%97%B0%EC%B2%9C_%EC%A0%84%EA%B3%A1%EB%A6%AC_%EC%9C%A0%EC%A0%81.jpg/330px-%EC%97%B0%EC%B2%9C_%EC%A0%84%EA%B3%A1%EB%A6%AC_%EC%9C%A0%EC%A0%81.jpg",
+      "width": 1080,
+      "height": 707,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%B2%9C_%EC%A0%84%EA%B3%A1%EB%A6%AC_%EC%9C%A0%EC%A0%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%97%B0%EC%B2%9C_%EC%A0%84%EA%B3%A1%EB%A6%AC_%EC%9C%A0%EC%A0%81"
   },
   {
     "ccbaKdcd": 13,
@@ -23885,7 +24316,16 @@
     "designation": "제269호",
     "classification": "유적건조물 / 유물산포지유적산포지 / 육상유물산포지 / 선사유물",
     "sn": "222",
-    "location": "경기도 하남시"
+    "location": "경기도 하남시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/%ED%95%98%EB%82%A8_%EB%AF%B8%EC%82%AC%EB%A6%AC_%EC%9C%A0%EC%A0%81.jpg/330px-%ED%95%98%EB%82%A8_%EB%AF%B8%EC%82%AC%EB%A6%AC_%EC%9C%A0%EC%A0%81.jpg",
+      "width": 1080,
+      "height": 538,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%95%98%EB%82%A8_%EB%AF%B8%EC%82%AC%EB%A6%AC_%EC%9C%A0%EC%A0%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%95%98%EB%82%A8_%EB%AF%B8%EC%82%AC%EB%A6%AC_%EC%9C%A0%EC%A0%81"
   },
   {
     "ccbaKdcd": 13,
@@ -24221,7 +24661,16 @@
     "designation": "제292호",
     "classification": "유적건조물 / 정치국방 / 성 / 성곽시설",
     "sn": "243",
-    "location": "경기도 김포시"
+    "location": "경기도 김포시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/%EA%B9%80%ED%8F%AC_%EB%8D%95%ED%8F%AC%EC%A7%84.jpg/330px-%EA%B9%80%ED%8F%AC_%EB%8D%95%ED%8F%AC%EC%A7%84.jpg",
+      "width": 1080,
+      "height": 685,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%8F%AC_%EB%8D%95%ED%8F%AC%EC%A7%84",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%8F%AC_%EB%8D%95%ED%8F%AC%EC%A7%84"
   },
   {
     "ccbaKdcd": 13,
@@ -27629,7 +28078,16 @@
     "designation": "제540호",
     "classification": "유적건조물 / 교육문화 / 교육기관 / 서원",
     "sn": "456",
-    "location": "충청남도 논산시"
+    "location": "충청남도 논산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/%EB%85%B8%EA%B0%95%EC%84%9C%EC%9B%90_%EA%B0%95%EB%8B%B9_%283%29.jpg/330px-%EB%85%B8%EA%B0%95%EC%84%9C%EC%9B%90_%EA%B0%95%EB%8B%B9_%283%29.jpg",
+      "width": 3776,
+      "height": 2520,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%85%BC%EC%82%B0_%EB%85%B8%EA%B0%95%EC%84%9C%EC%9B%90",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%85%BC%EC%82%B0_%EB%85%B8%EA%B0%95%EC%84%9C%EC%9B%90"
   },
   {
     "ccbaKdcd": 13,
@@ -27853,7 +28311,16 @@
     "designation": "제560호",
     "classification": "유적건조물 / 정치국방 / 성 / 성곽",
     "sn": "470",
-    "location": "충청남도 태안군"
+    "location": "충청남도 태안군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Replace_this_image_male-ko.svg/langko-330px-Replace_this_image_male-ko.svg.png",
+      "width": 150,
+      "height": 150,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%83%9C%EC%95%88_%EC%95%88%ED%9D%A5%EC%A7%84%EC%84%B1",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%83%9C%EC%95%88_%EC%95%88%ED%9D%A5%EC%A7%84%EC%84%B1"
   },
   {
     "ccbaKdcd": 13,
@@ -28525,7 +28992,16 @@
     "designation": "제575호",
     "classification": "유적건조물 / 종교신앙 / 불교 / 사찰",
     "sn": "512",
-    "location": "경기도 안성시"
+    "location": "경기도 안성시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Replace_this_image_male-ko.svg/langko-330px-Replace_this_image_male-ko.svg.png",
+      "width": 150,
+      "height": 150,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1_%EB%B4%89%EC%97%85%EC%82%AC%EC%A7%80",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EC%84%B1_%EB%B4%89%EC%97%85%EC%82%AC%EC%A7%80"
   },
   {
     "ccbaKdcd": 13,
@@ -28573,7 +29049,16 @@
     "designation": "제580호",
     "classification": "유적건조물 / 정치국방 / 성 / 성곽",
     "sn": "515",
-    "location": "충청남도 서천군"
+    "location": "충청남도 서천군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Replace_this_image_male-ko.svg/langko-330px-Replace_this_image_male-ko.svg.png",
+      "width": 150,
+      "height": 150,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%B2%9C%EC%9D%8D%EC%84%B1",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%B2%9C%EC%9D%8D%EC%84%B1"
   },
   {
     "ccbaKdcd": 13,
@@ -38045,7 +38530,16 @@
     "designation": "제296호",
     "classification": "등록문화유산 / 기타 / 공공용시설",
     "sn": "279",
-    "location": "경기도 양평군"
+    "location": "경기도 양평군",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Gudun_Station.jpg/330px-Gudun_Station.jpg",
+      "width": 640,
+      "height": 480,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC%EB%91%94%EC%97%AD",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC%EB%91%94%EC%97%AD"
   },
   {
     "ccbaKdcd": 79,
@@ -38397,7 +38891,16 @@
     "designation": "제321호",
     "classification": "등록문화유산 / 기타 / 종교시설",
     "sn": "301",
-    "location": "충청남도 서산시"
+    "location": "충청남도 서산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/%EC%84%9C%EC%82%B0_%EB%8F%99%EB%AC%B8%EB%8F%99%EC%84%B1%EB%8B%B9.jpg/330px-%EC%84%9C%EC%82%B0_%EB%8F%99%EB%AC%B8%EB%8F%99%EC%84%B1%EB%8B%B9.jpg",
+      "width": 1200,
+      "height": 1600,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%82%B0_%EB%8F%99%EB%AC%B8%EB%8F%99%EC%84%B1%EB%8B%B9",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%82%B0_%EB%8F%99%EB%AC%B8%EB%8F%99%EC%84%B1%EB%8B%B9"
   },
   {
     "ccbaKdcd": 79,
@@ -38413,7 +38916,16 @@
     "designation": "제322호",
     "classification": "등록문화유산 / 기타 / 교육시설",
     "sn": "302",
-    "location": "충청남도 논산시"
+    "location": "충청남도 논산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Replace_this_image_male-ko.svg/langko-330px-Replace_this_image_male-ko.svg.png",
+      "width": 150,
+      "height": 150,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC_%EA%B0%95%EA%B2%BD%EA%B3%B5%EB%A6%BD%EC%83%81%EC%97%85%ED%95%99%EA%B5%90_%EA%B4%80%EC%82%AC",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC_%EA%B0%95%EA%B2%BD%EA%B3%B5%EB%A6%BD%EC%83%81%EC%97%85%ED%95%99%EA%B5%90_%EA%B4%80%EC%82%AC"
   },
   {
     "ccbaKdcd": 79,
@@ -38429,7 +38941,16 @@
     "designation": "제323호",
     "classification": "등록문화유산 / 기타 / 업무시설",
     "sn": "303",
-    "location": "충청남도 논산시"
+    "location": "충청남도 논산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Former_Kanggyeong_Labor_Union_Office.png/330px-Former_Kanggyeong_Labor_Union_Office.png",
+      "width": 2592,
+      "height": 1936,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC_%EA%B0%95%EA%B2%BD%EB%85%B8%EB%8F%99%EC%A1%B0%ED%95%A9",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC_%EA%B0%95%EA%B2%BD%EB%85%B8%EB%8F%99%EC%A1%B0%ED%95%A9"
   },
   {
     "ccbaKdcd": 79,
@@ -38445,7 +38966,16 @@
     "designation": "제324호",
     "classification": "등록문화유산 / 기타 / 업무시설",
     "sn": "304",
-    "location": "충청남도 논산시"
+    "location": "충청남도 논산시",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Former_Hanil_Bank_Ganggyeong_branch_bilding_2.JPG/330px-Former_Hanil_Bank_Ganggyeong_branch_bilding_2.JPG",
+      "width": 2592,
+      "height": 1936,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC_%ED%95%9C%EC%9D%BC%EC%9D%80%ED%96%89_%EA%B0%95%EA%B2%BD%EC%A7%80%EC%A0%90",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EA%B5%AC_%ED%95%9C%EC%9D%BC%EC%9D%80%ED%96%89_%EA%B0%95%EA%B2%BD%EC%A7%80%EC%A0%90"
   },
   {
     "ccbaKdcd": 79,
@@ -38557,7 +39087,16 @@
     "designation": "제331호",
     "classification": "등록문화유산 / 기타 / 종교시설",
     "sn": "311",
-    "location": "대전광역시 유성구"
+    "location": "대전광역시 유성구",
+    "photo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Replace_this_image_male-ko.svg/langko-330px-Replace_this_image_male-ko.svg.png",
+      "width": 150,
+      "height": 150,
+      "credit": "Wikimedia Commons",
+      "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84_%EC%88%98%EC%9A%B4%EA%B5%90_%EB%B4%89%EB%A0%B9%EA%B0%81",
+      "license": "cc-by-sa"
+    },
+    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84_%EC%88%98%EC%9A%B4%EA%B5%90_%EB%B4%89%EB%A0%B9%EA%B0%81"
   },
   {
     "ccbaKdcd": 79,

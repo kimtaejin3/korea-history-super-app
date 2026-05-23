@@ -40,6 +40,16 @@ export type HeritageRecord = {
   coords?: { lat: number; lon: number } | null;
   wikipediaUrl?: string | null;
   theme?: string;
+  photo?: HeritagePhoto | null;
+};
+
+export type HeritagePhoto = {
+  url: string;
+  width?: number;
+  height?: number;
+  credit: string;
+  sourceUrl?: string;
+  license: 'cc-by-sa' | 'public-domain' | 'kogl-1' | 'kogl-4' | 'unknown';
 };
 
 // ─── OpenAPI 레코드 정규화 ────────────────────────────────
@@ -93,6 +103,7 @@ type CuratedRaw = {
   story: string | null;
   coords: { lat: number; lon: number } | null;
   wikipediaUrl: string | null;
+  photo?: HeritagePhoto | null;
 };
 
 const curatedRecords: HeritageRecord[] = (rawCurated as CuratedRaw[]).map((r) => ({
@@ -109,6 +120,7 @@ const curatedRecords: HeritageRecord[] = (rawCurated as CuratedRaw[]).map((r) =>
   coords: r.coords,
   wikipediaUrl: r.wikipediaUrl,
   theme: r.theme,
+  photo: r.photo,
 }));
 
 // ─── 통합 ─────────────────────────────────────────────────

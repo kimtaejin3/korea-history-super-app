@@ -5,17 +5,23 @@ export type Quiz = {
   hint: string;
 };
 
+export type Photo = {
+  url: string;
+  width?: number;
+  height?: number;
+  credit: string;
+  sourceUrl?: string;
+  license: 'cc-by-sa' | 'public-domain' | 'kogl-1' | 'kogl-4' | 'unknown';
+};
+
 export type Place = {
   id: string;
   name: string;
   nameHanja: string;
   region: string;
   era: string;
-  /** 사용자 위치로부터 계산된 거리. 정확한 값은 lat/lon 있을 때 런타임 계산. 없으면 디폴트(mock) 값. */
   distance: number;
-  /** 스타일라이즈 한반도 좌표 (지도용, 0~100 비율) */
   coords: { x: number; y: number };
-  /** 실제 WGS84 좌표. 거리 계산 + 진짜 지도용. */
   lat?: number;
   lon?: number;
   accent: string;
@@ -26,6 +32,8 @@ export type Place = {
   visits: number;
   nearbyStamps: number;
   quiz: Quiz | null;
+  /** 썸네일/사진 (출처 표기 필수) */
+  photo?: Photo | null;
 };
 
 export const PLACES: Place[] = [

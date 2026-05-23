@@ -1,10 +1,12 @@
-import { View, ViewStyle } from "react-native";
+import { View, ViewStyle, Image, ImageStyle, StyleProp } from "react-native";
 import Svg, { G, Path } from "react-native-svg";
 
 type Props = {
   height?: number;
   width?: number | string;
   style?: ViewStyle;
+  /** 실제 사진 URL이 있으면 사진을 표시, 없으면 발자국 placeholder. */
+  photoUrl?: string | null;
 };
 
 /** noun-footprint-179366 — by Sergey Demushkin (Noun Project). 그대로 차용. */
@@ -40,7 +42,23 @@ export function PhotoPlaceholder({
   height = 200,
   width = "100%",
   style,
+  photoUrl,
 }: Props) {
+  // photoUrl 있으면 사진 표시
+  if (photoUrl) {
+    const imgStyle: StyleProp<ImageStyle> = [
+      {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        height: height as any,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        width: width as any,
+        backgroundColor: "#EFEDE7",
+      },
+      style as unknown as ImageStyle,
+    ];
+    return <Image source={{ uri: photoUrl }} style={imgStyle} resizeMode="cover" />;
+  }
+
   const iconSize = Math.max(56, Math.min(height * 0.65, 130));
 
   return (

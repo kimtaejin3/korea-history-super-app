@@ -98,5 +98,6 @@ export function heritageToPlace(h: HeritageRecord): Place {
     visits: 0,
     nearbyStamps: 0,
     quiz: curatedStory?.quiz ?? null,
+    photo: h.photo ?? null,
   };
 }
