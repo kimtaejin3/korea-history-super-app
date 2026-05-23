@@ -2,39 +2,6 @@
   {
     "source": "curated",
     "ccbaKdcd": 21,
-    "theme": "관아",
-    "name": "팽성읍 객사",
-    "nameHanja": "彭城邑 客舍",
-    "era": "조선시대",
-    "region": "경기도",
-    "designationType": "유형문화재",
-    "designationNo": 137,
-    "summary": "팽성읍 객사(彭城邑 客舍)는 조선시대 팽성현의 객사이다.",
-    "story": "팽성읍 객사(彭城邑 客舍)는 조선시대 팽성현의 객사이다. 1989년 6월 1일 경기도 유형문화재 제137호로 지정되었다.",
-    "coords": {
-      "lat": 36.96444444,
-      "lon": 127.06305556
-    },
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%8C%BD%EC%84%B1%EC%9D%8D_%EA%B0%9D%EC%82%AC"
-  },
-  {
-    "source": "curated",
-    "ccbaKdcd": 21,
-    "theme": "세제개혁",
-    "name": "대동법 시행 기념비",
-    "nameHanja": "大同法施行記念碑",
-    "era": "조선시대",
-    "region": null,
-    "designationType": null,
-    "designationNo": null,
-    "summary": "대동법시행기념비(大同法施行記念碑)는 조선 후기에 대동법의 시행을 알리기 위해 세운 석비이다..",
-    "story": "대동법시행기념비(大同法施行記念碑)는 조선 후기에 대동법의 시행을 알리기 위해 세운 석비이다.",
-    "coords": null,
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84"
-  },
-  {
-    "source": "curated",
-    "ccbaKdcd": 21,
     "theme": "향교",
     "name": "강릉향교",
     "nameHanja": "江陵鄕校",
@@ -331,20 +298,5 @@
       "lon": 126.97083333
     },
     "wikipediaUrl": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8%EC%97%AD"
-  },
-  {
-    "source": "curated",
-    "ccbaKdcd": 13,
-    "theme": "항일",
-    "name": "효창공원",
-    "nameHanja": "孝昌公園",
-    "era": null,
-    "region": "서울특별시",
-    "designationType": null,
-    "designationNo": null,
-    "summary": "효창공원(孝昌公園)은 대한민국 서울특별시 용산구에 있는 공원이다.",
-    "story": "효창공원(孝昌公園)은 대한민국 서울특별시 용산구에 있는 공원이다. 원래 정조의 첫째 아들 문효세자와 몇달 후 죽은 그의 어머니 의빈 성씨의 무덤으로 효창원(孝昌園)이었으나, 두 무덤은 서삼릉으로 강제 이장을 당하고, 이름도 효창공원이 되었다.",
-    "coords": null,
-    "wikipediaUrl": "https://ko.wikipedia.org/wiki/%ED%9A%A8%EC%B0%BD%EA%B3%B5%EC%9B%90"
   }
 ]
