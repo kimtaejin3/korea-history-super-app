@@ -16,7 +16,8 @@
     "fetch:curated": "tsx scripts/fetch-curated-heritage.ts",
     "enrich:photos": "tsx scripts/enrich-photos.ts",
     "enrich:photos:nearby": "tsx scripts/enrich-photos.ts openapi-nearby",
-    "enrich:photos:all": "tsx scripts/enrich-photos.ts openapi-all"
+    "enrich:photos:all": "tsx scripts/enrich-photos.ts openapi-all",
+    "enrich:photos:khs": "tsx scripts/enrich-photos-khs.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.7",

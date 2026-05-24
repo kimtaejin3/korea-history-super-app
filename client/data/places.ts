@@ -11,7 +11,8 @@ export type Photo = {
   height?: number;
   credit: string;
   sourceUrl?: string;
-  license: 'cc-by-sa' | 'public-domain' | 'kogl-1' | 'kogl-4' | 'unknown';
+  license: 'cc-by-sa' | 'public-domain' | 'kogl-1' | 'kogl-2' | 'kogl-3' | 'kogl-4' | 'unknown';
+  desc?: string;
 };
 
 export type Place = {

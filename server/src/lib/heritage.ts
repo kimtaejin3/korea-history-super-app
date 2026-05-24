@@ -49,7 +49,8 @@ export type HeritagePhoto = {
   height?: number;
   credit: string;
   sourceUrl?: string;
-  license: 'cc-by-sa' | 'public-domain' | 'kogl-1' | 'kogl-4' | 'unknown';
+  license: 'cc-by-sa' | 'public-domain' | 'kogl-1' | 'kogl-2' | 'kogl-3' | 'kogl-4' | 'unknown';
+  desc?: string;
 };
 
 // ─── OpenAPI 레코드 정규화 ────────────────────────────────
@@ -68,6 +69,7 @@ type OpenApiRaw = {
   classification: string | null;
   sn: string | null;
   location: string | null;
+  photo?: HeritagePhoto | null;
 };
 
 const openApiRecords: HeritageRecord[] = (rawOpenApi as OpenApiRaw[]).map((r) => ({
@@ -86,6 +88,7 @@ const openApiRecords: HeritageRecord[] = (rawOpenApi as OpenApiRaw[]).map((r) =>
   classification: r.classification,
   sn: r.sn,
   location: r.location,
+  photo: r.photo,
 }));
 
 // ─── 큐레이션 레코드 정규화 ───────────────────────────────

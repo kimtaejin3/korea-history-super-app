@@ -12,6 +12,8 @@ const LICENSE_LABEL: Record<Photo['license'], string> = {
   'cc-by-sa': 'CC BY-SA',
   'public-domain': 'Public Domain',
   'kogl-1': '공공누리 1유형',
+  'kogl-2': '공공누리 2유형',
+  'kogl-3': '공공누리 3유형',
   'kogl-4': '공공누리 4유형',
   unknown: '출처표기',
 };
