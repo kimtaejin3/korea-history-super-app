@@ -11,8 +11,13 @@ import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { LottieAsset } from '../../components/LottieAsset';
 import { CheckIcon, CloseIcon, InfoIcon, PinIconFilled } from '../../components/icons';
+import { useUserLocation } from '../../lib/useUserLocation';
+import { distanceKm, formatDistance } from '../../lib/geo';
 
-type Step = 'locating' | 'confirmed' | 'quiz' | 'result' | 'stamp';
+type Step = 'locating' | 'too_far' | 'confirmed' | 'quiz' | 'result' | 'stamp';
+
+/** 인증 허용 반경 (km). GPS 정확도 ±10~30m 고려해 50m. */
+const CHECKIN_RADIUS_KM = 0.05;
 
 export default function CheckinScreen() {
   const insets = useSafeAreaInsets();
@@ -23,11 +28,15 @@ export default function CheckinScreen() {
   const [step, setStep] = useState<Step>('locating');
   const [selected, setSelected] = useState<number | null>(null);
   const [correct, setCorrect] = useState<boolean | null>(null);
+  const [distanceM, setDistanceM] = useState<number | null>(null);
+
+  const { coords: userCoords, status: locStatus } = useUserLocation();
 
   const pulse1 = useRef(new Animated.Value(0)).current;
   const pulse2 = useRef(new Animated.Value(0)).current;
   const pulse3 = useRef(new Animated.Value(0)).current;
 
+  // 펄스 애니메이션 (locating 동안)
   useEffect(() => {
     if (step !== 'locating') return;
     const animatePulse = (v: Animated.Value, delay: number) =>
@@ -46,9 +55,29 @@ export default function CheckinScreen() {
     animatePulse(pulse1, 0);
     animatePulse(pulse2, 600);
     animatePulse(pulse3, 1200);
-    const t = setTimeout(() => setStep('confirmed'), 2200);
-    return () => clearTimeout(t);
   }, [step, pulse1, pulse2, pulse3]);
+
+  // 실제 위치 기반 50m 판정
+  useEffect(() => {
+    if (step !== 'locating') return;
+    if (!p) return;
+    if (locStatus === 'loading') return; // 위치 결정될 때까지 대기
+
+    // 장소 좌표 없으면 판정 불가 → 통과 처리 (큐레이션/일부 항목)
+    if (p.lat == null || p.lon == null) {
+      const t = setTimeout(() => setStep('confirmed'), 1200);
+      return () => clearTimeout(t);
+    }
+
+    const dKm = distanceKm(userCoords, { lat: p.lat, lon: p.lon });
+    setDistanceM(Math.round(dKm * 1000));
+
+    // GPS 깜빡임 보여주려 약간 지연 후 판정
+    const t = setTimeout(() => {
+      setStep(dKm <= CHECKIN_RADIUS_KM ? 'confirmed' : 'too_far');
+    }, 1500);
+    return () => clearTimeout(t);
+  }, [step, p, locStatus, userCoords]);
 
   if (!p) {
     return (
@@ -60,6 +89,7 @@ export default function CheckinScreen() {
 
   const stepLabels: Record<Step, string> = {
     locating: '위치 확인',
+    too_far: '위치 확인',
     confirmed: '인증 진행',
     quiz: '현장 퀴즈',
     result: '결과',
@@ -106,6 +136,41 @@ export default function CheckinScreen() {
           <Text className="font-sans text-[13px] text-mute mt-2">
             {p.name} 반경 50m 이내인지 확인 중
           </Text>
+        </View>
+      )}
+
+      {/* STEP: 너무 멀리 있음 */}
+      {step === 'too_far' && (
+        <View className="flex-1 items-center justify-center p-6">
+          <View className="w-[76px] h-[76px] rounded-full bg-paperWarm items-center justify-center mb-6">
+            <PinIconFilled />
+          </View>
+          <Text className="font-serif text-[22px] text-ink text-center leading-7">
+            아직 도착하지 않았어요
+          </Text>
+          <Text className="font-sans text-[13px] text-mute mt-2.5 text-center">
+            {distanceM != null
+              ? `${p.name}에서 약 ${formatDistance(distanceM / 1000)} 떨어져 있어요.\n50m 이내에서 인증할 수 있어요.`
+              : `위치를 확인할 수 없어요.\n위치 권한을 허용했는지 확인해주세요.`}
+          </Text>
+          {locStatus === 'mocked' && (
+            <Text className="font-sans text-[11px] text-mute/70 mt-3 text-center">
+              (현재 모킹 위치 기준 — 실기기 GPS에서 정확)
+            </Text>
+          )}
+          <View className="absolute left-5 right-5" style={{ bottom: insets.bottom + 20 }}>
+            <Pressable
+              onPress={() => {
+                setDistanceM(null);
+                setStep('locating');
+              }}
+              className="p-4 bg-ink rounded-xl items-center"
+            >
+              <Text className="font-sans-bold text-sm text-paper tracking-[0.3px]">
+                다시 확인하기
+              </Text>
+            </Pressable>
+          </View>
         </View>
       )}
 

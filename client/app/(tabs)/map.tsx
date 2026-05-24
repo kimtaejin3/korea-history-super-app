@@ -262,6 +262,12 @@ export default function MapScreen() {
                 <Text className="font-sans text-[12px] text-mute">
                   데이터를 가져오지 못했어요
                 </Text>
+                <Pressable
+                  onPress={() => nearbyQuery.refetch()}
+                  className="mt-4 px-5 py-2.5 bg-ink rounded-full"
+                >
+                  <Text className="font-sans-bold text-[13px] text-paper">다시 시도</Text>
+                </Pressable>
               </View>
             ) : (
               <View className="py-12 items-center">

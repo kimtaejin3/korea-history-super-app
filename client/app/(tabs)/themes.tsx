@@ -9,6 +9,7 @@ import { LEVELS } from '../../data/user';
 import { PageHeader } from '../../components/PageHeader';
 import { GatedButton } from '../../components/GatedButton';
 import { StampBoxIcon } from '../../components/icons';
+import { ScreenState } from '../../components/ScreenState';
 
 const TABS = ['전체', '진행중', '추천', '완성'];
 
@@ -18,8 +19,20 @@ export default function ThemesScreen() {
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
   const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
 
+  const loading = themesQuery.isLoading || meQuery.isLoading;
+  const error = themesQuery.isError || meQuery.isError;
+
   if (!themesQuery.data || !meQuery.data) {
-    return <View className="flex-1 bg-paper" />;
+    return (
+      <ScreenState
+        loading={loading}
+        error={error}
+        onRetry={() => {
+          themesQuery.refetch();
+          meQuery.refetch();
+        }}
+      />
+    );
   }
   const THEMES = themesQuery.data;
   const myRank = meQuery.data.rank.current;

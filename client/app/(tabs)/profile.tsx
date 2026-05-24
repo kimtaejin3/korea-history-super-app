@@ -8,6 +8,7 @@ import { api, queryKeys } from '../../lib/api';
 import { PageHeader } from '../../components/PageHeader';
 import { Stamp } from '../../components/Stamp';
 import { RankBadge } from '../../components/RankBadge';
+import { ScreenState } from '../../components/ScreenState';
 import { ProgressBar } from '../../components/ProgressBar';
 import { SectionLabel } from '../../components/SectionLabel';
 import { ArrowRightIcon, SettingsIcon } from '../../components/icons';
@@ -19,8 +20,18 @@ export default function ProfileScreen() {
   const achievementsQuery = useQuery({ queryKey: queryKeys.achievements, queryFn: api.achievements });
   const rankingQuery = useQuery({ queryKey: queryKeys.ranking, queryFn: api.ranking });
 
+  const queries = [meQuery, stampedQuery, achievementsQuery, rankingQuery];
+  const loading = queries.some((q) => q.isLoading);
+  const error = queries.some((q) => q.isError);
+
   if (!meQuery.data || !stampedQuery.data || !achievementsQuery.data || !rankingQuery.data) {
-    return <View className="flex-1 bg-paper" />;
+    return (
+      <ScreenState
+        loading={loading}
+        error={error}
+        onRetry={() => queries.forEach((q) => q.refetch())}
+      />
+    );
   }
   const USER = meQuery.data;
   const STAMPED = stampedQuery.data;

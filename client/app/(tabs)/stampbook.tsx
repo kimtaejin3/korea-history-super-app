@@ -10,6 +10,7 @@ import { api, queryKeys } from '../../lib/api';
 import { PageHeader } from '../../components/PageHeader';
 import { Stamp } from '../../components/Stamp';
 import { StampSlot } from '../../components/StampSlot';
+import { ScreenState } from '../../components/ScreenState';
 import { ShareIcon } from '../../components/icons';
 
 const VIEWS = ['테마별', '시대별', '지역별'];
@@ -22,8 +23,21 @@ export default function StampbookScreen() {
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
 
+  const loading = placesQuery.isLoading || stampedQuery.isLoading || themesQuery.isLoading;
+  const error = placesQuery.isError || stampedQuery.isError || themesQuery.isError;
+
   if (!placesQuery.data || !stampedQuery.data || !themesQuery.data) {
-    return <View className="flex-1 bg-paper" />;
+    return (
+      <ScreenState
+        loading={loading}
+        error={error}
+        onRetry={() => {
+          placesQuery.refetch();
+          stampedQuery.refetch();
+          themesQuery.refetch();
+        }}
+      />
+    );
   }
   const PLACES = placesQuery.data;
   const STAMPED = stampedQuery.data;
