@@ -9,7 +9,7 @@ import type { Achievement, Level, RankInfo, RankingEntry } from '../data/user';
 // 같은 Wi-Fi에 폰+Mac 있으면 Mac의 LAN IP로 폰이 접근.
 // IP 바뀌면 ipconfig getifaddr en0 으로 확인 후 갱신.
 const BASE =
-  process.env.EXPO_PUBLIC_API_BASE ?? 'http://192.168.0.24:3000/api';
+  process.env.EXPO_PUBLIC_API_BASE ?? 'http://192.168.219.101:3000/api';
 
 async function get<T>(path: string): Promise<T> {
   const res = await fetch(`${BASE}${path}`);

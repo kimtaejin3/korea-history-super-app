@@ -22,7 +22,7 @@ import { PhotoPlaceholder } from "../../components/PhotoPlaceholder";
 import { PhotoCredit } from "../../components/PhotoCredit";
 import { SectionLabel } from "../../components/SectionLabel";
 import { PinIcon, SearchIcon } from "../../components/icons";
-import { useSearchTransition } from "../../context/SearchTransition";
+import { useSearchActions } from "../../context/SearchTransition";
 import { getSearchBarRect } from "../../lib/searchBarLayout";
 import { useUserLocation } from "../../lib/useUserLocation";
 import { formatDistance } from "../../lib/geo";
@@ -32,7 +32,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const { width: screenWidth } = useWindowDimensions();
   const searchBtnRef = useRef<View>(null);
-  const { start: startSearchTransition } = useSearchTransition();
+  const { start: startSearchTransition } = useSearchActions();
   const { coords: userCoords } = useUserLocation();
 
   const onPressSearch = () => {
@@ -62,13 +62,11 @@ export default function HomeScreen() {
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
   const artifactsQuery = useQuery({ queryKey: queryKeys.artifacts, queryFn: api.artifacts });
   const figuresQuery = useQuery({ queryKey: queryKeys.figures, queryFn: api.figures });
-  const todayQuery = useQuery({ queryKey: queryKeys.today, queryFn: api.today });
 
   // 콘텐츠 영역(인사말 아래) 전체를 하나의 상태로 처리.
   // 헤더 + 인사말은 정적이라 항상 보이고, 데이터 의존 콘텐츠만 로딩/에러 통합.
   const dataQueries = [
     nearbyQuery,
-    todayQuery,
     themesQuery,
     artifactsQuery,
     figuresQuery,
@@ -141,7 +139,6 @@ export default function HomeScreen() {
         ) : (
           <HomeContent
             nearby={nearbyQuery.data!.items}
-            today={todayQuery.data!}
             themes={themesQuery.data!}
             artifacts={artifactsQuery.data!}
             figures={figuresQuery.data!}
@@ -159,7 +156,6 @@ export default function HomeScreen() {
 // ─── 콘텐츠 섹션들 (데이터 준비된 뒤에만 렌더) ────────────────
 type ContentProps = {
   nearby: import("../../data/places").Place[];
-  today: import("../../data/today").TodayEntry[];
   themes: import("../../data/themes").Theme[];
   artifacts: import("../../data/artifacts").Artifact[];
   figures: import("../../data/figures").Figure[];
@@ -171,7 +167,6 @@ type ContentProps = {
 
 function HomeContent({
   nearby,
-  today,
   themes,
   artifacts,
   figures,
@@ -227,53 +222,6 @@ function HomeContent({
           </Pressable>
         </View>
       )}
-
-      {/* 오늘의 역사 */}
-      <SectionLabel
-        action={<Text className="font-sans text-[11px] text-mute">5월 15일 · MAY 15</Text>}
-      >
-        오늘의 역사 · TODAY IN HISTORY
-      </SectionLabel>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
-        style={{ marginBottom: 24 }}
-      >
-        {today.map((item) => (
-          <Pressable
-            key={item.title}
-            onPress={() => item.placeId && router.push(`/place/${item.placeId}` as never)}
-            className="w-[260px] bg-paper border border-line rounded-xl overflow-hidden flex-row"
-          >
-            <View
-              className="w-[76px] items-center justify-center px-1.5 py-2.5"
-              style={{ backgroundColor: item.accent }}
-            >
-              <Text className="font-serif-black text-[40px] text-paper leading-10">
-                {item.glyph}
-              </Text>
-              <Text className="font-mono-bold text-[10px] tracking-[0.5px] mt-2 text-white/85">
-                {item.year ? String(item.year) : "연례"}
-              </Text>
-            </View>
-            <View className="p-3 flex-1">
-              <Text className="font-sans-bold text-[10px] text-mute tracking-[1.5px]">
-                {item.date}
-              </Text>
-              <Text className="font-serif text-[15px] text-ink mt-1 leading-[18px]">
-                {item.title}
-              </Text>
-              <Text
-                numberOfLines={3}
-                className="font-sans text-[11px] text-inkSoft mt-1.5 leading-4"
-              >
-                {item.summary}
-              </Text>
-            </View>
-          </Pressable>
-        ))}
-      </ScrollView>
 
       {/* 내 주변 */}
       <SectionLabel

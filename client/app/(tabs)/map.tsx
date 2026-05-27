@@ -25,7 +25,7 @@ import type { Place } from "../../data/places";
 import { Tag } from "../../components/Tag";
 import { PhotoPlaceholder } from "../../components/PhotoPlaceholder";
 import { SearchIcon } from "../../components/icons";
-import { useSearchTransition } from "../../context/SearchTransition";
+import { useSearchState } from "../../context/SearchTransition";
 import {
   SEARCH_BAR_HEIGHT,
   SEARCH_BAR_ICON_GAP,
@@ -46,7 +46,7 @@ export default function MapScreen() {
   const [filter, setFilter] = useState("전체");
 
   const { coords: userCoords } = useUserLocation();
-  const { state: searchTransition } = useSearchTransition();
+  const searchTransition = useSearchState();
   const showBar = !searchTransition.active;
 
   // 검색바 morph 진입 시: morph 끝난 뒤 fetch 시작.
@@ -89,13 +89,20 @@ export default function MapScreen() {
   const sheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ["25%", "55%", "90%"], []);
 
-  // 모든 페이지 flatten — useMemo로 페이지 추가 시에만 재계산
+  // 모든 페이지 flatten — useMemo로 페이지 추가 시에만 재계산.
+  // fetchReady 전(=morph 진행 중)엔 캐시가 있어도 노출하지 않음.
+  // → enabled:fetchReady는 네트워크 fetch만 막지만, useInfiniteQuery는
+  //   캐시가 있으면 enabled:false여도 data를 즉시 반환하므로 여기서도 게이팅.
+  //   결과: 캐시 여부와 무관하게 애니메이션 종료 후 데이터가 한 번에 나타남.
   const nearby: Place[] = useMemo(() => {
-    if (!nearbyQuery.data) return [];
+    if (!fetchReady || !nearbyQuery.data) return [];
     return nearbyQuery.data.pages.flatMap((p) => p.items);
-  }, [nearbyQuery.data]);
-  const total = nearbyQuery.data?.pages[0]?.total ?? 0;
+  }, [fetchReady, nearbyQuery.data]);
+  const total = fetchReady ? (nearbyQuery.data?.pages[0]?.total ?? 0) : 0;
   const STAMPED: string[] = stampedQuery.data ?? [];
+
+  // morph가 끝나기 전엔 항상 로딩 표시 (캐시가 있든 없든 동일).
+  const showLoading = !fetchReady || nearbyQuery.isLoading;
 
   const onEndReached = useCallback(() => {
     if (nearbyQuery.hasNextPage && !nearbyQuery.isFetchingNextPage) {
@@ -204,7 +211,7 @@ export default function MapScreen() {
       >
         <View className="px-5 pt-2 pb-3 flex-row justify-between items-center">
           <Text className="font-serif text-[16px] text-ink">
-            {nearbyQuery.isLoading
+            {showLoading
               ? "불러오는 중…"
               : `내 주변 ${nearby.length}${total > nearby.length ? `/${total}` : ""}곳`}
           </Text>
@@ -253,7 +260,7 @@ export default function MapScreen() {
             );
           }}
           ListEmptyComponent={
-            nearbyQuery.isLoading ? (
+            showLoading ? (
               <View className="py-12 items-center">
                 <ActivityIndicator size="small" color={TOKENS.mute} />
               </View>
