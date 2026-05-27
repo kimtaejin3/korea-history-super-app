@@ -1,4 +1,5 @@
-import { View, ViewStyle, Image, ImageStyle, StyleProp } from "react-native";
+import { View, ViewStyle, ImageStyle, StyleProp } from "react-native";
+import { Image } from "expo-image";
 import Svg, { G, Path } from "react-native-svg";
 
 type Props = {
@@ -44,7 +45,9 @@ export function PhotoPlaceholder({
   style,
   photoUrl,
 }: Props) {
-  // photoUrl 있으면 사진 표시
+  // photoUrl 있으면 사진 표시.
+  // expo-image: 디코딩을 메인 스레드 밖에서 + 메모리/디스크 캐시 → 스크롤 중 행 mount 비용↓.
+  // recyclingKey: 리스트 뷰 재활용 시 이전 이미지 잔상 방지.
   if (photoUrl) {
     const imgStyle: StyleProp<ImageStyle> = [
       {
@@ -56,7 +59,16 @@ export function PhotoPlaceholder({
       },
       style as unknown as ImageStyle,
     ];
-    return <Image source={{ uri: photoUrl }} style={imgStyle} resizeMode="cover" />;
+    return (
+      <Image
+        source={{ uri: photoUrl }}
+        style={imgStyle}
+        contentFit="cover"
+        cachePolicy="memory-disk"
+        transition={150}
+        recyclingKey={photoUrl}
+      />
+    );
   }
 
   const iconSize = Math.max(56, Math.min(height * 0.65, 130));
