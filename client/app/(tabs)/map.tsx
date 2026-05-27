@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -39,6 +39,52 @@ import { useUserLocation } from "../../lib/useUserLocation";
 
 const FILTERS = ["전체", "조선", "백제", "통일신라", "근현대"];
 const PAGE_LIMIT = 10;
+
+// 행 높이 고정 → getItemLayout으로 위치 기반 정확한 가상화 + 측정 비용 제거.
+// 사진 64 + p-3(12*2) 패딩 = 88. 이름/주소는 numberOfLines={1}로 1줄 고정.
+const ROW_HEIGHT = 88;
+const ROW_GAP = 10;
+
+const keyExtractor = (p: Place) => p.id;
+const Separator = () => <View style={{ height: ROW_GAP }} />;
+
+type PlaceRowProps = {
+  place: Place;
+  stamped: boolean;
+  onPress: (id: string) => void;
+};
+
+// 행을 memo로 분리 → 부모(MapScreen) 리렌더가 각 행에 전파되지 않음.
+// props(place·stamped·onPress)가 같으면 재렌더 스킵.
+const PlaceRow = memo(function PlaceRow({
+  place: p,
+  stamped,
+  onPress,
+}: PlaceRowProps) {
+  return (
+    <Pressable
+      onPress={() => onPress(p.id)}
+      className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
+      style={{ height: ROW_HEIGHT }}
+    >
+      <PhotoPlaceholder height={64} width={64} photoUrl={p.photo?.url} />
+      <View className="flex-1">
+        <View className="flex-row items-center gap-1.5 mb-0.5">
+          <Tag color={p.accent}>{p.era}</Tag>
+          {stamped && (
+            <Text className="font-sans-bold text-[10px] text-red">● 획득</Text>
+          )}
+        </View>
+        <Text numberOfLines={1} className="font-serif text-[15px] text-ink">
+          {p.name}
+        </Text>
+        <Text numberOfLines={1} className="font-mono text-[10px] text-mute mt-0.5">
+          {formatDistance(p.distance)} · {p.region}
+        </Text>
+      </View>
+    </Pressable>
+  );
+});
 
 export default function MapScreen() {
   const insets = useSafeAreaInsets();
@@ -99,7 +145,11 @@ export default function MapScreen() {
     return nearbyQuery.data.pages.flatMap((p) => p.items);
   }, [fetchReady, nearbyQuery.data]);
   const total = fetchReady ? (nearbyQuery.data?.pages[0]?.total ?? 0) : 0;
-  const STAMPED: string[] = stampedQuery.data ?? [];
+  // Set으로 조회 O(1) (이전엔 행마다 Array.includes → O(n))
+  const stampedSet = useMemo(
+    () => new Set(stampedQuery.data ?? []),
+    [stampedQuery.data]
+  );
 
   // morph가 끝나기 전엔 항상 로딩 표시 (캐시가 있든 없든 동일).
   const showLoading = !fetchReady || nearbyQuery.isLoading;
@@ -109,6 +159,32 @@ export default function MapScreen() {
       nearbyQuery.fetchNextPage();
     }
   }, [nearbyQuery]);
+
+  const onPressPlace = useCallback(
+    (id: string) => router.push(`/place/${id}` as never),
+    [router]
+  );
+
+  // renderItem 참조 고정 → 부모 리렌더마다 새 함수가 안 생겨 행 재렌더 방지.
+  const renderItem = useCallback(
+    ({ item }: { item: Place }) => (
+      <PlaceRow
+        place={item}
+        stamped={stampedSet.has(item.id)}
+        onPress={onPressPlace}
+      />
+    ),
+    [stampedSet, onPressPlace]
+  );
+
+  const getItemLayout = useCallback(
+    (_: ArrayLike<Place> | null | undefined, index: number) => ({
+      length: ROW_HEIGHT,
+      offset: (ROW_HEIGHT + ROW_GAP) * index,
+      index,
+    }),
+    []
+  );
 
   return (
     <View className="flex-1 bg-[#E8E1D2]">
@@ -220,45 +296,21 @@ export default function MapScreen() {
 
         <BottomSheetFlatList
           data={nearby}
-          keyExtractor={(p) => p.id}
+          keyExtractor={keyExtractor}
+          getItemLayout={getItemLayout}
+          renderItem={renderItem}
           contentContainerStyle={{
             paddingHorizontal: 20,
             paddingTop: 8,
             paddingBottom: insets.bottom + 24,
           }}
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          ItemSeparatorComponent={Separator}
           onEndReached={onEndReached}
           onEndReachedThreshold={0.5}
-          renderItem={({ item: p }) => {
-            const stamped = STAMPED.includes(p.id);
-            return (
-              <Pressable
-                onPress={() => router.push(`/place/${p.id}` as never)}
-                className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
-              >
-                <PhotoPlaceholder height={64} width={64} photoUrl={p.photo?.url} />
-                <View className="flex-1">
-                  <View className="flex-row items-center gap-1.5 mb-0.5">
-                    <Tag color={p.accent}>{p.era}</Tag>
-                    {stamped && (
-                      <Text className="font-sans-bold text-[10px] text-red">
-                        ● 획득
-                      </Text>
-                    )}
-                  </View>
-                  <Text className="font-serif text-[15px] text-ink">
-                    {p.name}
-                  </Text>
-                  <Text
-                    numberOfLines={1}
-                    className="font-mono text-[10px] text-mute mt-0.5"
-                  >
-                    {formatDistance(p.distance)} · {p.region}
-                  </Text>
-                </View>
-              </Pressable>
-            );
-          }}
+          removeClippedSubviews
+          windowSize={7}
+          maxToRenderPerBatch={8}
+          initialNumToRender={8}
           ListEmptyComponent={
             showLoading ? (
               <View className="py-12 items-center">
