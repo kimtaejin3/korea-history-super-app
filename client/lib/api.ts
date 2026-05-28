@@ -1,3 +1,5 @@
+import Constants from 'expo-constants';
+
 import type { Place } from '../data/places';
 import type { Theme } from '../data/themes';
 import type { Artifact } from '../data/artifacts';
@@ -5,11 +7,11 @@ import type { Figure } from '../data/figures';
 import type { TodayEntry } from '../data/today';
 import type { Achievement, Level, RankInfo, RankingEntry } from '../data/user';
 
-// 실기기에선 LAN IP 필요 (시뮬레이터는 localhost OK).
-// 같은 Wi-Fi에 폰+Mac 있으면 Mac의 LAN IP로 폰이 접근.
-// IP 바뀌면 ipconfig getifaddr en0 으로 확인 후 갱신.
+// 실기기는 Metro의 LAN IP를 자동 추출하므로 Wi-Fi가 바뀌어도 IP를 갱신할 필요 없음.
+// EXPO_PUBLIC_API_BASE로 명시 override 가능 (스테이징/프로덕션 빌드용).
+const host = Constants.expoConfig?.hostUri?.split(':')[0];
 const BASE =
-  process.env.EXPO_PUBLIC_API_BASE ?? 'http://192.168.219.101:3000/api';
+  process.env.EXPO_PUBLIC_API_BASE ?? `http://${host ?? 'localhost'}:3000/api`;
 
 async function get<T>(path: string): Promise<T> {
   const res = await fetch(`${BASE}${path}`);
