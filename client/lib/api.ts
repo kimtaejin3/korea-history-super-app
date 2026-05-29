@@ -2,8 +2,6 @@ import Constants from 'expo-constants';
 
 import type { Place } from '../data/places';
 import type { Theme } from '../data/themes';
-import type { Artifact } from '../data/artifacts';
-import type { Figure } from '../data/figures';
 import type { TodayEntry } from '../data/today';
 import type { Achievement, Level, RankInfo, RankingEntry } from '../data/user';
 
@@ -61,12 +59,6 @@ export const api = {
   themes: () => get<Theme[]>('/themes'),
   theme: (id: string) => get<Theme>(`/themes/${id}`),
 
-  artifacts: () => get<Artifact[]>('/artifacts'),
-  artifact: (id: string) => get<Artifact>(`/artifacts/${id}`),
-
-  figures: () => get<Figure[]>('/figures'),
-  figure: (id: string) => get<Figure>(`/figures/${id}`),
-
   today: () => get<TodayEntry[]>('/today'),
 
   me: () =>
@@ -102,10 +94,6 @@ export const queryKeys = {
   recentStamps: (limit = 6) => ['stamps', 'recent', limit] as const,
   themes: ['themes'] as const,
   theme: (id: string) => ['themes', id] as const,
-  artifacts: ['artifacts'] as const,
-  artifact: (id: string) => ['artifacts', id] as const,
-  figures: ['figures'] as const,
-  figure: (id: string) => ['figures', id] as const,
   today: ['today'] as const,
   me: ['me'] as const,
   achievements: ['achievements'] as const,

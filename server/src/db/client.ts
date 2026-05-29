@@ -1,26 +1,21 @@
 /**
- * Drizzle DB 클라이언트.
+ * Drizzle DB 클라이언트. lazy singleton.
  *
- * 현재는 lazy init. DATABASE_URL 환경변수가 있으면 Postgres 연결 시도.
- * 없으면 null 반환 — 라우트에서 JSON 데이터로 fallback.
- *
- * 향후 DB 마이그레이션 완료되면 모든 라우트가 db를 사용하도록 전환.
+ * 모든 라우트는 getDb()로 접근. seed.ts와 schema는 별개 경로.
  */
 
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema.js';
 
-const DATABASE_URL = process.env.DATABASE_URL;
+// localhost 개발 fallback. 프로덕션은 반드시 DATABASE_URL 명시.
+const DATABASE_URL =
+  process.env.DATABASE_URL ?? 'postgresql://localhost:5432/korea_history';
 
-let _db: ReturnType<typeof drizzle> | null = null;
+let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
 
 export function getDb() {
   if (_db) return _db;
-  if (!DATABASE_URL) {
-    console.warn('[db] DATABASE_URL not set — DB features disabled, using in-memory data');
-    return null;
-  }
   const client = postgres(DATABASE_URL, {
     max: 10,
     idle_timeout: 20,

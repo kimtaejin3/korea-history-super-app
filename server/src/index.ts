@@ -32,7 +32,7 @@ app.route('/api/places', places);
 app.route('/api/themes', themes);
 app.route('/api/stamps', stamps);
 app.route('/api/stamped', stamps); // 백워드 호환 (기존 /api/stamped 경로)
-app.route('/api', etc); // /artifacts, /figures, /today, /achievements, /ranking, /levels
+app.route('/api', etc); // /today, /achievements, /ranking, /levels
 app.route('/api/me', me);
 
 const port = parseInt(process.env.PORT || '3000', 10);

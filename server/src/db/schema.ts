@@ -1,8 +1,8 @@
 /**
  * Drizzle ORM 스키마 — Postgres 기준.
  *
- * 현재는 정의만. 실제 데이터는 server/data/*.json과 server/src/data/*.ts에서 읽음.
- * DB 마이그레이션 시점에 `npm run db:generate` → `db:migrate` → `db:seed`로 활성화.
+ * 모든 라우트가 이 스키마를 통해 DB에서 데이터를 읽음.
+ * 변경 시 `npm run db:generate` → `db:migrate`.
  */
 
 import {
@@ -10,53 +10,62 @@ import {
   text,
   integer,
   doublePrecision,
+  boolean,
   timestamp,
   jsonb,
   index,
   primaryKey,
 } from 'drizzle-orm/pg-core';
 
-// ─── 유산 (Heritage) — gis-heritage OpenAPI 원본 데이터 ─────────
+// ─── 장소 (Heritage / Place) ─────────────────────────────────
+// UI의 Place 타입과 1:1 매칭. 큐레이션 + OpenAPI 데이터 통합.
 export const heritage = pgTable(
   'heritage',
   {
-    id: text('id').primaryKey(), // ccbaKdcd + sn 합성 키 또는 자체 ID
-    ccbaKdcd: integer('ccba_kdcd').notNull(), // 종목 코드 (11=국보, 12=보물, ...)
+    id: text('id').primaryKey(),
     name: text('name').notNull(),
-    nameHanja: text('name_hanja'),
-    era: text('era'),
-    region: text('region'),
-    location: text('location'), // 시군구까지
-    admin: text('admin'),
-    designation: text('designation'), // "제5호" 등
-    designationDate: text('designation_date'), // YYYYMMDD
-    classification: text('classification'), // 분류 path
-    cnX: text('cn_x'), // 한국 좌표계 (참고용)
-    cnY: text('cn_y'),
-    lat: doublePrecision('lat'), // WGS84
+    nameHanja: text('name_hanja').notNull(),
+    region: text('region').notNull(),
+    era: text('era').notNull(),
+    period: text('period').notNull(),
+    tag: text('tag').notNull(),
+    accent: text('accent').notNull(),
+    lat: doublePrecision('lat'),
     lon: doublePrecision('lon'),
-    source: text('source').notNull().default('openapi'), // 'openapi' | 'curated'
+    coords: jsonb('coords').$type<{ x: number; y: number }>(),
+    summary: text('summary').notNull(),
+    story: text('story').notNull(),
+    visits: integer('visits').notNull().default(0),
+    nearbyStamps: integer('nearby_stamps').notNull().default(0),
+    quiz: jsonb('quiz').$type<{
+      q: string;
+      options: string[];
+      answer: number;
+      hint: string;
+    } | null>(),
+    photo: jsonb('photo').$type<{
+      url: string;
+      width?: number;
+      height?: number;
+      credit: string;
+      sourceUrl?: string;
+      license: string;
+      desc?: string;
+    } | null>(),
+    source: text('source').notNull().default('curated'), // 'curated' | 'openapi'
+    // OpenAPI 메타 (선택)
+    ccbaKdcd: integer('ccba_kdcd'),
+    designation: text('designation'),
+    designationDate: text('designation_date'),
+    classification: text('classification'),
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
   },
   (table) => ({
-    ccbaKdcdIdx: index('heritage_ccba_kdcd_idx').on(table.ccbaKdcd),
-    locationIdx: index('heritage_location_idx').on(table.location),
     coordsIdx: index('heritage_coords_idx').on(table.lat, table.lon),
+    regionIdx: index('heritage_region_idx').on(table.region),
   })
 );
-
-// ─── 큐레이션 콘텐츠 — 헤리티지에 스토리/퀴즈 추가 ──────────
-export const heritageStory = pgTable('heritage_story', {
-  heritageName: text('heritage_name').primaryKey(), // heritage.name과 매칭
-  summary: text('summary').notNull(),
-  story: text('story').notNull(),
-  quizQuestion: text('quiz_question'),
-  quizOptions: jsonb('quiz_options').$type<string[]>(),
-  quizAnswer: integer('quiz_answer'),
-  quizHint: text('quiz_hint'),
-  updatedAt: timestamp('updated_at').notNull().defaultNow(),
-});
 
 // ─── 테마 (답사 코스) ───────────────────────────────────────
 export const theme = pgTable('theme', {
@@ -74,42 +83,26 @@ export const theme = pgTable('theme', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
 });
 
-// ─── 유물 ───────────────────────────────────────────────────
-export const artifact = pgTable('artifact', {
-  id: text('id').primaryKey(),
+// ─── 등급/레벨 ──────────────────────────────────────────────
+export const level = pgTable('level', {
+  level: integer('level').primaryKey(),
   name: text('name').notNull(),
-  nameHanja: text('name_hanja'),
-  designation: text('designation'),
-  category: text('category'),
-  era: text('era'),
-  summary: text('summary'),
-  story: text('story'),
-  placeId: text('place_id'),
-  figureId: text('figure_id'),
-  accent: text('accent'),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
-});
-
-// ─── 인물 ───────────────────────────────────────────────────
-export const figure = pgTable('figure', {
-  id: text('id').primaryKey(),
-  name: text('name').notNull(),
-  nameHanja: text('name_hanja'),
-  years: text('years'),
-  title: text('title'),
-  summary: text('summary'),
-  story: text('story'),
-  accent: text('accent'),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
+  hanja: text('hanja').notNull(),
+  minXp: integer('min_xp').notNull(),
+  color: text('color').notNull(),
+  description: text('description').notNull(),
+  perks: jsonb('perks').$type<string[]>().notNull(),
 });
 
 // ─── 사용자 ─────────────────────────────────────────────────
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
   nickname: text('nickname').notNull(),
-  joinedAt: timestamp('joined_at').notNull().defaultNow(),
   email: text('email'),
-  // 인증 정보는 별도 테이블 (소셜 로그인 시) 또는 Supabase Auth 위임
+  joinedAt: timestamp('joined_at').notNull().defaultNow(),
+  daysActive: integer('days_active').notNull().default(0),
+  quizCorrect: integer('quiz_correct').notNull().default(0),
+  themesCompleted: integer('themes_completed').notNull().default(0),
 });
 
 // ─── 사용자의 스탬프 (방문 인증) ────────────────────────────
@@ -119,7 +112,7 @@ export const stamp = pgTable(
     userId: text('user_id').notNull(),
     placeId: text('place_id').notNull(),
     visitedAt: timestamp('visited_at').notNull().defaultNow(),
-    quizCorrect: integer('quiz_correct'), // 0/1 또는 null (퀴즈 없음)
+    quizCorrect: integer('quiz_correct'),
     photoUrl: text('photo_url'),
   },
   (table) => ({
@@ -128,11 +121,48 @@ export const stamp = pgTable(
   })
 );
 
+// ─── 업적 ───────────────────────────────────────────────────
+export const achievement = pgTable('achievement', {
+  id: text('id').primaryKey(),
+  title: text('title').notNull(),
+  description: text('description').notNull(),
+  maxValue: integer('max_value'), // null이면 binary (해당/미해당)
+});
+
+// 사용자별 업적 진행도
+export const userAchievement = pgTable(
+  'user_achievement',
+  {
+    userId: text('user_id').notNull(),
+    achievementId: text('achievement_id').notNull(),
+    progress: integer('progress').notNull().default(0),
+    done: boolean('done').notNull().default(false),
+    updatedAt: timestamp('updated_at').notNull().defaultNow(),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.userId, table.achievementId] }),
+  })
+);
+
+// ─── 오늘의 역사 ────────────────────────────────────────────
+export const todayEntry = pgTable('today_entry', {
+  id: text('id').primaryKey(),
+  date: text('date').notNull(), // "5월 15일"
+  year: integer('year'),
+  title: text('title').notNull(),
+  summary: text('summary').notNull(),
+  placeId: text('place_id'),
+  accent: text('accent').notNull(),
+  glyph: text('glyph').notNull(),
+});
+
 // 타입 추출
 export type Heritage = typeof heritage.$inferSelect;
 export type NewHeritage = typeof heritage.$inferInsert;
 export type Theme = typeof theme.$inferSelect;
-export type Artifact = typeof artifact.$inferSelect;
-export type Figure = typeof figure.$inferSelect;
+export type Level = typeof level.$inferSelect;
 export type User = typeof user.$inferSelect;
 export type Stamp = typeof stamp.$inferSelect;
+export type Achievement = typeof achievement.$inferSelect;
+export type UserAchievement = typeof userAchievement.$inferSelect;
+export type TodayEntry = typeof todayEntry.$inferSelect;

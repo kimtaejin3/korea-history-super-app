@@ -24,8 +24,6 @@ export default function PlaceDetailScreen() {
   const placeQuery = useQuery({ queryKey: queryKeys.place(id), queryFn: () => api.place(id), enabled: !!id });
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
-  const artifactsQuery = useQuery({ queryKey: queryKeys.artifacts, queryFn: api.artifacts });
-  const figuresQuery = useQuery({ queryKey: queryKeys.figures, queryFn: api.figures });
   const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
 
   if (placeQuery.isError || (placeQuery.isFetched && !placeQuery.data)) {
@@ -35,7 +33,7 @@ export default function PlaceDetailScreen() {
       </View>
     );
   }
-  if (!placeQuery.data || !stampedQuery.data || !themesQuery.data || !artifactsQuery.data || !figuresQuery.data || !meQuery.data) {
+  if (!placeQuery.data || !stampedQuery.data || !themesQuery.data || !meQuery.data) {
     return (
       <View className="flex-1 bg-paper">
         <BackHeader />
@@ -45,12 +43,8 @@ export default function PlaceDetailScreen() {
   const p = placeQuery.data;
   const STAMPED = stampedQuery.data;
   const THEMES = themesQuery.data;
-  const ARTIFACTS = artifactsQuery.data;
-  const FIGURES = figuresQuery.data;
   const stamped = STAMPED.includes(p.id);
   const inThemes = THEMES.filter((t) => t.placeIds.includes(p.id));
-  const placeArtifacts = ARTIFACTS.filter((a) => a.placeId === p.id);
-  const placeFigures = FIGURES.filter((f) => f.placeIds.includes(p.id));
   const within = p.distance < 5;
   const myRank = meQuery.data.rank.current;
 
@@ -153,76 +147,6 @@ export default function PlaceDetailScreen() {
             <PhotoPlaceholder key={i} height={140} width={180} />
           ))}
         </ScrollView>
-
-        {/* 이곳의 유물 */}
-        {placeArtifacts.length > 0 && (
-          <>
-            <SectionLabel>이곳의 유물 · TREASURES HERE</SectionLabel>
-            <View className="px-5 pb-6 gap-2">
-              {placeArtifacts.map((a) => (
-                <Pressable
-                  key={a.id}
-                  onPress={() => router.push(`/artifact/${a.id}` as never)}
-                  className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
-                >
-                  <PhotoPlaceholder height={64} width={64} />
-                  <View className="flex-1">
-                    <Text
-                      className="font-sans-bold text-[10px] tracking-wider"
-                      style={{ color: a.accent }}
-                    >
-                      {a.designation} · {a.category}
-                    </Text>
-                    <Text className="font-serif text-[15px] text-ink mt-0.5">{a.name}</Text>
-                    <Text numberOfLines={1} className="font-sans text-[11px] text-inkSoft mt-1">
-                      {a.summary}
-                    </Text>
-                  </View>
-                  <ChevronRightIcon />
-                </Pressable>
-              ))}
-            </View>
-          </>
-        )}
-
-        {/* 관련 인물 */}
-        {placeFigures.length > 0 && (
-          <>
-            <SectionLabel>관련 인물 · FIGURES</SectionLabel>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
-              style={{ marginBottom: 24 }}
-            >
-              {placeFigures.map((f) => (
-                <Pressable
-                  key={f.id}
-                  onPress={() => router.push(`/figure/${f.id}` as never)}
-                  className="w-[200px] bg-paper border border-line rounded-xl flex-row overflow-hidden"
-                >
-                  <LinearGradient
-                    colors={[f.accent, '#1A1614']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={{ width: 64, alignItems: 'center', justifyContent: 'center' }}
-                  >
-                    <Text className="font-serif-black text-[38px] text-paper leading-[38px]">
-                      {f.glyph}
-                    </Text>
-                  </LinearGradient>
-                  <View className="p-3 flex-1">
-                    <Text className="font-serif text-sm text-ink">{f.name}</Text>
-                    <Text className="font-mono text-[10px] text-mute mt-1">{f.years}</Text>
-                    <Text numberOfLines={1} className="font-sans text-[11px] text-inkSoft mt-1">
-                      {f.title}
-                    </Text>
-                  </View>
-                </Pressable>
-              ))}
-            </ScrollView>
-          </>
-        )}
 
         {/* 퀴즈 미리보기 */}
         {p.quiz && (

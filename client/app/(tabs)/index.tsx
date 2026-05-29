@@ -10,7 +10,6 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { haptic } from "../../lib/haptics";
 import { useQuery } from "@tanstack/react-query";
@@ -60,18 +59,10 @@ export default function HomeScreen() {
     queryFn: () => api.recentStamps(6),
   });
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
-  const artifactsQuery = useQuery({ queryKey: queryKeys.artifacts, queryFn: api.artifacts });
-  const figuresQuery = useQuery({ queryKey: queryKeys.figures, queryFn: api.figures });
 
   // 콘텐츠 영역(인사말 아래) 전체를 하나의 상태로 처리.
   // 헤더 + 인사말은 정적이라 항상 보이고, 데이터 의존 콘텐츠만 로딩/에러 통합.
-  const dataQueries = [
-    nearbyQuery,
-    themesQuery,
-    artifactsQuery,
-    figuresQuery,
-    recentStampsQuery,
-  ];
+  const dataQueries = [nearbyQuery, themesQuery, recentStampsQuery];
   const loading = dataQueries.some((q) => q.isLoading);
   const error = dataQueries.some((q) => q.isError);
   const ready = dataQueries.every((q) => q.data !== undefined) && !error;
@@ -140,8 +131,6 @@ export default function HomeScreen() {
           <HomeContent
             nearby={nearbyQuery.data!.items}
             themes={themesQuery.data!}
-            artifacts={artifactsQuery.data!}
-            figures={figuresQuery.data!}
             recentStamps={recentStampsQuery.data!}
             stamped={STAMPED}
             myStamps={myStamps}
@@ -157,8 +146,6 @@ export default function HomeScreen() {
 type ContentProps = {
   nearby: import("../../data/places").Place[];
   themes: import("../../data/themes").Theme[];
-  artifacts: import("../../data/artifacts").Artifact[];
-  figures: import("../../data/figures").Figure[];
   recentStamps: { id: string; glyph: string; accent: string }[];
   stamped: string[];
   myStamps: number;
@@ -168,8 +155,6 @@ type ContentProps = {
 function HomeContent({
   nearby,
   themes,
-  artifacts,
-  figures,
   recentStamps,
   stamped,
   myStamps,
@@ -314,86 +299,6 @@ function HomeContent({
                   />
                 </View>
               </View>
-            </View>
-          </Pressable>
-        ))}
-      </ScrollView>
-
-      {/* 국보·유물 */}
-      <SectionLabel
-        action={<Text className="font-sans-bold text-[11px] text-red">전체 →</Text>}
-      >
-        국보·유물 · TREASURES
-      </SectionLabel>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
-        style={{ marginBottom: 24 }}
-      >
-        {artifacts.slice(0, 5).map((a) => (
-          <Pressable
-            key={a.id}
-            onPress={() => router.push(`/artifact/${a.id}` as never)}
-            className="w-[160px] bg-paper border border-line rounded-xl overflow-hidden"
-          >
-            <PhotoPlaceholder height={160} />
-            <View className="p-3">
-              <Text
-                className="font-sans-bold text-[9px] tracking-wider"
-                style={{ color: a.accent }}
-              >
-                {a.designation}
-              </Text>
-              <Text className="font-serif text-sm text-ink mt-0.5 leading-[17px]">
-                {a.name}
-              </Text>
-            </View>
-          </Pressable>
-        ))}
-      </ScrollView>
-
-      {/* 역사 속 인물 */}
-      <SectionLabel
-        action={<Text className="font-sans-bold text-[11px] text-red">전체 →</Text>}
-      >
-        역사 속 인물 · FIGURES
-      </SectionLabel>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 20, gap: 10 }}
-        style={{ marginBottom: 28 }}
-      >
-        {figures.map((f) => (
-          <Pressable
-            key={f.id}
-            onPress={() => router.push(`/figure/${f.id}` as never)}
-            className="w-[140px]"
-          >
-            <LinearGradient
-              colors={[f.accent, "#1A1614"]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{
-                height: 160,
-                borderRadius: 12,
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden",
-              }}
-            >
-              <Text className="font-serif-black text-[28px] text-paper tracking-[-0.5px] px-3 text-center">
-                {f.name}
-              </Text>
-              <Text className="absolute bottom-2 left-2.5 right-2.5 font-mono text-[9px] text-white/70 tracking-[0.5px]">
-                {f.years}
-              </Text>
-            </LinearGradient>
-            <View className="pt-2">
-              <Text numberOfLines={1} className="font-sans text-xs text-inkSoft">
-                {f.title}
-              </Text>
             </View>
           </Pressable>
         ))}

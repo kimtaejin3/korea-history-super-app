@@ -4,7 +4,6 @@ export type TodayEntry = {
   title: string;
   summary: string;
   placeId: string | null;
-  figureId: string | null;
   accent: string;
   glyph: string;
 };
@@ -17,7 +16,6 @@ export const TODAY_IN_HISTORY: TodayEntry[] = [
     summary:
       '훈민정음을 창제하고 측우기·앙부일구 등 과학기구를 발명한 조선 4대 임금이 한양 준수방에서 태어났다.',
     placeId: 'sejong-grave',
-    figureId: null,
     accent: '#C8442A',
     glyph: '誕',
   },
@@ -28,7 +26,6 @@ export const TODAY_IN_HISTORY: TodayEntry[] = [
     summary:
       '이순신이 임진왜란 발발 후 첫 출전에서 거제 옥포에서 왜선 26척을 격파했다. 23전 23승의 시작.',
     placeId: 'tongyeong-jeseungdang',
-    figureId: 'yi-sunsin',
     accent: '#1F3A52',
     glyph: '勝',
   },
@@ -39,7 +36,6 @@ export const TODAY_IN_HISTORY: TodayEntry[] = [
     summary:
       '조선 역대 왕과 왕비의 신주를 모신 종묘에서 매년 봉행되는 국가 의례. 유네스코 인류무형문화유산.',
     placeId: 'jongmyo',
-    figureId: null,
     accent: '#5F7A6B',
     glyph: '祭',
   },
