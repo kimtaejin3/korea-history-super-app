@@ -180,21 +180,23 @@ export default function MapScreen() {
           pointerEvents="none"
         />
         <View style={{ height: SEARCH_BAR_HEIGHT }}>
-          {showBar && (
-            <View
-              className="absolute left-0 right-0 top-0 flex-row items-center bg-paper rounded-full"
-              style={{
-                height: SEARCH_BAR_HEIGHT,
-                paddingHorizontal: SEARCH_BAR_INNER_PX,
-                gap: SEARCH_BAR_ICON_GAP,
-              }}
-            >
-              <SearchIcon size={SEARCH_BAR_ICON_SIZE} color={TOKENS.mute} strokeWidth={1.8} />
-              <Text className="flex-1 font-sans text-[13px] text-mute">
-                장소 · 테마 · 시대 검색
-              </Text>
-            </View>
-          )}
+          {/* 실제 바는 항상 마운트해두고 opacity로만 토글.
+              Overlay 언마운트 ↔ 실제 바 마운트 사이의 1프레임 race를 제거. */}
+          <View
+            className="absolute left-0 right-0 top-0 flex-row items-center bg-paper rounded-full"
+            style={{
+              height: SEARCH_BAR_HEIGHT,
+              paddingHorizontal: SEARCH_BAR_INNER_PX,
+              gap: SEARCH_BAR_ICON_GAP,
+              opacity: showBar ? 1 : 0,
+            }}
+            pointerEvents={showBar ? 'auto' : 'none'}
+          >
+            <SearchIcon size={SEARCH_BAR_ICON_SIZE} color={TOKENS.mute} strokeWidth={1.8} />
+            <Text className="flex-1 font-sans text-[13px] text-mute">
+              장소 · 테마 · 시대 검색
+            </Text>
+          </View>
         </View>
         <ScrollView
           horizontal
