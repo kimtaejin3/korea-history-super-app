@@ -2,6 +2,7 @@
 
 import 'react-native-url-polyfill/auto';
 
+import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import { enableFreeze, enableScreens } from 'react-native-screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -12,6 +13,7 @@ import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SearchTransitionOverlay } from '../components/SearchTransitionOverlay';
+import { initUserLocation } from '../stores/userLocation';
 import '../global.css';
 
 enableScreens(true);
@@ -28,6 +30,10 @@ const queryClient = new QueryClient({
 });
 
 export default function RootLayout() {
+  useEffect(() => {
+    initUserLocation();
+  }, []);
+
   const [fontsLoaded] = useFonts({
     'Pretendard-Regular': require('../assets/fonts/Pretendard-Regular.otf'),
     'Pretendard-Medium': require('../assets/fonts/Pretendard-Medium.otf'),

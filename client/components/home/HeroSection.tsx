@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useUserLocation } from '../../lib/useUserLocation';
+import { useUserCoords } from '../../stores/userLocation';
 import { nearbyQueryOptions } from '../../queries/places';
 import { TOKENS } from '../../lib/tokens';
 import { formatDistance } from '../../lib/geo';
@@ -11,7 +11,7 @@ import { PhotoCredit } from '../PhotoCredit';
 
 export function HeroSection() {
   const router = useRouter();
-  const { coords } = useUserLocation();
+  const coords = useUserCoords();
   const { data: nearby } = useSuspenseQuery(
     nearbyQueryOptions({ lat: coords.lat, lon: coords.lon, radius: 20, limit: 30 })
   );

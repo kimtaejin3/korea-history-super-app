@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSuspenseQueries } from '@tanstack/react-query';
-import { useUserLocation } from '../../lib/useUserLocation';
+import { useUserCoords } from '../../stores/userLocation';
 import { nearbyQueryOptions } from '../../queries/places';
 import { stampedQueryOptions } from '../../queries/stamps';
 import { formatDistance } from '../../lib/geo';
@@ -12,7 +12,7 @@ import { PhotoPlaceholder } from '../PhotoPlaceholder';
 
 export function NearbySection() {
   const router = useRouter();
-  const { coords } = useUserLocation();
+  const coords = useUserCoords();
   // nearby + stamped를 한 useSuspenseQueries로 묶어 병렬 발사 (waterfall 방지).
   // nearby는 HeroSection도 호출 — 같은 queryKey라 React Query가 dedupe.
   const [{ data: nearby }, { data: stamped }] = useSuspenseQueries({

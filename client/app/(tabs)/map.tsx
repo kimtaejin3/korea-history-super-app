@@ -24,7 +24,7 @@ import {
   SEARCH_BAR_PADDING_X,
 } from '../../lib/searchBarLayout';
 import { formatDistance } from '../../lib/geo';
-import { useUserLocation } from '../../lib/useUserLocation';
+import { useUserCoords } from '../../stores/userLocation';
 
 const FILTERS = ['전체', '조선', '백제', '통일신라', '근현대'];
 const PAGE_LIMIT = 10;
@@ -74,7 +74,7 @@ export default function MapScreen() {
   const router = useRouter();
   const [filter, setFilter] = useState('전체');
 
-  const { coords: userCoords } = useUserLocation();
+  const userCoords = useUserCoords();
   const searchTransition = useSearchState();
   const showBar = !searchTransition.active;
 

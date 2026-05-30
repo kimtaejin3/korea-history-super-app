@@ -11,7 +11,7 @@ import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { LottieAsset } from '../../components/LottieAsset';
 import { CheckIcon, CloseIcon, InfoIcon, PinIconFilled } from '../../components/icons';
-import { useUserLocation } from '../../lib/useUserLocation';
+import { useUserLocation } from '../../stores/userLocation';
 import { distanceKm, formatDistance } from '../../lib/geo';
 import { SectionBoundary } from '../../components/SectionBoundary';
 
