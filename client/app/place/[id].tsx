@@ -3,9 +3,12 @@
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQueries } from '@tanstack/react-query';
 import { TOKENS } from '../../lib/tokens';
-import { api, queryKeys } from '../../lib/api';
+import { placeQueryOptions } from '../../queries/places';
+import { themesQueryOptions } from '../../queries/themes';
+import { stampedQueryOptions } from '../../queries/stamps';
+import { meQueryOptions, levelsQueryOptions } from '../../queries/me';
 import { BackHeader } from '../../components/BackHeader';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { PhotoCredit } from '../../components/PhotoCredit';
@@ -13,6 +16,7 @@ import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { SectionLabel } from '../../components/SectionLabel';
 import { GatedButton } from '../../components/GatedButton';
+import { SectionBoundary } from '../../components/SectionBoundary';
 import {
   CameraIcon,
   ChevronRightIcon,
@@ -21,48 +25,44 @@ import {
 } from '../../components/icons';
 import { formatDistance } from '../../lib/geo';
 
+const NotFound = () => (
+  <View className="flex-1 bg-paper">
+    <BackHeader title="장소를 찾을 수 없어요" />
+  </View>
+);
+
+const Loading = () => (
+  <View className="flex-1 bg-paper">
+    <BackHeader />
+  </View>
+);
+
 export default function PlaceDetailScreen() {
+  return (
+    <SectionBoundary fallback={<Loading />} errorFallback={<NotFound />}>
+      <PlaceContent />
+    </SectionBoundary>
+  );
+}
+
+function PlaceContent() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const [{ data: p }, { data: STAMPED }, { data: THEMES }, { data: me }, { data: LEVELS }] =
+    useSuspenseQueries({
+      queries: [
+        placeQueryOptions(id),
+        stampedQueryOptions(),
+        themesQueryOptions(),
+        meQueryOptions(),
+        levelsQueryOptions(),
+      ],
+    });
 
-  const placeQuery = useQuery({
-    queryKey: queryKeys.place(id),
-    queryFn: () => api.place(id),
-    enabled: !!id,
-  });
-  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
-  const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
-  const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
-  const levelsQuery = useQuery({ queryKey: queryKeys.levels, queryFn: api.levels });
-
-  if (placeQuery.isError || (placeQuery.isFetched && !placeQuery.data)) {
-    return (
-      <View className="flex-1 bg-paper">
-        <BackHeader title="장소를 찾을 수 없어요" />
-      </View>
-    );
-  }
-  if (
-    !placeQuery.data ||
-    !stampedQuery.data ||
-    !themesQuery.data ||
-    !meQuery.data ||
-    !levelsQuery.data
-  ) {
-    return (
-      <View className="flex-1 bg-paper">
-        <BackHeader />
-      </View>
-    );
-  }
-  const p = placeQuery.data;
-  const STAMPED = stampedQuery.data;
-  const THEMES = themesQuery.data;
-  const LEVELS = levelsQuery.data;
   const stamped = STAMPED.includes(p.id);
   const inThemes = THEMES.filter((t) => t.placeIds.includes(p.id));
   const within = p.distance < 5;
-  const myRank = meQuery.data.rank.current;
+  const myRank = me.rank.current;
 
   return (
     <View className="flex-1 bg-paper">
@@ -70,7 +70,6 @@ export default function PlaceDetailScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 80 }}
       >
-        {/* 히어로 */}
         <View className="relative">
           <PhotoPlaceholder height={300} photoUrl={p.photo?.url} />
           <LinearGradient
@@ -93,7 +92,6 @@ export default function PlaceDetailScreen() {
           )}
         </View>
 
-        {/* 제목 */}
         <View className="px-5 pb-5 -mt-5">
           <View className="flex-row gap-1.5 mb-2.5">
             <Tag color={p.accent} filled>
@@ -115,7 +113,6 @@ export default function PlaceDetailScreen() {
           </View>
         </View>
 
-        {/* 인증 CTA */}
         <View className="px-5 pb-6">
           {stamped ? (
             <View
@@ -154,7 +151,6 @@ export default function PlaceDetailScreen() {
           )}
         </View>
 
-        {/* 스토리 */}
         <View className="px-5 pb-6">
           <Text className="font-serif text-base text-ink mb-2">이 곳의 이야기</Text>
           <Text className="font-serif-regular text-sm text-inkSoft leading-[26px] tracking-[-0.2px]">
@@ -162,7 +158,6 @@ export default function PlaceDetailScreen() {
           </Text>
         </View>
 
-        {/* 사진 */}
         <SectionLabel>사진 · PHOTOS</SectionLabel>
         <ScrollView
           horizontal
@@ -175,7 +170,6 @@ export default function PlaceDetailScreen() {
           ))}
         </ScrollView>
 
-        {/* 퀴즈 미리보기 */}
         {p.quiz && (
           <>
             <SectionLabel>현장 퀴즈 · QUIZ</SectionLabel>
@@ -210,7 +204,6 @@ export default function PlaceDetailScreen() {
           </>
         )}
 
-        {/* 기여 */}
         <SectionLabel
           action={
             <Text className="font-sans text-[11px] text-mute">등급에 따라 권한이 해제됩니다</Text>
@@ -243,7 +236,6 @@ export default function PlaceDetailScreen() {
           />
         </View>
 
-        {/* 속한 테마 */}
         {inThemes.length > 0 && (
           <>
             <SectionLabel>속한 테마 · IN THEMES</SectionLabel>
@@ -281,7 +273,6 @@ export default function PlaceDetailScreen() {
           </>
         )}
 
-        {/* 방문자 통계 */}
         <View className="px-5">
           <View className="p-3.5 bg-paper border border-line rounded-xl flex-row items-center gap-4">
             <View>

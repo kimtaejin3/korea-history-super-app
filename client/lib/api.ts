@@ -2,7 +2,6 @@ import Constants from 'expo-constants';
 
 import type { Place } from '../types/places';
 import type { Theme } from '../types/themes';
-import type { TodayEntry } from '../types/today';
 import type { Achievement, Level, RankInfo, RankingEntry } from '../types/user';
 
 // 실기기는 Metro의 LAN IP를 자동 추출하므로 Wi-Fi가 바뀌어도 IP를 갱신할 필요 없음.
@@ -56,8 +55,6 @@ export const api = {
   themes: () => get<Theme[]>('/themes'),
   theme: (id: string) => get<Theme>(`/themes/${id}`),
 
-  today: () => get<TodayEntry[]>('/today'),
-
   me: () =>
     get<{
       nickname: string;
@@ -74,26 +71,3 @@ export const api = {
   levels: () => get<Level[]>('/levels'),
 };
 
-export const queryKeys = {
-  places: ['places'] as const,
-  place: (id: string) => ['places', id] as const,
-  nearby: (
-    lat: number,
-    lon: number,
-    opts: { radius?: number; limit?: number; era?: string } = {}
-  ) =>
-    [
-      'places',
-      'nearby',
-      { lat, lon, radius: opts.radius ?? 20, limit: opts.limit ?? 50, era: opts.era },
-    ] as const,
-  stamped: ['stamped'] as const,
-  recentStamps: (limit = 6) => ['stamps', 'recent', limit] as const,
-  themes: ['themes'] as const,
-  theme: (id: string) => ['themes', id] as const,
-  today: ['today'] as const,
-  me: ['me'] as const,
-  achievements: ['achievements'] as const,
-  ranking: ['ranking'] as const,
-  levels: ['levels'] as const,
-};

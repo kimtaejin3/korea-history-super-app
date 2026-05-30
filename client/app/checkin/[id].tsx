@@ -4,31 +4,45 @@ import { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Animated, Easing } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { TOKENS } from '../../lib/tokens';
-import { api, queryKeys } from '../../lib/api';
+import { placeQueryOptions } from '../../queries/places';
 import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { LottieAsset } from '../../components/LottieAsset';
 import { CheckIcon, CloseIcon, InfoIcon, PinIconFilled } from '../../components/icons';
 import { useUserLocation } from '../../lib/useUserLocation';
 import { distanceKm, formatDistance } from '../../lib/geo';
+import { SectionBoundary } from '../../components/SectionBoundary';
 
 type Step = 'locating' | 'too_far' | 'confirmed' | 'quiz' | 'result' | 'stamp';
 
-/** 인증 허용 반경 (km). GPS 정확도 ±10~30m 고려해 50m. */
 const CHECKIN_RADIUS_KM = 0.05;
 
+const Loading = () => <View className="flex-1 bg-paper" />;
+
+const NotFound = () => {
+  const insets = useSafeAreaInsets();
+  return (
+    <View className="flex-1 bg-paper p-5" style={{ paddingTop: insets.top + 40 }}>
+      <Text>장소를 찾을 수 없어요</Text>
+    </View>
+  );
+};
+
 export default function CheckinScreen() {
+  return (
+    <SectionBoundary fallback={<Loading />} errorFallback={<NotFound />}>
+      <CheckinFlow />
+    </SectionBoundary>
+  );
+}
+
+function CheckinFlow() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const placeQuery = useQuery({
-    queryKey: queryKeys.place(id),
-    queryFn: () => api.place(id),
-    enabled: !!id,
-  });
-  const p = placeQuery.data;
+  const { data: p } = useSuspenseQuery(placeQueryOptions(id));
   const [step, setStep] = useState<Step>('locating');
   const [selected, setSelected] = useState<number | null>(null);
   const [correct, setCorrect] = useState<boolean | null>(null);
@@ -40,7 +54,6 @@ export default function CheckinScreen() {
   const pulse2 = useRef(new Animated.Value(0)).current;
   const pulse3 = useRef(new Animated.Value(0)).current;
 
-  // 펄스 애니메이션 (locating 동안)
   useEffect(() => {
     if (step !== 'locating') return;
     const animatePulse = (v: Animated.Value, delay: number) =>
@@ -61,13 +74,10 @@ export default function CheckinScreen() {
     animatePulse(pulse3, 1200);
   }, [step, pulse1, pulse2, pulse3]);
 
-  // 실제 위치 기반 50m 판정
   useEffect(() => {
     if (step !== 'locating') return;
-    if (!p) return;
-    if (locStatus === 'loading') return; // 위치 결정될 때까지 대기
+    if (locStatus === 'loading') return;
 
-    // 장소 좌표 없으면 판정 불가 → 통과 처리 (큐레이션/일부 항목)
     if (p.lat == null || p.lon == null) {
       const t = setTimeout(() => setStep('confirmed'), 1200);
       return () => clearTimeout(t);
@@ -76,20 +86,11 @@ export default function CheckinScreen() {
     const dKm = distanceKm(userCoords, { lat: p.lat, lon: p.lon });
     setDistanceM(Math.round(dKm * 1000));
 
-    // GPS 깜빡임 보여주려 약간 지연 후 판정
     const t = setTimeout(() => {
       setStep(dKm <= CHECKIN_RADIUS_KM ? 'confirmed' : 'too_far');
     }, 1500);
     return () => clearTimeout(t);
   }, [step, p, locStatus, userCoords]);
-
-  if (!p) {
-    return (
-      <View className="flex-1 bg-paper p-5" style={{ paddingTop: insets.top + 40 }}>
-        <Text>장소를 찾을 수 없어요</Text>
-      </View>
-    );
-  }
 
   const stepLabels: Record<Step, string> = {
     locating: '위치 확인',
@@ -102,7 +103,6 @@ export default function CheckinScreen() {
 
   return (
     <View className="flex-1 bg-paper">
-      {/* 헤더 */}
       <View
         className="px-4 pb-3 flex-row items-center justify-between"
         style={{ paddingTop: insets.top + 8 }}
@@ -117,7 +117,6 @@ export default function CheckinScreen() {
         <View className="w-9" />
       </View>
 
-      {/* STEP: GPS */}
       {step === 'locating' && (
         <View className="flex-1 items-center justify-center p-6">
           <View className="w-[180px] h-[180px] items-center justify-center mb-9">
@@ -145,7 +144,6 @@ export default function CheckinScreen() {
         </View>
       )}
 
-      {/* STEP: 너무 멀리 있음 */}
       {step === 'too_far' && (
         <View className="flex-1 items-center justify-center p-6">
           <View className="w-[76px] h-[76px] rounded-full bg-paperWarm items-center justify-center mb-6">
@@ -180,7 +178,6 @@ export default function CheckinScreen() {
         </View>
       )}
 
-      {/* STEP: 확인 완료 */}
       {step === 'confirmed' && (
         <View className="flex-1 items-center justify-center p-6">
           <View className="w-[76px] h-[76px] rounded-full bg-green items-center justify-center mb-6">
@@ -215,7 +212,6 @@ export default function CheckinScreen() {
         </View>
       )}
 
-      {/* STEP: 퀴즈 */}
       {step === 'quiz' && p.quiz && (
         <View className="flex-1 p-6" style={{ paddingBottom: insets.bottom + 20 }}>
           <View className="mb-3.5">
@@ -293,7 +289,6 @@ export default function CheckinScreen() {
         </View>
       )}
 
-      {/* STEP: 결과 */}
       {step === 'result' && p.quiz && (
         <View className="flex-1 items-center justify-center p-6">
           <Text
@@ -332,7 +327,6 @@ export default function CheckinScreen() {
         </View>
       )}
 
-      {/* STEP: 스탬프 */}
       {step === 'stamp' && (
         <View className="flex-1 items-center justify-center p-6">
           <Text className="font-sans-bold text-[11px] text-red tracking-[3px] mb-2">

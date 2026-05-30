@@ -8,7 +8,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { TOKENS } from '../../lib/tokens';
-import { api, queryKeys, type NearbyResponse } from '../../lib/api';
+import { nearbyInfiniteQueryOptions } from '../../queries/places';
+import { stampedQueryOptions } from '../../queries/stamps';
 import type { Place } from '../../types/places';
 import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
@@ -88,29 +89,18 @@ export default function MapScreen() {
 
   // 무한 페이지네이션 — 한 페이지 PAGE_LIMIT개, 스크롤 끝 도달 시 다음 페이지 fetch
   const nearbyQuery = useInfiniteQuery({
-    queryKey: queryKeys.nearby(userCoords.lat, userCoords.lon, {
+    ...nearbyInfiniteQueryOptions({
+      lat: userCoords.lat,
+      lon: userCoords.lon,
       radius: 30,
       limit: PAGE_LIMIT,
       era: filter,
     }),
-    queryFn: ({ pageParam }) =>
-      api.nearby({
-        lat: userCoords.lat,
-        lon: userCoords.lon,
-        radius: 30,
-        limit: PAGE_LIMIT,
-        page: pageParam,
-        era: filter,
-      }),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage: NearbyResponse) =>
-      lastPage.hasMore ? lastPage.page + 1 : undefined,
     enabled: fetchReady,
   });
 
   const stampedQuery = useQuery({
-    queryKey: queryKeys.stamped,
-    queryFn: api.stamped,
+    ...stampedQueryOptions(),
     enabled: fetchReady,
   });
 

@@ -2,43 +2,44 @@
 
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQueries } from '@tanstack/react-query';
 import { TOKENS } from '../../lib/tokens';
-import { api, queryKeys } from '../../lib/api';
+import { placesQueryOptions } from '../../queries/places';
+import { themeQueryOptions } from '../../queries/themes';
+import { stampedQueryOptions } from '../../queries/stamps';
 import { BackHeader } from '../../components/BackHeader';
 import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { SectionLabel } from '../../components/SectionLabel';
 import { RewardIcon } from '../../components/icons';
+import { SectionBoundary } from '../../components/SectionBoundary';
+
+const NotFound = () => (
+  <View className="flex-1 bg-paper">
+    <BackHeader title="테마를 찾을 수 없어요" />
+  </View>
+);
+
+const Loading = () => (
+  <View className="flex-1 bg-paper">
+    <BackHeader />
+  </View>
+);
 
 export default function ThemeDetailScreen() {
+  return (
+    <SectionBoundary fallback={<Loading />} errorFallback={<NotFound />}>
+      <ThemeContent />
+    </SectionBoundary>
+  );
+}
+
+function ThemeContent() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const themeQuery = useQuery({
-    queryKey: queryKeys.theme(id),
-    queryFn: () => api.theme(id),
-    enabled: !!id,
+  const [{ data: t }, { data: PLACES }, { data: STAMPED }] = useSuspenseQueries({
+    queries: [themeQueryOptions(id), placesQueryOptions(), stampedQueryOptions()],
   });
-  const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
-  const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
-
-  if (themeQuery.isError || (themeQuery.isFetched && !themeQuery.data)) {
-    return (
-      <View className="flex-1 bg-paper">
-        <BackHeader title="테마를 찾을 수 없어요" />
-      </View>
-    );
-  }
-  if (!themeQuery.data || !placesQuery.data || !stampedQuery.data) {
-    return (
-      <View className="flex-1 bg-paper">
-        <BackHeader />
-      </View>
-    );
-  }
-  const t = themeQuery.data;
-  const PLACES = placesQuery.data;
-  const STAMPED = stampedQuery.data;
   const places = t.placeIds
     .map((pid) => PLACES.find((p) => p.id === pid))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -50,7 +51,6 @@ export default function ThemeDetailScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 80 }}
       >
-        {/* 커버 */}
         <View
           style={{
             height: 320,
@@ -79,14 +79,12 @@ export default function ThemeDetailScreen() {
           </View>
         </View>
 
-        {/* 설명 */}
         <View className="p-5 pb-6">
           <Text className="font-serif-regular text-[15px] text-inkSoft leading-[26px]">
             {t.desc}
           </Text>
         </View>
 
-        {/* 보상 카드 */}
         <View className="px-5 pb-6">
           <View
             className="bg-paperWarm p-4 rounded-xl flex-row items-center gap-3.5"
@@ -119,7 +117,6 @@ export default function ThemeDetailScreen() {
           </View>
         </View>
 
-        {/* 장소 타임라인 */}
         <SectionLabel
           action={<Text className="font-sans-bold text-[11px] text-mute">코스 순서대로</Text>}
         >
@@ -171,7 +168,6 @@ export default function ThemeDetailScreen() {
             </Pressable>
           ))}
 
-          {/* 미답사 노드 */}
           {Array.from({ length: t.totalPlaces - places.length }).map((_, i) => {
             const idx = places.length + i;
             return (
