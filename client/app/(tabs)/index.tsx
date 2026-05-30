@@ -21,7 +21,7 @@ import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { PhotoCredit } from '../../components/PhotoCredit';
 import { SectionLabel } from '../../components/SectionLabel';
 import { PinIcon, SearchIcon } from '../../components/icons';
-import { useSearchActions } from '../../context/SearchTransition';
+import { useSearchActions } from '../../stores/searchTransition';
 import { getSearchBarRect } from '../../lib/searchBarLayout';
 import { useUserLocation } from '../../lib/useUserLocation';
 import { formatDistance } from '../../lib/geo';

@@ -11,9 +11,7 @@ import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from '@expo-google-fo
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SearchTransitionProvider } from '../context/SearchTransition';
 import { SearchTransitionOverlay } from '../components/SearchTransitionOverlay';
-import { AuthProvider } from '../context/Auth';
 import '../global.css';
 
 enableScreens(true);
@@ -47,18 +45,14 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <SafeAreaProvider>
-          <AuthProvider>
-            <SearchTransitionProvider>
-              <StatusBar style="dark" />
-              <Stack
-                screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FBFBF9' } }}
-              >
-                <Stack.Screen name="login" options={{ gestureEnabled: false }} />
-                <Stack.Screen name="(tabs)" />
-              </Stack>
-              <SearchTransitionOverlay />
-            </SearchTransitionProvider>
-          </AuthProvider>
+          <StatusBar style="dark" />
+          <Stack
+            screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FBFBF9' } }}
+          >
+            <Stack.Screen name="login" options={{ gestureEnabled: false }} />
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+          <SearchTransitionOverlay />
         </SafeAreaProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>

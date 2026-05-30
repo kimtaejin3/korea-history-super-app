@@ -3,7 +3,7 @@
  * 한 곳만 바꾸면 양쪽이 따라옴.
  */
 
-import type { Rect } from '../context/SearchTransition';
+import type { Rect } from '../stores/searchTransition';
 
 /** 컨테이너 좌우 패딩 (Map 화면 paddingHorizontal) */
 export const SEARCH_BAR_PADDING_X = 16;

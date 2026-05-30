@@ -2,7 +2,7 @@
 
 import { useRouter } from 'expo-router';
 import { LoginScreen } from '../components/LoginScreen';
-import { useAuth } from '../context/Auth';
+import { useAuth } from '../stores/auth';
 
 export default function LoginRoute() {
   const router = useRouter();

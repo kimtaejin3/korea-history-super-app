@@ -13,7 +13,7 @@ import type { Place } from '../../data/places';
 import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { SearchIcon } from '../../components/icons';
-import { useSearchState } from '../../context/SearchTransition';
+import { useSearchState } from '../../stores/searchTransition';
 import {
   SEARCH_BAR_HEIGHT,
   SEARCH_BAR_ICON_GAP,
@@ -89,7 +89,7 @@ export default function MapScreen() {
   // 무한 페이지네이션 — 한 페이지 PAGE_LIMIT개, 스크롤 끝 도달 시 다음 페이지 fetch
   const nearbyQuery = useInfiniteQuery({
     queryKey: queryKeys.nearby(userCoords.lat, userCoords.lon, {
-      radius: 200,
+      radius: 30,
       limit: PAGE_LIMIT,
       era: filter,
     }),
@@ -97,7 +97,7 @@ export default function MapScreen() {
       api.nearby({
         lat: userCoords.lat,
         lon: userCoords.lon,
-        radius: 200,
+        radius: 30,
         limit: PAGE_LIMIT,
         page: pageParam,
         era: filter,
