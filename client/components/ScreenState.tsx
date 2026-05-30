@@ -1,6 +1,6 @@
 import { View, Text, Pressable, ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { TOKENS } from '../data/tokens';
+import { TOKENS } from '../lib/tokens';
 
 type Props = {
   /** 로딩 중 */

@@ -1,5 +1,5 @@
 import { Linking, Pressable, Text, View, type ViewStyle } from 'react-native';
-import type { Photo } from '../data/places';
+import type { Photo } from '../types/places';
 
 type Props = {
   photo: Photo;

@@ -2,7 +2,7 @@ import { View, Text, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { ReactNode } from 'react';
-import { TOKENS } from '../data/tokens';
+import { TOKENS } from '../lib/tokens';
 import { BackIcon } from './icons';
 
 type Props = {

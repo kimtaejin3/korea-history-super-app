@@ -9,7 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Text } from 'react-native';
 import { useSearchActions, useSearchState } from '../stores/searchTransition';
-import { FONTS, TOKENS } from '../data/tokens';
+import { FONTS, TOKENS } from '../lib/tokens';
 import {
   HOME_SEARCH_BTN_SIZE,
   SEARCH_BAR_ICON_SIZE,

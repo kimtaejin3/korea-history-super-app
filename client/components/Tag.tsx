@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { TOKENS } from '../data/tokens';
+import { TOKENS } from '../lib/tokens';
 
 type Props = {
   children: string;

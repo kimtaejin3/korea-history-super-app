@@ -2,7 +2,7 @@
 
 import { View, Text, ScrollView } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
-import { TOKENS } from '../data/tokens';
+import { TOKENS } from '../lib/tokens';
 import { api, queryKeys } from '../lib/api';
 import { BackHeader } from '../components/BackHeader';
 import { SectionLabel } from '../components/SectionLabel';

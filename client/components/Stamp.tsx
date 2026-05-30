@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import Svg, { Rect, Defs, RadialGradient, Stop } from 'react-native-svg';
-import { TOKENS } from '../data/tokens';
+import { TOKENS } from '../lib/tokens';
 
 type Props = {
   glyph?: string;

@@ -5,7 +5,7 @@ import { View, Text, Pressable, Animated, Easing } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useQuery } from '@tanstack/react-query';
-import { TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../lib/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';

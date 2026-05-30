@@ -1,6 +1,6 @@
 import { Pressable, Text } from 'react-native';
 import { ReactNode } from 'react';
-import { Level } from '../data/user';
+import { Level } from '../types/user';
 import { LockIcon, PlusIcon } from './icons';
 
 type Props = {

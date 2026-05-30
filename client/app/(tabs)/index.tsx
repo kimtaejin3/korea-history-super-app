@@ -13,7 +13,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { haptic } from '../../lib/haptics';
 import { useQuery } from '@tanstack/react-query';
-import { TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../lib/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
@@ -140,8 +140,8 @@ export default function HomeScreen() {
 
 // ─── 콘텐츠 섹션들 (데이터 준비된 뒤에만 렌더) ────────────────
 type ContentProps = {
-  nearby: import('../../data/places').Place[];
-  themes: import('../../data/themes').Theme[];
+  nearby: import('../../types/places').Place[];
+  themes: import('../../types/themes').Theme[];
   recentStamps: { id: string; glyph: string; accent: string }[];
   stamped: string[];
   myStamps: number;

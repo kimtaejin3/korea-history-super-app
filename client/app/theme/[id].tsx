@@ -3,7 +3,7 @@
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../lib/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { BackHeader } from '../../components/BackHeader';
 import { Tag } from '../../components/Tag';

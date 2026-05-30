@@ -1,9 +1,9 @@
 import Constants from 'expo-constants';
 
-import type { Place } from '../data/places';
-import type { Theme } from '../data/themes';
-import type { TodayEntry } from '../data/today';
-import type { Achievement, Level, RankInfo, RankingEntry } from '../data/user';
+import type { Place } from '../types/places';
+import type { Theme } from '../types/themes';
+import type { TodayEntry } from '../types/today';
+import type { Achievement, Level, RankInfo, RankingEntry } from '../types/user';
 
 // 실기기는 Metro의 LAN IP를 자동 추출하므로 Wi-Fi가 바뀌어도 IP를 갱신할 필요 없음.
 // EXPO_PUBLIC_API_BASE로 명시 override 가능 (스테이징/프로덕션 빌드용).

@@ -6,7 +6,7 @@
  */
 
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
-import { TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../lib/tokens';
 
 type IconProps = {
   size?: number;

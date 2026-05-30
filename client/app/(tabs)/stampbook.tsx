@@ -5,7 +5,7 @@ import { View, Text, ScrollView, Pressable, ViewStyle } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
-import { TOKENS } from '../../data/tokens';
+import { TOKENS } from '../../lib/tokens';
 import { api, queryKeys } from '../../lib/api';
 import { PageHeader } from '../../components/PageHeader';
 import { Stamp } from '../../components/Stamp';
