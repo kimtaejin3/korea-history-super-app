@@ -5,7 +5,6 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { api, queryKeys } from '../../lib/api';
-import { LEVELS } from '../../data/user';
 import { PageHeader } from '../../components/PageHeader';
 import { GatedButton } from '../../components/GatedButton';
 import { StampBoxIcon } from '../../components/icons';
@@ -18,11 +17,12 @@ export default function ThemesScreen() {
   const [tab, setTab] = useState('전체');
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
   const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
+  const levelsQuery = useQuery({ queryKey: queryKeys.levels, queryFn: api.levels });
 
-  const loading = themesQuery.isLoading || meQuery.isLoading;
-  const error = themesQuery.isError || meQuery.isError;
+  const loading = themesQuery.isLoading || meQuery.isLoading || levelsQuery.isLoading;
+  const error = themesQuery.isError || meQuery.isError || levelsQuery.isError;
 
-  if (!themesQuery.data || !meQuery.data) {
+  if (!themesQuery.data || !meQuery.data || !levelsQuery.data) {
     return (
       <ScreenState
         loading={loading}
@@ -30,11 +30,13 @@ export default function ThemesScreen() {
         onRetry={() => {
           themesQuery.refetch();
           meQuery.refetch();
+          levelsQuery.refetch();
         }}
       />
     );
   }
   const THEMES = themesQuery.data;
+  const LEVELS = levelsQuery.data;
   const myRank = meQuery.data.rank.current;
 
   return (

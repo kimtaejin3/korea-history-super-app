@@ -6,7 +6,6 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { TOKENS } from '../../data/tokens';
 import { api, queryKeys } from '../../lib/api';
-import { LEVELS } from '../../data/user';
 import { BackHeader } from '../../components/BackHeader';
 import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
 import { PhotoCredit } from '../../components/PhotoCredit';
@@ -34,6 +33,7 @@ export default function PlaceDetailScreen() {
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
   const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
+  const levelsQuery = useQuery({ queryKey: queryKeys.levels, queryFn: api.levels });
 
   if (placeQuery.isError || (placeQuery.isFetched && !placeQuery.data)) {
     return (
@@ -42,7 +42,13 @@ export default function PlaceDetailScreen() {
       </View>
     );
   }
-  if (!placeQuery.data || !stampedQuery.data || !themesQuery.data || !meQuery.data) {
+  if (
+    !placeQuery.data ||
+    !stampedQuery.data ||
+    !themesQuery.data ||
+    !meQuery.data ||
+    !levelsQuery.data
+  ) {
     return (
       <View className="flex-1 bg-paper">
         <BackHeader />
@@ -52,6 +58,7 @@ export default function PlaceDetailScreen() {
   const p = placeQuery.data;
   const STAMPED = stampedQuery.data;
   const THEMES = themesQuery.data;
+  const LEVELS = levelsQuery.data;
   const stamped = STAMPED.includes(p.id);
   const inThemes = THEMES.filter((t) => t.placeIds.includes(p.id));
   const within = p.distance < 5;
