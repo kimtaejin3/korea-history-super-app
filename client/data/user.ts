@@ -1,4 +1,10 @@
-import { STAMPED } from './places';
+// 클라이언트가 서버 API 응답을 타이핑할 때 쓰는 타입 정의.
+// 사용자/업적/랭킹 데이터는 모두 Postgres에서 옴.
+//
+// LEVELS const만 직접 import해서 쓰는 곳이 있음 (GatedButton에 정적으로 등급 전달):
+//   - app/(tabs)/themes.tsx
+//   - app/place/[id].tsx
+// 향후 api.levels() 결과로 대체하면 이 const도 제거 가능.
 
 export type Level = {
   level: number;
@@ -8,6 +14,30 @@ export type Level = {
   color: string;
   desc: string;
   perks: string[];
+};
+
+export type RankInfo = {
+  current: Level;
+  next: Level | null;
+  progress: number;
+  xpToNext: number;
+};
+
+export type Achievement = {
+  id: string;
+  title: string;
+  desc: string;
+  done: boolean;
+  progress?: number;
+  max?: number;
+};
+
+export type RankingEntry = {
+  rank: number;
+  name: string;
+  stamps: number;
+  badge: string;
+  me?: boolean;
 };
 
 export const LEVELS: Level[] = [
@@ -74,91 +104,4 @@ export const LEVELS: Level[] = [
     desc: '역사를 기록하는 최고 책임자',
     perks: ['신규 등록 검수 권한', '명예의 전당 등재'],
   },
-];
-
-export const USER = {
-  nickname: '답사초보',
-  joinedAt: '2026.01',
-  daysActive: 142,
-  stamps: STAMPED.length,
-  quizCorrect: 7,
-  themesCompleted: 0,
-  get xp() {
-    return this.stamps * 10 + this.quizCorrect * 5 + this.themesCompleted * 50;
-  },
-} as const;
-
-export type RankInfo = {
-  current: Level;
-  next: Level | null;
-  progress: number;
-  xpToNext: number;
-};
-
-export function getRankInfo(xp: number): RankInfo {
-  // LEVELS는 비어있지 않다 (위 const 선언에서 보장).
-  let current: Level = LEVELS[0]!;
-  for (const lv of LEVELS) {
-    if (xp >= lv.minXp) current = lv;
-    else break;
-  }
-  const nextIdx = LEVELS.findIndex((l) => l.level === current.level) + 1;
-  const next = LEVELS[nextIdx] ?? null;
-  const progress = next ? (xp - current.minXp) / (next.minXp - current.minXp) : 1;
-  const xpToNext = next ? next.minXp - xp : 0;
-  return { current, next, progress, xpToNext };
-}
-
-export type Achievement = {
-  id: string;
-  title: string;
-  desc: string;
-  done: boolean;
-  progress?: number;
-  max?: number;
-};
-
-export const ACHIEVEMENTS: Achievement[] = [
-  { id: 'first', title: '첫 발자국', desc: '첫 스탬프 획득', done: true },
-  { id: 'baekje', title: '백제 답사가', desc: '백제 옛 도읍 2곳 방문', done: true },
-  { id: 'streak7', title: '주말 답사자', desc: '7일 연속 방문', done: true },
-  {
-    id: 'quiz10',
-    title: '역사 마스터',
-    desc: '퀴즈 10문제 정답',
-    done: false,
-    progress: 7,
-    max: 10,
-  },
-  {
-    id: 'all-themes',
-    title: '도감 완성가',
-    desc: '한 테마 100% 완성',
-    done: false,
-    progress: 2,
-    max: 7,
-  },
-  {
-    id: 'gyeongi',
-    title: '경기 답사가',
-    desc: '경기도 5곳 방문',
-    done: false,
-    progress: 2,
-    max: 5,
-  },
-];
-
-export type RankingEntry = {
-  rank: number;
-  name: string;
-  stamps: number;
-  badge: string;
-  me?: boolean;
-};
-
-export const RANKING: RankingEntry[] = [
-  { rank: 1, name: '서원지기', stamps: 87, badge: '대보름' },
-  { rank: 2, name: '낙관소년', stamps: 72, badge: '도감왕' },
-  { rank: 3, name: '한지', stamps: 68, badge: '백제답사' },
-  { rank: 14, name: '나', stamps: 6, badge: '첫 발자국', me: true },
 ];

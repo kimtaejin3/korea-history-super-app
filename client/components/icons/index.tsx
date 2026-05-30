@@ -244,35 +244,6 @@ export function StampBoxIcon({ size = 12, color = TOKENS.red, strokeWidth = 1.6 
   );
 }
 
-/** 퀴즈 (? 동그라미) */
-export function QuizIcon({ size = 14, color = TOKENS.paper, strokeWidth = 1.7 }: IconProps) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 22 22" fill="none">
-      <Circle cx="11" cy="11" r="8" stroke={color} strokeWidth={strokeWidth} />
-      <Path
-        d="M9 9c0-1.1 1-2 2-2s2 .9 2 2-2 1.5-2 3M11 16v0.5"
-        stroke={color}
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-      />
-    </Svg>
-  );
-}
-
-/** 연필 (편집/제안) */
-export function PencilIcon({ size = 14, color = TOKENS.paper, strokeWidth = 1.7 }: IconProps) {
-  return (
-    <Svg width={size} height={size} viewBox="0 0 22 22" fill="none">
-      <Path
-        d="M4 18l2-6L15 3l4 4-9 9-6 2z"
-        stroke={color}
-        strokeWidth={strokeWidth}
-        strokeLinejoin="round"
-      />
-    </Svg>
-  );
-}
-
 // PhotoPlaceholder가 쓰는 대각선 라인은 자기 코드에 두는 게 자연스러우니 여기서는 export 안 함.
 // Stamp 컴포넌트의 도장 SVG도 마찬가지로 Stamp.tsx 안에 둠.
 // TabBar의 5개 아이콘(home/map/theme/stamp/me)도 TabBar 안에서만 쓰이니 그대로 둠.
