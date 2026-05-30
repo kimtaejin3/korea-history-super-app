@@ -63,7 +63,14 @@ export const PLACES: Place[] = [
       answer: 0,
       hint: '임금을 상징하는 전패를 향해 절을 올리는 의식입니다.',
     },
-    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/%EC%A2%8C%EC%9D%B5%EC%82%AC%EB%82%B4%EB%B6%80.jpg/330px-%EC%A2%8C%EC%9D%B5%EC%82%AC%EB%82%B4%EB%B6%80.jpg", "width": 750, "height": 521, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%8C%BD%EC%84%B1%EC%9D%8D_%EA%B0%9D%EC%82%AC", "license": "cc-by-sa"},
+    photo: {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/%EC%A2%8C%EC%9D%B5%EC%82%AC%EB%82%B4%EB%B6%80.jpg/330px-%EC%A2%8C%EC%9D%B5%EC%82%AC%EB%82%B4%EB%B6%80.jpg',
+      width: 750,
+      height: 521,
+      credit: 'Wikimedia Commons',
+      sourceUrl: 'https://ko.wikipedia.org/wiki/%ED%8C%BD%EC%84%B1%EC%9D%8D_%EA%B0%9D%EC%82%AC',
+      license: 'cc-by-sa',
+    },
   },
   {
     id: 'daedongbeop-bi',
@@ -90,7 +97,15 @@ export const PLACES: Place[] = [
       answer: 1,
       hint: '효종·현종 대 영의정을 지낸 인물입니다.',
     },
-    photo: {"url": "https://upload.wikimedia.org/wikipedia/ko/thumb/a/a8/%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84_%ED%83%81%EB%B3%B8.jpg/330px-%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84_%ED%83%81%EB%B3%B8.jpg", "width": 2848, "height": 4272, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84", "license": "cc-by-sa"},
+    photo: {
+      url: 'https://upload.wikimedia.org/wikipedia/ko/thumb/a/a8/%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84_%ED%83%81%EB%B3%B8.jpg/330px-%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84_%ED%83%81%EB%B3%B8.jpg',
+      width: 2848,
+      height: 4272,
+      credit: 'Wikimedia Commons',
+      sourceUrl:
+        'https://ko.wikipedia.org/wiki/%EB%8C%80%EB%8F%99%EB%B2%95_%EC%8B%9C%ED%96%89_%EA%B8%B0%EB%85%90%EB%B9%84',
+      license: 'cc-by-sa',
+    },
   },
   {
     id: 'hyeonchungsa',
@@ -107,8 +122,7 @@ export const PLACES: Place[] = [
     period: '1706년',
     summary:
       '충무공 이순신 장군의 영정을 모신 사당. 장군이 무과에 급제하기 전까지 살던 옛집과 활터가 함께 보존되어 있다.',
-    story:
-      '현충사는 숙종 32년(1706)에 이순신 장군의 충절을 기리기 위해 세워진 사당이다.',
+    story: '현충사는 숙종 32년(1706)에 이순신 장군의 충절을 기리기 위해 세워진 사당이다.',
     visits: 412,
     nearbyStamps: 2,
     quiz: {
@@ -117,7 +131,14 @@ export const PLACES: Place[] = [
       answer: 1,
       hint: '임진왜란 7년의 기록입니다.',
     },
-    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/%ED%98%84%EC%B6%A9%EC%82%AC%28Hyeonchoong-sa%29_01.jpg/330px-%ED%98%84%EC%B6%A9%EC%82%AC%28Hyeonchoong-sa%29_01.jpg", "width": 2272, "height": 1704, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%ED%98%84%EC%B6%A9%EC%82%AC", "license": "cc-by-sa"},
+    photo: {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/%ED%98%84%EC%B6%A9%EC%82%AC%28Hyeonchoong-sa%29_01.jpg/330px-%ED%98%84%EC%B6%A9%EC%82%AC%28Hyeonchoong-sa%29_01.jpg',
+      width: 2272,
+      height: 1704,
+      credit: 'Wikimedia Commons',
+      sourceUrl: 'https://ko.wikipedia.org/wiki/%ED%98%84%EC%B6%A9%EC%82%AC',
+      license: 'cc-by-sa',
+    },
   },
   {
     id: 'oeam-village',
@@ -139,7 +160,14 @@ export const PLACES: Place[] = [
     visits: 256,
     nearbyStamps: 2,
     quiz: null,
-    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Oeam_Folk_Village_2010.JPG/330px-Oeam_Folk_Village_2010.JPG", "width": 3872, "height": 2592, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%99%B8%EC%95%94%EB%A7%88%EC%9D%84", "license": "cc-by-sa"},
+    photo: {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Oeam_Folk_Village_2010.JPG/330px-Oeam_Folk_Village_2010.JPG',
+      width: 3872,
+      height: 2592,
+      credit: 'Wikimedia Commons',
+      sourceUrl: 'https://ko.wikipedia.org/wiki/%EC%99%B8%EC%95%94%EB%A7%88%EC%9D%84',
+      license: 'cc-by-sa',
+    },
   },
   {
     id: 'dokrip-hall',
@@ -176,11 +204,19 @@ export const PLACES: Place[] = [
     period: '1796년',
     summary:
       '정조가 아버지 사도세자의 능을 옮기며 축조한 신도시 성곽. 정약용의 거중기로 2년 9개월 만에 완성.',
-    story: '수원 화성은 정조가 아버지 사도세자의 능을 양주에서 화산(현 화성시)으로 옮기면서 1794년부터 1796년까지 축조한 성곽이다.',
+    story:
+      '수원 화성은 정조가 아버지 사도세자의 능을 양주에서 화산(현 화성시)으로 옮기면서 1794년부터 1796년까지 축조한 성곽이다.',
     visits: 1024,
     nearbyStamps: 5,
     quiz: null,
-    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Bifyu_8.jpg/330px-Bifyu_8.jpg", "width": 1600, "height": 1200, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90_%ED%99%94%EC%84%B1", "license": "cc-by-sa"},
+    photo: {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Bifyu_8.jpg/330px-Bifyu_8.jpg',
+      width: 1600,
+      height: 1200,
+      credit: 'Wikimedia Commons',
+      sourceUrl: 'https://ko.wikipedia.org/wiki/%EC%88%98%EC%9B%90_%ED%99%94%EC%84%B1',
+      license: 'cc-by-sa',
+    },
   },
   {
     id: 'sosu-seowon',
@@ -191,23 +227,31 @@ export const PLACES: Place[] = [
     distance: 175.8,
     coords: { x: 47, y: 35 },
     lat: 36.844,
-    lon: 128.480,
+    lon: 128.48,
     accent: '#7A6450',
     tag: '유네스코',
     period: '1543년',
     summary:
       '주세붕이 백운동서원으로 세운 한국 최초의 사액서원. 안향을 기리며 조선 서원의 시작이 된 곳.',
     story:
-      '소수서원은 1543년 풍기군수 주세붕이 안향의 사당을 모시고 세운 백운동서원에서 출발했다. 1550년 명종이 \'소수(紹修)\'라는 편액을 내려 한국 최초의 사액서원이 되었고, 이후 조선 전역에 서원이 퍼지는 시발점이 되었다. 2019년 유네스코 세계유산 한국의 서원에 포함되어 등재되었다.',
+      "소수서원은 1543년 풍기군수 주세붕이 안향의 사당을 모시고 세운 백운동서원에서 출발했다. 1550년 명종이 '소수(紹修)'라는 편액을 내려 한국 최초의 사액서원이 되었고, 이후 조선 전역에 서원이 퍼지는 시발점이 되었다. 2019년 유네스코 세계유산 한국의 서원에 포함되어 등재되었다.",
     visits: 421,
     nearbyStamps: 2,
     quiz: {
-      q: '한국 최초의 사액서원으로 명종에게 \'소수\'라는 편액을 받은 서원은?',
+      q: "한국 최초의 사액서원으로 명종에게 '소수'라는 편액을 받은 서원은?",
       options: ['도산서원', '병산서원', '소수서원', '옥산서원'],
       answer: 2,
       hint: '풍기군수 주세붕이 안향의 사당을 모시고 세운 곳입니다.',
     },
-    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sosuseowon.jpg/330px-Sosuseowon.jpg", "width": 2592, "height": 1936, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%98%81%EC%A3%BC_%EC%86%8C%EC%88%98%EC%84%9C%EC%9B%90", "license": "cc-by-sa"},
+    photo: {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sosuseowon.jpg/330px-Sosuseowon.jpg',
+      width: 2592,
+      height: 1936,
+      credit: 'Wikimedia Commons',
+      sourceUrl:
+        'https://ko.wikipedia.org/wiki/%EC%98%81%EC%A3%BC_%EC%86%8C%EC%88%98%EC%84%9C%EC%9B%90',
+      license: 'cc-by-sa',
+    },
   },
   {
     id: 'dosan-seowon',
@@ -234,12 +278,16 @@ export const PLACES: Place[] = [
       answer: 2,
       hint: '퇴계 선생으로 더 알려진 조선 성리학의 거두입니다.',
     },
-    photo: {"url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Korea-Andong-Dosan_Seowon_3025-06.JPG/330px-Korea-Andong-Dosan_Seowon_3025-06.JPG", "width": 1280, "height": 960, "credit": "Wikimedia Commons", "sourceUrl": "https://ko.wikipedia.org/wiki/%EC%95%88%EB%8F%99_%EB%8F%84%EC%82%B0%EC%84%9C%EC%9B%90", "license": "cc-by-sa"},
+    photo: {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Korea-Andong-Dosan_Seowon_3025-06.JPG/330px-Korea-Andong-Dosan_Seowon_3025-06.JPG',
+      width: 1280,
+      height: 960,
+      credit: 'Wikimedia Commons',
+      sourceUrl:
+        'https://ko.wikipedia.org/wiki/%EC%95%88%EB%8F%99_%EB%8F%84%EC%82%B0%EC%84%9C%EC%9B%90',
+      license: 'cc-by-sa',
+    },
   },
 ];
 
-export const STAMPED: string[] = [
-  'daedongbeop-bi',
-  'hyeonchungsa',
-  'dokrip-hall',
-];
+export const STAMPED: string[] = ['daedongbeop-bi', 'hyeonchungsa', 'dokrip-hall'];

@@ -25,7 +25,10 @@ export default function RankScreen() {
   return (
     <View className="flex-1 bg-paper">
       <BackHeader title="등급 · RANK" />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
         {/* 현재 등급 카드 */}
         <View className="px-5 pb-7">
           <View className="bg-ink rounded-xl p-6 overflow-hidden">
@@ -64,8 +67,16 @@ export default function RankScreen() {
         <View className="px-5 pb-6 flex-row gap-2">
           {[
             { label: '스탬프', xp: '+10', sub: `${USER.stamps}개 · ${USER.stamps * 10}` },
-            { label: '퀴즈 정답', xp: '+5', sub: `${USER.quizCorrect}개 · ${USER.quizCorrect * 5}` },
-            { label: '테마 완성', xp: '+50', sub: `${USER.themesCompleted}개 · ${USER.themesCompleted * 50}` },
+            {
+              label: '퀴즈 정답',
+              xp: '+5',
+              sub: `${USER.quizCorrect}개 · ${USER.quizCorrect * 5}`,
+            },
+            {
+              label: '테마 완성',
+              xp: '+50',
+              sub: `${USER.themesCompleted}개 · ${USER.themesCompleted * 50}`,
+            },
           ].map((s) => (
             <View key={s.label} className="flex-1 p-3.5 bg-paper border border-line rounded-xl">
               <View className="flex-row items-baseline">
@@ -81,10 +92,7 @@ export default function RankScreen() {
         {/* 전체 등급표 */}
         <SectionLabel>모든 등급 · 7단계</SectionLabel>
         <View className="px-5 relative">
-          <View
-            className="absolute w-px bg-line"
-            style={{ left: 20 + 15, top: 26, bottom: 26 }}
-          />
+          <View className="absolute w-px bg-line" style={{ left: 20 + 15, top: 26, bottom: 26 }} />
           {LEVELS.map((lv) => {
             const isCurrent = lv.level === current.level;
             const isPast = lv.level < current.level;
@@ -124,10 +132,7 @@ export default function RankScreen() {
                     {lv.desc}
                   </Text>
                   <View className="flex-row flex-wrap items-center gap-1.5 mt-2">
-                    <Text
-                      className="font-mono-bold text-[10px]"
-                      style={{ color: lv.color }}
-                    >
+                    <Text className="font-mono-bold text-[10px]" style={{ color: lv.color }}>
                       {lv.minXp}+ XP
                     </Text>
                     {lv.perks.map((perk) => (

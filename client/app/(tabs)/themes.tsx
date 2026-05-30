@@ -40,16 +40,15 @@ export default function ThemesScreen() {
   return (
     <View className="flex-1 bg-paper">
       <PageHeader title="테마 답사" subtitle="장소를 잇는 이야기, 한 갈래씩 모아 걷기" />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 120 }}
+      >
         <View className="flex-row gap-1 px-5 pb-4 border-b border-line">
           {TABS.map((t) => {
             const on = tab === t;
             return (
-              <Pressable
-                key={t}
-                onPress={() => setTab(t)}
-                className="px-3 py-1.5 relative"
-              >
+              <Pressable key={t} onPress={() => setTab(t)} className="px-3 py-1.5 relative">
                 <Text
                   className={`text-[13px] ${on ? 'font-sans-bold text-ink' : 'font-sans text-mute'}`}
                 >
@@ -66,7 +65,7 @@ export default function ThemesScreen() {
         <View className="p-5 pb-0">
           <GatedButton
             label="나만의 테마 코스 만들기"
-            requiredLevel={LEVELS[5]}
+            requiredLevel={LEVELS[5]!}
             currentLevel={myRank}
             onPress={() => {}}
             onLocked={() => {}}
@@ -81,7 +80,12 @@ export default function ThemesScreen() {
               className="rounded-xl overflow-hidden border border-line bg-paper"
             >
               <View
-                style={{ height: 130, padding: 18, justifyContent: 'space-between', backgroundColor: t.cover }}
+                style={{
+                  height: 130,
+                  padding: 18,
+                  justifyContent: 'space-between',
+                  backgroundColor: t.cover,
+                }}
               >
                 <View>
                   <Text className="font-serif-regular text-[11px] text-white/75 tracking-[3px]">

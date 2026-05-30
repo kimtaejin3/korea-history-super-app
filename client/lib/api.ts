@@ -8,8 +8,7 @@ import type { Achievement, Level, RankInfo, RankingEntry } from '../data/user';
 // 실기기는 Metro의 LAN IP를 자동 추출하므로 Wi-Fi가 바뀌어도 IP를 갱신할 필요 없음.
 // EXPO_PUBLIC_API_BASE로 명시 override 가능 (스테이징/프로덕션 빌드용).
 const host = Constants.expoConfig?.hostUri?.split(':')[0];
-const BASE =
-  process.env.EXPO_PUBLIC_API_BASE ?? `http://${host ?? 'localhost'}:3000/api`;
+const BASE = process.env.EXPO_PUBLIC_API_BASE ?? `http://${host ?? 'localhost'}:3000/api`;
 
 async function get<T>(path: string): Promise<T> {
   const res = await fetch(`${BASE}${path}`);
@@ -52,9 +51,7 @@ export const api = {
   stamped: () => get<string[]>('/stamped'),
   /** 최근 스탬프 + 글리프/색 (홈 표시용 가벼운 응답). */
   recentStamps: (limit = 6) =>
-    get<{ id: string; glyph: string; accent: string }[]>(
-      `/stamps/recent?limit=${limit}`,
-    ),
+    get<{ id: string; glyph: string; accent: string }[]>(`/stamps/recent?limit=${limit}`),
 
   themes: () => get<Theme[]>('/themes'),
   theme: (id: string) => get<Theme>(`/themes/${id}`),
@@ -83,7 +80,7 @@ export const queryKeys = {
   nearby: (
     lat: number,
     lon: number,
-    opts: { radius?: number; limit?: number; era?: string } = {},
+    opts: { radius?: number; limit?: number; era?: string } = {}
   ) =>
     [
       'places',

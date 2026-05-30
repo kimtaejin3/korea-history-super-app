@@ -9,8 +9,7 @@ import postgres from 'postgres';
 import * as schema from './schema.js';
 
 // localhost 개발 fallback. 프로덕션은 반드시 DATABASE_URL 명시.
-const DATABASE_URL =
-  process.env.DATABASE_URL ?? 'postgresql://localhost:5432/korea_history';
+const DATABASE_URL = process.env.DATABASE_URL ?? 'postgresql://localhost:5432/korea_history';
 
 let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
 

@@ -15,10 +15,7 @@ export function ProgressBar({ value, max, color = TOKENS.ink, height = 3 }: Prop
       className="w-full bg-[rgba(26,22,20,0.08)] overflow-hidden"
       style={{ height, borderRadius: height }}
     >
-      <View
-        className="h-full"
-        style={{ width: `${pct}%`, backgroundColor: color }}
-      />
+      <View className="h-full" style={{ width: `${pct}%`, backgroundColor: color }} />
     </View>
   );
 }

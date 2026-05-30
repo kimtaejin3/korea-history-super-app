@@ -14,14 +14,23 @@ import { Tag } from '../../components/Tag';
 import { Stamp } from '../../components/Stamp';
 import { SectionLabel } from '../../components/SectionLabel';
 import { GatedButton } from '../../components/GatedButton';
-import { CameraIcon, ChevronRightIcon, PinIconFilled, PinIconOutline } from '../../components/icons';
+import {
+  CameraIcon,
+  ChevronRightIcon,
+  PinIconFilled,
+  PinIconOutline,
+} from '../../components/icons';
 import { formatDistance } from '../../lib/geo';
 
 export default function PlaceDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
 
-  const placeQuery = useQuery({ queryKey: queryKeys.place(id), queryFn: () => api.place(id), enabled: !!id });
+  const placeQuery = useQuery({
+    queryKey: queryKeys.place(id),
+    queryFn: () => api.place(id),
+    enabled: !!id,
+  });
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
   const themesQuery = useQuery({ queryKey: queryKeys.themes, queryFn: api.themes });
   const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
@@ -50,7 +59,10 @@ export default function PlaceDetailScreen() {
 
   return (
     <View className="flex-1 bg-paper">
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
         {/* 히어로 */}
         <View className="relative">
           <PhotoPlaceholder height={300} photoUrl={p.photo?.url} />
@@ -90,7 +102,9 @@ export default function PlaceDetailScreen() {
             <PinIconOutline />
             <Text className="font-sans text-[13px] text-inkSoft">{p.region}</Text>
             <Text className="text-line">·</Text>
-            <Text className="font-mono-bold text-[13px] text-red">{formatDistance(p.distance)}</Text>
+            <Text className="font-mono-bold text-[13px] text-red">
+              {formatDistance(p.distance)}
+            </Text>
           </View>
         </View>
 
@@ -117,11 +131,17 @@ export default function PlaceDetailScreen() {
               disabled={!within}
               className={`p-4 rounded-xl flex-row items-center justify-center gap-2 ${within ? 'bg-ink' : 'bg-paperWarm border border-line'}`}
             >
-              <PinIconFilled size={16} color={within ? TOKENS.paper : TOKENS.mute} strokeWidth={1.7} />
+              <PinIconFilled
+                size={16}
+                color={within ? TOKENS.paper : TOKENS.mute}
+                strokeWidth={1.7}
+              />
               <Text
                 className={`font-sans-bold text-sm tracking-[0.3px] ${within ? 'text-paper' : 'text-mute'}`}
               >
-                {within ? '여기에 도착했어요 · 인증하기' : `${formatDistance(p.distance)} 떨어진 곳 (5km 이내 인증 가능)`}
+                {within
+                  ? '여기에 도착했어요 · 인증하기'
+                  : `${formatDistance(p.distance)} 떨어진 곳 (5km 이내 인증 가능)`}
               </Text>
             </Pressable>
           )}
@@ -156,7 +176,13 @@ export default function PlaceDetailScreen() {
               <View className="bg-paper border border-line p-4 rounded-xl overflow-hidden">
                 <Text
                   className="absolute font-serif-black"
-                  style={{ top: -10, right: -10, fontSize: 90, lineHeight: 90, color: `${p.accent}10` }}
+                  style={{
+                    top: -10,
+                    right: -10,
+                    fontSize: 90,
+                    lineHeight: 90,
+                    color: `${p.accent}10`,
+                  }}
                 >
                   問
                 </Text>
@@ -179,14 +205,16 @@ export default function PlaceDetailScreen() {
 
         {/* 기여 */}
         <SectionLabel
-          action={<Text className="font-sans text-[11px] text-mute">등급에 따라 권한이 해제됩니다</Text>}
+          action={
+            <Text className="font-sans text-[11px] text-mute">등급에 따라 권한이 해제됩니다</Text>
+          }
         >
           이 장소에 기여하기 · CONTRIBUTE
         </SectionLabel>
         <View className="px-5 pb-6 gap-2">
           <GatedButton
             label="현장 사진 업로드"
-            requiredLevel={LEVELS[1]}
+            requiredLevel={LEVELS[1]!}
             currentLevel={myRank}
             onPress={() => {}}
             onLocked={() => {}}
@@ -194,14 +222,14 @@ export default function PlaceDetailScreen() {
           />
           <GatedButton
             label="현장 퀴즈 제안하기"
-            requiredLevel={LEVELS[2]}
+            requiredLevel={LEVELS[2]!}
             currentLevel={myRank}
             onPress={() => {}}
             onLocked={() => {}}
           />
           <GatedButton
             label="장소 정보 보완 제안"
-            requiredLevel={LEVELS[3]}
+            requiredLevel={LEVELS[3]!}
             currentLevel={myRank}
             onPress={() => {}}
             onLocked={() => {}}
@@ -250,9 +278,7 @@ export default function PlaceDetailScreen() {
         <View className="px-5">
           <View className="p-3.5 bg-paper border border-line rounded-xl flex-row items-center gap-4">
             <View>
-              <Text className="font-mono-bold text-lg text-ink">
-                {p.visits.toLocaleString()}
-              </Text>
+              <Text className="font-mono-bold text-lg text-ink">{p.visits.toLocaleString()}</Text>
               <Text className="font-sans text-[10px] text-mute mt-px">이번 달 방문</Text>
             </View>
             <View className="w-px h-8 bg-line" />

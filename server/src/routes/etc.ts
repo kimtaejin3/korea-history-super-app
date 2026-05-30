@@ -48,10 +48,7 @@ etc.get('/achievements', async (c) => {
 // 레벨 목록
 etc.get('/levels', async (c) => {
   const db = getDb();
-  const rows = await db
-    .select()
-    .from(schema.level)
-    .orderBy(asc(schema.level.level));
+  const rows = await db.select().from(schema.level).orderBy(asc(schema.level.level));
   return c.json(
     rows.map((l) => ({
       level: l.level,

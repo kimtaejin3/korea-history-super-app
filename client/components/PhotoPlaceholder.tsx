@@ -1,6 +1,6 @@
-import { View, ViewStyle, ImageStyle, StyleProp } from "react-native";
-import { Image } from "expo-image";
-import Svg, { G, Path } from "react-native-svg";
+import { View, ViewStyle, ImageStyle, StyleProp } from 'react-native';
+import { Image } from 'expo-image';
+import Svg, { G, Path } from 'react-native-svg';
 
 type Props = {
   height?: number;
@@ -39,12 +39,7 @@ function Footprint({ opacity }: { opacity: number }) {
   );
 }
 
-export function PhotoPlaceholder({
-  height = 200,
-  width = "100%",
-  style,
-  photoUrl,
-}: Props) {
+export function PhotoPlaceholder({ height = 200, width = '100%', style, photoUrl }: Props) {
   // photoUrl 있으면 사진 표시.
   // expo-image: 디코딩을 메인 스레드 밖에서 + 메모리/디스크 캐시 → 스크롤 중 행 mount 비용↓.
   // recyclingKey: 리스트 뷰 재활용 시 이전 이미지 잔상 방지.
@@ -55,7 +50,7 @@ export function PhotoPlaceholder({
         height: height as any,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         width: width as any,
-        backgroundColor: "#EFEDE7",
+        backgroundColor: '#EFEDE7',
       },
       style as unknown as ImageStyle,
     ];
@@ -81,10 +76,10 @@ export function PhotoPlaceholder({
           height: height as any,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           width: width as any,
-          backgroundColor: "#EFEDE7",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
+          backgroundColor: '#EFEDE7',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
         },
         style,
       ]}

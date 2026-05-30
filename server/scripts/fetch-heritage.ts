@@ -26,8 +26,8 @@ proj4.defs(
 function toWgs84(cnXStr: string | null, cnYStr: string | null) {
   if (!cnXStr || !cnYStr) return null;
   // 콤마로 여러 좌표 있는 경우 첫 번째만
-  const x = parseFloat(cnXStr.split(',')[0]);
-  const y = parseFloat(cnYStr.split(',')[0]);
+  const x = parseFloat(cnXStr.split(',')[0]!);
+  const y = parseFloat(cnYStr.split(',')[0]!);
   if (Number.isNaN(x) || Number.isNaN(y)) return null;
   try {
     const [lon, lat] = proj4('EPSG:5179', 'EPSG:4326', [x, y]);
@@ -56,7 +56,7 @@ const BASE = 'https://gis-heritage.go.kr/openapi/xmlService/spca.do';
 
 function pick(block: string, tag: string): string | null {
   const m = block.match(new RegExp(`<${tag}>([\\s\\S]*?)</${tag}>`));
-  return m ? m[1].trim() : null;
+  return m && m[1] ? m[1].trim() : null;
 }
 
 function parseRecord(block: string, ccbaKdcd: number) {

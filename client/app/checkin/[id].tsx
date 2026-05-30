@@ -23,7 +23,11 @@ export default function CheckinScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const placeQuery = useQuery({ queryKey: queryKeys.place(id), queryFn: () => api.place(id), enabled: !!id });
+  const placeQuery = useQuery({
+    queryKey: queryKeys.place(id),
+    queryFn: () => api.place(id),
+    enabled: !!id,
+  });
   const p = placeQuery.data;
   const [step, setStep] = useState<Step>('locating');
   const [selected, setSelected] = useState<number | null>(null);
@@ -123,7 +127,9 @@ export default function CheckinScreen() {
                 className="absolute w-[180px] h-[180px] rounded-full border"
                 style={{
                   borderColor: TOKENS.red,
-                  transform: [{ scale: v.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1.2] }) }],
+                  transform: [
+                    { scale: v.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1.2] }) },
+                  ],
                   opacity: v.interpolate({ inputRange: [0, 1], outputRange: [1, 0] }),
                 }}
               />
@@ -196,10 +202,7 @@ export default function CheckinScreen() {
               <Text className="font-sans text-[11px] text-mute">{p.region}</Text>
             </View>
           </View>
-          <View
-            className="absolute left-5 right-5"
-            style={{ bottom: insets.bottom + 20 }}
-          >
+          <View className="absolute left-5 right-5" style={{ bottom: insets.bottom + 20 }}>
             <Pressable
               onPress={() => (p.quiz ? setStep('quiz') : setStep('stamp'))}
               className="p-4 bg-ink rounded-xl items-center"
@@ -218,7 +221,13 @@ export default function CheckinScreen() {
           <View className="mb-3.5">
             <Text
               className="absolute font-serif-black"
-              style={{ top: -50, right: -10, fontSize: 130, lineHeight: 130, color: `${p.accent}12` }}
+              style={{
+                top: -50,
+                right: -10,
+                fontSize: 130,
+                lineHeight: 130,
+                color: `${p.accent}12`,
+              }}
             >
               問
             </Text>
@@ -310,10 +319,7 @@ export default function CheckinScreen() {
               {p.quiz.hint}
             </Text>
           </View>
-          <View
-            className="absolute left-5 right-5"
-            style={{ bottom: insets.bottom + 20 }}
-          >
+          <View className="absolute left-5 right-5" style={{ bottom: insets.bottom + 20 }}>
             <Pressable
               onPress={() => setStep('stamp')}
               className="p-4 bg-ink rounded-xl items-center"
@@ -333,7 +339,8 @@ export default function CheckinScreen() {
             STAMP ACQUIRED
           </Text>
           <Text className="font-serif text-2xl text-ink mb-10 text-center leading-[30px]">
-            {p.name}{'\n'}방문 인증 완료
+            {p.name}
+            {'\n'}방문 인증 완료
           </Text>
           <LottieAsset
             source={require('../../assets/animations/stamp.lottie')}

@@ -105,7 +105,10 @@ async function fetchWithFallback(slug: string): Promise<WikiSummary | null> {
   if (direct && direct.extract && direct.type !== 'disambiguation') return direct;
 
   // 슬러그를 검색어로 (_ → 공백)
-  const query = slug.replace(/_/g, ' ').replace(/\(.+\)/g, '').trim();
+  const query = slug
+    .replace(/_/g, ' ')
+    .replace(/\(.+\)/g, '')
+    .trim();
   const foundTitle = await searchWikipedia(query);
   if (!foundTitle) return null;
 
@@ -157,7 +160,7 @@ const ERAS = [
 function parseExtract(title: string, extract: string) {
   // 한자: 제목 직후 첫 괄호
   const hanjaMatch = extract.match(/^[^(]+\(([^)]+)\)/);
-  const nameHanja = hanjaMatch ? hanjaMatch[1].trim() : null;
+  const nameHanja = hanjaMatch && hanjaMatch[1] ? hanjaMatch[1].trim() : null;
 
   // 시대
   let era = null;
@@ -233,9 +236,7 @@ async function main() {
         ccbaKdcd: t.kdcd,
         theme: t.theme,
         ...parsed,
-        coords: data.coordinates
-          ? { lat: data.coordinates.lat, lon: data.coordinates.lon }
-          : null,
+        coords: data.coordinates ? { lat: data.coordinates.lat, lon: data.coordinates.lon } : null,
         wikipediaUrl: data.content_urls?.desktop?.page || null,
       };
       results.push(record);

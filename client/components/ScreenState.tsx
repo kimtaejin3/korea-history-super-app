@@ -36,17 +36,12 @@ export function ScreenState({
         <ActivityIndicator size="small" color={TOKENS.mute} />
       ) : (
         <View className="items-center">
-          <Text className="font-serif text-[16px] text-ink text-center">
-            {errorMessage}
-          </Text>
+          <Text className="font-serif text-[16px] text-ink text-center">{errorMessage}</Text>
           <Text className="font-sans text-[12px] text-mute mt-2 text-center leading-5">
             네트워크 또는 서버 상태를 확인해주세요.
           </Text>
           {onRetry && (
-            <Pressable
-              onPress={onRetry}
-              className="mt-5 px-5 py-2.5 bg-ink rounded-full"
-            >
+            <Pressable onPress={onRetry} className="mt-5 px-5 py-2.5 bg-ink rounded-full">
               <Text className="font-sans-bold text-[13px] text-paper">다시 시도</Text>
             </Pressable>
           )}

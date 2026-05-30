@@ -148,11 +148,7 @@ export function ArrowRightIcon({
 }
 
 /** 셰브론 오른쪽 (리스트 아이템 끝의 작은 > 표시) */
-export function ChevronRightIcon({
-  size = 8,
-  color = TOKENS.mute,
-  strokeWidth = 1.5,
-}: IconProps) {
+export function ChevronRightIcon({ size = 8, color = TOKENS.mute, strokeWidth = 1.5 }: IconProps) {
   return (
     <Svg width={size} height={(size * 14) / 8} viewBox="0 0 8 14" fill="none">
       <Path
@@ -212,12 +208,7 @@ export function InfoIcon({ size = 14, color = TOKENS.mute, strokeWidth = 1.5 }: 
   return (
     <Svg width={size} height={size} viewBox="0 0 22 22" fill="none">
       <Circle cx="11" cy="11" r="8" stroke={color} strokeWidth={strokeWidth} />
-      <Path
-        d="M11 7v5M11 15v0.5"
-        stroke={color}
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-      />
+      <Path d="M11 7v5M11 15v0.5" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" />
     </Svg>
   );
 }

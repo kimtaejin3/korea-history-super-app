@@ -66,7 +66,10 @@ export default function StampbookScreen() {
         }
       />
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 120 }}
+      >
         {/* 도감 진척도 */}
         <View className="px-5 pb-4">
           <View className="bg-paperWarm border border-line p-4 rounded-xl flex-row items-center gap-3.5">
@@ -110,9 +113,7 @@ export default function StampbookScreen() {
                 onPress={() => setView(v)}
                 className={`px-3 py-1.5 rounded-full ${on ? 'bg-ink' : 'bg-transparent'}`}
               >
-                <Text
-                  className={`font-sans-bold text-xs ${on ? 'text-paper' : 'text-inkSoft'}`}
-                >
+                <Text className={`font-sans-bold text-xs ${on ? 'text-paper' : 'text-inkSoft'}`}>
                   {v}
                 </Text>
               </Pressable>

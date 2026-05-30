@@ -13,6 +13,11 @@
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": false,
     "declaration": false,
     "sourceMap": true

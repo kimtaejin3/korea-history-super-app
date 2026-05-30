@@ -20,20 +20,35 @@ function TabIcon({ kind, active }: { kind: IconKind; active: boolean }) {
   if (kind === 'home')
     return (
       <Svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <Path d="M3 9.5L11 3l8 6.5V18a1 1 0 01-1 1h-4v-5H8v5H4a1 1 0 01-1-1V9.5z" stroke={c} strokeWidth={sw} strokeLinejoin="round" />
+        <Path
+          d="M3 9.5L11 3l8 6.5V18a1 1 0 01-1 1h-4v-5H8v5H4a1 1 0 01-1-1V9.5z"
+          stroke={c}
+          strokeWidth={sw}
+          strokeLinejoin="round"
+        />
       </Svg>
     );
   if (kind === 'map')
     return (
       <Svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <Path d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z" stroke={c} strokeWidth={sw} strokeLinejoin="round" />
+        <Path
+          d="M11 19s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"
+          stroke={c}
+          strokeWidth={sw}
+          strokeLinejoin="round"
+        />
         <Circle cx="11" cy="8" r="2.4" stroke={c} strokeWidth={sw} />
       </Svg>
     );
   if (kind === 'theme')
     return (
       <Svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <Path d="M4 4h6v6H4zM12 4h6v6h-6zM4 12h6v6H4zM12 12h6v6h-6z" stroke={c} strokeWidth={sw} strokeLinejoin="round" />
+        <Path
+          d="M4 4h6v6H4zM12 4h6v6h-6zM4 12h6v6H4zM12 12h6v6h-6z"
+          stroke={c}
+          strokeWidth={sw}
+          strokeLinejoin="round"
+        />
       </Svg>
     );
   if (kind === 'stamp')

@@ -12,10 +12,7 @@ export default function TabsLayout() {
   }
 
   return (
-    <Tabs
-      screenOptions={{ headerShown: false }}
-      tabBar={(props) => <TabBar {...props} />}
-    >
+    <Tabs screenOptions={{ headerShown: false }} tabBar={(props) => <TabBar {...props} />}>
       <Tabs.Screen name="index" options={{ title: '홈' }} />
       <Tabs.Screen name="map" options={{ title: '지도' }} />
       <Tabs.Screen name="themes" options={{ title: '테마' }} />

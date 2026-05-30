@@ -17,7 +17,10 @@ export default function ProfileScreen() {
   const router = useRouter();
   const meQuery = useQuery({ queryKey: queryKeys.me, queryFn: api.me });
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
-  const achievementsQuery = useQuery({ queryKey: queryKeys.achievements, queryFn: api.achievements });
+  const achievementsQuery = useQuery({
+    queryKey: queryKeys.achievements,
+    queryFn: api.achievements,
+  });
   const rankingQuery = useQuery({ queryKey: queryKeys.ranking, queryFn: api.ranking });
 
   const queries = [meQuery, stampedQuery, achievementsQuery, rankingQuery];
@@ -50,7 +53,10 @@ export default function ProfileScreen() {
         }
       />
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 120 }}
+      >
         {/* 프로필 카드 */}
         <View className="px-5 pb-6">
           <View className="bg-paper border border-line p-5 rounded-xl flex-row items-center gap-4">
@@ -95,7 +101,11 @@ export default function ProfileScreen() {
                   </View>
                   <View className="h-[3px] bg-white/15 rounded-xl mt-1.5 overflow-hidden">
                     <View
-                      style={{ width: `${progress * 100}%`, height: '100%', backgroundColor: next.color }}
+                      style={{
+                        width: `${progress * 100}%`,
+                        height: '100%',
+                        backgroundColor: next.color,
+                      }}
                     />
                   </View>
                 </>
@@ -159,9 +169,7 @@ export default function ProfileScreen() {
         </View>
 
         {/* 랭킹 */}
-        <SectionLabel
-          action={<Text className="font-sans-bold text-[11px] text-red">이번 주</Text>}
-        >
+        <SectionLabel action={<Text className="font-sans-bold text-[11px] text-red">이번 주</Text>}>
           전국 랭킹 · LEADERBOARD
         </SectionLabel>
         <View className="px-5">

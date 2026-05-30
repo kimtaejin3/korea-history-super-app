@@ -7,10 +7,7 @@ import { enableFreeze, enableScreens } from 'react-native-screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
-import {
-  JetBrainsMono_400Regular,
-  JetBrainsMono_700Bold,
-} from '@expo-google-fonts/jetbrains-mono';
+import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from '@expo-google-fonts/jetbrains-mono';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -53,7 +50,9 @@ export default function RootLayout() {
           <AuthProvider>
             <SearchTransitionProvider>
               <StatusBar style="dark" />
-              <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FBFBF9' } }}>
+              <Stack
+                screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#FBFBF9' } }}
+              >
                 <Stack.Screen name="login" options={{ gestureEnabled: false }} />
                 <Stack.Screen name="(tabs)" />
               </Stack>

@@ -1,0 +1,14 @@
+{
+  "name": "korea-history-super-app",
+  "private": true,
+  "scripts": {
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  }
+}

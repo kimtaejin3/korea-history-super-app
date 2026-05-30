@@ -23,10 +23,7 @@ export function RankBadge({ level, size = 'sm' }: Props) {
         backgroundColor: level.color,
       }}
     >
-      <Text
-        className="font-sans-bold text-paper tracking-[0.3px]"
-        style={{ fontSize: dims.fs }}
-      >
+      <Text className="font-sans-bold text-paper tracking-[0.3px]" style={{ fontSize: dims.fs }}>
         Lv{level.level} · {level.name}
       </Text>
     </View>

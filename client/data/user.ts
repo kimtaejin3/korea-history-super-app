@@ -96,13 +96,14 @@ export type RankInfo = {
 };
 
 export function getRankInfo(xp: number): RankInfo {
-  let current = LEVELS[0];
+  // LEVELS는 비어있지 않다 (위 const 선언에서 보장).
+  let current: Level = LEVELS[0]!;
   for (const lv of LEVELS) {
     if (xp >= lv.minXp) current = lv;
     else break;
   }
   const nextIdx = LEVELS.findIndex((l) => l.level === current.level) + 1;
-  const next = LEVELS[nextIdx] || null;
+  const next = LEVELS[nextIdx] ?? null;
   const progress = next ? (xp - current.minXp) / (next.minXp - current.minXp) : 1;
   const xpToNext = next ? next.minXp - xp : 0;
   return { current, next, progress, xpToNext };
@@ -121,9 +122,30 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'first', title: '첫 발자국', desc: '첫 스탬프 획득', done: true },
   { id: 'baekje', title: '백제 답사가', desc: '백제 옛 도읍 2곳 방문', done: true },
   { id: 'streak7', title: '주말 답사자', desc: '7일 연속 방문', done: true },
-  { id: 'quiz10', title: '역사 마스터', desc: '퀴즈 10문제 정답', done: false, progress: 7, max: 10 },
-  { id: 'all-themes', title: '도감 완성가', desc: '한 테마 100% 완성', done: false, progress: 2, max: 7 },
-  { id: 'gyeongi', title: '경기 답사가', desc: '경기도 5곳 방문', done: false, progress: 2, max: 5 },
+  {
+    id: 'quiz10',
+    title: '역사 마스터',
+    desc: '퀴즈 10문제 정답',
+    done: false,
+    progress: 7,
+    max: 10,
+  },
+  {
+    id: 'all-themes',
+    title: '도감 완성가',
+    desc: '한 테마 100% 완성',
+    done: false,
+    progress: 2,
+    max: 7,
+  },
+  {
+    id: 'gyeongi',
+    title: '경기 답사가',
+    desc: '경기도 5곳 방문',
+    done: false,
+    progress: 2,
+    max: 5,
+  },
 ];
 
 export type RankingEntry = {

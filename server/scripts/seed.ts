@@ -17,8 +17,7 @@ import { TODAY_IN_HISTORY } from '../src/data/today.js';
 import { HERITAGE_COLLAPSED } from '../src/lib/heritage.js';
 import { heritageToPlace } from '../src/lib/heritageAdapter.js';
 
-const DATABASE_URL =
-  process.env.DATABASE_URL ?? 'postgresql://localhost:5432/korea_history';
+const DATABASE_URL = process.env.DATABASE_URL ?? 'postgresql://localhost:5432/korea_history';
 
 const USER_ID = 'me';
 
@@ -26,9 +25,7 @@ const sql = postgres(DATABASE_URL, { max: 5 });
 const db = drizzle(sql, { schema });
 
 async function seedHeritage() {
-  const heritageFromOpenApi = HERITAGE_COLLAPSED
-    .filter((h) => h.coords)
-    .map(heritageToPlace);
+  const heritageFromOpenApi = HERITAGE_COLLAPSED.filter((h) => h.coords).map(heritageToPlace);
   const all = [...PLACES, ...heritageFromOpenApi];
   const seenIds = new Set<string>();
   const rows = all
@@ -164,10 +161,7 @@ async function seedUserAndStamps() {
 
   console.log(`[stamp] inserting ${STAMPED.length} stamps for '${USER_ID}'...`);
   for (const placeId of STAMPED) {
-    await db
-      .insert(schema.stamp)
-      .values({ userId: USER_ID, placeId })
-      .onConflictDoNothing();
+    await db.insert(schema.stamp).values({ userId: USER_ID, placeId }).onConflictDoNothing();
   }
   console.log(`[stamp] done.`);
 }
@@ -195,7 +189,7 @@ async function seedAchievements() {
   const userAchievementRows = ACHIEVEMENTS.map((a) => ({
     userId: USER_ID,
     achievementId: a.id,
-    progress: a.progress ?? (a.done ? a.max ?? 1 : 0),
+    progress: a.progress ?? (a.done ? (a.max ?? 1) : 0),
     done: a.done,
   }));
   await db

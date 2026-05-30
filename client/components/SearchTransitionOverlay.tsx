@@ -57,7 +57,19 @@ export function SearchTransitionOverlay() {
       });
     }
     // active가 false면 아무것도 안 함 (다음 start() 호출이 다시 리셋함)
-  }, [state.active, state.source, state.target, x, y, width, height, radius, progress, opacity]);
+  }, [
+    state.active,
+    state.source,
+    state.target,
+    x,
+    y,
+    width,
+    height,
+    radius,
+    progress,
+    opacity,
+    end,
+  ]);
 
   const containerStyle = useAnimatedStyle(() => ({
     position: 'absolute',

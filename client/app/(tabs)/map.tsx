@@ -1,31 +1,19 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Pressable,
-  ActivityIndicator,
-} from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import BottomSheet, {
-  BottomSheetFlatList,
-  BottomSheetView,
-} from "@gorhom/bottom-sheet";
-import { TOKENS } from "../../data/tokens";
-import { api, queryKeys, type NearbyResponse } from "../../lib/api";
-import type { Place } from "../../data/places";
-import { Tag } from "../../components/Tag";
-import { PhotoPlaceholder } from "../../components/PhotoPlaceholder";
-import { SearchIcon } from "../../components/icons";
-import { useSearchState } from "../../context/SearchTransition";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { View, Text, ScrollView, Pressable, ActivityIndicator } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { TOKENS } from '../../data/tokens';
+import { api, queryKeys, type NearbyResponse } from '../../lib/api';
+import type { Place } from '../../data/places';
+import { Tag } from '../../components/Tag';
+import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
+import { SearchIcon } from '../../components/icons';
+import { useSearchState } from '../../context/SearchTransition';
 import {
   SEARCH_BAR_HEIGHT,
   SEARCH_BAR_ICON_GAP,
@@ -33,11 +21,11 @@ import {
   SEARCH_BAR_INNER_PX,
   SEARCH_BAR_PADDING_TOP,
   SEARCH_BAR_PADDING_X,
-} from "../../lib/searchBarLayout";
-import { formatDistance } from "../../lib/geo";
-import { useUserLocation } from "../../lib/useUserLocation";
+} from '../../lib/searchBarLayout';
+import { formatDistance } from '../../lib/geo';
+import { useUserLocation } from '../../lib/useUserLocation';
 
-const FILTERS = ["전체", "조선", "백제", "통일신라", "근현대"];
+const FILTERS = ['전체', '조선', '백제', '통일신라', '근현대'];
 const PAGE_LIMIT = 10;
 
 // 행 높이 고정 → getItemLayout으로 위치 기반 정확한 가상화 + 측정 비용 제거.
@@ -56,11 +44,7 @@ type PlaceRowProps = {
 
 // 행을 memo로 분리 → 부모(MapScreen) 리렌더가 각 행에 전파되지 않음.
 // props(place·stamped·onPress)가 같으면 재렌더 스킵.
-const PlaceRow = memo(function PlaceRow({
-  place: p,
-  stamped,
-  onPress,
-}: PlaceRowProps) {
+const PlaceRow = memo(function PlaceRow({ place: p, stamped, onPress }: PlaceRowProps) {
   return (
     <Pressable
       onPress={() => onPress(p.id)}
@@ -71,9 +55,7 @@ const PlaceRow = memo(function PlaceRow({
       <View className="flex-1">
         <View className="flex-row items-center gap-1.5 mb-0.5">
           <Tag color={p.accent}>{p.era}</Tag>
-          {stamped && (
-            <Text className="font-sans-bold text-[10px] text-red">● 획득</Text>
-          )}
+          {stamped && <Text className="font-sans-bold text-[10px] text-red">● 획득</Text>}
         </View>
         <Text numberOfLines={1} className="font-serif text-[15px] text-ink">
           {p.name}
@@ -89,7 +71,7 @@ const PlaceRow = memo(function PlaceRow({
 export default function MapScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const [filter, setFilter] = useState("전체");
+  const [filter, setFilter] = useState('전체');
 
   const { coords: userCoords } = useUserLocation();
   const searchTransition = useSearchState();
@@ -133,7 +115,7 @@ export default function MapScreen() {
   });
 
   const sheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ["25%", "55%", "90%"], []);
+  const snapPoints = useMemo(() => ['25%', '55%', '90%'], []);
 
   // 모든 페이지 flatten — useMemo로 페이지 추가 시에만 재계산.
   // fetchReady 전(=morph 진행 중)엔 캐시가 있어도 노출하지 않음.
@@ -146,10 +128,7 @@ export default function MapScreen() {
   }, [fetchReady, nearbyQuery.data]);
   const total = fetchReady ? (nearbyQuery.data?.pages[0]?.total ?? 0) : 0;
   // Set으로 조회 O(1) (이전엔 행마다 Array.includes → O(n))
-  const stampedSet = useMemo(
-    () => new Set(stampedQuery.data ?? []),
-    [stampedQuery.data]
-  );
+  const stampedSet = useMemo(() => new Set(stampedQuery.data ?? []), [stampedQuery.data]);
 
   // morph가 끝나기 전엔 항상 로딩 표시 (캐시가 있든 없든 동일).
   const showLoading = !fetchReady || nearbyQuery.isLoading;
@@ -160,19 +139,12 @@ export default function MapScreen() {
     }
   }, [nearbyQuery]);
 
-  const onPressPlace = useCallback(
-    (id: string) => router.push(`/place/${id}` as never),
-    [router]
-  );
+  const onPressPlace = useCallback((id: string) => router.push(`/place/${id}` as never), [router]);
 
   // renderItem 참조 고정 → 부모 리렌더마다 새 함수가 안 생겨 행 재렌더 방지.
   const renderItem = useCallback(
     ({ item }: { item: Place }) => (
-      <PlaceRow
-        place={item}
-        stamped={stampedSet.has(item.id)}
-        onPress={onPressPlace}
-      />
+      <PlaceRow place={item} stamped={stampedSet.has(item.id)} onPress={onPressPlace} />
     ),
     [stampedSet, onPressPlace]
   );
@@ -197,9 +169,9 @@ export default function MapScreen() {
         }}
       >
         <LinearGradient
-          colors={["rgba(232,225,210,0.95)", "rgba(232,225,210,0)"]}
+          colors={['rgba(232,225,210,0.95)', 'rgba(232,225,210,0)']}
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
@@ -217,11 +189,7 @@ export default function MapScreen() {
                 gap: SEARCH_BAR_ICON_GAP,
               }}
             >
-              <SearchIcon
-                size={SEARCH_BAR_ICON_SIZE}
-                color={TOKENS.mute}
-                strokeWidth={1.8}
-              />
+              <SearchIcon size={SEARCH_BAR_ICON_SIZE} color={TOKENS.mute} strokeWidth={1.8} />
               <Text className="flex-1 font-sans text-[13px] text-mute">
                 장소 · 테마 · 시대 검색
               </Text>
@@ -239,18 +207,16 @@ export default function MapScreen() {
               <Pressable
                 key={f}
                 onPress={() => setFilter(f)}
-                className={`px-3 py-1.5 rounded-full ${on ? "bg-ink" : "bg-paper"}`}
+                className={`px-3 py-1.5 rounded-full ${on ? 'bg-ink' : 'bg-paper'}`}
                 style={{
-                  shadowColor: "#000",
+                  shadowColor: '#000',
                   shadowOpacity: 0.06,
                   shadowOffset: { width: 0, height: 1 },
                   shadowRadius: 4,
                   elevation: 2,
                 }}
               >
-                <Text
-                  className={`font-sans-bold text-xs ${on ? "text-paper" : "text-inkSoft"}`}
-                >
+                <Text className={`font-sans-bold text-xs ${on ? 'text-paper' : 'text-inkSoft'}`}>
                   {f}
                 </Text>
               </Pressable>
@@ -278,7 +244,7 @@ export default function MapScreen() {
           borderTopRightRadius: 20,
         }}
         style={{
-          shadowColor: "#000",
+          shadowColor: '#000',
           shadowOpacity: 0.08,
           shadowOffset: { width: 0, height: -4 },
           shadowRadius: 20,
@@ -288,8 +254,8 @@ export default function MapScreen() {
         <View className="px-5 pt-2 pb-3 flex-row justify-between items-center">
           <Text className="font-serif text-[16px] text-ink">
             {showLoading
-              ? "불러오는 중…"
-              : `내 주변 ${nearby.length}${total > nearby.length ? `/${total}` : ""}곳`}
+              ? '불러오는 중…'
+              : `내 주변 ${nearby.length}${total > nearby.length ? `/${total}` : ''}곳`}
           </Text>
           <Text className="font-sans text-[11px] text-mute">가까운 순</Text>
         </View>
@@ -318,9 +284,7 @@ export default function MapScreen() {
               </View>
             ) : nearbyQuery.isError ? (
               <View className="py-12 items-center">
-                <Text className="font-sans text-[12px] text-mute">
-                  데이터를 가져오지 못했어요
-                </Text>
+                <Text className="font-sans text-[12px] text-mute">데이터를 가져오지 못했어요</Text>
                 <Pressable
                   onPress={() => nearbyQuery.refetch()}
                   className="mt-4 px-5 py-2.5 bg-ink rounded-full"
@@ -330,9 +294,7 @@ export default function MapScreen() {
               </View>
             ) : (
               <View className="py-12 items-center">
-                <Text className="font-sans text-[12px] text-mute">
-                  결과가 없어요
-                </Text>
+                <Text className="font-sans text-[12px] text-mute">결과가 없어요</Text>
               </View>
             )
           }

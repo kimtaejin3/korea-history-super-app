@@ -20,10 +20,7 @@ function rowToLevel(l: typeof schema.level.$inferSelect) {
 
 me.get('/', async (c) => {
   const db = getDb();
-  const [user] = await db
-    .select()
-    .from(schema.user)
-    .where(eq(schema.user.id, USER_ID));
+  const [user] = await db.select().from(schema.user).where(eq(schema.user.id, USER_ID));
   if (!user) return c.json({ error: 'User not found' }, 404);
 
   const [stampsAgg] = await db
@@ -34,26 +31,26 @@ me.get('/', async (c) => {
 
   const xp = stamps * 10 + user.quizCorrect * 5 + user.themesCompleted * 50;
 
-  const levelRows = await db
-    .select()
-    .from(schema.level)
-    .orderBy(asc(schema.level.level));
+  const levelRows = await db.select().from(schema.level).orderBy(asc(schema.level.level));
 
-  let current = levelRows[0];
+  if (levelRows.length === 0) {
+    return c.json({ error: 'No levels seeded' }, 500);
+  }
+  // levelRows는 위에서 length > 0 보장.
+  let current = levelRows[0]!;
   for (const lv of levelRows) {
     if (xp >= lv.minXp) current = lv;
     else break;
   }
   const nextIdx = levelRows.findIndex((l) => l.level === current.level) + 1;
   const next = levelRows[nextIdx] ?? null;
-  const progress = next
-    ? (xp - current.minXp) / (next.minXp - current.minXp)
-    : 1;
+  const progress = next ? (xp - current.minXp) / (next.minXp - current.minXp) : 1;
   const xpToNext = next ? next.minXp - xp : 0;
 
-  const joinedAt = `${user.joinedAt.getFullYear()}.${String(
-    user.joinedAt.getMonth() + 1
-  ).padStart(2, '0')}`;
+  const joinedAt = `${user.joinedAt.getFullYear()}.${String(user.joinedAt.getMonth() + 1).padStart(
+    2,
+    '0'
+  )}`;
 
   return c.json({
     nickname: user.nickname,

@@ -49,9 +49,7 @@ async function fetchText(url: string): Promise<string> {
 }
 
 function pick(block: string, tag: string): string | null {
-  const m = block.match(
-    new RegExp(`<${tag}>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`)
-  );
+  const m = block.match(new RegExp(`<${tag}>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?</${tag}>`));
   return m ? m[1]!.trim() : null;
 }
 
@@ -159,7 +157,9 @@ async function main() {
   }
 
   await fs.writeFile(filePath, JSON.stringify(heritage, null, 2));
-  console.log(`\n▶ 완료: 사진 ${added}건 추가 / 이미지 없음 ${noImage}건 / 매칭 ${targets.length}건`);
+  console.log(
+    `\n▶ 완료: 사진 ${added}건 추가 / 이미지 없음 ${noImage}건 / 매칭 ${targets.length}건`
+  );
 }
 
 main().catch((err) => {

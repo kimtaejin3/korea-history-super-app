@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { useRef } from "react";
+import { useRef } from 'react';
 import {
   View,
   Text,
@@ -8,23 +8,23 @@ import {
   Pressable,
   ActivityIndicator,
   useWindowDimensions,
-} from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
-import { haptic } from "../../lib/haptics";
-import { useQuery } from "@tanstack/react-query";
-import { TOKENS } from "../../data/tokens";
-import { api, queryKeys } from "../../lib/api";
-import { Tag } from "../../components/Tag";
-import { Stamp } from "../../components/Stamp";
-import { PhotoPlaceholder } from "../../components/PhotoPlaceholder";
-import { PhotoCredit } from "../../components/PhotoCredit";
-import { SectionLabel } from "../../components/SectionLabel";
-import { PinIcon, SearchIcon } from "../../components/icons";
-import { useSearchActions } from "../../context/SearchTransition";
-import { getSearchBarRect } from "../../lib/searchBarLayout";
-import { useUserLocation } from "../../lib/useUserLocation";
-import { formatDistance } from "../../lib/geo";
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import { haptic } from '../../lib/haptics';
+import { useQuery } from '@tanstack/react-query';
+import { TOKENS } from '../../data/tokens';
+import { api, queryKeys } from '../../lib/api';
+import { Tag } from '../../components/Tag';
+import { Stamp } from '../../components/Stamp';
+import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
+import { PhotoCredit } from '../../components/PhotoCredit';
+import { SectionLabel } from '../../components/SectionLabel';
+import { PinIcon, SearchIcon } from '../../components/icons';
+import { useSearchActions } from '../../context/SearchTransition';
+import { getSearchBarRect } from '../../lib/searchBarLayout';
+import { useUserLocation } from '../../lib/useUserLocation';
+import { formatDistance } from '../../lib/geo';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
@@ -42,7 +42,7 @@ export default function HomeScreen() {
       const target = getSearchBarRect(insets.top, screenWidth);
       startSearchTransition({ x, y, width, height }, target);
       setTimeout(() => {
-        router.push("/(tabs)/map" as never);
+        router.push('/(tabs)/map' as never);
       }, 200);
     });
   };
@@ -50,8 +50,7 @@ export default function HomeScreen() {
   // 가까운 장소 — 서버측에서 거리 계산/필터/정렬. 클라이언트는 결과만.
   const nearbyQuery = useQuery({
     queryKey: queryKeys.nearby(userCoords.lat, userCoords.lon, { radius: 20, limit: 30 }),
-    queryFn: () =>
-      api.nearby({ lat: userCoords.lat, lon: userCoords.lon, radius: 20, limit: 30 }),
+    queryFn: () => api.nearby({ lat: userCoords.lat, lon: userCoords.lon, radius: 20, limit: 30 }),
   });
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
   const recentStampsQuery = useQuery({
@@ -100,7 +99,7 @@ export default function HomeScreen() {
         {/* 큰 인사말 (정적) */}
         <View className="px-5 pt-1 pb-4">
           <Text className="font-serif text-[26px] text-ink tracking-[-0.5px] leading-8">
-            오늘, 가까운 곳에서{"\n"}
+            오늘, 가까운 곳에서{'\n'}
             <Text className="text-red">역사 한 조각</Text>을 만나보세요
           </Text>
         </View>
@@ -116,10 +115,7 @@ export default function HomeScreen() {
                 <Text className="font-sans text-[12px] text-mute mt-2 text-center leading-5">
                   네트워크 또는 서버 상태를 확인해주세요.
                 </Text>
-                <Pressable
-                  onPress={refetchAll}
-                  className="mt-5 px-5 py-2.5 bg-ink rounded-full"
-                >
+                <Pressable onPress={refetchAll} className="mt-5 px-5 py-2.5 bg-ink rounded-full">
                   <Text className="font-sans-bold text-[13px] text-paper">다시 시도</Text>
                 </Pressable>
               </>
@@ -144,26 +140,17 @@ export default function HomeScreen() {
 
 // ─── 콘텐츠 섹션들 (데이터 준비된 뒤에만 렌더) ────────────────
 type ContentProps = {
-  nearby: import("../../data/places").Place[];
-  themes: import("../../data/themes").Theme[];
+  nearby: import('../../data/places').Place[];
+  themes: import('../../data/themes').Theme[];
   recentStamps: { id: string; glyph: string; accent: string }[];
   stamped: string[];
   myStamps: number;
   router: ReturnType<typeof useRouter>;
 };
 
-function HomeContent({
-  nearby,
-  themes,
-  recentStamps,
-  stamped,
-  myStamps,
-  router,
-}: ContentProps) {
+function HomeContent({ nearby, themes, recentStamps, stamped, myStamps, router }: ContentProps) {
   const hero = nearby[0];
-  const activeThemes = themes
-    .filter((t) => t.visited > 0 && t.visited < t.totalPlaces)
-    .slice(0, 3);
+  const activeThemes = themes.filter((t) => t.visited > 0 && t.visited < t.totalPlaces).slice(0, 3);
 
   return (
     <>
@@ -179,7 +166,7 @@ function HomeContent({
               {hero.photo && (
                 <PhotoCredit
                   photo={hero.photo}
-                  style={{ position: "absolute", bottom: 6, right: 8 }}
+                  style={{ position: 'absolute', bottom: 6, right: 8 }}
                 />
               )}
             </View>
@@ -211,7 +198,7 @@ function HomeContent({
       {/* 내 주변 */}
       <SectionLabel
         action={
-          <Pressable onPress={() => router.push("/(tabs)/map" as never)}>
+          <Pressable onPress={() => router.push('/(tabs)/map' as never)}>
             <Text className="font-sans-bold text-[11px] text-red">지도에서 보기 →</Text>
           </Pressable>
         }
@@ -248,7 +235,7 @@ function HomeContent({
       {/* 진행 중인 테마 */}
       <SectionLabel
         action={
-          <Pressable onPress={() => router.push("/(tabs)/themes" as never)}>
+          <Pressable onPress={() => router.push('/(tabs)/themes' as never)}>
             <Text className="font-sans-bold text-[11px] text-red">전체 →</Text>
           </Pressable>
         }
@@ -271,7 +258,7 @@ function HomeContent({
               style={{
                 flex: 1,
                 padding: 16,
-                justifyContent: "space-between",
+                justifyContent: 'space-between',
                 backgroundColor: t.cover,
               }}
             >
@@ -319,18 +306,12 @@ function HomeContent({
             </View>
             <View className="flex-1 flex-row gap-1 pb-1">
               {recentStamps.map((s, i) => (
-                <Stamp
-                  key={s.id}
-                  glyph={s.glyph}
-                  size={32}
-                  rotate={-8 + i * 3}
-                  color={s.accent}
-                />
+                <Stamp key={s.id} glyph={s.glyph} size={32} rotate={-8 + i * 3} color={s.accent} />
               ))}
             </View>
           </View>
           <Pressable
-            onPress={() => router.push("/(tabs)/stampbook" as never)}
+            onPress={() => router.push('/(tabs)/stampbook' as never)}
             className="mt-3.5 p-3 bg-ink rounded-lg items-center"
           >
             <Text className="font-sans-bold text-[13px] text-paper tracking-[0.2px]">

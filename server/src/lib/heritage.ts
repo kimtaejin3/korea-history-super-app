@@ -199,8 +199,8 @@ export function searchByName(keyword: string): HeritageRecord[] {
 /** OpenAPI 좌표 (한국 좌표계) — WGS84 변환 별도 필요 */
 export function getKoreanCoord(h: HeritageRecord): { x: number; y: number } | null {
   if (!h.cnX || !h.cnY) return null;
-  const x = parseFloat(h.cnX.split(',')[0]);
-  const y = parseFloat(h.cnY.split(',')[0]);
+  const x = parseFloat(h.cnX.split(',')[0]!);
+  const y = parseFloat(h.cnY.split(',')[0]!);
   if (Number.isNaN(x) || Number.isNaN(y)) return null;
   return { x, y };
 }

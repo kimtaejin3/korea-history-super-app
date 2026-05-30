@@ -65,10 +65,7 @@ places.get('/', async (c) => {
 places.get('/:id', async (c) => {
   const id = c.req.param('id');
   const db = getDb();
-  const [row] = await db
-    .select()
-    .from(schema.heritage)
-    .where(eq(schema.heritage.id, id));
+  const [row] = await db.select().from(schema.heritage).where(eq(schema.heritage.id, id));
   if (!row) return c.json({ error: 'Not found' }, 404);
   return c.json(rowToPlace(row));
 });

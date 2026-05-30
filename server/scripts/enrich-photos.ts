@@ -113,9 +113,7 @@ type EnrichOptions = {
 function matchesRegion(r: RecordWithPhoto, keywords: string[]): boolean {
   if (!keywords.length) return true;
   const loc =
-    (r as { location?: string | null }).location ??
-    (r as { region?: string | null }).region ??
-    '';
+    (r as { location?: string | null }).location ?? (r as { region?: string | null }).region ?? '';
   return keywords.some((k) => loc.includes(k));
 }
 

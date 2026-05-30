@@ -14,7 +14,11 @@ import { RewardIcon } from '../../components/icons';
 export default function ThemeDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
-  const themeQuery = useQuery({ queryKey: queryKeys.theme(id), queryFn: () => api.theme(id), enabled: !!id });
+  const themeQuery = useQuery({
+    queryKey: queryKeys.theme(id),
+    queryFn: () => api.theme(id),
+    enabled: !!id,
+  });
   const placesQuery = useQuery({ queryKey: queryKeys.places, queryFn: api.places });
   const stampedQuery = useQuery({ queryKey: queryKeys.stamped, queryFn: api.stamped });
 
@@ -42,10 +46,18 @@ export default function ThemeDetailScreen() {
 
   return (
     <View className="flex-1 bg-paper">
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 80 }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
         {/* 커버 */}
         <View
-          style={{ height: 320, position: 'relative', overflow: 'hidden', backgroundColor: t.cover }}
+          style={{
+            height: 320,
+            position: 'relative',
+            overflow: 'hidden',
+            backgroundColor: t.cover,
+          }}
         >
           <BackHeader overlay />
           <View className="absolute left-0 right-0 bottom-0 px-5 pb-6">
@@ -115,10 +127,7 @@ export default function ThemeDetailScreen() {
         </SectionLabel>
 
         <View className="px-5 relative">
-          <View
-            className="absolute w-px bg-line"
-            style={{ left: 20 + 15, top: 26, bottom: 26 }}
-          />
+          <View className="absolute w-px bg-line" style={{ left: 20 + 15, top: 26, bottom: 26 }} />
           {places.map((p, i) => (
             <Pressable
               key={p.id}
@@ -144,10 +153,7 @@ export default function ThemeDetailScreen() {
                 <View className="flex-row items-center gap-1.5 mb-0.5">
                   <Tag color={p.accent}>{p.region}</Tag>
                   {STAMPED.includes(p.id) && (
-                    <Text
-                      className="font-sans-bold text-[10px]"
-                      style={{ color: t.color }}
-                    >
+                    <Text className="font-sans-bold text-[10px]" style={{ color: t.color }}>
                       ● 방문 완료
                     </Text>
                   )}

@@ -12,7 +12,14 @@ type Props = {
   icon?: ReactNode;
 };
 
-export function GatedButton({ label, requiredLevel, currentLevel, onPress, onLocked, icon }: Props) {
+export function GatedButton({
+  label,
+  requiredLevel,
+  currentLevel,
+  onPress,
+  onLocked,
+  icon,
+}: Props) {
   const locked = currentLevel.level < requiredLevel.level;
   return (
     <Pressable

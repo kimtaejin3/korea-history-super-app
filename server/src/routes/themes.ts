@@ -7,10 +7,7 @@ const USER_ID = 'me';
 
 // DB row → 클라이언트 Theme 응답.
 // description → desc 매핑 + visited (사용자 스탬프 기반 계산).
-function rowToTheme(
-  row: typeof schema.theme.$inferSelect,
-  stampedSet: Set<string>
-) {
+function rowToTheme(row: typeof schema.theme.$inferSelect, stampedSet: Set<string>) {
   return {
     id: row.id,
     title: row.title,
@@ -38,20 +35,14 @@ async function getStampedSet(): Promise<Set<string>> {
 
 themes.get('/', async (c) => {
   const db = getDb();
-  const [rows, stampedSet] = await Promise.all([
-    db.select().from(schema.theme),
-    getStampedSet(),
-  ]);
+  const [rows, stampedSet] = await Promise.all([db.select().from(schema.theme), getStampedSet()]);
   return c.json(rows.map((r) => rowToTheme(r, stampedSet)));
 });
 
 themes.get('/:id', async (c) => {
   const id = c.req.param('id');
   const db = getDb();
-  const [row] = await db
-    .select()
-    .from(schema.theme)
-    .where(eq(schema.theme.id, id));
+  const [row] = await db.select().from(schema.theme).where(eq(schema.theme.id, id));
   if (!row) return c.json({ error: 'Not found' }, 404);
   const stampedSet = await getStampedSet();
   return c.json(rowToTheme(row, stampedSet));
