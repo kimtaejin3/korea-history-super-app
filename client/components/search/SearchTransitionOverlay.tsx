@@ -5,9 +5,11 @@ import Animated, {
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
+  withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, useWindowDimensions } from 'react-native';
 import { useSearchActions, useSearchState } from '../../stores/searchTransition';
 import { FONTS, TOKENS } from '../../lib/tokens';
 import {
@@ -18,11 +20,14 @@ import {
 } from '../../lib/searchBarLayout';
 import { SearchIcon } from '../ui/icons';
 
-const DURATION = 400;
+const PHASE_DURATION = 200;
+const PAUSE_DURATION = 0;
+const MID_WIDTH = 240;
 
 export function SearchTransitionOverlay() {
   const state = useSearchState();
   const { end } = useSearchActions();
+  const { width: screenWidth } = useWindowDimensions();
 
   const x = useSharedValue(0);
   const y = useSharedValue(0);
@@ -37,6 +42,14 @@ export function SearchTransitionOverlay() {
       opacity.value = 0;
       return;
     }
+    const target = state.target;
+    const mid = {
+      x: (screenWidth - MID_WIDTH) / 2,
+      y: target.y,
+      width: MID_WIDTH,
+      height: target.height,
+    };
+
     x.value = state.source.x;
     y.value = state.source.y;
     width.value = state.source.width;
@@ -45,17 +58,26 @@ export function SearchTransitionOverlay() {
     progress.value = 0;
     opacity.value = 1;
 
-    x.value = withTiming(state.target.x, { duration: DURATION });
-    y.value = withTiming(state.target.y, { duration: DURATION });
-    width.value = withTiming(state.target.width, { duration: DURATION });
-    height.value = withTiming(state.target.height, { duration: DURATION });
-    radius.value = withTiming(state.target.height / 2, { duration: DURATION });
-    progress.value = withTiming(1, { duration: DURATION }, (finished) => {
-      if (finished) {
-        // morph 끝나면 같은 위치의 실제 바로 인계. 페이드아웃 없음.
-        runOnJS(end)();
-      }
-    });
+    const twoPhase = (toMid: number, toTarget: number) =>
+      withSequence(
+        withTiming(toMid, { duration: PHASE_DURATION }),
+        withDelay(PAUSE_DURATION, withTiming(toTarget, { duration: PHASE_DURATION }))
+      );
+
+    x.value = twoPhase(mid.x, target.x);
+    y.value = twoPhase(mid.y, target.y);
+    width.value = twoPhase(mid.width, target.width);
+    height.value = twoPhase(mid.height, target.height);
+    radius.value = twoPhase(mid.height / 2, target.height / 2);
+    progress.value = withSequence(
+      withTiming(0.5, { duration: PHASE_DURATION }),
+      withDelay(
+        PAUSE_DURATION,
+        withTiming(1, { duration: PHASE_DURATION }, (finished) => {
+          if (finished) runOnJS(end)();
+        })
+      )
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.active]);
 
