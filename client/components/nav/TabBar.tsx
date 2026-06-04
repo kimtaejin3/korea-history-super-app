@@ -2,7 +2,7 @@ import { View, Text, Pressable } from 'react-native';
 import Svg, { Path, Circle } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { TOKENS } from '../lib/tokens';
+import { TOKENS } from '../../lib/tokens';
 
 const TABS = [
   { name: 'index', label: '홈', icon: 'home' as const },

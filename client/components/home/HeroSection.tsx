@@ -5,9 +5,9 @@ import { useUserCoords } from '../../stores/userLocation';
 import { nearbyQueryOptions } from '../../queries/places';
 import { TOKENS } from '../../lib/tokens';
 import { formatDistance } from '../../lib/geo';
-import { Tag } from '../Tag';
-import { PhotoPlaceholder } from '../PhotoPlaceholder';
-import { PhotoCredit } from '../PhotoCredit';
+import { Tag } from '../ui/Tag';
+import { PhotoPlaceholder } from '../ui/PhotoPlaceholder';
+import { PhotoCredit } from '../place/PhotoCredit';
 
 export function HeroSection() {
   const router = useRouter();

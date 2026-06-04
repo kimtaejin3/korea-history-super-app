@@ -5,7 +5,7 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TOKENS } from '../../lib/tokens';
-import { SearchIcon } from '../../components/icons';
+import { SearchIcon } from '../../components/ui/icons';
 import { useSearchState } from '../../stores/searchTransition';
 import {
   SEARCH_BAR_HEIGHT,

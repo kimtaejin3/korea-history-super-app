@@ -7,12 +7,12 @@ import { TOKENS } from '../../lib/tokens';
 import { placesQueryOptions } from '../../queries/places';
 import { themeQueryOptions } from '../../queries/themes';
 import { stampedQueryOptions } from '../../queries/stamps';
-import { BackHeader } from '../../components/BackHeader';
-import { Tag } from '../../components/Tag';
-import { Stamp } from '../../components/Stamp';
-import { SectionLabel } from '../../components/SectionLabel';
-import { RewardIcon } from '../../components/icons';
-import { SectionBoundary } from '../../components/SectionBoundary';
+import { BackHeader } from '../../components/ui/BackHeader';
+import { Tag } from '../../components/ui/Tag';
+import { Stamp } from '../../components/ui/Stamp';
+import { SectionLabel } from '../../components/ui/SectionLabel';
+import { RewardIcon } from '../../components/ui/icons';
+import { SectionBoundary } from '../../components/ui/SectionBoundary';
 
 const NotFound = () => (
   <View className="flex-1 bg-paper">

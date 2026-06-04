@@ -1,6 +1,6 @@
 import { View, Text, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Stamp } from './Stamp';
+import { Stamp } from '../ui/Stamp';
 
 type Props = {
   onLogin: () => void;

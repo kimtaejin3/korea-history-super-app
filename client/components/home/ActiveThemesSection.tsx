@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { themesQueryOptions } from '../../queries/themes';
-import { SectionLabel } from '../SectionLabel';
+import { SectionLabel } from '../ui/SectionLabel';
 
 export function ActiveThemesSection() {
   const router = useRouter();

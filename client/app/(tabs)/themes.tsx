@@ -6,11 +6,11 @@ import { useRouter } from 'expo-router';
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { themesQueryOptions } from '../../queries/themes';
 import { meQueryOptions, levelsQueryOptions } from '../../queries/me';
-import { PageHeader } from '../../components/PageHeader';
-import { GatedButton } from '../../components/GatedButton';
-import { StampBoxIcon } from '../../components/icons';
-import { ScreenState } from '../../components/ScreenState';
-import { SectionBoundary } from '../../components/SectionBoundary';
+import { PageHeader } from '../../components/ui/PageHeader';
+import { GatedButton } from '../../components/user/GatedButton';
+import { StampBoxIcon } from '../../components/ui/icons';
+import { ScreenState } from '../../components/ui/ScreenState';
+import { SectionBoundary } from '../../components/ui/SectionBoundary';
 
 const TABS = ['전체', '진행중', '추천', '완성'];
 

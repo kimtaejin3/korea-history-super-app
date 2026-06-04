@@ -9,12 +9,12 @@ import { TOKENS } from '../../lib/tokens';
 import { placesQueryOptions } from '../../queries/places';
 import { themesQueryOptions } from '../../queries/themes';
 import { stampedQueryOptions } from '../../queries/stamps';
-import { PageHeader } from '../../components/PageHeader';
-import { Stamp } from '../../components/Stamp';
-import { StampSlot } from '../../components/StampSlot';
-import { ScreenState } from '../../components/ScreenState';
-import { ShareIcon } from '../../components/icons';
-import { SectionBoundary } from '../../components/SectionBoundary';
+import { PageHeader } from '../../components/ui/PageHeader';
+import { Stamp } from '../../components/ui/Stamp';
+import { StampSlot } from '../../components/ui/StampSlot';
+import { ScreenState } from '../../components/ui/ScreenState';
+import { ShareIcon } from '../../components/ui/icons';
+import { SectionBoundary } from '../../components/ui/SectionBoundary';
 
 const VIEWS = ['테마별', '시대별', '지역별'];
 

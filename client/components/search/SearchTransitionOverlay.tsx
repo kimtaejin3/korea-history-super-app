@@ -8,15 +8,15 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { Text } from 'react-native';
-import { useSearchActions, useSearchState } from '../stores/searchTransition';
-import { FONTS, TOKENS } from '../lib/tokens';
+import { useSearchActions, useSearchState } from '../../stores/searchTransition';
+import { FONTS, TOKENS } from '../../lib/tokens';
 import {
   HOME_SEARCH_BTN_SIZE,
   SEARCH_BAR_ICON_SIZE,
   SEARCH_BAR_INNER_PX,
   SEARCH_BAR_TEXT_LEFT,
-} from '../lib/searchBarLayout';
-import { SearchIcon } from './icons';
+} from '../../lib/searchBarLayout';
+import { SearchIcon } from '../ui/icons';
 
 const DURATION = 400;
 

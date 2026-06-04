@@ -4,10 +4,10 @@ import { View, Text, ScrollView } from 'react-native';
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { TOKENS } from '../lib/tokens';
 import { meQueryOptions, levelsQueryOptions } from '../queries/me';
-import { BackHeader } from '../components/BackHeader';
-import { SectionLabel } from '../components/SectionLabel';
-import { SectionBoundary } from '../components/SectionBoundary';
-import { ScreenState } from '../components/ScreenState';
+import { BackHeader } from '../components/ui/BackHeader';
+import { SectionLabel } from '../components/ui/SectionLabel';
+import { SectionBoundary } from '../components/ui/SectionBoundary';
+import { ScreenState } from '../components/ui/ScreenState';
 
 export default function RankScreen() {
   return (

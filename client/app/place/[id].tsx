@@ -9,20 +9,20 @@ import { placeQueryOptions } from '../../queries/places';
 import { themesQueryOptions } from '../../queries/themes';
 import { stampedQueryOptions } from '../../queries/stamps';
 import { meQueryOptions, levelsQueryOptions } from '../../queries/me';
-import { BackHeader } from '../../components/BackHeader';
-import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
-import { PhotoCredit } from '../../components/PhotoCredit';
-import { Tag } from '../../components/Tag';
-import { Stamp } from '../../components/Stamp';
-import { SectionLabel } from '../../components/SectionLabel';
-import { GatedButton } from '../../components/GatedButton';
-import { SectionBoundary } from '../../components/SectionBoundary';
+import { BackHeader } from '../../components/ui/BackHeader';
+import { PhotoPlaceholder } from '../../components/ui/PhotoPlaceholder';
+import { PhotoCredit } from '../../components/place/PhotoCredit';
+import { Tag } from '../../components/ui/Tag';
+import { Stamp } from '../../components/ui/Stamp';
+import { SectionLabel } from '../../components/ui/SectionLabel';
+import { GatedButton } from '../../components/user/GatedButton';
+import { SectionBoundary } from '../../components/ui/SectionBoundary';
 import {
   CameraIcon,
   ChevronRightIcon,
   PinIconFilled,
   PinIconOutline,
-} from '../../components/icons';
+} from '../../components/ui/icons';
 import { formatDistance } from '../../lib/geo';
 
 const NotFound = () => (

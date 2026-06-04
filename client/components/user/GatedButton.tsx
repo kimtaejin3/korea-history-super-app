@@ -1,7 +1,7 @@
 import { Pressable, Text } from 'react-native';
 import { ReactNode } from 'react';
-import { Level } from '../types/user';
-import { LockIcon, PlusIcon } from './icons';
+import { Level } from '../../types/user';
+import { LockIcon, PlusIcon } from '../ui/icons';
 
 type Props = {
   label: string;

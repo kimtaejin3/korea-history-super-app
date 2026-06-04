@@ -2,8 +2,8 @@ import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { stampedQueryOptions, recentStampsQueryOptions } from '../../queries/stamps';
-import { SectionLabel } from '../SectionLabel';
-import { Stamp } from '../Stamp';
+import { SectionLabel } from '../ui/SectionLabel';
+import { Stamp } from '../ui/Stamp';
 
 export function MyJourneySection() {
   const router = useRouter();

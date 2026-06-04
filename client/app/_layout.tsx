@@ -12,7 +12,7 @@ import { JetBrainsMono_400Regular, JetBrainsMono_700Bold } from '@expo-google-fo
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SearchTransitionOverlay } from '../components/SearchTransitionOverlay';
+import { SearchTransitionOverlay } from '../components/search/SearchTransitionOverlay';
 import { initUserLocation } from '../stores/userLocation';
 import '../global.css';
 

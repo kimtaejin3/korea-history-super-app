@@ -7,13 +7,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { TOKENS } from '../../lib/tokens';
 import { placeQueryOptions } from '../../queries/places';
-import { Tag } from '../../components/Tag';
-import { PhotoPlaceholder } from '../../components/PhotoPlaceholder';
-import { LottieAsset } from '../../components/LottieAsset';
-import { CheckIcon, CloseIcon, InfoIcon, PinIconFilled } from '../../components/icons';
+import { Tag } from '../../components/ui/Tag';
+import { PhotoPlaceholder } from '../../components/ui/PhotoPlaceholder';
+import { LottieAsset } from '../../components/ui/LottieAsset';
+import { CheckIcon, CloseIcon, InfoIcon, PinIconFilled } from '../../components/ui/icons';
 import { useUserLocation } from '../../stores/userLocation';
 import { distanceKm, formatDistance } from '../../lib/geo';
-import { SectionBoundary } from '../../components/SectionBoundary';
+import { SectionBoundary } from '../../components/ui/SectionBoundary';
 
 type Step = 'locating' | 'too_far' | 'confirmed' | 'quiz' | 'result' | 'stamp';
 

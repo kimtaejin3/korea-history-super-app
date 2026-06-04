@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -16,50 +16,15 @@ import { nearbyInfiniteQueryOptions } from '../../queries/places';
 import { stampedQueryOptions } from '../../queries/stamps';
 import { useUserCoords } from '../../stores/userLocation';
 import { useSearchState } from '../../stores/searchTransition';
-import { formatDistance } from '../../lib/geo';
 import type { Place } from '../../types/places';
-import { Tag } from '../Tag';
-import { PhotoPlaceholder } from '../PhotoPlaceholder';
+import { PlaceRow, PLACE_ROW_COMPACT_HEIGHT } from '../place/PlaceRow';
 
 const PAGE_LIMIT = 10;
-const ROW_HEIGHT = 88;
 const ROW_GAP = 10;
 const SNAP_POINTS = ['25%', '55%', '90%'];
 
 const keyExtractor = (p: Place) => p.id;
 const Separator = () => <View style={{ height: ROW_GAP }} />;
-
-const PlaceRow = memo(function PlaceRow({
-  place: p,
-  stamped,
-  onPress,
-}: {
-  place: Place;
-  stamped: boolean;
-  onPress: (id: string) => void;
-}) {
-  return (
-    <Pressable
-      onPress={() => onPress(p.id)}
-      className="flex-row gap-3 p-3 bg-paper border border-line rounded-xl items-center"
-      style={{ height: ROW_HEIGHT }}
-    >
-      <PhotoPlaceholder height={64} width={64} photoUrl={p.photo?.url} />
-      <View className="flex-1">
-        <View className="flex-row items-center gap-1.5 mb-0.5">
-          <Tag color={p.accent}>{p.era}</Tag>
-          {stamped && <Text className="font-sans-bold text-[10px] text-red">● 획득</Text>}
-        </View>
-        <Text numberOfLines={1} className="font-serif text-[15px] text-ink">
-          {p.name}
-        </Text>
-        <Text numberOfLines={1} className="font-mono text-[10px] text-mute mt-0.5">
-          {formatDistance(p.distance)} · {p.region}
-        </Text>
-      </View>
-    </Pressable>
-  );
-});
 
 type Props = {
   filter: string;
@@ -129,15 +94,20 @@ export function NearbySheet({ filter, insets }: Props) {
 
   const renderItem = useCallback(
     ({ item }: { item: Place }) => (
-      <PlaceRow place={item} stamped={stampedSet.has(item.id)} onPress={onPressPlace} />
+      <PlaceRow
+        place={item}
+        stamped={stampedSet.has(item.id)}
+        onPress={onPressPlace}
+        variant="compact"
+      />
     ),
     [stampedSet, onPressPlace]
   );
 
   const getItemLayout = useCallback(
     (_: ArrayLike<Place> | null | undefined, index: number) => ({
-      length: ROW_HEIGHT,
-      offset: (ROW_HEIGHT + ROW_GAP) * index,
+      length: PLACE_ROW_COMPACT_HEIGHT,
+      offset: (PLACE_ROW_COMPACT_HEIGHT + ROW_GAP) * index,
       index,
     }),
     []

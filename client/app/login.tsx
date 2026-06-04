@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { useRouter } from 'expo-router';
-import { LoginScreen } from '../components/LoginScreen';
+import { LoginScreen } from '../components/user/LoginScreen';
 import { useAuth } from '../stores/auth';
 
 export default function LoginRoute() {

@@ -5,10 +5,10 @@ import { View, Text, ScrollView, Pressable, useWindowDimensions } from 'react-na
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { haptic } from '../../lib/haptics';
-import { PinIcon, SearchIcon } from '../../components/icons';
-import { useSearchActions } from '../../stores/searchTransition';
+import { PinIcon, SearchIcon } from '../../components/ui/icons';
+import { useSearchActions, useSearchState } from '../../stores/searchTransition';
 import { getSearchBarRect } from '../../lib/searchBarLayout';
-import { SectionBoundary } from '../../components/SectionBoundary';
+import { SectionBoundary } from '../../components/ui/SectionBoundary';
 import { HeroSection } from '../../components/home/HeroSection';
 import { NearbySection } from '../../components/home/NearbySection';
 import { ActiveThemesSection } from '../../components/home/ActiveThemesSection';
@@ -26,6 +26,7 @@ export default function HomeScreen() {
   const searchBtnRef = useRef<View>(null);
   const { width: screenWidth } = useWindowDimensions();
   const { start: startSearchTransition } = useSearchActions();
+  const morphing = useSearchState().active;
 
   const onPressSearch = () => {
     haptic.tap();
@@ -56,6 +57,8 @@ export default function HomeScreen() {
           accessibilityLabel="search"
           onPress={onPressSearch}
           className="w-9 h-9 rounded-full bg-[rgba(26,22,20,0.05)] items-center justify-center"
+          style={{ opacity: morphing ? 0 : 1 }}
+          pointerEvents={morphing ? 'none' : 'auto'}
         >
           <SearchIcon />
         </Pressable>

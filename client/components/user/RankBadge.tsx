@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { Level } from '../types/user';
+import { Level } from '../../types/user';
 
 type Props = {
   level: Level;

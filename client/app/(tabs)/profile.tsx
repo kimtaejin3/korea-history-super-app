@@ -6,14 +6,14 @@ import { useSuspenseQueries } from '@tanstack/react-query';
 import { TOKENS } from '../../lib/tokens';
 import { stampedQueryOptions } from '../../queries/stamps';
 import { meQueryOptions, achievementsQueryOptions, rankingQueryOptions } from '../../queries/me';
-import { PageHeader } from '../../components/PageHeader';
-import { Stamp } from '../../components/Stamp';
-import { RankBadge } from '../../components/RankBadge';
-import { ScreenState } from '../../components/ScreenState';
-import { ProgressBar } from '../../components/ProgressBar';
-import { SectionLabel } from '../../components/SectionLabel';
-import { ArrowRightIcon, SettingsIcon } from '../../components/icons';
-import { SectionBoundary } from '../../components/SectionBoundary';
+import { PageHeader } from '../../components/ui/PageHeader';
+import { Stamp } from '../../components/ui/Stamp';
+import { RankBadge } from '../../components/user/RankBadge';
+import { ScreenState } from '../../components/ui/ScreenState';
+import { ProgressBar } from '../../components/ui/ProgressBar';
+import { SectionLabel } from '../../components/ui/SectionLabel';
+import { ArrowRightIcon, SettingsIcon } from '../../components/ui/icons';
+import { SectionBoundary } from '../../components/ui/SectionBoundary';
 
 export default function ProfileScreen() {
   return (
