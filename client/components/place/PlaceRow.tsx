@@ -4,7 +4,6 @@ import type { Place } from '../../types/places';
 import { formatDistance } from '../../lib/geo';
 import { Tag } from '../ui/Tag';
 import { PhotoPlaceholder } from '../ui/PhotoPlaceholder';
-import { Stamp } from '../ui/Stamp';
 
 export const PLACE_ROW_COMPACT_HEIGHT = 88;
 
@@ -12,7 +11,7 @@ type Props = {
   place: Place;
   stamped: boolean;
   onPress: (id: string) => void;
-  /** 'detailed' (홈): summary + 우측 Stamp 비주얼 / 'compact' (지도): 고정 높이 + 거리·지역 한 줄 */
+  /** 'detailed' (홈): summary 표시 / 'compact' (지도): 고정 높이 + 거리·지역 한 줄 */
   variant?: 'detailed' | 'compact';
 };
 
@@ -34,20 +33,10 @@ export const PlaceRow = memo(function PlaceRow({
       <View className="flex-1">
         <View className="flex-row items-center gap-1.5 mb-0.5">
           <Tag color={p.accent}>{p.era}</Tag>
-          {compact
-            ? stamped && (
-                <Text className="font-sans-bold text-[10px] text-red">● 획득</Text>
-              )
-            : (
-                <Text className="font-mono text-[10px] text-mute">
-                  {formatDistance(p.distance)}
-                </Text>
-              )}
+          {stamped && <Text className="font-sans-bold text-[10px] text-red">● 스탬프 획득</Text>}
+          <Text className="font-mono text-[10px] text-mute">{formatDistance(p.distance)}</Text>
         </View>
-        <Text
-          numberOfLines={compact ? 1 : undefined}
-          className="font-serif text-[15px] text-ink"
-        >
+        <Text numberOfLines={compact ? 1 : undefined} className="font-serif text-[15px] text-ink">
           {p.name}
         </Text>
         <Text
@@ -61,9 +50,6 @@ export const PlaceRow = memo(function PlaceRow({
           {compact ? `${formatDistance(p.distance)} · ${p.region}` : p.summary}
         </Text>
       </View>
-      {!compact && stamped && (
-        <Stamp glyph={p.nameHanja[0]} size={36} rotate={-8} color={p.accent} />
-      )}
     </Pressable>
   );
 });

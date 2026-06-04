@@ -1,6 +1,5 @@
 import { View, Text, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Stamp } from '../ui/Stamp';
 
 type Props = {
   onLogin: () => void;
@@ -16,7 +15,6 @@ export function LoginScreen({ onLogin }: Props) {
     >
       {/* 로고 + 카피 */}
       <View className="px-8 items-center">
-        <Stamp glyph="跡" size={88} rotate={-8} />
         <Text className="font-serif text-[36px] text-ink mt-10 tracking-[-1px]">발자취</Text>
         <Text className="font-sans text-[13px] text-mute mt-2 tracking-[3px]">
           FOOTPRINTS · ARCHIVE

@@ -13,7 +13,6 @@ import { BackHeader } from '../../components/ui/BackHeader';
 import { PhotoPlaceholder } from '../../components/ui/PhotoPlaceholder';
 import { PhotoCredit } from '../../components/place/PhotoCredit';
 import { Tag } from '../../components/ui/Tag';
-import { Stamp } from '../../components/ui/Stamp';
 import { SectionLabel } from '../../components/ui/SectionLabel';
 import { GatedButton } from '../../components/user/GatedButton';
 import { SectionBoundary } from '../../components/ui/SectionBoundary';
@@ -79,11 +78,6 @@ function PlaceContent() {
             pointerEvents="none"
           />
           <BackHeader overlay />
-          {stamped && (
-            <View className="absolute top-[100px] right-6 z-[2]">
-              <Stamp glyph={p.nameHanja[0]} size={68} rotate={-12} color={p.accent} />
-            </View>
-          )}
           {p.photo && (
             <PhotoCredit
               photo={p.photo}
@@ -119,7 +113,6 @@ function PlaceContent() {
               className="bg-paperWarm p-3.5 rounded-xl flex-row items-center gap-3"
               style={{ borderWidth: 0.5, borderColor: `${p.accent}40` }}
             >
-              <Stamp glyph={p.nameHanja[0]} size={38} rotate={-8} color={p.accent} />
               <View className="flex-1">
                 <Text className="font-sans-bold text-xs" style={{ color: p.accent }}>
                   방문 완료

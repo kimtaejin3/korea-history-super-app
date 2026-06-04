@@ -10,7 +10,6 @@ import { placesQueryOptions } from '../../queries/places';
 import { themesQueryOptions } from '../../queries/themes';
 import { stampedQueryOptions } from '../../queries/stamps';
 import { PageHeader } from '../../components/ui/PageHeader';
-import { Stamp } from '../../components/ui/Stamp';
 import { StampSlot } from '../../components/ui/StampSlot';
 import { ScreenState } from '../../components/ui/ScreenState';
 import { ShareIcon } from '../../components/ui/icons';
@@ -131,39 +130,18 @@ function StampbookContent() {
                 {Array.from({ length: total }).map((_, i) => {
                   const p = places[i];
                   const cellStyle: ViewStyle = { width: '18%', alignItems: 'center', gap: 4 };
-                  if (p && STAMPED.includes(p.id)) {
-                    return (
-                      <Pressable
-                        key={i}
-                        onPress={() => router.push(`/place/${p.id}` as never)}
-                        style={cellStyle}
-                      >
-                        <Stamp
-                          glyph={p.nameHanja[0]}
-                          size={48}
-                          rotate={-6 + (i % 3) * 4}
-                          color={p.accent}
-                        />
-                        <Text
-                          numberOfLines={1}
-                          className="font-sans text-[9px] text-inkSoft max-w-[56px]"
-                        >
-                          {p.name}
-                        </Text>
-                      </Pressable>
-                    );
-                  }
                   if (p) {
+                    const visited = STAMPED.includes(p.id);
                     return (
                       <Pressable
                         key={i}
                         onPress={() => router.push(`/place/${p.id}` as never)}
                         style={cellStyle}
                       >
-                        <Stamp glyph={p.nameHanja[0]} size={48} rotate={0} dim color={p.accent} />
+                        <StampSlot size={48} />
                         <Text
                           numberOfLines={1}
-                          className="font-sans text-[9px] text-mute max-w-[56px]"
+                          className={`font-sans text-[9px] max-w-[56px] ${visited ? 'text-inkSoft' : 'text-mute'}`}
                         >
                           {p.name}
                         </Text>

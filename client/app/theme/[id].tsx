@@ -9,7 +9,6 @@ import { themeQueryOptions } from '../../queries/themes';
 import { stampedQueryOptions } from '../../queries/stamps';
 import { BackHeader } from '../../components/ui/BackHeader';
 import { Tag } from '../../components/ui/Tag';
-import { Stamp } from '../../components/ui/Stamp';
 import { SectionLabel } from '../../components/ui/SectionLabel';
 import { RewardIcon } from '../../components/ui/icons';
 import { SectionBoundary } from '../../components/ui/SectionBoundary';
@@ -160,11 +159,6 @@ function ThemeContent() {
                   {p.summary}
                 </Text>
               </View>
-              {STAMPED.includes(p.id) && (
-                <View className="pt-1">
-                  <Stamp glyph={p.nameHanja[0]} size={36} rotate={-8} color={p.accent} />
-                </View>
-              )}
             </Pressable>
           ))}
 

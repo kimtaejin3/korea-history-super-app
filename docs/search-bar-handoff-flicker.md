@@ -2,7 +2,9 @@
 
 홈 검색 버튼 → 지도 검색바로의 morph가 끝나는 순간 검색바 UI가 **간헐적으로 한 프레임 깜박이던** 문제. 원인은 핸드오프 구조의 1프레임 race였고, 실제 바를 항상 mount해두는 것으로 해결.
 
-관련 문서: [context-split-rerender.md](./context-split-rerender.md) (Context 분리로 morph 시작 끊김 잡은 글)
+관련 문서:
+- [context-split-rerender.md](./context-split-rerender.md) — Context 분리로 morph 시작 끊김 잡은 글
+- [search-overlay-first-press-delay.md](./search-overlay-first-press-delay.md) — 오버레이 자체에 같은 mount 패턴 적용한 글 (응답성용)
 
 ## 증상
 

@@ -7,7 +7,6 @@ import { TOKENS } from '../../lib/tokens';
 import { stampedQueryOptions } from '../../queries/stamps';
 import { meQueryOptions, achievementsQueryOptions, rankingQueryOptions } from '../../queries/me';
 import { PageHeader } from '../../components/ui/PageHeader';
-import { Stamp } from '../../components/ui/Stamp';
 import { RankBadge } from '../../components/user/RankBadge';
 import { ScreenState } from '../../components/ui/ScreenState';
 import { ProgressBar } from '../../components/ui/ProgressBar';
@@ -55,9 +54,6 @@ function ProfileContent() {
         <View className="bg-paper border border-line p-5 rounded-xl flex-row items-center gap-4">
           <View className="w-16 h-16 rounded-full bg-paperWarm border border-line items-center justify-center">
             <Text className="font-serif text-2xl text-ink">나</Text>
-            <View className="absolute -bottom-0.5 -right-0.5">
-              <Stamp glyph="初" size={24} rotate={-12} />
-            </View>
           </View>
           <View className="flex-1">
             <Text className="font-serif text-lg text-ink">{USER.nickname}</Text>
@@ -134,15 +130,6 @@ function ProfileContent() {
             className="bg-paper border border-line rounded-xl p-3"
             style={{ width: '31%', opacity: a.done ? 1 : 0.55 }}
           >
-            <View className="items-center mb-2">
-              <Stamp
-                glyph={a.title[0]}
-                size={38}
-                rotate={a.done ? -6 : 0}
-                dim={!a.done}
-                color={a.done ? TOKENS.red : TOKENS.mute}
-              />
-            </View>
             <Text className="font-serif text-[11px] text-ink text-center leading-[13px]">
               {a.title}
             </Text>

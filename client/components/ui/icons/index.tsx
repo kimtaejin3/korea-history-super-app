@@ -245,7 +245,6 @@ export function StampBoxIcon({ size = 12, color = TOKENS.red, strokeWidth = 1.6 
 }
 
 // PhotoPlaceholder가 쓰는 대각선 라인은 자기 코드에 두는 게 자연스러우니 여기서는 export 안 함.
-// Stamp 컴포넌트의 도장 SVG도 마찬가지로 Stamp.tsx 안에 둠.
 // TabBar의 5개 아이콘(home/map/theme/stamp/me)도 TabBar 안에서만 쓰이니 그대로 둠.
 
 // 명시적으로 export하지 않아도 위 아이콘들로 충분. 필요 시 추가.
