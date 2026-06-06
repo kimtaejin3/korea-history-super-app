@@ -43,6 +43,7 @@ export function SearchTransitionOverlay() {
       return;
     }
     const target = state.target;
+
     const mid = {
       x: (screenWidth - MID_WIDTH) / 2,
       y: target.y,
@@ -69,6 +70,7 @@ export function SearchTransitionOverlay() {
     width.value = twoPhase(mid.width, target.width);
     height.value = twoPhase(mid.height, target.height);
     radius.value = twoPhase(mid.height / 2, target.height / 2);
+
     progress.value = withSequence(
       withTiming(0.5, { duration: PHASE_DURATION }),
       withDelay(

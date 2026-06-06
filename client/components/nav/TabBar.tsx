@@ -3,6 +3,7 @@ import Svg, { Path, Circle } from 'react-native-svg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { TOKENS } from '../../lib/tokens';
+import { haptic } from '../../lib/haptics';
 
 const TABS = [
   { name: 'index', label: '홈', icon: 'home' as const },
@@ -83,7 +84,10 @@ export function TabBar({ state, navigation }: BottomTabBarProps) {
           return (
             <Pressable
               key={tab.name}
-              onPress={() => navigation.navigate(tab.name as never)}
+              onPress={() => {
+                haptic.select();
+                navigation.navigate(tab.name as never);
+              }}
               className="flex-1 items-center justify-center gap-[3px]"
             >
               <TabIcon kind={tab.icon} active={isActive} />
