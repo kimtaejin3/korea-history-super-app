@@ -42,7 +42,7 @@ stamps.get(
     const heritageRows = await db
       .select({
         id: schema.heritage.id,
-        nameHanja: schema.heritage.nameHanja,
+        name: schema.heritage.name,
         accent: schema.heritage.accent,
       })
       .from(schema.heritage)
@@ -54,7 +54,7 @@ stamps.get(
         const h = heritageById.get(s.placeId);
         return {
           id: s.placeId,
-          glyph: h?.nameHanja?.[0] ?? '印',
+          glyph: h?.name?.[0] ?? '印',
           accent: h?.accent ?? '#E5563E',
         };
       })

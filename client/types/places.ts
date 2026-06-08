@@ -21,7 +21,6 @@ export type Photo = {
 export type Place = {
   id: string;
   name: string;
-  nameHanja: string;
   region: string;
   era: string;
   distance: number;

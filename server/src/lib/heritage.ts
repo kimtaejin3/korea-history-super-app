@@ -32,7 +32,6 @@ export type HeritageRecord = {
   location?: string | null;
 
   // 큐레이션 전용
-  nameHanja?: string | null;
   designationType?: string | null;
   designationNo?: number | null;
   summary?: string | null;
@@ -97,7 +96,6 @@ type CuratedRaw = {
   ccbaKdcd: number;
   theme: string;
   name: string;
-  nameHanja: string | null;
   era: string | null;
   region: string | null;
   designationType: string | null;
@@ -115,7 +113,6 @@ const curatedRecords: HeritageRecord[] = (rawCurated as CuratedRaw[]).map((r) =>
   name: r.name,
   era: r.era,
   region: r.region,
-  nameHanja: r.nameHanja,
   designationType: r.designationType,
   designationNo: r.designationNo,
   summary: r.summary,

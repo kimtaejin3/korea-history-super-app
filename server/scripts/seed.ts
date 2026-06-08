@@ -37,7 +37,6 @@ async function seedHeritage() {
     .map((p) => ({
       id: p.id,
       name: p.name,
-      nameHanja: p.nameHanja,
       region: p.region,
       era: p.era,
       period: p.period,

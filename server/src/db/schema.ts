@@ -24,7 +24,6 @@ export const heritage = pgTable(
   {
     id: text('id').primaryKey(),
     name: text('name').notNull(),
-    nameHanja: text('name_hanja').notNull(),
     region: text('region').notNull(),
     era: text('era').notNull(),
     period: text('period').notNull(),

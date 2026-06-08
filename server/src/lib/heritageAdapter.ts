@@ -61,11 +61,6 @@ function formatPeriod(date: string | null | undefined, era: string | null | unde
   return era || '';
 }
 
-function ensureNameHanja(h: HeritageRecord): string {
-  if (h.nameHanja) return h.nameHanja;
-  return '';
-}
-
 export function heritageToPlace(h: HeritageRecord): Place {
   const meta = HERITAGE_CATEGORIES[h.ccbaKdcd];
   const id =
@@ -79,7 +74,6 @@ export function heritageToPlace(h: HeritageRecord): Place {
   return {
     id,
     name: h.name,
-    nameHanja: ensureNameHanja(h),
     region,
     era: h.era || '조선시대',
     distance: 0, // 런타임에 사용자 위치로부터 계산됨

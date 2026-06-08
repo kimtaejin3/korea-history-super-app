@@ -18,7 +18,6 @@ type CoverPhoto = NonNullable<typeof schema.heritage.$inferInsert.coverPhoto>;
 type ImportEntry = {
   id: string;
   name: string;
-  nameHanja: string;
   region: string;
   era: string;
   period: string;
@@ -58,7 +57,6 @@ manifest 형식 (JSON 배열):
   {
     "id": "JOSEON_001",            // 필수, 고유 ID — 충돌 시 UPSERT
     "name": "현충사",               // 필수
-    "nameHanja": "顯忠祠",          // 필수
     "region": "충청남도",           // 필수
     "era": "조선",                  // 필수
     "period": "1706",               // 필수
@@ -139,7 +137,6 @@ async function main() {
       const values: typeof schema.heritage.$inferInsert = {
         id: entry.id,
         name: entry.name,
-        nameHanja: entry.nameHanja,
         region: entry.region,
         era: entry.era,
         period: entry.period,

@@ -18,7 +18,6 @@ export type Photo = {
 export type Place = {
   id: string;
   name: string;
-  nameHanja: string;
   region: string;
   era: string;
   distance: number;
@@ -41,7 +40,6 @@ export const PLACES: Place[] = [
   {
     id: 'paengseong-gaeksa',
     name: '팽성읍 객사',
-    nameHanja: '彭城邑 客舍',
     region: '경기 평택',
     era: '조선',
     distance: 4.2,
@@ -75,7 +73,6 @@ export const PLACES: Place[] = [
   {
     id: 'daedongbeop-bi',
     name: '대동법 시행기념비',
-    nameHanja: '大同法 施行記念碑',
     region: '경기 평택',
     era: '조선',
     distance: 5.1,
@@ -110,7 +107,6 @@ export const PLACES: Place[] = [
   {
     id: 'hyeonchungsa',
     name: '현충사',
-    nameHanja: '顯忠祠',
     region: '충남 아산',
     era: '조선',
     distance: 8.7,
@@ -143,7 +139,6 @@ export const PLACES: Place[] = [
   {
     id: 'oeam-village',
     name: '외암민속마을',
-    nameHanja: '外巖民俗마을',
     region: '충남 아산',
     era: '조선',
     distance: 12.4,
@@ -172,7 +167,6 @@ export const PLACES: Place[] = [
   {
     id: 'dokrip-hall',
     name: '독립기념관',
-    nameHanja: '獨立記念館',
     region: '충남 천안',
     era: '근현대',
     distance: 18.2,
@@ -192,7 +186,6 @@ export const PLACES: Place[] = [
   {
     id: 'hwaseong',
     name: '수원 화성',
-    nameHanja: '水原華城',
     region: '경기 수원',
     era: '조선',
     distance: 31.5,
@@ -221,7 +214,6 @@ export const PLACES: Place[] = [
   {
     id: 'sosu-seowon',
     name: '소수서원',
-    nameHanja: '紹修書院',
     region: '경북 영주',
     era: '조선',
     distance: 175.8,
@@ -256,7 +248,6 @@ export const PLACES: Place[] = [
   {
     id: 'dosan-seowon',
     name: '도산서원',
-    nameHanja: '陶山書院',
     region: '경북 안동',
     era: '조선',
     distance: 192.3,

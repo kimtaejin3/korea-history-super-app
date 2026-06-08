@@ -158,10 +158,6 @@ const ERAS = [
 ];
 
 function parseExtract(title: string, extract: string) {
-  // 한자: 제목 직후 첫 괄호
-  const hanjaMatch = extract.match(/^[^(]+\(([^)]+)\)/);
-  const nameHanja = hanjaMatch && hanjaMatch[1] ? hanjaMatch[1].trim() : null;
-
   // 시대
   let era = null;
   for (const e of ERAS) {
@@ -195,7 +191,6 @@ function parseExtract(title: string, extract: string) {
 
   return {
     name: title,
-    nameHanja,
     era,
     region,
     designationType: designationMatch?.[2] || null,

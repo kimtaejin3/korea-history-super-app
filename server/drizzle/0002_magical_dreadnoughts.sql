@@ -1,0 +1,1 @@
+ALTER TABLE "heritage" DROP COLUMN "name_hanja";

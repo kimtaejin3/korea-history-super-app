@@ -15,6 +15,13 @@
       "when": 1780916420576,
       "tag": "0001_mushy_morlocks",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1780917665374,
+      "tag": "0002_magical_dreadnoughts",
+      "breakpoints": true
     }
   ]
 }

@@ -343,7 +343,6 @@ function CheckinFlow() {
             endFrame={40}
           />
           <View className="mt-7 items-center">
-            <Text className="font-serif text-[15px] text-ink mb-1">{p.nameHanja}</Text>
             <Text className="font-sans text-xs text-mute text-center">
               2026.05.15 · 14:23 · {p.region}
             </Text>
