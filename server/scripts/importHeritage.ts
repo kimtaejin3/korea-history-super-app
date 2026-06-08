@@ -16,7 +16,7 @@ import { getDb, schema } from '../src/db/client.js';
 type CoverPhoto = NonNullable<typeof schema.heritage.$inferInsert.coverPhoto>;
 
 type ImportEntry = {
-  id: string;
+  id?: string;
   name: string;
   region: string;
   era: string;
@@ -55,7 +55,6 @@ const USAGE = `사용: npm run heritage:import <manifest.json>
 manifest 형식 (JSON 배열):
 [
   {
-    "id": "JOSEON_001",            // 필수, 고유 ID — 충돌 시 UPSERT
     "name": "현충사",               // 필수
     "region": "충청남도",           // 필수
     "era": "조선",                  // 필수
@@ -72,13 +71,27 @@ manifest 형식 (JSON 배열):
       "height": 1080,
       "credit": "직접 촬영",
       "desc": "..."
-    }
+    },
+    "id": "조선-현충사"              // 선택, 생략 시 "<era>-<name 슬러그>" 자동 생성
   }
 ]
 
 선택 추가 필드: coords, visits, nearbyStamps, source, ccbaKdcd, designation,
 designationDate, classification, quiz.
 `;
+
+function slugify(s: string): string {
+  return s
+    .normalize('NFC')
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\p{L}\p{N}-]/gu, '');
+}
+
+function makeId(entry: ImportEntry): string {
+  if (entry.id) return entry.id;
+  return `${slugify(entry.era)}-${slugify(entry.name)}`;
+}
 
 function uploadPhoto(localAbs: string, bucketKey: string): void {
   execSync(`mc cp "${localAbs}" "local/heritage/${bucketKey}"`, { stdio: 'pipe' });
@@ -115,6 +128,7 @@ async function main() {
   let failed = 0;
 
   for (const entry of entries) {
+    const id = makeId(entry);
     try {
       let coverPhoto: CoverPhoto | null = null;
 
@@ -123,7 +137,7 @@ async function main() {
         if (!existsSync(localAbs)) {
           throw new Error(`photo 파일 없음: ${localAbs}`);
         }
-        const bucketKey = `${entry.id}${extname(entry.photo.file)}`;
+        const bucketKey = `${id}${extname(entry.photo.file)}`;
         uploadPhoto(localAbs, bucketKey);
         coverPhoto = {
           path: bucketKey,
@@ -135,7 +149,7 @@ async function main() {
       }
 
       const values: typeof schema.heritage.$inferInsert = {
-        id: entry.id,
+        id,
         name: entry.name,
         region: entry.region,
         era: entry.era,
@@ -168,10 +182,10 @@ async function main() {
         });
 
       ok++;
-      console.log(`✓ ${entry.id} ${entry.name}${coverPhoto ? ' (사진 업로드)' : ''}`);
+      console.log(`✓ ${entry.name} → id=${id}${coverPhoto ? ' (사진 업로드)' : ''}`);
     } catch (err) {
       failed++;
-      console.error(`✗ ${entry.id ?? '(id 없음)'}: ${err instanceof Error ? err.message : err}`);
+      console.error(`✗ ${id || entry.name || '(id 없음)'}: ${err instanceof Error ? err.message : err}`);
     }
   }
 
