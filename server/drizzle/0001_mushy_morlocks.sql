@@ -1,0 +1,1 @@
+ALTER TABLE "heritage" ADD COLUMN "cover_photo" jsonb;

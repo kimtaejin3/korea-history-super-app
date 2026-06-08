@@ -43,3 +43,6 @@ android/
 
 # personal notes (not for repo)
 notes/
+
+# MinIO object storage (docker volume — heritage cover photos)
+.minio-data/

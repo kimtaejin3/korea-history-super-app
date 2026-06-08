@@ -1,0 +1,23 @@
+[
+  {
+    "id": "JOSEON_001",
+    "name": "장소 이름",
+    "nameHanja": "場所",
+    "region": "충청남도",
+    "era": "조선",
+    "period": "1706",
+    "tag": "사당",
+    "accent": "#E5563E",
+    "summary": "한 줄 요약 — 카드/리스트에 노출.",
+    "story": "장소 상세 페이지에 들어갈 더 긴 이야기.",
+    "lat": 36.7891,
+    "lon": 127.0145,
+    "photo": {
+      "file": "./photos/joseon_001.jpg",
+      "credit": "직접 촬영",
+      "width": 1920,
+      "height": 1080,
+      "desc": "사진 설명 (선택)"
+    }
+  }
+]

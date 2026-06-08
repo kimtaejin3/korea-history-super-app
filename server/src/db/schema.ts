@@ -52,6 +52,13 @@ export const heritage = pgTable(
       license: string;
       desc?: string;
     } | null>(),
+    coverPhoto: jsonb('cover_photo').$type<{
+      path: string; // MinIO 버킷 내부 경로 (예: "baekje_001.jpg" 또는 "subdir/img.jpg")
+      width?: number;
+      height?: number;
+      credit?: string;
+      desc?: string;
+    } | null>(),
     source: text('source').notNull().default('curated'), // 'curated' | 'openapi'
     // OpenAPI 메타 (선택)
     ccbaKdcd: integer('ccba_kdcd'),
