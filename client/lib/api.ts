@@ -34,7 +34,10 @@ export type NearbyResponse = {
 
 export const api = {
   places: () => get<Place[]>('/places'),
-  place: (id: string) => get<Place>(`/places/${id}`),
+  place: (id: string, coords?: { lat: number; lon: number }) => {
+    const q = coords ? `?lat=${coords.lat}&lon=${coords.lon}` : '';
+    return get<Place>(`/places/${id}${q}`);
+  },
   /** 서버측에서 거리 계산 + 정렬 + 페이징된 가까운 장소. */
   nearby: ({ lat, lon, radius = 20, limit = 50, page = 1, era }: NearbyParams) => {
     const params = new URLSearchParams({

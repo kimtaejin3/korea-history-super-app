@@ -10,6 +10,11 @@ export const places = new Hono();
 const PHOTO_PORT = 9000;
 const PHOTO_BUCKET = 'heritage';
 
+// path segment별 인코딩 — 한글/특수문자 키도 안전하게 URL로.
+function encodePath(p: string): string {
+  return p.split('/').map(encodeURIComponent).join('/');
+}
+
 // coverPhoto가 있으면 MinIO URL로 변환, 없으면 위키 photo 그대로.
 // 요청 Host에서 LAN IP를 뽑아 폰에서 직접 도달 가능한 URL 생성.
 function resolvePhoto(row: typeof schema.heritage.$inferSelect, hostHeader: string | undefined) {
@@ -17,7 +22,7 @@ function resolvePhoto(row: typeof schema.heritage.$inferSelect, hostHeader: stri
   if (cover?.path) {
     const lanIp = hostHeader?.split(':')[0] ?? 'localhost';
     return {
-      url: `http://${lanIp}:${PHOTO_PORT}/${PHOTO_BUCKET}/${cover.path}`,
+      url: `http://${lanIp}:${PHOTO_PORT}/${PHOTO_BUCKET}/${encodePath(cover.path)}`,
       width: cover.width,
       height: cover.height,
       credit: cover.credit ?? 'curated',
@@ -92,12 +97,27 @@ places.get('/', async (c) => {
   return c.json(rows.map((r) => rowToPlace(r, host)));
 });
 
-// 장소 상세
-places.get('/:id', async (c) => {
-  const id = c.req.param('id');
-  const host = c.req.header('host');
-  const db = getDb();
-  const [row] = await db.select().from(schema.heritage).where(eq(schema.heritage.id, id));
-  if (!row) return c.json({ error: 'Not found' }, 404);
-  return c.json(rowToPlace(row, host));
-});
+// 장소 상세 — lat/lon 주면 distance 계산해서 같이 내려줌
+places.get(
+  '/:id',
+  zValidator(
+    'query',
+    z.object({
+      lat: z.coerce.number().optional(),
+      lon: z.coerce.number().optional(),
+    })
+  ),
+  async (c) => {
+    const id = c.req.param('id');
+    const { lat, lon } = c.req.valid('query');
+    const host = c.req.header('host');
+    const db = getDb();
+    const [row] = await db.select().from(schema.heritage).where(eq(schema.heritage.id, id));
+    if (!row) return c.json({ error: 'Not found' }, 404);
+    const distance =
+      lat != null && lon != null && row.lat != null && row.lon != null
+        ? distanceKm({ lat, lon }, { lat: row.lat, lon: row.lon })
+        : 0;
+    return c.json(rowToPlace(row, host, distance));
+  }
+);

@@ -11,10 +11,10 @@ export const placesQueryOptions = () =>
     gcTime: GC.MEDIUM,
   });
 
-export const placeQueryOptions = (id: string) =>
+export const placeQueryOptions = (id: string, coords?: { lat: number; lon: number }) =>
   queryOptions({
-    queryKey: queryKeys.places.detail(id),
-    queryFn: () => api.place(id),
+    queryKey: queryKeys.places.detail(id, coords),
+    queryFn: () => api.place(id, coords),
     staleTime: STALE.MEDIUM,
     gcTime: GC.MEDIUM,
   });

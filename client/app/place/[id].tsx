@@ -23,6 +23,11 @@ import {
   PinIconOutline,
 } from '../../components/ui/icons';
 import { formatDistance } from '../../lib/geo';
+import { useUserCoords } from '../../stores/userLocation';
+
+// queryKey 안정성 — 11m 그리드(소수점 4자리)로 양자화. 그 안에서 흔들려도 재요청 없음.
+const QUANT = 10000;
+const quantize = (n: number) => Math.round(n * QUANT) / QUANT;
 
 const NotFound = () => (
   <View className="flex-1 bg-paper">
@@ -47,10 +52,12 @@ export default function PlaceDetailScreen() {
 function PlaceContent() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const userCoords = useUserCoords();
+  const queryCoords = { lat: quantize(userCoords.lat), lon: quantize(userCoords.lon) };
   const [{ data: p }, { data: STAMPED }, { data: THEMES }, { data: me }, { data: LEVELS }] =
     useSuspenseQueries({
       queries: [
-        placeQueryOptions(id),
+        placeQueryOptions(id, queryCoords),
         stampedQueryOptions(),
         themesQueryOptions(),
         meQueryOptions(),

@@ -12,7 +12,10 @@ export const queryKeys = {
     all: ['places'] as const,
     list: () => [...queryKeys.places.all, 'list'] as const,
     details: () => [...queryKeys.places.all, 'detail'] as const,
-    detail: (id: string) => [...queryKeys.places.details(), id] as const,
+    detail: (id: string, coords?: { lat: number; lon: number }) =>
+      coords
+        ? ([...queryKeys.places.details(), id, coords] as const)
+        : ([...queryKeys.places.details(), id] as const),
     nearby: (lat: number, lon: number, opts: Omit<NearbyParams, 'lat' | 'lon'> = {}) =>
       [
         ...queryKeys.places.all,
