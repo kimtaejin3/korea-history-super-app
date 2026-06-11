@@ -1,13 +1,7 @@
-import { useEffect } from 'react';
 import Animated, {
   Extrapolate,
   interpolate,
-  runOnJS,
   useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withSequence,
-  withTiming,
 } from 'react-native-reanimated';
 import { StyleSheet, Text, useWindowDimensions } from 'react-native';
 import { useSearchActions, useSearchState } from '../../stores/searchTransition';
@@ -18,6 +12,7 @@ import {
   SEARCH_BAR_INNER_PX,
   SEARCH_BAR_TEXT_LEFT,
 } from '../../lib/searchBarLayout';
+import { useMorph } from '../../lib/useMorph';
 import { SearchIcon } from '../ui/icons';
 
 const PHASE_DURATION = 200;
@@ -29,68 +24,24 @@ export function SearchTransitionOverlay() {
   const { end } = useSearchActions();
   const { width: screenWidth } = useWindowDimensions();
 
-  const x = useSharedValue(0);
-  const y = useSharedValue(0);
-  const width = useSharedValue(36);
-  const height = useSharedValue(36);
-  const radius = useSharedValue(18);
-  const progress = useSharedValue(0);
-  const opacity = useSharedValue(0);
+  const midpoint = state.target
+    ? {
+        x: (screenWidth - MID_WIDTH) / 2,
+        y: state.target.y,
+        width: MID_WIDTH,
+        height: state.target.height,
+      }
+    : null;
 
-  useEffect(() => {
-    if (!state.active || !state.source || !state.target) {
-      opacity.value = 0;
-      return;
-    }
-    const target = state.target;
-
-    const mid = {
-      x: (screenWidth - MID_WIDTH) / 2,
-      y: target.y,
-      width: MID_WIDTH,
-      height: target.height,
-    };
-
-    x.value = state.source.x;
-    y.value = state.source.y;
-    width.value = state.source.width;
-    height.value = state.source.height;
-    radius.value = state.source.width / 2;
-    progress.value = 0;
-    opacity.value = 1;
-
-    const twoPhase = (toMid: number, toTarget: number) =>
-      withSequence(
-        withTiming(toMid, { duration: PHASE_DURATION }),
-        withDelay(PAUSE_DURATION, withTiming(toTarget, { duration: PHASE_DURATION }))
-      );
-
-    x.value = twoPhase(mid.x, target.x);
-    y.value = twoPhase(mid.y, target.y);
-    width.value = twoPhase(mid.width, target.width);
-    height.value = twoPhase(mid.height, target.height);
-    radius.value = twoPhase(mid.height / 2, target.height / 2);
-
-    progress.value = withSequence(
-      withTiming(0.5, { duration: PHASE_DURATION }),
-      withDelay(
-        PAUSE_DURATION,
-        withTiming(1, { duration: PHASE_DURATION }, (finished) => {
-          if (finished) runOnJS(end)();
-        })
-      )
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.active]);
-
-  const containerStyle = useAnimatedStyle(() => ({
-    left: x.value,
-    top: y.value,
-    width: width.value,
-    height: height.value,
-    borderRadius: radius.value,
-    opacity: opacity.value,
-  }));
+  const { containerStyle, width, height, progress } = useMorph({
+    active: state.active,
+    source: state.source,
+    midpoint,
+    target: state.target,
+    phaseDuration: PHASE_DURATION,
+    pauseDuration: PAUSE_DURATION,
+    onComplete: end,
+  });
 
   const iconStyle = useAnimatedStyle(() => ({
     left: interpolate(
