@@ -89,6 +89,20 @@ export const theme = pgTable('theme', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
 });
 
+// ─── 주제 (콘텐츠 그룹핑) ────────────────────────────────────
+// 테마(답사 코스)와 다름. 테마는 순서 있는 투어, 주제는 단순 분류 (예: 일제강점기, 서원).
+export const topic = pgTable('topic', {
+  id: text('id').primaryKey(),
+  name: text('name').notNull(),
+  description: text('description').notNull(),
+  era: text('era'), // 선택. 주제가 한 시대에 한정될 때만.
+  accent: text('accent').notNull(),
+  glyph: text('glyph').notNull(),
+  placeIds: jsonb('place_ids').$type<string[]>().notNull(),
+  sort: integer('sort').notNull().default(0),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+});
+
 // ─── 등급/레벨 ──────────────────────────────────────────────
 export const level = pgTable('level', {
   level: integer('level').primaryKey(),
@@ -166,6 +180,8 @@ export const todayEntry = pgTable('today_entry', {
 export type Heritage = typeof heritage.$inferSelect;
 export type NewHeritage = typeof heritage.$inferInsert;
 export type Theme = typeof theme.$inferSelect;
+export type Topic = typeof topic.$inferSelect;
+export type NewTopic = typeof topic.$inferInsert;
 export type Level = typeof level.$inferSelect;
 export type User = typeof user.$inferSelect;
 export type Stamp = typeof stamp.$inferSelect;

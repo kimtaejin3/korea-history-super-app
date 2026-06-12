@@ -7,13 +7,6 @@ import { View } from 'react-native';
 
 const BLOCK = 'bg-[rgba(26,22,20,0.04)] rounded-xl';
 
-export function HeroSkeleton() {
-  return (
-    <View className="px-5 pb-6">
-      <View className={`${BLOCK} h-[280px]`} />
-    </View>
-  );
-}
 
 export function NearbySkeleton() {
   return (

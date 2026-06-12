@@ -4,6 +4,7 @@ import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
 import { places } from './routes/places.js';
 import { themes } from './routes/themes.js';
+import { topics } from './routes/topics.js';
 import { stamps } from './routes/stamps.js';
 import { etc } from './routes/etc.js';
 import { me } from './routes/me.js';
@@ -30,6 +31,7 @@ app.get('/', (c) =>
 // 라우트 마운트 — 순서 주의: 구체적 path가 먼저
 app.route('/api/places', places);
 app.route('/api/themes', themes);
+app.route('/api/topics', topics);
 app.route('/api/stamps', stamps);
 app.route('/api/stamped', stamps); // 백워드 호환 (기존 /api/stamped 경로)
 app.route('/api', etc); // /today, /achievements, /ranking, /levels

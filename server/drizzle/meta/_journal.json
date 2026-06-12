@@ -22,6 +22,13 @@
       "when": 1780917665374,
       "tag": "0002_magical_dreadnoughts",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1781271432295,
+      "tag": "0003_daffy_monster_badoon",
+      "breakpoints": true
     }
   ]
 }

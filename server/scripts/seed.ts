@@ -14,6 +14,7 @@ import { PLACES, STAMPED } from '../src/data/places.js';
 import { THEMES } from '../src/data/themes.js';
 import { LEVELS, ACHIEVEMENTS } from '../src/data/user.js';
 import { TODAY_IN_HISTORY } from '../src/data/today.js';
+import { TOPICS } from '../src/data/topics.js';
 import { HERITAGE_COLLAPSED } from '../src/lib/heritage.js';
 import { heritageToPlace } from '../src/lib/heritageAdapter.js';
 
@@ -235,10 +236,41 @@ async function seedToday() {
   console.log(`[today_entry] done.`);
 }
 
+async function seedTopics() {
+  console.log(`[topic] inserting ${TOPICS.length} rows...`);
+  const rows = TOPICS.map((t) => ({
+    id: t.id,
+    name: t.name,
+    description: t.description,
+    era: t.era,
+    accent: t.accent,
+    glyph: t.glyph,
+    placeIds: t.placeIds,
+    sort: t.sort,
+  }));
+  await db
+    .insert(schema.topic)
+    .values(rows)
+    .onConflictDoUpdate({
+      target: schema.topic.id,
+      set: {
+        name: schema.topic.name,
+        description: schema.topic.description,
+        era: schema.topic.era,
+        accent: schema.topic.accent,
+        glyph: schema.topic.glyph,
+        placeIds: schema.topic.placeIds,
+        sort: schema.topic.sort,
+      },
+    });
+  console.log(`[topic] done.`);
+}
+
 async function main() {
   const start = Date.now();
   await seedHeritage();
   await seedThemes();
+  await seedTopics();
   await seedLevels();
   await seedUserAndStamps();
   await seedAchievements();

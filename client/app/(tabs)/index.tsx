@@ -5,12 +5,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PinIcon } from '@shared/ui/icons';
 import { SearchButton } from '@features/search-transition/ui/SearchButton';
 import { SectionBoundary } from '@shared/ui/SectionBoundary';
-import { HeroSection } from '@widgets/home-hero/ui/HeroSection';
 import { NearbySection } from '@widgets/home-nearby/ui/NearbySection';
 import { ActiveThemesSection } from '@widgets/home-themes/ui/ActiveThemesSection';
 import { MyJourneySection } from '@widgets/home-journey/ui/MyJourneySection';
+import { HomeHeadline } from '@widgets/home-headline/ui/HomeHeadline';
 import {
-  HeroSkeleton,
+  HomeTopicsSection,
+  HomeTopicsSkeleton,
+} from '@widgets/home-topics/ui/HomeTopicsSection';
+import {
   NearbySkeleton,
   ActiveThemesSkeleton,
   MyJourneySkeleton,
@@ -37,15 +40,10 @@ export default function HomeScreen() {
         contentContainerStyle={{ paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       >
-        <View className="px-5 pt-1 pb-4">
-          <Text className="font-serif text-[26px] text-ink tracking-[-0.5px] leading-8">
-            오늘, 가까운 곳에서{'\n'}
-            <Text className="text-red">역사 한 조각</Text>을 만나보세요
-          </Text>
-        </View>
+        <HomeHeadline />
 
-        <SectionBoundary fallback={<HeroSkeleton />}>
-          <HeroSection />
+        <SectionBoundary fallback={<HomeTopicsSkeleton />}>
+          <HomeTopicsSection />
         </SectionBoundary>
 
         <SectionBoundary fallback={<NearbySkeleton />}>
