@@ -1,20 +1,20 @@
 import { queryOptions } from '@tanstack/react-query';
-import { api } from '@shared/api/base';
-import { queryKeys } from '@shared/api/queryKeys';
 import { STALE, GC } from '@shared/config/query-config';
+import { getThemes, getTheme } from './client';
+import { themeQueryKeys } from './queryKeys';
 
 export const themesQueryOptions = () =>
   queryOptions({
-    queryKey: queryKeys.themes.list(),
-    queryFn: ({ signal }) => api.themes(signal),
+    queryKey: themeQueryKeys.list(),
+    queryFn: ({ signal }) => getThemes(signal),
     staleTime: STALE.MEDIUM,
     gcTime: GC.MEDIUM,
   });
 
 export const themeQueryOptions = (id: string) =>
   queryOptions({
-    queryKey: queryKeys.themes.detail(id),
-    queryFn: ({ signal }) => api.theme(id, signal),
+    queryKey: themeQueryKeys.detail(id),
+    queryFn: ({ signal }) => getTheme(id, signal),
     staleTime: STALE.MEDIUM,
     gcTime: GC.MEDIUM,
   });

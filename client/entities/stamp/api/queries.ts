@@ -1,20 +1,20 @@
 import { queryOptions } from '@tanstack/react-query';
-import { api } from '@shared/api/base';
-import { queryKeys } from '@shared/api/queryKeys';
 import { STALE, GC } from '@shared/config/query-config';
+import { getStamped, getRecentStamps } from './client';
+import { stampQueryKeys } from './queryKeys';
 
 export const stampedQueryOptions = () =>
   queryOptions({
-    queryKey: queryKeys.stamps.stamped(),
-    queryFn: ({ signal }) => api.stamped(signal),
+    queryKey: stampQueryKeys.stamped(),
+    queryFn: ({ signal }) => getStamped(signal),
     staleTime: STALE.SHORT,
     gcTime: GC.SHORT,
   });
 
 export const recentStampsQueryOptions = (limit = 6) =>
   queryOptions({
-    queryKey: queryKeys.stamps.recent(limit),
-    queryFn: ({ signal }) => api.recentStamps(limit, signal),
+    queryKey: stampQueryKeys.recent(limit),
+    queryFn: ({ signal }) => getRecentStamps(limit, signal),
     staleTime: STALE.SHORT,
     gcTime: GC.SHORT,
   });

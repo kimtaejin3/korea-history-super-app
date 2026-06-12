@@ -1,10 +1,6 @@
 import Constants from 'expo-constants';
 import ky, { HTTPError } from 'ky';
 
-import type { Place } from '@entities/place/model/types';
-import type { Theme } from '@entities/theme/model/types';
-import type { Achievement, Level, RankInfo, RankingEntry } from '@entities/user/model/types';
-
 // 실기기는 Metro의 LAN IP를 자동 추출하므로 Wi-Fi가 바뀌어도 IP를 갱신할 필요 없음.
 // EXPO_PUBLIC_API_BASE로 명시 override 가능 (스테이징/프로덕션 빌드용).
 const host = Constants.expoConfig?.hostUri?.split(':')[0];
@@ -27,7 +23,11 @@ const client = ky.create({
   retry: 0, // React Query가 재시도 정책 담당. 두 군데서 retry하면 backoff 의도가 깨짐.
 });
 
-async function get<T>(path: string, signal?: AbortSignal): Promise<T> {
+/**
+ * 공통 GET 헬퍼. 각 entity의 api/client.ts에서 이 함수만 import해 endpoint를 정의.
+ * 응답 body를 ApiError에 담아 throw하므로 호출부에서 상태코드 + 본문 모두 접근 가능.
+ */
+export async function get<T>(path: string, signal?: AbortSignal): Promise<T> {
   try {
     return await client.get(`${BASE}${path}`, { signal }).json<T>();
   } catch (err) {
@@ -55,68 +55,3 @@ async function get<T>(path: string, signal?: AbortSignal): Promise<T> {
     throw err;
   }
 }
-
-export type NearbyParams = {
-  lat: number;
-  lon: number;
-  radius?: number;
-  limit?: number;
-  page?: number;
-  era?: string;
-};
-
-export type NearbyResponse = {
-  items: Place[];
-  page: number;
-  limit: number;
-  total: number;
-  hasMore: boolean;
-};
-
-export const api = {
-  places: (signal?: AbortSignal) => get<Place[]>('/places', signal),
-  place: (id: string, coords?: { lat: number; lon: number }, signal?: AbortSignal) => {
-    const q = coords ? `?lat=${coords.lat}&lon=${coords.lon}` : '';
-    return get<Place>(`/places/${id}${q}`, signal);
-  },
-  /** 서버측에서 거리 계산 + 정렬 + 페이징된 가까운 장소. */
-  nearby: (
-    { lat, lon, radius = 20, limit = 50, page = 1, era }: NearbyParams,
-    signal?: AbortSignal
-  ) => {
-    const params = new URLSearchParams({
-      lat: String(lat),
-      lon: String(lon),
-      radius: String(radius),
-      limit: String(limit),
-      page: String(page),
-    });
-    if (era && era !== '전체') params.set('era', era);
-    return get<NearbyResponse>(`/places/nearby?${params.toString()}`, signal);
-  },
-  stamped: (signal?: AbortSignal) => get<string[]>('/stamped', signal),
-  /** 최근 스탬프 + 글리프/색 (홈 표시용 가벼운 응답). */
-  recentStamps: (limit = 6, signal?: AbortSignal) =>
-    get<{ id: string; glyph: string; accent: string }[]>(
-      `/stamps/recent?limit=${limit}`,
-      signal
-    ),
-
-  themes: (signal?: AbortSignal) => get<Theme[]>('/themes', signal),
-  theme: (id: string, signal?: AbortSignal) => get<Theme>(`/themes/${id}`, signal),
-
-  me: (signal?: AbortSignal) =>
-    get<{
-      nickname: string;
-      joinedAt: string;
-      daysActive: number;
-      stamps: number;
-      quizCorrect: number;
-      themesCompleted: number;
-      xp: number;
-      rank: RankInfo;
-    }>('/me', signal),
-  achievements: (signal?: AbortSignal) => get<Achievement[]>('/achievements', signal),
-  ranking: (signal?: AbortSignal) => get<RankingEntry[]>('/ranking', signal),
-  levels: (signal?: AbortSignal) => get<Level[]>('/levels', signal),
-};

@@ -1,20 +1,26 @@
 import { queryOptions, infiniteQueryOptions } from '@tanstack/react-query';
-import { api, type NearbyParams, type NearbyResponse } from '@shared/api/base';
-import { queryKeys } from '@shared/api/queryKeys';
 import { STALE, GC } from '@shared/config/query-config';
+import {
+  getPlaces,
+  getPlace,
+  getNearby,
+  type NearbyParams,
+  type NearbyResponse,
+} from './client';
+import { placeQueryKeys } from './queryKeys';
 
 export const placesQueryOptions = () =>
   queryOptions({
-    queryKey: queryKeys.places.list(),
-    queryFn: ({ signal }) => api.places(signal),
+    queryKey: placeQueryKeys.list(),
+    queryFn: ({ signal }) => getPlaces(signal),
     staleTime: STALE.MEDIUM,
     gcTime: GC.MEDIUM,
   });
 
 export const placeQueryOptions = (id: string, coords?: { lat: number; lon: number }) =>
   queryOptions({
-    queryKey: queryKeys.places.detail(id, coords),
-    queryFn: ({ signal }) => api.place(id, coords, signal),
+    queryKey: placeQueryKeys.detail(id, coords),
+    queryFn: ({ signal }) => getPlace(id, coords, signal),
     staleTime: STALE.MEDIUM,
     gcTime: GC.MEDIUM,
   });
@@ -22,12 +28,12 @@ export const placeQueryOptions = (id: string, coords?: { lat: number; lon: numbe
 /** 단일 페이지 fetch (홈처럼 페이지네이션 불필요한 곳). */
 export const nearbyQueryOptions = (params: NearbyParams) =>
   queryOptions({
-    queryKey: queryKeys.places.nearby(params.lat, params.lon, {
+    queryKey: placeQueryKeys.nearby(params.lat, params.lon, {
       radius: params.radius,
       limit: params.limit,
       era: params.era,
     }),
-    queryFn: ({ signal }) => api.nearby(params, signal),
+    queryFn: ({ signal }) => getNearby(params, signal),
     staleTime: STALE.SHORT,
     gcTime: GC.SHORT,
   });
@@ -36,14 +42,14 @@ export const nearbyQueryOptions = (params: NearbyParams) =>
 export const nearbyInfiniteQueryOptions = (params: NearbyParams) =>
   infiniteQueryOptions({
     queryKey: [
-      ...queryKeys.places.nearby(params.lat, params.lon, {
+      ...placeQueryKeys.nearby(params.lat, params.lon, {
         radius: params.radius,
         limit: params.limit,
         era: params.era,
       }),
       'infinite',
     ] as const,
-    queryFn: ({ pageParam, signal }) => api.nearby({ ...params, page: pageParam }, signal),
+    queryFn: ({ pageParam, signal }) => getNearby({ ...params, page: pageParam }, signal),
     initialPageParam: 1,
     getNextPageParam: (last: NearbyResponse) => (last.hasMore ? last.page + 1 : undefined),
     staleTime: STALE.SHORT,
