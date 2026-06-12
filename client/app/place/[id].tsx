@@ -4,26 +4,26 @@ import { View, Text, ScrollView, Pressable } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSuspenseQueries } from '@tanstack/react-query';
-import { TOKENS } from '../../lib/tokens';
-import { placeQueryOptions } from '../../queries/places';
-import { themesQueryOptions } from '../../queries/themes';
-import { stampedQueryOptions } from '../../queries/stamps';
-import { meQueryOptions, levelsQueryOptions } from '../../queries/me';
-import { BackHeader } from '../../components/ui/BackHeader';
-import { PhotoPlaceholder } from '../../components/ui/PhotoPlaceholder';
-import { PhotoCredit } from '../../components/place/PhotoCredit';
-import { Tag } from '../../components/ui/Tag';
-import { SectionLabel } from '../../components/ui/SectionLabel';
-import { GatedButton } from '../../components/user/GatedButton';
-import { SectionBoundary } from '../../components/ui/SectionBoundary';
+import { TOKENS } from '@shared/lib/tokens';
+import { placeQueryOptions } from '@entities/place/api/queries';
+import { themesQueryOptions } from '@entities/theme/api/queries';
+import { stampedQueryOptions } from '@entities/stamp/api/queries';
+import { meQueryOptions, levelsQueryOptions } from '@entities/user/api/queries';
+import { BackHeader } from '@shared/ui/BackHeader';
+import { PhotoPlaceholder } from '@shared/ui/PhotoPlaceholder';
+import { PhotoCredit } from '@entities/place/ui/PhotoCredit';
+import { Tag } from '@shared/ui/Tag';
+import { SectionLabel } from '@shared/ui/SectionLabel';
+import { GatedButton } from '@features/auth/ui/GatedButton';
+import { SectionBoundary } from '@shared/ui/SectionBoundary';
 import {
   CameraIcon,
   ChevronRightIcon,
   PinIconFilled,
   PinIconOutline,
-} from '../../components/ui/icons';
-import { formatDistance } from '../../lib/geo';
-import { useUserCoords } from '../../stores/userLocation';
+} from '@shared/ui/icons';
+import { formatDistance } from '@shared/lib/geo';
+import { useUserCoords } from '@entities/user/model/locationStore';
 
 // queryKey 안정성 — 11m 그리드(소수점 4자리)로 양자화. 그 안에서 흔들려도 재요청 없음.
 const QUANT = 10000;

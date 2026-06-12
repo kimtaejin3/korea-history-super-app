@@ -3,16 +3,16 @@
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSuspenseQueries } from '@tanstack/react-query';
-import { TOKENS } from '../../lib/tokens';
-import { stampedQueryOptions } from '../../queries/stamps';
-import { meQueryOptions, achievementsQueryOptions, rankingQueryOptions } from '../../queries/me';
-import { PageHeader } from '../../components/ui/PageHeader';
-import { RankBadge } from '../../components/user/RankBadge';
-import { ScreenState } from '../../components/ui/ScreenState';
-import { ProgressBar } from '../../components/ui/ProgressBar';
-import { SectionLabel } from '../../components/ui/SectionLabel';
-import { ArrowRightIcon, SettingsIcon } from '../../components/ui/icons';
-import { SectionBoundary } from '../../components/ui/SectionBoundary';
+import { TOKENS } from '@shared/lib/tokens';
+import { stampedQueryOptions } from '@entities/stamp/api/queries';
+import { meQueryOptions, achievementsQueryOptions, rankingQueryOptions } from '@entities/user/api/queries';
+import { PageHeader } from '@shared/ui/PageHeader';
+import { RankBadge } from '@entities/user/ui/RankBadge';
+import { ScreenState } from '@shared/ui/ScreenState';
+import { ProgressBar } from '@shared/ui/ProgressBar';
+import { SectionLabel } from '@shared/ui/SectionLabel';
+import { ArrowRightIcon, SettingsIcon } from '@shared/ui/icons';
+import { SectionBoundary } from '@shared/ui/SectionBoundary';
 
 export default function ProfileScreen() {
   return (

@@ -5,15 +5,15 @@ import { View, Text, Pressable, Animated, Easing } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { TOKENS } from '../../lib/tokens';
-import { placeQueryOptions } from '../../queries/places';
-import { Tag } from '../../components/ui/Tag';
-import { PhotoPlaceholder } from '../../components/ui/PhotoPlaceholder';
-import { LottieAsset } from '../../components/ui/LottieAsset';
-import { CheckIcon, CloseIcon, InfoIcon, PinIconFilled } from '../../components/ui/icons';
-import { useUserLocation } from '../../stores/userLocation';
-import { distanceKm, formatDistance } from '../../lib/geo';
-import { SectionBoundary } from '../../components/ui/SectionBoundary';
+import { TOKENS } from '@shared/lib/tokens';
+import { placeQueryOptions } from '@entities/place/api/queries';
+import { Tag } from '@shared/ui/Tag';
+import { PhotoPlaceholder } from '@shared/ui/PhotoPlaceholder';
+import { LottieAsset } from '@shared/ui/LottieAsset';
+import { CheckIcon, CloseIcon, InfoIcon, PinIconFilled } from '@shared/ui/icons';
+import { useUserLocation } from '@entities/user/model/locationStore';
+import { distanceKm, formatDistance } from '@shared/lib/geo';
+import { SectionBoundary } from '@shared/ui/SectionBoundary';
 
 type Step = 'locating' | 'too_far' | 'confirmed' | 'quiz' | 'result' | 'stamp';
 

@@ -2,19 +2,19 @@
 
 import { View, Text, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { PinIcon } from '../../components/ui/icons';
-import { SearchButton } from '../../components/search/SearchButton';
-import { SectionBoundary } from '../../components/ui/SectionBoundary';
-import { HeroSection } from '../../components/home/HeroSection';
-import { NearbySection } from '../../components/home/NearbySection';
-import { ActiveThemesSection } from '../../components/home/ActiveThemesSection';
-import { MyJourneySection } from '../../components/home/MyJourneySection';
+import { PinIcon } from '@shared/ui/icons';
+import { SearchButton } from '@features/search-transition/ui/SearchButton';
+import { SectionBoundary } from '@shared/ui/SectionBoundary';
+import { HeroSection } from '@widgets/home-hero/ui/HeroSection';
+import { NearbySection } from '@widgets/home-nearby/ui/NearbySection';
+import { ActiveThemesSection } from '@widgets/home-themes/ui/ActiveThemesSection';
+import { MyJourneySection } from '@widgets/home-journey/ui/MyJourneySection';
 import {
   HeroSkeleton,
   NearbySkeleton,
   ActiveThemesSkeleton,
   MyJourneySkeleton,
-} from '../../components/home/skeletons';
+} from '@widgets/home-nearby/ui/skeletons';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();

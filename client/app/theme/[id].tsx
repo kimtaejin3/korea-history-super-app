@@ -3,15 +3,15 @@
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSuspenseQueries } from '@tanstack/react-query';
-import { TOKENS } from '../../lib/tokens';
-import { placesQueryOptions } from '../../queries/places';
-import { themeQueryOptions } from '../../queries/themes';
-import { stampedQueryOptions } from '../../queries/stamps';
-import { BackHeader } from '../../components/ui/BackHeader';
-import { Tag } from '../../components/ui/Tag';
-import { SectionLabel } from '../../components/ui/SectionLabel';
-import { RewardIcon } from '../../components/ui/icons';
-import { SectionBoundary } from '../../components/ui/SectionBoundary';
+import { TOKENS } from '@shared/lib/tokens';
+import { placesQueryOptions } from '@entities/place/api/queries';
+import { themeQueryOptions } from '@entities/theme/api/queries';
+import { stampedQueryOptions } from '@entities/stamp/api/queries';
+import { BackHeader } from '@shared/ui/BackHeader';
+import { Tag } from '@shared/ui/Tag';
+import { SectionLabel } from '@shared/ui/SectionLabel';
+import { RewardIcon } from '@shared/ui/icons';
+import { SectionBoundary } from '@shared/ui/SectionBoundary';
 
 const NotFound = () => (
   <View className="flex-1 bg-paper">

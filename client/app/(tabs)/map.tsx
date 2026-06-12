@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { TOKENS } from '../../lib/tokens';
-import { SearchIcon } from '../../components/ui/icons';
-import { useSearchState } from '../../stores/searchTransition';
+import { TOKENS } from '@shared/lib/tokens';
+import { SearchIcon } from '@shared/ui/icons';
+import { useSearchState } from '@features/search-transition/model/store';
 import {
   SEARCH_BAR_HEIGHT,
   SEARCH_BAR_ICON_GAP,
@@ -14,8 +14,8 @@ import {
   SEARCH_BAR_INNER_PX,
   SEARCH_BAR_PADDING_TOP,
   SEARCH_BAR_PADDING_X,
-} from '../../lib/searchBarLayout';
-import { NearbySheet } from '../../components/map/NearbySheet';
+} from '@features/search-transition/lib/searchBarLayout';
+import { NearbySheet } from '@widgets/nearby-sheet/ui/NearbySheet';
 
 const FILTERS = ['전체', '조선', '백제', '통일신라', '근현대'];
 

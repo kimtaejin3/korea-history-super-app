@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { View, Text, ScrollView, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSuspenseQueries } from '@tanstack/react-query';
-import { themesQueryOptions } from '../../queries/themes';
-import { meQueryOptions, levelsQueryOptions } from '../../queries/me';
-import { PageHeader } from '../../components/ui/PageHeader';
-import { GatedButton } from '../../components/user/GatedButton';
-import { StampBoxIcon } from '../../components/ui/icons';
-import { ScreenState } from '../../components/ui/ScreenState';
-import { SectionBoundary } from '../../components/ui/SectionBoundary';
+import { themesQueryOptions } from '@entities/theme/api/queries';
+import { meQueryOptions, levelsQueryOptions } from '@entities/user/api/queries';
+import { PageHeader } from '@shared/ui/PageHeader';
+import { GatedButton } from '@features/auth/ui/GatedButton';
+import { StampBoxIcon } from '@shared/ui/icons';
+import { ScreenState } from '@shared/ui/ScreenState';
+import { SectionBoundary } from '@shared/ui/SectionBoundary';
 
 const TABS = ['전체', '진행중', '추천', '완성'];
 

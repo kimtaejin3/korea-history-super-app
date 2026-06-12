@@ -5,15 +5,15 @@ import { View, Text, ScrollView, Pressable, ViewStyle } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { useRouter } from 'expo-router';
 import { useSuspenseQueries } from '@tanstack/react-query';
-import { TOKENS } from '../../lib/tokens';
-import { placesQueryOptions } from '../../queries/places';
-import { themesQueryOptions } from '../../queries/themes';
-import { stampedQueryOptions } from '../../queries/stamps';
-import { PageHeader } from '../../components/ui/PageHeader';
-import { StampSlot } from '../../components/ui/StampSlot';
-import { ScreenState } from '../../components/ui/ScreenState';
-import { ShareIcon } from '../../components/ui/icons';
-import { SectionBoundary } from '../../components/ui/SectionBoundary';
+import { TOKENS } from '@shared/lib/tokens';
+import { placesQueryOptions } from '@entities/place/api/queries';
+import { themesQueryOptions } from '@entities/theme/api/queries';
+import { stampedQueryOptions } from '@entities/stamp/api/queries';
+import { PageHeader } from '@shared/ui/PageHeader';
+import { StampSlot } from '@entities/stamp/ui/StampSlot';
+import { ScreenState } from '@shared/ui/ScreenState';
+import { ShareIcon } from '@shared/ui/icons';
+import { SectionBoundary } from '@shared/ui/SectionBoundary';
 
 const VIEWS = ['테마별', '시대별', '지역별'];
 
