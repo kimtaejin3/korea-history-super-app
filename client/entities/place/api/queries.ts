@@ -6,7 +6,7 @@ import { STALE, GC } from '@shared/config/query-config';
 export const placesQueryOptions = () =>
   queryOptions({
     queryKey: queryKeys.places.list(),
-    queryFn: api.places,
+    queryFn: ({ signal }) => api.places(signal),
     staleTime: STALE.MEDIUM,
     gcTime: GC.MEDIUM,
   });
@@ -14,7 +14,7 @@ export const placesQueryOptions = () =>
 export const placeQueryOptions = (id: string, coords?: { lat: number; lon: number }) =>
   queryOptions({
     queryKey: queryKeys.places.detail(id, coords),
-    queryFn: () => api.place(id, coords),
+    queryFn: ({ signal }) => api.place(id, coords, signal),
     staleTime: STALE.MEDIUM,
     gcTime: GC.MEDIUM,
   });
@@ -27,7 +27,7 @@ export const nearbyQueryOptions = (params: NearbyParams) =>
       limit: params.limit,
       era: params.era,
     }),
-    queryFn: () => api.nearby(params),
+    queryFn: ({ signal }) => api.nearby(params, signal),
     staleTime: STALE.SHORT,
     gcTime: GC.SHORT,
   });
@@ -43,7 +43,7 @@ export const nearbyInfiniteQueryOptions = (params: NearbyParams) =>
       }),
       'infinite',
     ] as const,
-    queryFn: ({ pageParam }) => api.nearby({ ...params, page: pageParam }),
+    queryFn: ({ pageParam, signal }) => api.nearby({ ...params, page: pageParam }, signal),
     initialPageParam: 1,
     getNextPageParam: (last: NearbyResponse) => (last.hasMore ? last.page + 1 : undefined),
     staleTime: STALE.SHORT,

@@ -6,7 +6,7 @@ import { STALE, GC } from '@shared/config/query-config';
 export const stampedQueryOptions = () =>
   queryOptions({
     queryKey: queryKeys.stamps.stamped(),
-    queryFn: api.stamped,
+    queryFn: ({ signal }) => api.stamped(signal),
     staleTime: STALE.SHORT,
     gcTime: GC.SHORT,
   });
@@ -14,7 +14,7 @@ export const stampedQueryOptions = () =>
 export const recentStampsQueryOptions = (limit = 6) =>
   queryOptions({
     queryKey: queryKeys.stamps.recent(limit),
-    queryFn: () => api.recentStamps(limit),
+    queryFn: ({ signal }) => api.recentStamps(limit, signal),
     staleTime: STALE.SHORT,
     gcTime: GC.SHORT,
   });
